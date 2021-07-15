@@ -201,6 +201,8 @@ ${(Javascript as any).statementToCode(block, 'DO')}
     };
 
     (Javascript as any).role_and_side = (block: Block) => {
+      const player = (Javascript as any).statementToCode(block, 'PLAYER');
+      // Can't be empty because of shadow blocks
       let isAtkRole: boolean | null = null;
       if (block.getFieldValue('ROLE') === 'ROLE_ATK') {
         isAtkRole = true;
@@ -213,7 +215,7 @@ ${(Javascript as any).statementToCode(block, 'DO')}
       } else if (block.getFieldValue('SIDE') === 'SIDE_LEFT') {
         isRightSide = false;
       }
-      return [`game.playerIsRoleAndSide(player, ${isAtkRole}, ${isRightSide})`,
+      return [`game.playerIsRoleAndSide(${player}, ${isAtkRole}, ${isRightSide})`,
         (Javascript as any).ORDER_ADDITION];
     };
 

@@ -606,6 +606,9 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private playerIsRoleAndSide(player: Player, isAtkRole: boolean | null, isRightSide: boolean | null): boolean {
+    if (player === null) {
+      return false;
+    }
     return (isAtkRole === null || isAtkRole === player.isAtkRole) &&
       (isRightSide === null || isRightSide === player.isRightSide);
   }
