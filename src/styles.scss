@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+.pixelated {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+// https://github.com/google/blockly/issues/865#issuecomment-275351345
+.blocklyMainBackground {
+  // Ugly hack to fix black safari background
+  opacity: 0 !important;
+}
+
+.blocklyFlyoutLabelText {
+  font-weight: bolder !important;
+  font-size: larger !important;
+}
+
+/* Adds padding around the group of categories and separators. */
+.blocklyToolboxContents {
+  padding: .5em;
+}
+
+.blocklyToolboxCategory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Adds space between the categories, rounds the corners and adds space around the label. */
+.blocklyTreeRow {
+  padding: 4px !important;
+  margin-bottom: .5em;
+  border-radius: 4px;
+  height: 38px;
+}
+
+/* Stacks the icon on top of the label. */
+.blocklyTreeRowContentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.blocklyTreeRow {
+  height: initial;
+}
+
+.customIcon {
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  height: 32px;
+  width: 32px;
+}
+
+.customIconEvents {
+  background-image: url("/assets/icons/calendar-check-regular.png");
+}
+
+.customIconControl {
+  background-image: url("/assets/icons/futbol-regular-question-mark.png");
+}
+
+.customIconActions {
+  background-image: url("/assets/icons/running-solid.png");
+}
+
+.customIconPositions {
+  background-image: url("/assets/icons/map-marker-alt-solid.png");
+}
+
+.customIconSettings {
+  background-image: url("/assets/icons/flask-solid.png");
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

@@ -1,0 +1,23 @@
+{
+  "event_blocks": {
+    "colourPrimary": "#ffbf00"
+  },
+  "control_blocks": {
+    "colourPrimary": "#59c059"
+  },
+  "action_blocks": {
+    "colourPrimary": "#4c97ff"
+  },
+  "positions_blocks": {
+    "colourPrimary": "#ff6680"
+  },
+  "advanced_blocks": {
+    "colourPrimary": "#888"
+  },
+  "logic_blocks": {
+    "colourPrimary": "#888"
+  },
+  "math_blocks": {
+    "colourPrimary": "#888"
+  }
+}

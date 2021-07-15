@@ -1,0 +1,129 @@
+<!--
+* Software Name : SuperCodingBall
+* Version: 1.0.0
+* SPDX-FileCopyrightText: Copyright (c) 2021 Orange
+* SPDX-License-Identifier: BSD-3-Clause
+*
+* This software is distributed under the BSD 3-Clause "New" or "Revised" License,
+* the text of which is available at https://spdx.org/licenses/BSD-3-Clause.html
+* or see the "LICENSE.txt" file for more details.
+-->
+
+<div class="d-flex flex-row h-100">
+  <div style="flex: 1" class="d-flex flex-column">
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0">
+      <button
+        class="btn btn-lg"
+        type="button"
+        ngbTooltip="{{'GLOBAL.BACK' | translate }}"
+        (click)="location.back()">
+        <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24"/>
+      </button>
+      <button
+        class="btn"
+        type="button"
+        ngbTooltip="{{'BLOCKLY.FIELD_POPUP.TOOLTIP' | translate }}"
+        onclick="this.blur()"
+        (click)="modalService.open(fieldContent)">
+        <img src="../../../assets/icons/info-circle-solid.png" height="24" width="24"/>
+      </button>
+      <button
+        class="btn"
+        type="button"
+        ngbTooltip="{{'BLOCKLY.DELETE' | translate }}"
+        onclick="this.blur()"
+        (click)="openDeletePopup(deleteContent)">
+        <img src="../../../assets/icons/trash-solid.png" height="24" width="24"/>
+      </button>
+      <button
+        class="btn"
+        type="button"
+        ngbTooltip="{{'BLOCKLY.UNDO' | translate }}"
+        onclick="this.blur()"
+        (click)="undo()">
+        <img src="../../../assets/icons/undo-alt-solid.png" height="24" width="24"/>
+      </button>
+      <button
+        class="btn"
+        type="button"
+        ngbTooltip="{{'BLOCKLY.REDO' | translate }}"
+        onclick="this.blur()"
+        (click)="redo()">
+        <img src="../../../assets/icons/redo-alt-solid.png" height="24" width="24"/>
+      </button>
+      <button
+        *ngIf="debug"
+        class="btn"
+        type="button"
+        ngbTooltip="{{'BLOCKLY.COPY_OPPONENT' | translate }}"
+        onclick="this.blur()"
+        (click)="loadOpp()">
+        <img src="../../../assets/icons/bug-solid.png" height="24" width="24"/>
+      </button>
+      <div style="flex-grow: 1; text-align: right"></div>
+      <button
+        [disabled]="gameLaunched"
+        class="btn"
+        type="button"
+        ngbTooltip="{{'BLOCKLY.VALIDATE_BLOCKS' | translate }}"
+        onclick="this.blur()"
+        (click)="play()">
+        <img src="../../../assets/icons/check-solid.png" height="24" width="24"/>
+      </button>
+    </nav>
+    <div id="blocklyDiv" class="h-100"></div>
+  </div>
+  <app-game #gameComponent id="gameComponent" class="d-none d-md-block"></app-game>
+</div>
+
+<ng-template #fieldContent let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title">{{"BLOCKLY.FIELD_POPUP.TITLE" | translate }}</h6>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="w-100 position-relative" style="max-width: 400px; margin: auto;">
+      <img class="w-100 pixelated" src="../../../assets/football-pitch-with-marks.png">
+      <div class="position-absolute attacker left">
+        <img class="player_position pixelated" src="../../../assets/howto/guy1.png">
+      </div>
+      <div class="position-absolute attacker right">
+        <img class="player_position pixelated" src="../../../assets/howto/girl1.png">
+      </div>
+      <div class="position-absolute defender left">
+        <img class="player_position pixelated" src="../../../assets/howto/guy2.png">
+      </div>
+      <div class="position-absolute defender right">
+        <img class="player_position pixelated" src="../../../assets/howto/girl2.png">
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #deleteContent let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title">{{"GLOBAL.WARNING" | translate }}</h6>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{"BLOCKLY.DELETE_WARNING" | translate }}</p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.close(false)">
+      {{"GLOBAL.CANCEL" | translate }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="modal.close(true)">
+      {{"GLOBAL.OK" | translate }}
+    </button>
+  </div>
+</ng-template>

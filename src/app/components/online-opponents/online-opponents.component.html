@@ -1,0 +1,264 @@
+<!--
+* Software Name : SuperCodingBall
+* Version: 1.0.0
+* SPDX-FileCopyrightText: Copyright (c) 2021 Orange
+* SPDX-License-Identifier: BSD-3-Clause
+*
+* This software is distributed under the BSD 3-Clause "New" or "Revised" License,
+* the text of which is available at https://spdx.org/licenses/BSD-3-Clause.html
+* or see the "LICENSE.txt" file for more details.
+-->
+
+<div *ngIf="loading" class="fixed-top h-100 d-flex justify-content-center align-items-center">
+  <div class="spinner-border text-primary">
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0">
+  <button
+    class="btn btn-lg"
+    type="button"
+    ngbTooltip="{{'GLOBAL.BACK' | translate }}"
+    routerLink="/home">
+    <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24"/>
+  </button>
+  <h4 class="m-0">{{"ONLINE.TITLE" | translate }}</h4>
+  <div class="flex-grow-1 text-right">
+    <button
+      *ngIf="onlineService.connectionStatus === ConnectionStatus.Connected"
+      class="btn p-0 border border-dark rounded"
+      type="button"
+      ngbTooltip="{{'ONLINE.ACCOUNT' | translate }}"
+      onclick="this.blur()"
+      (click)="modalService.open(account_info)">
+      {{onlineService.userDisplay.displayName}}
+      <img class="border border-dark rounded ml-1" height="40px"
+           src="{{onlineService.userDisplay.pictureUrl | anonPicturePipe}}">
+    </button>
+  </div>
+
+</nav>
+
+<div class="p-4 text-center" style="background-color: #ccffcc;">
+  <div *ngIf="onlineService.connectionStatus === ConnectionStatus.Disconnected"
+       class="d-flex flex-column align-items-center">
+    <button
+      class="btn btn-lg m-2 p-0 text-left bg-secondary col-sm-7 col-md-5 col-lg-3"
+      type="button"
+      (click)="modalService.open(guest_info)">
+      <img class="p-1" src="assets/icons/user-solid.png" width="48px" height="48px">
+      <span class="p-2 text-white h6">{{'ONLINE.CONNECT_GUEST' | translate }}</span>
+    </button>
+    <button
+      style="background-color: #5890FF"
+      class="btn btn-lg m-2 p-0 text-left col-sm-7 col-md-5 col-lg-3"
+      type="button"
+      (click)="onlineService.connectWithFacebook()">
+      <img src="assets/icons/f_logo_RGB-White.png" width="48px" height="48px">
+      <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_FACEBOOK' | translate }}</span>
+    </button>
+    <button
+      style="background-color: #4285F4"
+      class="btn btn-lg m-2 p-0 text-left col-sm-7 col-md-5 col-lg-3"
+      type="button"
+      (click)="onlineService.connectWithGoogle()">
+      <img src="assets/icons/btn_google_dark_normal.png" width="48px" height="48px">
+      <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_GOOGLE' | translate }}</span>
+    </button>
+  </div>
+
+  <div *ngIf="onlineService.connectionStatus === ConnectionStatus.Connected">
+    <img class="pixelated" style="width: 240px;" src="../../../assets/howto/opponents.png">
+    <table class="col-sm-10 col-md-8 col-lg-6 table table-sm table-hover text-left border border-dark"
+           style="margin: auto">
+      <thead class="thead-dark">
+      <tr>
+        <th class="text-center" scope="col" colspan="4">
+          {{"ONLINE.RANKING" | translate }}
+          <button
+            class="btn btn-sm pt-0"
+            type="button"
+            onclick="this.blur()"
+            (click)="modalService.open(ranking_info)">
+            <img src="../../../assets/icons/info-circle-solid-white.png" height="20" width="20"/>
+          </button>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <td colspan="4">
+        <div class="input-group">
+          <input type="text" class="form-control bg-transparent" placeholder="..." [(ngModel)]="searchTerm">
+          <div class="input-group-append">
+            <div class="input-group-text bg-transparent"><img src="assets/icons/search-solid.png" width="18px"></div>
+          </div>
+        </div>
+      </td>
+      <tr *ngFor="let opponent of filteredOpponents" (click)="play(opponent.webcomId)"
+          [class.bg-secondary]="opponent.webcomId === onlineService.webcomId">
+        <td>
+          <button class="btn btn-sm text-left px-0">
+            {{opponent.ranking}}
+          </button>
+        </td>
+        <td *ngIf="opponent.userDisplay" class="p-0">
+          <button class="btn text-left px-0">
+            <img
+              class="rounded border border-dark"
+              height="40px"
+              src="{{opponent.userDisplay?.pictureUrl | anonPicturePipe}}">
+          </button>
+        </td>
+        <td>
+          <button class="btn text-left">
+            {{opponent.userDisplay?.displayName}}
+          </button>
+        </td>
+        <td>
+          <button class="btn text-left">
+            {{opponent.points}}{{"ONLINE.OPP_POINTS" | translate }}
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #account_info let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title">{{"ONLINE.PERSONAL_RANK" | translate }} {{personalRanking}}/{{opponents.length}}</h6>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="w-100 d-flex justify-content-between align-items-center">
+      <p [innerHTML]="'ONLINE.DISCONNECT_DETAILS' | translate"></p>
+      <button
+        type="button"
+        class="btn btn-primary ml-1"
+        (click)="modal.close();onlineService.disconnect()">
+        {{"ONLINE.DISCONNECT_ACCOUNT" | translate }}
+      </button>
+    </div>
+    <hr>
+    <div class="w-100 d-flex justify-content-between align-items-center">
+      <form>
+        <input #currentNickname type="text" value="{{onlineService.userDisplay.displayName}}">
+        <small class="form-text text-muted">{{'ONLINE.NICKNAME_LIMIT' | translate}}</small>
+      </form>
+      <button
+        type="button"
+        class="btn btn-warning ml-1"
+        (click)="modal.close();updateUserDisplayName(currentNickname.value)"
+        [innerHTML]="'ONLINE.CHANGE_NICKNAME' | translate">
+      </button>
+    </div>
+    <hr>
+    <span [innerHTML]="'ONLINE.SYNC_TEXT' | translate "></span>
+    <div class="w-100 mt-2 d-flex justify-content-between align-items-center">
+      <p class="mr-2">
+        <span [innerHTML]="'ONLINE.UPLOAD_TEXT' | translate "></span>
+        <button
+          class="btn btn-sm"
+          type="button"
+          (click)="uploadBlocks()">
+          <img src="../../../assets/icons/cloud-upload-alt-solid.png" height="24"/>
+        </button>
+      </p>
+      <p class="ml-2">
+        <span [innerHTML]="'ONLINE.DOWNLOAD_TEXT' | translate "></span>
+        <button
+          class="btn btn-sm"
+          type="button"
+          (click)="downloadBlocks()">
+          <img src="../../../assets/icons/cloud-download-alt-solid.png" height="24"/>
+        </button>
+      </p>
+    </div>
+    <hr>
+    <div class="w-100 text-center">
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="modal.close();removeAccount()"
+        [innerHTML]="'ONLINE.DELETE_ACCOUNT' | translate">
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #ranking_info let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title">{{"ONLINE.RANKING_POPUP.TITLE" | translate }}</h6>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" [innerHTML]="'ONLINE.RANKING_POPUP.CONTENT' | translate"></div>
+</ng-template>
+
+<ng-template #replay_game let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title">{{"GLOBAL.WARNING" | translate }}</h6>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>
+      <span>{{"ONLINE.REPLAY.HEADER" | translate }}</span>
+      <ng-container [ngSwitch]="lastResult">
+        <span *ngSwitchCase="0">{{"ONLINE.REPLAY.LOST" | translate }}</span>
+        <span *ngSwitchCase="1">{{"ONLINE.REPLAY.DRAW" | translate }}</span>
+        <span *ngSwitchCase="2">{{"ONLINE.REPLAY.WON" | translate }}</span>
+      </ng-container>
+    </p>
+    <p [ngSwitch]="lastResult">
+      <span *ngSwitchCase="2">{{"ONLINE.REPLAY.RISK" | translate }}</span>
+      <span *ngSwitchDefault>{{"ONLINE.REPLAY.IMPROVE" | translate }}</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.close(false)">
+      {{"GLOBAL.CANCEL" | translate }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="modal.close(true)">
+      {{"GLOBAL.OK" | translate }}
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #guest_info let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title">{{"GLOBAL.WARNING" | translate }}</h6>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p [innerHTML]="'ONLINE.GUEST_WARNING' | translate"></p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.close()">
+      {{"GLOBAL.CANCEL" | translate }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="modal.close(); onlineService.connectAnonymously()">
+      {{"GLOBAL.OK" | translate }}
+    </button>
+  </div>
+</ng-template>

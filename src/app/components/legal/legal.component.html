@@ -1,0 +1,29 @@
+<!--
+* Software Name : SuperCodingBall
+* Version: 1.0.0
+* SPDX-FileCopyrightText: Copyright (c) 2021 Orange
+* SPDX-License-Identifier: BSD-3-Clause
+*
+* This software is distributed under the BSD 3-Clause "New" or "Revised" License,
+* the text of which is available at https://spdx.org/licenses/BSD-3-Clause.html
+* or see the "LICENSE.txt" file for more details.
+-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0">
+  <button
+    class="btn btn-lg"
+    type="button"
+    ngbTooltip="{{'GLOBAL.BACK' | translate }}"
+    routerLink="/about">
+    <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24"/>
+  </button>
+  <h4 class="m-0">{{'LEGAL.TITLE' | translate}}</h4>
+</nav>
+<div class="p-4" style="background-color: #ccffcc;">
+  <div class="card card-body" [innerHTML]="'INTERNAL_LEGAL.ORANGE' | translate"></div>
+
+  <div class="card card-body mt-4">
+    <h4>{{'LEGAL.OPENSOURCE_TITLE' | translate}}</h4>
+    <div [innerHTML]="'LEGAL.OPENSOURCE_CONTENT' | translate"></div>
+  </div>
+</div>

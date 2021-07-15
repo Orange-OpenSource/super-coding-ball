@@ -1,0 +1,124 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="event_ball_mine" id="QcfyI:RJ3cmkEH,A,?/," x="64" y="-237">
+    <statement name="DO">
+      <block type="custom_if" id="L~,P_{0E4FuX|`9wem/v">
+        <value name="IF">
+          <block type="role_and_side" id=":J2=6z$%xSsMSWY5];aM">
+            <field name="ROLE">ROLE_DFS</field>
+            <field name="SIDE">SIDE_ALL</field>
+            <value name="PLAYER">
+              <shadow type="myself" id="{bfno$M|:{uBVUMKd5RQ"></shadow>
+            </value>
+          </block>
+        </value>
+        <statement name="THEN">
+          <block type="shoot" id="d2r2$}Z|@c#dS,?wYSi5">
+            <value name="NAME">
+              <shadow type="goal" id="-09G_K)U0RsUR*$~F0@l">
+                <field name="GOAL_TYPE">GOAL_OPP</field>
+              </shadow>
+              <block type="player" id="V87lZ;8i4c7IgRcIwzGQ">
+                <field name="PLAYER_TEAM">PLAYER_TEAM_OWN</field>
+                <field name="PLAYER_ROLE">PLAYER_ROLE_ATK</field>
+                <field name="PLAYER_SIDE">PLAYER_SIDE_ALL</field>
+                <field name="PLAYER_POS">PLAYER_POS_NEAR</field>
+                <value name="PLAYER_POS_REF">
+                  <shadow type="myself" id="|6#Yu$udSq;mUc~!Dzr8"></shadow>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="move" id="C96y#o799snGKVX6sZ%E">
+            <value name="NAME">
+              <shadow type="goal" id="xAMa/jsDIMGHY9L(h(-^">
+                <field name="GOAL_TYPE">GOAL_OPP</field>
+              </shadow>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="event_ball_teammate" id="w_,rdZ)(1vsEE;fpl.KM" x="432" y="-195">
+    <statement name="DO">
+      <block type="move" id="^6xNZ$jspw^4T313oXUW">
+        <value name="NAME">
+          <shadow type="goal">
+            <field name="GOAL_TYPE">GOAL_OPP</field>
+          </shadow>
+          <block type="position" id=";;)ZU0wLSXxm@S2Do*(J"></block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="event_ball_opponent" id="M9K?xaiHCa|I5Bz.l`Qh" x="35" y="122">
+    <statement name="DO">
+      <block type="custom_if" id="YJ;p{LyWF`1hIv?Y:H[*">
+        <value name="IF">
+          <block type="role_and_side" id="X}F;,jKkT@r`4.,k`zW@">
+            <field name="ROLE">ROLE_DFS</field>
+            <field name="SIDE">SIDE_ALL</field>
+            <value name="PLAYER">
+              <shadow type="myself" id="$#=9KFBq-ZWPj^}WR[WL"></shadow>
+            </value>
+          </block>
+        </value>
+        <statement name="THEN">
+          <block type="move" id="-DCQ_vN-Rf]h*^5%p}{1">
+            <value name="NAME">
+              <shadow type="goal" id="?QP!73@R(Z/80;0c=$1G">
+                <field name="GOAL_TYPE">GOAL_OPP</field>
+              </shadow>
+              <block type="ball" id="Qd2A$/9F]}qPNFQrw%e;"></block>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="move" id="DqAaN4}JFqKs~-ZlC.wv">
+            <value name="NAME">
+              <shadow type="goal" id="5:K/Cj}$MdXcBfD7:`^U">
+                <field name="GOAL_TYPE">GOAL_OPP</field>
+              </shadow>
+              <block type="position" id="?nR8+MU]PXUv9dV7YT*m"></block>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="event_ball_none" id="etV=A`tob?)1GRnFTu7!" x="408" y="174">
+    <statement name="DO">
+      <block type="custom_if" id="whar7i#R+)1%P*d~d?g:">
+        <value name="IF">
+          <block type="closest" id="H(K8tmK3GXmpT9,Ium6)">
+            <value name="NAME">
+              <shadow type="ball" id="$0aq?d`Pmr1fc+H]03.."></shadow>
+            </value>
+          </block>
+        </value>
+        <statement name="THEN">
+          <block type="move" id="_=F+l|49|CG9QqFV%Q_}">
+            <value name="NAME">
+              <shadow type="goal">
+                <field name="GOAL_TYPE">GOAL_OPP</field>
+              </shadow>
+              <block type="ball" id="e=;{21Z-cgtN#@L*y=[e"></block>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="move" id="RdX.YQ3WP!X,=|@.ynZU">
+            <value name="NAME">
+              <shadow type="goal">
+                <field name="GOAL_TYPE">GOAL_OPP</field>
+              </shadow>
+              <block type="position" id="T?1($q0bA7U.En{!mEd("></block>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>

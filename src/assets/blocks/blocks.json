@@ -1,0 +1,589 @@
+[{
+  "type": "custom_if",
+  "message0": "%{BKY_CUSTOM_IF}",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "IF",
+      "check": "Boolean",
+      "align": "RIGHT"
+    },
+    {
+      "type": "input_statement",
+      "name": "THEN"
+    },
+    {
+      "type": "input_statement",
+      "name": "ELSE"
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": null,
+  "style": "control_blocks",
+  "tooltip": "",
+  "helpUrl": ""
+},
+  {
+    "type": "custom_compare",
+    "message0": "%1 %2 %3 %4",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "LEFT",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "INEQUALITY",
+        "options": [
+          [
+            "<",
+            "LOWER"
+          ],
+          [
+            ">",
+            "GREATER"
+          ]
+        ]
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_value",
+        "name": "RIGHT",
+        "check": "Number"
+      }
+    ],
+    "output": "Boolean",
+    "style": "control_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "event_ball_mine",
+    "message0": "%{BKY_WHEN_HAVE_BALL}",
+    "args0": [
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ],
+    "style": "event_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "event_ball_teammate",
+    "message0": "%{BKY_WHEN_TEAMMATE_HAS_BALL}",
+    "args0": [
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ],
+    "style": "event_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "event_ball_opponent",
+    "message0": "%{BKY_WHEN_OPPONENT_HAS_BALL}",
+    "args0": [
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ],
+    "style": "event_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "event_ball_none",
+    "message0": "%{BKY_WHEN_NOONE_HAS_BALL}",
+    "args0": [
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
+      }
+    ],
+    "style": "event_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "shoot",
+    "message0": "%{BKY_SHOOT_TO}",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME",
+        "check": [
+          "place",
+          "player"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "style": "action_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "move",
+    "message0": "%{BKY_GO_TO}",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME",
+        "check": [
+          "place",
+          "player"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "style": "action_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "sprint",
+    "message0": "%{BKY_SPRINT_TO}",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME",
+        "check": [
+          "place",
+          "player"
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "style": "action_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "goal",
+    "message0": "%1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "GOAL_TYPE",
+        "options": [
+          [
+            "%{BKY_OPPONENTS_GOAL}",
+            "GOAL_OPP"
+          ],
+          [
+            "%{BKY_OUR_GOAL}",
+            "GOAL_OWN"
+          ]
+        ]
+      }
+    ],
+    "output": "place",
+    "style": "positions_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "grid",
+    "message0": "%1 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "GRID_COL",
+        "options": [
+          [
+            "A",
+            "1"
+          ],
+          [
+            "B",
+            "2"
+          ],
+          [
+            "C",
+            "3"
+          ],
+          [
+            "D",
+            "4"
+          ],
+          [
+            "E",
+            "5"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "GRID_ROW",
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ]
+        ]
+      }
+    ],
+    "output": "place",
+    "style": "positions_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "position",
+    "message0": "%{BKY_MY_TARGET_POSITION}",
+    "output": "place",
+    "style": "positions_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "player",
+    "message0": "%{BKY_PLAYER}",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "PLAYER_TEAM",
+        "options": [
+          [
+            "%{BKY_TEAMMATE}",
+            "PLAYER_TEAM_OWN"
+          ],
+          [
+            "%{BKY_OPPONENT}",
+            "PLAYER_TEAM_OPP"
+          ]
+        ]
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PLAYER_ROLE",
+        "options": [
+          [
+            "%{BKY_ALL}",
+            "PLAYER_ROLE_ALL"
+          ],
+          [
+            "%{BKY_ATTACKER}",
+            "PLAYER_ROLE_ATK"
+          ],
+          [
+            "%{BKY_DEFENDER}",
+            "PLAYER_ROLE_DFS"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PLAYER_SIDE",
+        "options": [
+          [
+            "%{BKY_ALL}",
+            "PLAYER_SIDE_ALL"
+          ],
+          [
+            "%{BKY_RIGHT}",
+            "PLAYER_SIDE_RIGHT"
+          ],
+          [
+            "%{BKY_LEFT}",
+            "PLAYER_SIDE_LEFT"
+          ]
+        ]
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "PLAYER_POS",
+        "options": [
+          [
+            "%{BKY_NEAR}",
+            "PLAYER_POS_NEAR"
+          ],
+          [
+            "%{BKY_FAR}",
+            "PLAYER_POS_FAR"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "PLAYER_POS_REF",
+        "check": [
+          "place",
+          "player"
+        ]
+      }
+    ],
+    "inputsInline": false,
+    "output": "player",
+    "style": "positions_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "ball",
+    "message0": "%{BKY_BALL}",
+    "output": "place",
+    "style": "positions_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "myself",
+    "message0": "%{BKY_MYSELF}",
+    "output": "player",
+    "style": "positions_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "distance",
+    "message0": "%{BKY_DISTANCE_BETWEEN}",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "FROM",
+        "check": [
+          "place",
+          "player"
+        ],
+        "align": "RIGHT"
+      },
+      {
+        "type": "input_value",
+        "name": "TO",
+        "check": [
+          "place",
+          "player"
+        ],
+        "align": "RIGHT"
+      }
+    ],
+    "output": "Number",
+    "style": "control_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "place",
+    "lastDummyAlign0": "RIGHT",
+    "message0": "%{BKY_PLACE_COL_LINE} ",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "ITEM",
+        "check": [
+          "place",
+          "player"
+        ],
+        "align": "RIGHT"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "POS_COL",
+        "options": [
+          [
+            "A",
+            "1"
+          ],
+          [
+            "B",
+            "2"
+          ],
+          [
+            "C",
+            "3"
+          ],
+          [
+            "D",
+            "4"
+          ],
+          [
+            "E",
+            "5"
+          ],
+          [
+            "%{BKY_ALL}",
+            "0"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "POS_ROW",
+        "options": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "2",
+            "2"
+          ],
+          [
+            "3",
+            "3"
+          ],
+          [
+            "4",
+            "4"
+          ],
+          [
+            "5",
+            "5"
+          ],
+          [
+            "%{BKY_ALL}",
+            "0"
+          ]
+        ]
+      }
+    ],
+    "output": "Boolean",
+    "style": "control_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "energy",
+    "message0": "%{BKY_ENERGY_OF}",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME",
+        "check": "player"
+      }
+    ],
+    "output": "Number",
+    "style": "control_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "closest",
+    "message0": "%{BKY_I_AM_CLOSEST_TO}",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME",
+        "check": [
+          "place",
+          "player"
+        ]
+      }
+    ],
+    "output": "Boolean",
+    "style": "control_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "role_and_side",
+    "message0": "%{BKY_ROLE_AND_SIDE}",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "PLAYER",
+        "check": "player"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "ROLE",
+        "options": [
+          [
+            "%{BKY_ATTACKER}",
+            "ROLE_ATK"
+          ],
+          [
+            "%{BKY_DEFENDER}",
+            "ROLE_DFS"
+          ],
+          [
+            "%{BKY_ALL}",
+            "ROLE_ALL"
+          ]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "SIDE",
+        "options": [
+          [
+            "%{BKY_RIGHT}",
+            "SIDE_RIGHT"
+          ],
+          [
+            "%{BKY_LEFT}",
+            "SIDE_LEFT"
+          ],
+          [
+            "%{BKY_ALL}",
+            "SIDE_ALL"
+          ]
+        ]
+      }
+    ],
+    "output": "Boolean",
+    "style": "control_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "math_number",
+    "message0": "%1",
+    "args0": [
+      {
+        "type": "field_slider",
+        "name": "NUM",
+        "value": 50,
+        "min": 0,
+        "max": 300,
+        "precision": 5
+      }
+    ],
+    "output": "Number",
+    "style": "math_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  }]

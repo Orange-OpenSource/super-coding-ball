@@ -1,0 +1,144 @@
+{
+  "BLOCKS": {
+    "EVENTS": "Événements",
+    "CONTROLS": "Contrôles",
+    "ACTIONS": "Actions",
+    "POSITIONS": "Positions",
+    "ADVANCED": "Avancé",
+    "WHEN_HAVE_BALL": "Quand j'ai le ballon %1 %2",
+    "WHEN_TEAMMATE_HAS_BALL": "Quand un coéquipier a le ballon %1 %2",
+    "WHEN_OPPONENT_HAS_BALL": "Quand un adversaire a le ballon %1 %2",
+    "WHEN_NOONE_HAS_BALL": "Quand personne n'a le ballon %1 %2",
+    "CUSTOM_IF": "si %1 alors %2 sinon %3",
+    "I_AM_CLOSEST_TO": "je suis le plus près de %1",
+    "ROLE_AND_SIDE": "%1 est %2 du côté %3",
+    "ATTACKER": "attaquant",
+    "DEFENDER": "défenseur",
+    "ALL": "tous",
+    "RIGHT": "droit",
+    "LEFT": "gauche",
+    "PLACE_COL_LINE": "%1 est dans col %2 et ligne %3",
+    "ENERGY_OF": "energie de %1",
+    "DISTANCE_BETWEEN": "distance entre %1 et %2",
+    "SHOOT_TO": "tirer vers %1",
+    "GO_TO": "courir vers %1",
+    "SPRINT_TO": "sprinter vers %1",
+    "PLAYER": "%1 %2 rôle %3 côté %4 %5 %6 %7",
+    "TEAMMATE": "coéquipier",
+    "OPPONENT": "adversaire",
+    "NEAR": "proche de",
+    "FAR": "loin de",
+    "MYSELF": "moi-même",
+    "BALL": "ballon",
+    "OPPONENTS_GOAL": "but adverse",
+    "OUR_GOAL": "notre but",
+    "MY_TARGET_POSITION": "mon poste cible"
+  },
+  "GLOBAL": {
+    "OK": "Ok",
+    "CANCEL": "Annuler",
+    "BACK": "Retour",
+    "WARNING": "Attention",
+    "SORRY": "Désolé...",
+    "SETTINGS": "Réglages"
+  },
+  "UPDATE": {
+    "MESSAGE": "Une nouvelle version est dispo\u00A0!<br><br>Est-ce que tu veux la charger tout de suite\u00A0?"
+  },
+  "HOME": {
+    "MOTTO": "Deviens le meilleur entraîneur\u00A0!",
+    "BUTTON_PLAY_OFFLINE": "Jouer contre l'ordi",
+    "BUTTON_PLAY_ONLINE": "Jouer en ligne\u00A0!",
+    "BUTTON_HOW_TO": "Comment on joue\u00A0?",
+    "BUTTON_ABOUT": "En savoir +",
+    "CONNECTION_WARNING": "Tu dois être connecté à Internet pour jouer en ligne\u00A0!",
+    "STRONG_ENOUGH_WARNING": "Tu dois d'abord battre au moins 3 équipes de l'ordi avant de jouer en ligne\u00A0!"
+  },
+  "HOW_TO": {
+    "TITLE": "Comment on joue\u00A0?",
+    "GOAL": "SuperCodingBall est un jeu de foot où tous les joueurs sont idiots et c'est à toi de leur dire quoi faire\u00A0!",
+    "RULES": "Les règles du jeu sont très simples\u00A0:<ul><li>Le ballon ne peut pas sortir du terrain</li><li>Il n'y a pas de hors-jeu</li><li>L'énergie d'un joueur commence à 100 et diminue quand il sprinte ou se fait pousser</li><li>Un joueur sans énergie tombe et perd le ballon\u00A0!</li></ul>",
+    "BLOCK": "Pour définir ta stratégie, tu vas dire aux joueurs <strong>à chaque instant</strong> l'action qu'ils doivent faire.<br>Par exemple, si tu veux que tes joueurs tirent au but dès qu'ils ont le ballon, il faut choisir\u00A0:<br>",
+    "PARAMETER": "Tu peux changer les paramètres de certains blocs.<br>Par exemple, en remplaçant le bloc rose ci-dessus, tu peux dire à tes joueurs de faire une passe à leur coéquipier le plus proche, dès qu'ils ont le ballon\u00A0:<br>",
+    "CONDITION": "Enfin tu peux aussi ajouter des conditions pour améliorer tes stratégies\u00A0!<br>Par exemple, tu peux choisir une des deux actions précédentes, selon la distance de tes joueurs au but adverse\u00A0:<br>",
+    "DISCOVER": "À toi de jouer maintenant et de découvrir le reste\u00A0!"
+  },
+  "ABOUT": {
+    "TITLE": "En savoir\u00A0+",
+    "IDEA": "L'idée de SuperCodingBall est de te montrer quelques concepts de code (instructions, paramètres, événements, conditions) sans te prendre la tête\u00A0:)",
+    "SCRATCH": "Si tu as aimé ça et que tu veux découvrir plus de choses en programmation, va vite découvrir <a href=\"https://scratch.mit.edu\">Scratch</a>.<br>C'est un site incroyable qui te permet de créer tes propres histoires/jeux avec des blocs de code\u00A0!",
+    "OPENSOURCE": "SuperCodingBall est un projet Open Source, voir le code source sur GitHub\n        <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">\n            <img src=\"assets/about/GitHub-Mark-120px-plus.png\" class=\"ml-2\" height=\"48\">\n        </a>",
+    "LEGAL": "Lire les <a href='/legal'>mentions légales</a> et (en anglais) la <a href=\"/privacy\">politique de protection des données personnelles</a>.",
+    "CONTACT": "Contact\u00A0:"
+  },
+  "LEGAL": {
+    "TITLE": "Mentions légales",
+    "OPENSOURCE_TITLE": "Logiciels tiers"
+  },
+  "OFFLINE": {
+    "TITLE": "Jouer contre l'ordi",
+    "STRATEGY": "Stratégie adversaire",
+    "WON": "Gagné\u00A0?",
+    "STRATEGIES": {
+      "DO-NOTHING": "Ils ne font rien\u00A0!",
+      "1PLAYER-ONLY": "Un seul joueur se bouge",
+      "ALL-DEFENDERS": "Tous les joueurs en defense",
+      "DEFENDERS-PASS-TO-ATTACKERS": "Les défenseurs interceptent et envoient aux attaquants",
+      "ONLY-PASSES": "Ils ne font que des passes et des tirs",
+      "3ATTACKERS": "3 attaquants",
+      "COLUMN": "Tous les joueurs dans la colonne centrale",
+      "SPRINTERS": "Ils sprintent pour avoir le ballon"
+    }
+  },
+  "ONLINE": {
+    "TITLE": "Jouer en ligne",
+    "CONNECT_GUEST": "Connexion en tant qu'invité",
+    "GUEST_WARNING": "Si tu te connectes en tant qu'invité, tu pourras jouer comme les autres, mais tu n'auras pas ton image de profil.<br><br>Tu ne pourras pas retrouver ton compte sur un autre appareil, et si tu te déconnectes, ton classement sera perdu\u00A0!",
+    "CONNECT_WITH_FACEBOOK": "Connexion avec Facebook",
+    "CONNECT_WITH_GOOGLE": "Connexion avec Google",
+    "PERSONAL_RANK": "Ton classement actuel\u00A0:",
+    "RANKING": "Classement des 15 derniers jours",
+    "OPP_POINTS": "pts",
+    "RANKING_POPUP": {
+      "TITLE": "Infos sur le classement",
+      "CONTENT": "Le classement montre les joueurs connectés pendant les 15 derniers jours.<br><br>À chaque match (lancé par toi ou quelqu'un d'autre), tu marques 2 points pour une victoire, 1 pour un nul et 0 pour une défaite.<br><br>Attention, tu ne peux affronter chaque adversaire qu'une fois par jour (si tu rejoues le même match, les points seront mis à jour mais ne compteront qu'une fois).<br><br>Si tu abandonnes un match en cours, il est considéré perdu\u00A0!"
+    },
+    "REPLAY": {
+      "HEADER": "Tu as déjà joué ce match aujourd'hui ",
+      "LOST": "(tu avais perdu).",
+      "DRAW": "(match nul).",
+      "WON": "(tu avais gagné).",
+      "IMPROVE": "Tu tentes d'améliorer ton score\u00A0?",
+      "RISK": "Tu prends le risque de le rejouer\u00A0?"
+    },
+    "ACCOUNT": "Compte",
+    "DISCONNECT_DETAILS": "Si tu te déconnectes d'un compte invité, tu perdras ton classement\u00A0!",
+    "NICKNAME_LIMIT": "20 caractères max",
+    "CHANGE_NICKNAME": "Changer mon pseudo",
+    "DISCONNECT_ACCOUNT": "Me déconnecter",
+    "SYNC_TEXT": "Tes blocs sont envoyés automatiquement au serveur à chaque fois que tu démarres un match en ligne.",
+    "UPLOAD_TEXT": "Si tu veux envoyer manuellement tes blocs, sans démarrer un match, clique ici\u00A0:",
+    "DOWNLOAD_TEXT": "Si tu veux récupérer tes blocs du serveur (par exemple si tu as modifié ta stratégie sur un autre appareil), clique ici \u00A0:",
+    "DELETE_ACCOUNT": "Supprimer définitivement mon compte"
+  },
+  "BLOCKLY": {
+    "FIELD_POPUP": {
+      "TOOLTIP": "Aperçu du terrain",
+      "TITLE": "Aperçu du terrain avec poste cible de chaque joueur"
+    },
+    "DELETE": "Effacer tous mes blocs",
+    "DELETE_WARNING": "Tu veux vraiment effacer tous tes blocs\u00A0!?",
+    "UNDO": "Annuler",
+    "REDO": "Refaire",
+    "COPY_OPPONENT": "Recopier la stratégie adverse",
+    "VALIDATE_BLOCKS": "Valider ma stratégie"
+  },
+  "GAME": {
+    "SOUND_ENABLED": "Son activé",
+    "GAME_ACCELERATED": "Jeu accéléré",
+    "KICK_OFF": "Coup d'envoi",
+    "YOU_WON": "C'est gagné\u00A0!!!",
+    "DRAW": "Match nul\u00A0!",
+    "YOU_LOST": "C'est perdu\u00A0:("
+  }
+}

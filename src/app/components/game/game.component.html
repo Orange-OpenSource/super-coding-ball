@@ -1,0 +1,93 @@
+<!--
+* Software Name : SuperCodingBall
+* Version: 1.0.0
+* SPDX-FileCopyrightText: Copyright (c) 2021 Orange
+* SPDX-License-Identifier: BSD-3-Clause
+*
+* This software is distributed under the BSD 3-Clause "New" or "Revised" License,
+* the text of which is available at https://spdx.org/licenses/BSD-3-Clause.html
+* or see the "LICENSE.txt" file for more details.
+-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-between p-0">
+  <div *ngIf="!isStandaloneScreen" class="position-absolute h-100 bg-dark pl-1"></div>
+  <div *ngIf="!isStandaloneScreen" class="pr-1"></div>
+  <button
+    *ngIf="isStandaloneScreen"
+    class="btn btn-lg"
+    type="button"
+    ngbTooltip="{{'GLOBAL.BACK' | translate }}"
+    (click)="location.back()">
+    <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24"/>
+  </button>
+  <div class="align-middle d-flex flex-grow-1">
+    <button
+      class="btn btn-lg"
+      type="button"
+      onclick="this.blur()"
+      ngbTooltip="{{'GLOBAL.SETTINGS' | translate }}"
+      (click)="modalService.open(settingsContent, {size: 'sm'})">
+      <img src="../../../assets/icons/cog-solid.png" height="24" width="24"/>
+    </button>
+    <div class="p-1 m-1 h6 bg-secondary rounded flex-grow-1 d-flex justify-content-between align-items-center">
+      <div>
+        <img class="pixelated" src="../../../assets/icons/own.png" height="32" width="32">
+        <span class="align-middle">{{ownScore}}</span>
+      </div>
+      <span class="align-middle">{{gameTimeDisplayed}} min</span>
+      <div>
+        <span class="align-middle">{{oppScore}}</span>
+        <img class="pixelated" src="../../../assets/icons/opp.png" height="32" width="32">
+      </div>
+    </div>
+    <button
+      [disabled]="!waitingToRestart"
+      class="btn btn-lg"
+      type="button"
+      ngbTooltip="{{'GAME.KICK_OFF' | translate }}"
+      onclick="this.blur()"
+      (click)="restartGame()">
+      <img src="../../../assets/icons/go.png" height="24" width="59"/>
+    </button>
+  </div>
+</nav>
+<div class="text-center">
+  <canvas
+    id="fieldCanvas" class="pixelated"
+    [class.fullscreen]="isStandaloneScreen"
+    width="456" height="554"
+    style="max-width: 400px;">
+  </canvas>
+</div>
+
+<ng-template #endGameContent let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title" *ngIf="ownScore > oppScore">{{'GAME.YOU_WON' | translate }}</h6>
+    <h6 class="modal-title" *ngIf="ownScore === oppScore">{{'GAME.DRAW' | translate }}</h6>
+    <h6 class="modal-title" *ngIf="ownScore < oppScore">{{'GAME.YOU_LOST' | translate }}(</h6>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span>&times;</span>
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #settingsContent let-modal>
+  <div class="modal-body">
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="soundActivated"
+               [(ngModel)]="soundActivated">
+        <label class="form-check-label" for="soundActivated">
+          {{'GAME.SOUND_ENABLED' | translate }}
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="acceleratedGame"
+               [(ngModel)]="acceleratedGame">
+        <label class="form-check-label" for="acceleratedGame">
+          {{'GAME.GAME_ACCELERATED' | translate }}
+        </label>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,25 @@
+.player_position {
+  position: relative;
+  right: 22px;
+  bottom: 40px
+}
+
+.attacker {
+  top: 33%
+}
+
+.defender {
+  top: 85%
+}
+
+.left {
+  left: 33%
+}
+
+.right {
+  left: 67%
+}
+
+.btn.disabled, .btn:disabled {
+  opacity: 0.2;
+}

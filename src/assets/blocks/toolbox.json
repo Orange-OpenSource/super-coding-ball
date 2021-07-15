@@ -1,0 +1,166 @@
+{
+  "kind": "categoryToolbox",
+  "contents": [
+    {
+      "kind": "category",
+      "categorystyle": "events_category",
+      "cssConfig": {
+        "icon": "customIcon customIconEvents"
+      },
+      "contents": [
+        {
+          "kind": "label",
+          "text": "%{BKY_EVENTS}"
+        },
+        {
+          "kind": "block",
+          "type": "event_ball_mine"
+        },
+        {
+          "kind": "block",
+          "type": "event_ball_teammate"
+        },
+        {
+          "kind": "block",
+          "type": "event_ball_opponent"
+        },
+        {
+          "kind": "block",
+          "type": "event_ball_none"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "categorystyle": "control_category",
+      "cssconfig": {
+        "icon": "customIcon customIconControl"
+      },
+      "contents": [
+        {
+          "kind": "label",
+          "text": "%{BKY_CONTROLS}"
+        },
+        {
+          "kind": "block",
+          "type": "custom_if"
+        },
+        {
+          "kind": "block",
+          "blockxml": "<block type='closest'><value name='NAME'><shadow type='ball'></shadow></value></block>"
+        },
+        {
+          "kind": "block",
+          "blockxml": "<block type='custom_compare'><value name='LEFT'><block type='distance'><value name='FROM'><shadow type='myself'></shadow></value><value name='TO'><shadow type='goal'><value name='GOAL_TYPE'>GOAL_OPP</value></shadow></value></block></value><value name='RIGHT'><shadow type='math_number'><field name='NUM'>50</field></shadow></value></block>"
+        },
+        {
+          "kind": "block",
+          "blockxml": "<block type='role_and_side'><value name='PLAYER'><shadow type='myself'></shadow></value></block>"
+        },
+        {
+          "kind": "block",
+          "blockxml": "<block type='place'><value name='ITEM'><shadow type='myself'></shadow></value></block>"
+        },
+        {
+          "kind": "block",
+          "blockxml": "<block type='energy'><value name='NAME'><shadow type='myself'></shadow></value></block>"
+        },
+        {
+          "kind": "block",
+          "blockxml": "<block type='distance'><value name='FROM'><shadow type='myself'></shadow></value><value name='TO'><shadow type='goal'><value name='GOAL_TYPE'>GOAL_OPP</value></shadow></value></block>"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "categorystyle": "actions_category",
+      "cssConfig": {
+        "icon": "customIcon customIconActions"
+      },
+      "contents": [
+        {
+          "kind": "label",
+          "text": "%{BKY_ACTIONS}"
+        },
+        {
+          "kind": "block",
+          "blockxml": "<block type='move'><value name='NAME'><shadow type='goal'><value name='GOAL_TYPE'>GOAL_OPP</value></shadow></value></block>"
+        },
+        {
+          "kind": "block",
+          "blockxml": "<block type='sprint'><value name='NAME'><shadow type='goal'><value name='GOAL_TYPE'>GOAL_OPP</value></shadow></value></block>"
+        },
+        {
+          "kind": "block",
+          "blockxml": "<block type='shoot'><value name='NAME'><shadow type='goal'><value name='GOAL_TYPE'>GOAL_OPP</value></shadow></value></block>"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "categorystyle": "positions_category",
+      "cssConfig": {
+        "icon": "customIcon customIconPositions"
+      },
+      "contents": [
+        {
+          "kind": "label",
+          "text": "%{BKY_POSITIONS}"
+        },
+        {
+          "kind": "block",
+          "blockxml": "<block type='player'><value name='PLAYER_POS_REF'><shadow type='myself'></shadow></value></block>"
+        },
+        {
+          "kind": "block",
+          "type": "myself"
+        },
+        {
+          "kind": "block",
+          "type": "ball"
+        },
+        {
+          "kind": "block",
+          "type": "goal"
+        },
+        {
+          "kind": "block",
+          "type": "grid"
+        },
+        {
+          "kind": "block",
+          "type": "position"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "categorystyle": "settings_category",
+      "cssconfig": {
+        "icon": "customIcon customIconSettings"
+      },
+      "contents": [
+        {
+          "kind": "label",
+          "text": "%{BKY_ADVANCED}"
+        },
+        {
+          "kind": "block",
+          "type": "logic_operation"
+        },
+        {
+          "kind": "block",
+          "type": "logic_negate"
+        },
+        {
+          "kind": "block",
+          "type": "math_arithmetic"
+        },
+        {
+          "kind": "block",
+          "type": "math_number"
+        }
+      ]
+    }
+  ]
+}

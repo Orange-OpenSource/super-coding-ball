@@ -1,0 +1,48 @@
+<!--
+* Software Name : SuperCodingBall
+* Version: 1.0.0
+* SPDX-FileCopyrightText: Copyright (c) 2021 Orange
+* SPDX-License-Identifier: BSD-3-Clause
+*
+* This software is distributed under the BSD 3-Clause "New" or "Revised" License,
+* the text of which is available at https://spdx.org/licenses/BSD-3-Clause.html
+* or see the "LICENSE.txt" file for more details.
+-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0 z">
+  <button
+    class="btn btn-lg"
+    type="button"
+    ngbTooltip="{{'GLOBAL.BACK' | translate }}"
+    routerLink="/home">
+    <img src="../../assets/icons/chevron-left-solid.png" height="24" width="24"/>
+  </button>
+  <h4 class="m-0">{{"ABOUT.TITLE" | translate }}</h4>
+</nav>
+<div class="p-4" style="background-color: #ccffcc;">
+  <div class="card">
+    <div class="card-body">
+      <span [innerHTML]="'ABOUT.IDEA' | translate"></span>
+    </div>
+  </div>
+  <div class="card mt-4">
+    <div class="card-body">
+      <div [innerHTML]="'ABOUT.SCRATCH' | translate"></div>
+      <div class="w-100 text-center">
+        <img src="assets/about/Scratchlogo.png" class="mt-1" height="60px">
+      </div>
+    </div>
+  </div>
+  <div class="card mt-4">
+    <div class="card-body">
+      <span [innerHTML]="'ABOUT.OPENSOURCE' | translate"></span>
+    </div>
+  </div>
+  <div class="card mt-4">
+    <div class="card-body">
+      <span [innerHTML]="'ABOUT.LEGAL' | translate"></span><br>
+      <span [innerHTML]="'ABOUT.CONTACT' | translate"></span>
+      <img src="assets/about/contact.png" class="ml-2" width="200">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<!--
+* Software Name : SuperCodingBall
+* Version: 1.0.0
+* SPDX-FileCopyrightText: Copyright (c) 2021 Orange
+* SPDX-License-Identifier: BSD-3-Clause
+*
+* This software is distributed under the BSD 3-Clause "New" or "Revised" License,
+* the text of which is available at https://spdx.org/licenses/BSD-3-Clause.html
+* or see the "LICENSE.txt" file for more details.
+-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0">
+  <button
+    class="btn btn-lg"
+    type="button"
+    ngbTooltip="{{'GLOBAL.BACK' | translate }}"
+    routerLink="/home">
+    <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24"/>
+  </button>
+  <h4 class="m-0">{{"HOW_TO.TITLE" | translate }}</h4>
+</nav>
+<div class="p-4" style="background-color: #ccffcc;">
+  <div class="card">
+    <div class="card-body">
+      <span [innerHTML]="'HOW_TO.GOAL' | translate"></span><br>
+      <img class="pixelated" style="width: 240px;" src="../../../assets/howto/players.png">
+    </div>
+  </div>
+  <div class="card mt-4">
+    <div class="card-body">
+      <span [innerHTML]="'HOW_TO.RULES' | translate"></span>
+    </div>
+  </div>
+  <div class="card mt-4">
+    <div class="card-body">
+      <span [innerHTML]="'HOW_TO.BLOCK' | translate"></span>
+      <br>
+      <ng-container [ngSwitch]="translate.currentLang">
+        <img *ngSwitchCase="'fr'" style="width: 300px;" src="../../../assets/howto/shoot-fr.png">
+        <img *ngSwitchDefault style="width: 300px;" src="../../../assets/howto/shoot-en.png">
+      </ng-container>
+    </div>
+  </div>
+  <div class="card mt-4">
+    <div class="card-body">
+      <span [innerHTML]="'HOW_TO.PARAMETER' | translate"></span>
+      <br>
+      <ng-container [ngSwitch]="translate.currentLang">
+        <img *ngSwitchCase="'fr'" style="width: 300px;" src="../../../assets/howto/pass-fr.png">
+        <img *ngSwitchDefault style="width: 300px;" src="../../../assets/howto/pass-en.png">
+      </ng-container>
+    </div>
+  </div>
+  <div class="card mt-4">
+    <div class="card-body">
+      <span [innerHTML]="'HOW_TO.CONDITION' | translate"></span>
+      <br>
+      <ng-container [ngSwitch]="translate.currentLang">
+        <img *ngSwitchCase="'fr'" style="width: 300px;" src="../../../assets/howto/shoot-if-close-to-goal-fr.png">
+        <img *ngSwitchDefault style="width: 300px;" src="../../../assets/howto/shoot-if-close-to-goal-en.png">
+      </ng-container>
+    </div>
+  </div>
+  <div class="card mt-4">
+    <div class="card-body">
+      <span [innerHTML]="'HOW_TO.DISCOVER' | translate"></span>
+    </div>
+  </div>
+</div>
+

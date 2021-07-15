@@ -1,0 +1,56 @@
+<!--
+* Software Name : SuperCodingBall
+* Version: 1.0.0
+* SPDX-FileCopyrightText: Copyright (c) 2021 Orange
+* SPDX-License-Identifier: BSD-3-Clause
+*
+* This software is distributed under the BSD 3-Clause "New" or "Revised" License,
+* the text of which is available at https://spdx.org/licenses/BSD-3-Clause.html
+* or see the "LICENSE.txt" file for more details.
+-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0">
+  <button
+    class="btn btn-lg"
+    type="button"
+    ngbTooltip="{{'GLOBAL.BACK' | translate }}"
+    routerLink="/home">
+    <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24"/>
+  </button>
+  <h4 class="m-0">{{"OFFLINE.TITLE" | translate }}</h4>
+</nav>
+<div class="p-4 text-center" style="background-color: #ccffcc;">
+  <img class="pixelated" style="width: 240px;" src="../../../assets/howto/opponents.png">
+  <table class="col-sm-10 col-md-8 col-lg-6 table table-sm table-hover text-left border border-dark"
+         style="margin: auto">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">{{"OFFLINE.STRATEGY" | translate }}</th>
+      <th scope="col">{{"OFFLINE.WON" | translate }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let strategy of strategies; let index = index"
+        routerLink="/code/offline/{{strategy.id}}">
+      <td>
+        <button class="btn text-left">
+          {{index}}
+        </button>
+      </td>
+      <td>
+        <button class="btn text-left">
+          {{"OFFLINE.STRATEGIES." + (strategy.id).toUpperCase() | translate }}
+        </button>
+      </td>
+      <td>
+        <button class="btn text-left">
+          <img [class.not-won]="!strategy.won"
+               height="24px" width="24px"
+               src="../../../assets/icons/trophy-solid.png">
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

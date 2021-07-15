@@ -1,0 +1,17 @@
+{
+  "events_category": {
+    "colour": "#ffbf00"
+  },
+  "control_category": {
+    "colour": "#59c059"
+  },
+  "actions_category": {
+    "colour": "#4c97ff"
+  },
+  "positions_category": {
+    "colour": "#ff6680"
+  },
+  "settings_category": {
+    "colour": "#888888"
+  }
+}

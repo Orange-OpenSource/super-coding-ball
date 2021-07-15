@@ -1,0 +1,59 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="event_ball_none" id="etV=A`tob?)1GRnFTu7!" x="362" y="89">
+    <statement name="DO">
+      <block type="custom_if" id="whar7i#R+)1%P*d~d?g:">
+        <value name="IF">
+          <block type="closest" id="H(K8tmK3GXmpT9,Ium6)">
+            <value name="NAME">
+              <shadow type="ball" id="$0aq?d`Pmr1fc+H]03.."></shadow>
+            </value>
+          </block>
+        </value>
+        <statement name="THEN">
+          <block type="move" id="_=F+l|49|CG9QqFV%Q_}">
+            <value name="NAME">
+              <shadow type="goal">
+                <field name="GOAL_TYPE">GOAL_OPP</field>
+              </shadow>
+              <block type="ball" id="e=;{21Z-cgtN#@L*y=[e"></block>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="event_ball_opponent" id="M9K?xaiHCa|I5Bz.l`Qh" x="18" y="150">
+    <statement name="DO">
+      <block type="custom_if" id="YJ;p{LyWF`1hIv?Y:H[*">
+        <value name="IF">
+          <block type="closest" id="+ykjPlp1~IfI[%I^-/xn">
+            <value name="NAME">
+              <shadow type="ball" id="GI,it,K:T=.RX2#IKHsm"></shadow>
+            </value>
+          </block>
+        </value>
+        <statement name="THEN">
+          <block type="move" id="-DCQ_vN-Rf]h*^5%p}{1">
+            <value name="NAME">
+              <shadow type="goal" id="?QP!73@R(Z/80;0c=$1G">
+                <field name="GOAL_TYPE">GOAL_OPP</field>
+              </shadow>
+              <block type="ball" id="Qd2A$/9F]}qPNFQrw%e;"></block>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="event_ball_mine" id="QcfyI:RJ3cmkEH,A,?/," x="360" y="283">
+    <statement name="DO">
+      <block type="move" id="Z[a0OJBj3P#%Kl4*bTu)">
+        <value name="NAME">
+          <shadow type="goal" id="B9OS-x8B{_Kgw)xN|fDs">
+            <field name="GOAL_TYPE">GOAL_OPP</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+  </block>
+</xml>

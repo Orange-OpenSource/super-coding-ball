@@ -1,0 +1,8 @@
+.fullscreen {
+  width: 100%;
+  object-fit: contain;
+}
+
+.btn.disabled, .btn:disabled {
+  opacity: 0.2;
+}
