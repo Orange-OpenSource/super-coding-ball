@@ -27,7 +27,8 @@ import {LocalStorageService} from '../../services/local-storage.service';
 })
 
 export class OnlineOpponentsComponent implements OnInit, OnDestroy {
-  @ViewChild('replay_game') private replayGameContent: any;
+  @ViewChild('replayGameContent') private replayGameContent: any;
+  @ViewChild('deleteAccountContent') private deleteAccountContent: any;
   public ConnectionStatus = ConnectionStatus;
   private connectionStatusSubscription?: Subscription;
   opponents: Opponent[] = [];
@@ -196,9 +197,15 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
   }
 
   removeAccount(): void {
-    this.loading = true;
-    this.onlineService.removeAccount()
-      .pipe(finalize(() => this.loading = false))
-      .subscribe(() => null, () => null, () => this.onlineService.disconnect());
+    this.modalService.open(this.deleteAccountContent, {size: 'sm'})
+      .result.then((deleteValidated: boolean) => {
+      if (deleteValidated) {
+        this.loading = true;
+        this.onlineService.removeAccount()
+          .pipe(finalize(() => this.loading = false))
+          .subscribe(() => null, () => null, () => this.onlineService.disconnect());
+
+      }
+    });
   }
 }

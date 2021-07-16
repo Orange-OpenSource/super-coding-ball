@@ -120,7 +120,8 @@
     "SYNC_TEXT": "Your blocks are sent automatically to the server every time you start an online game.",
     "UPLOAD_TEXT": "If you want to send your blocks manually, without starting a new game, click here:",
     "DOWNLOAD_TEXT": "If you want to retrieve your blocks from the server (for example if you have modified your strategy on another device), click here:",
-    "DELETE_ACCOUNT": "Delete my account permanently"
+    "DELETE_ACCOUNT": "Delete my account permanently",
+    "DELETE_MODAL": "Are you sure you want to delete your account??"
   },
   "BLOCKLY": {
     "FIELD_POPUP": {

@@ -119,7 +119,8 @@
     "SYNC_TEXT": "Tes blocs sont envoyés automatiquement au serveur à chaque fois que tu démarres un match en ligne.",
     "UPLOAD_TEXT": "Si tu veux envoyer manuellement tes blocs, sans démarrer un match, clique ici\u00A0:",
     "DOWNLOAD_TEXT": "Si tu veux récupérer tes blocs du serveur (par exemple si tu as modifié ta stratégie sur un autre appareil), clique ici \u00A0:",
-    "DELETE_ACCOUNT": "Supprimer définitivement mon compte"
+    "DELETE_ACCOUNT": "Supprimer définitivement mon compte",
+    "DELETE_MODAL": "Tu es sûr de supprimer ton compte\u00A0??"
   },
   "BLOCKLY": {
     "FIELD_POPUP": {

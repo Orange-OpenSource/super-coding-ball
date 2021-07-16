@@ -30,7 +30,7 @@
       type="button"
       ngbTooltip="{{'ONLINE.ACCOUNT' | translate }}"
       onclick="this.blur()"
-      (click)="modalService.open(account_info)">
+      (click)="modalService.open(accountInfoContent)">
       {{onlineService.userDisplay.displayName}}
       <img class="border border-dark rounded ml-1" height="40px"
            src="{{onlineService.userDisplay.pictureUrl | anonPicturePipe}}">
@@ -45,7 +45,7 @@
     <button
       class="btn btn-lg m-2 p-0 text-left bg-secondary col-sm-7 col-md-5 col-lg-3"
       type="button"
-      (click)="modalService.open(guest_info)">
+      (click)="modalService.open(guestInfoContent)">
       <img class="p-1" src="assets/icons/user-solid.png" width="48px" height="48px">
       <span class="p-2 text-white h6">{{'ONLINE.CONNECT_GUEST' | translate }}</span>
     </button>
@@ -79,7 +79,7 @@
             class="btn btn-sm pt-0"
             type="button"
             onclick="this.blur()"
-            (click)="modalService.open(ranking_info)">
+            (click)="modalService.open(rankingInfoContent)">
             <img src="../../../assets/icons/info-circle-solid-white.png" height="20" width="20"/>
           </button>
         </th>
@@ -125,7 +125,7 @@
   </div>
 </div>
 
-<ng-template #account_info let-modal>
+<ng-template #accountInfoContent let-modal>
   <div class="modal-header">
     <h6 class="modal-title">{{"ONLINE.PERSONAL_RANK" | translate }} {{personalRanking}}/{{opponents.length}}</h6>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
@@ -190,7 +190,7 @@
   </div>
 </ng-template>
 
-<ng-template #ranking_info let-modal>
+<ng-template #rankingInfoContent let-modal>
   <div class="modal-header">
     <h6 class="modal-title">{{"ONLINE.RANKING_POPUP.TITLE" | translate }}</h6>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
@@ -200,7 +200,7 @@
   <div class="modal-body" [innerHTML]="'ONLINE.RANKING_POPUP.CONTENT' | translate"></div>
 </ng-template>
 
-<ng-template #replay_game let-modal>
+<ng-template #replayGameContent let-modal>
   <div class="modal-header">
     <h6 class="modal-title">{{"GLOBAL.WARNING" | translate }}</h6>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
@@ -237,7 +237,7 @@
   </div>
 </ng-template>
 
-<ng-template #guest_info let-modal>
+<ng-template #guestInfoContent let-modal>
   <div class="modal-header">
     <h6 class="modal-title">{{"GLOBAL.WARNING" | translate }}</h6>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
@@ -256,8 +256,34 @@
     </button>
     <button
       type="button"
-      class="btn btn-primary"
+      class="btn btn-danger"
       (click)="modal.close(); onlineService.connectAnonymously()">
+      {{"GLOBAL.OK" | translate }}
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #deleteAccountContent let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title">{{"GLOBAL.WARNING" | translate }}</h6>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p [innerHTML]="'ONLINE.DELETE_MODAL' | translate"></p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.close(false)">
+      {{"GLOBAL.CANCEL" | translate }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="modal.close(true)">
       {{"GLOBAL.OK" | translate }}
     </button>
   </div>
