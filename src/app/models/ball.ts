@@ -15,21 +15,21 @@ import {Player} from './player';
 export class Ball extends Sprite {
   velocity = 0;
   owningTime = 0;
-  #owner: Player | null = null;
-  #formerOwner: Player | null = null;
+  private _owner: Player | null = null;
+  private _formerOwner: Player | null = null;
 
   get owner(): Player | null {
-    return this.#owner;
+    return this._owner;
   }
 
   set owner(value: Player | null) {
-    this.#formerOwner = this.#owner;
-    this.#owner = value;
+    this._formerOwner = this._owner;
+    this._owner = value;
     this.owningTime = 0;
   }
 
   get formerOwner(): Player | null {
-    return this.#formerOwner;
+    return this._formerOwner;
   }
 
   constructor() {

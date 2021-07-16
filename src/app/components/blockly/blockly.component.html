@@ -20,6 +20,7 @@
         <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24"/>
       </button>
       <button
+        [disabled]="gameLaunched"
         class="btn"
         type="button"
         ngbTooltip="{{'BLOCKLY.FIELD_POPUP.TOOLTIP' | translate }}"
@@ -28,6 +29,7 @@
         <img src="../../../assets/icons/info-circle-solid.png" height="24" width="24"/>
       </button>
       <button
+        [disabled]="gameLaunched"
         class="btn"
         type="button"
         ngbTooltip="{{'BLOCKLY.DELETE' | translate }}"
@@ -36,6 +38,7 @@
         <img src="../../../assets/icons/trash-solid.png" height="24" width="24"/>
       </button>
       <button
+        [disabled]="gameLaunched"
         class="btn"
         type="button"
         ngbTooltip="{{'BLOCKLY.UNDO' | translate }}"
@@ -44,6 +47,7 @@
         <img src="../../../assets/icons/undo-alt-solid.png" height="24" width="24"/>
       </button>
       <button
+        [disabled]="gameLaunched"
         class="btn"
         type="button"
         ngbTooltip="{{'BLOCKLY.REDO' | translate }}"
@@ -55,6 +59,7 @@
         *ngIf="debug"
         class="btn"
         type="button"
+        [disabled]="gameLaunched"
         ngbTooltip="{{'BLOCKLY.COPY_OPPONENT' | translate }}"
         onclick="this.blur()"
         (click)="loadOpp()">
@@ -73,7 +78,9 @@
     </nav>
     <div id="blocklyDiv" class="h-100"></div>
   </div>
-  <app-game #gameComponent id="gameComponent" class="d-none d-md-block"></app-game>
+  <app-game #gameComponent id="gameComponent" class="d-none d-md-block"
+            [ngStyle]="{'background-color': gameLaunched ? '#ccffcc' : '#ccc'}"
+            [(gameLaunched)]="gameLaunched"></app-game>
 </div>
 
 <ng-template #fieldContent let-modal>

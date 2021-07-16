@@ -38,14 +38,14 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
   personalRanking = 0;
   loading = false;
 
-  #searchTerm = '';
+  private _searchTerm = '';
 
   get searchTerm(): string {
-    return this.#searchTerm;
+    return this._searchTerm;
   }
 
   set searchTerm(term: string) {
-    this.#searchTerm = term;
+    this._searchTerm = term;
     this.filteredOpponents = this.opponents.filter(opp => !term ||
       this.normalized(opp.userDisplay?.displayName ?? '').includes(this.normalized(term)));
   }

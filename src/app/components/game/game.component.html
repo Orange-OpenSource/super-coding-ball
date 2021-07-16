@@ -20,15 +20,16 @@
     (click)="location.back()">
     <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24"/>
   </button>
+  <button
+    *ngIf="!isStandaloneScreen"
+    [disabled]="!gameLaunched"
+    class="btn btn-lg"
+    type="button"
+    ngbTooltip="{{'GAME.STOP' | translate }}"
+    (click)="stopGame()">
+    <img src="../../../assets/icons/times-circle-solid.png" height="24" width="24"/>
+  </button>
   <div class="align-middle d-flex flex-grow-1">
-    <button
-      class="btn btn-lg"
-      type="button"
-      onclick="this.blur()"
-      ngbTooltip="{{'GLOBAL.SETTINGS' | translate }}"
-      (click)="modalService.open(settingsContent, {size: 'sm'})">
-      <img src="../../../assets/icons/cog-solid.png" height="24" width="24"/>
-    </button>
     <div class="p-1 m-1 h6 bg-secondary rounded flex-grow-1 d-flex justify-content-between align-items-center">
       <div>
         <img class="pixelated" src="../../../assets/icons/own.png" height="32" width="32">
@@ -41,13 +42,26 @@
       </div>
     </div>
     <button
-      [disabled]="!waitingToRestart"
       class="btn btn-lg"
       type="button"
-      ngbTooltip="{{'GAME.KICK_OFF' | translate }}"
+      ngbTooltip="{{'GAME.SOUND_ENABLED' | translate }}"
       onclick="this.blur()"
-      (click)="restartGame()">
-      <img src="../../../assets/icons/go.png" height="24" width="59"/>
+      (click)="soundActivated = !soundActivated">
+      <ng-container [ngSwitch]="soundActivated">
+        <img *ngSwitchCase="true" src="../../../assets/icons/volume-off-solid.png" height="24"/>
+        <img *ngSwitchCase="false" src="../../../assets/icons/volume-off-solid-empty.png" height="24"/>
+      </ng-container>
+    </button>
+    <button
+      class="btn btn-lg"
+      type="button"
+      ngbTooltip="{{'GAME.GAME_ACCELERATED' | translate }}"
+      onclick="this.blur()"
+      (click)="acceleratedGame = !acceleratedGame">
+      <ng-container [ngSwitch]="acceleratedGame">
+        <img *ngSwitchCase="true" src="../../../assets/icons/forward-solid.png" height="24"/>
+        <img *ngSwitchCase="false" src="../../../assets/icons/forward-solid-empty.png" height="24"/>
+      </ng-container>
     </button>
   </div>
 </nav>
@@ -60,6 +74,46 @@
   </canvas>
 </div>
 
+<ng-template #kickOffContent let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title">{{"GAME.KICK_OFF" | translate  }}</h6>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="modal.close(true)">
+      {{"GLOBAL.OK"| translate }}
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #stopGameContent let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title">{{"GLOBAL.WARNING" | translate }}</h6>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p [innerHTML]="'GAME.STOP_MODAL' | translate"></p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.close(false)">
+      {{"GLOBAL.CANCEL" | translate }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="modal.close(true)">
+      {{"GLOBAL.OK" | translate }}
+    </button>
+  </div>
+</ng-template>
+
 <ng-template #endGameContent let-modal>
   <div class="modal-header">
     <h6 class="modal-title" *ngIf="ownScore > oppScore">{{'GAME.YOU_WON' | translate }}</h6>
@@ -68,26 +122,5 @@
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
       <span>&times;</span>
     </button>
-  </div>
-</ng-template>
-
-<ng-template #settingsContent let-modal>
-  <div class="modal-body">
-    <div class="form-group">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="soundActivated"
-               [(ngModel)]="soundActivated">
-        <label class="form-check-label" for="soundActivated">
-          {{'GAME.SOUND_ENABLED' | translate }}
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="acceleratedGame"
-               [(ngModel)]="acceleratedGame">
-        <label class="form-check-label" for="acceleratedGame">
-          {{'GAME.GAME_ACCELERATED' | translate }}
-        </label>
-      </div>
-    </div>
   </div>
 </ng-template>

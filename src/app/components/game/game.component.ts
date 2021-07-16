@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, Output, EventEmitter, ViewChild} from '@angular/core';
 import {Location} from '@angular/common';
 import {Player, PlayerState} from '../../models/player';
 import {Ball} from '../../models/ball';
@@ -69,7 +69,12 @@ const sprintingVelocityFactor = 2;
 })
 
 export class GameComponent implements OnInit, OnDestroy {
+  @ViewChild('kickOffContent') private kickOffContent: any;
+  @ViewChild('stopGameContent') private stopGameContent: any;
   @ViewChild('endGameContent') private endGameContent: any;
+  @Input() gameLaunched = true;
+  @Output() gameLaunchedChange = new EventEmitter<boolean>();
+
   isStandaloneScreen: boolean;
   isOnline: boolean;
   opponentId = '';
@@ -87,20 +92,14 @@ export class GameComponent implements OnInit, OnDestroy {
     this.localStorageService.setSoundActivatedStatus(activated);
   }
 
-  #acceleratedGame = this.localStorageService.getAcceleratedGameStatus();
+  private _acceleratedGame = this.localStorageService.getAcceleratedGameStatus();
   get acceleratedGame(): boolean {
-    return this.#acceleratedGame;
+    return this._acceleratedGame;
   }
 
   set acceleratedGame(accelerated: boolean) {
-    this.#acceleratedGame = accelerated;
+    this._acceleratedGame = accelerated;
     this.localStorageService.setAcceleratedGameStatus(accelerated);
-  }
-
-  get waitingToRestart(): boolean {
-    return this.gamePaused
-      && this.periodType !== PeriodType.Finished
-      && (this.ownCode !== '' || this.isStandaloneScreen);
   }
 
   gameTime = 0;
@@ -151,6 +150,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
   public loadOwnCode(): void {
     this.ownCode = this.codeService.loadOwnCode();
+    this.openKickOffPopup();
   }
 
   computeGridPositions(): void {
@@ -184,7 +184,16 @@ export class GameComponent implements OnInit, OnDestroy {
     this.gameStopped = true;
   }
 
-  restartGame(): void {
+  openKickOffPopup(): void {
+    // If launched immediately, the popup is empty on mobile
+    setTimeout(() => {
+      this.modalService.open(this.kickOffContent, {size: 'sm'}).result.then(
+        () => this.kickOff(),
+        () => this.kickOff());
+    }, 1000);
+  }
+
+  kickOff(): void {
     this.positionPlayersAndBall(this.ownTeamWillStart);
     this.gamePaused = false;
     if (this.periodType === PeriodType.BeforeFirstPeriod) {
@@ -260,7 +269,9 @@ export class GameComponent implements OnInit, OnDestroy {
     this.ball.velocity = 0;
     this.ball.coord = this.getGridPosition(false, 3, 3);
     this.periodType = startSecondPeriod ? PeriodType.HalfTime : PeriodType.Finished;
-    if (this.periodType === PeriodType.Finished) {
+    if (startSecondPeriod) {
+      this.openKickOffPopup();
+    } else {
       if (this.isOnline) {
         this.onlineService.setGameResult(
           this.opponentId,
@@ -273,6 +284,19 @@ export class GameComponent implements OnInit, OnDestroy {
         () => this.backToOpponentsList(),
         () => this.backToOpponentsList());
     }
+  }
+
+  stopGame(): void {
+    this.modalService.open(this.stopGameContent, {size: 'sm'})
+      .result.then((stopValidated: boolean) => {
+      if (stopValidated) {
+        this.gamePaused = true;
+        this.gameTime = 0;
+        this.gameTimeDisplayed = '00';
+        this.positionPlayersAndBall(true);
+        this.gameLaunchedChange.emit(false);
+      }
+    });
   }
 
   private backToOpponentsList(): void {
@@ -426,6 +450,7 @@ export class GameComponent implements OnInit, OnDestroy {
       }
     }
     this.gamePaused = true;
+    this.openKickOffPopup();
     this.ownTeamWillStart = !forOwnTeam;
   }
 

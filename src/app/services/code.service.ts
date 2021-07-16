@@ -15,6 +15,7 @@ import {CustomizedZelosRenderer} from '../components/blockly/customizedZelosRend
 import blockStyles from '../../assets/blocks/styles/blockStyles.json';
 import categoryStyles from '../../assets/blocks/styles/categoryStyles.json';
 import componentStyles from '../../assets/blocks/styles/componentStyles.json';
+import componentDarkStyles from '../../assets/blocks/styles/componentDarkStyles.json';
 import blocksJson from '../../assets/blocks/blocks.json';
 import * as Javascript from 'blockly/javascript';
 import {Block} from 'blockly/blockly';
@@ -35,6 +36,12 @@ export class CodeService {
     blockStyles,
     categoryStyles,
     componentStyles,
+    startHats: true
+  });
+  customDarkTheme = Blockly.Theme.defineTheme('customDarkTheme', {
+    blockStyles,
+    categoryStyles,
+    componentStyles: componentDarkStyles,
     startHats: true
   });
 

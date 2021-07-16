@@ -35,7 +35,22 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   @ViewChild('gameComponent') gameComponent?: GameComponent;
   private workspace!: Blockly.WorkspaceSvg;
   private zoomToFit!: ZoomToFitControl;
-  gameLaunched = false;
+  private _gameLaunched = false;
+  get gameLaunched(): boolean {
+    return this._gameLaunched;
+  }
+
+  set gameLaunched(value: boolean) {
+    this._gameLaunched = value;
+    this.workspace?.dispose();
+    if (!this._gameLaunched) {
+      this.setWorkspaceForEdition();
+    } else {
+      this.setWorspaceForViewing();
+    }
+    this.loadBlocksFromLocalStorage();
+  }
+
   readonly isOnline: boolean;
   private readonly opponentId: string;
   debug: boolean;
@@ -57,6 +72,10 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.gameLaunched = false;
+  }
+
+  setWorkspaceForEdition(): void {
     const blocklyDiv = document.getElementById('blocklyDiv') as HTMLElement;
     this.workspace = Blockly.inject(blocklyDiv, {
       maxInstances: {
@@ -87,18 +106,41 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     this.workspace.addChangeListener(Blockly.Events.disableOrphans);
     this.zoomToFit = new ZoomToFitControl(this.workspace);
     this.zoomToFit.init();
+  }
 
-    this.loadBlocksFromLocalStorage();
+  setWorspaceForViewing(): void {
+    const blocklyDiv = document.getElementById('blocklyDiv') as HTMLElement;
+    this.workspace = Blockly.inject(blocklyDiv, {
+      readOnly: true,
+      move: {
+        scrollbars: true,
+        drag: true,
+        wheel: false
+      },
+      theme: this.codeService.customDarkTheme,
+      renderer: 'customized_zelos',
+      trashcan: false,
+      zoom: {
+        controls: false,
+        wheel: true,
+        pinch: true,
+        maxScale: 1,
+        minScale: 0.2
+      }
+    } as Blockly.BlocklyOptions);
   }
 
   ngOnDestroy(): void {
-    const ownBlocks = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace));
-    this.localStorageService.saveXmlBlocks(ownBlocks);
+    // If game is launched, blocks are readonly and should not be saved
+    // They have been saved before game launch
+    if (!this.gameLaunched) {
+      const ownBlocks = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace));
+      this.localStorageService.saveXmlBlocks(ownBlocks);
+    }
     this.workspace.dispose();
   }
 
   play(): void {
-    this.gameLaunched = true;
     const ownBlocks = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace));
     this.localStorageService.saveXmlBlocks(ownBlocks);
     if (this.router.url.includes('/online/')) {
@@ -112,6 +154,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
       this.router.navigate([`/play/${this.isOnline ? 'online' : 'offline'}/` + this.opponentId]);
     } else {
       this.gameComponent?.loadOwnCode();
+      this.gameLaunched = true;
     }
   }
 

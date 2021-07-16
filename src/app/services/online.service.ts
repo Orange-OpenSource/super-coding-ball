@@ -23,17 +23,17 @@ import {fromArray} from 'rxjs/internal/observable/fromArray';
 export class OnlineService implements OnDestroy {
   webcomRef = new Webcom('super-coding-ball');
   connectionStatusChanged = new EventEmitter<ConnectionStatus>();
-  #connectionStatus = ConnectionStatus.Unknown;
+  private _connectionStatus = ConnectionStatus.Unknown;
 
   get connectionStatus(): ConnectionStatus {
-    return this.#connectionStatus;
+    return this._connectionStatus;
   }
 
   set connectionStatus(status: ConnectionStatus) {
-    if (this.#connectionStatus !== status) {
+    if (this._connectionStatus !== status) {
       this.connectionStatusChanged.emit(status);
     }
-    this.#connectionStatus = status;
+    this._connectionStatus = status;
   }
 
   authCallback: any;

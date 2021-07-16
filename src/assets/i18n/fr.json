@@ -39,8 +39,7 @@
     "CANCEL": "Annuler",
     "BACK": "Retour",
     "WARNING": "Attention",
-    "SORRY": "Désolé...",
-    "SETTINGS": "Réglages"
+    "SORRY": "Désolé..."
   },
   "UPDATE": {
     "MESSAGE": "Une nouvelle version est dispo\u00A0!<br><br>Est-ce que tu veux la charger tout de suite\u00A0?"
@@ -135,9 +134,11 @@
     "VALIDATE_BLOCKS": "Valider ma stratégie"
   },
   "GAME": {
-    "SOUND_ENABLED": "Son activé",
-    "GAME_ACCELERATED": "Jeu accéléré",
-    "KICK_OFF": "Coup d'envoi",
+    "STOP": "Arrêter le match",
+    "STOP_MODAL": "Est-ce que tu veux arrêter le match\u00A0?",
+    "SOUND_ENABLED": "Son",
+    "GAME_ACCELERATED": "Accéléré",
+    "KICK_OFF": "C'est parti\u00A0!",
     "YOU_WON": "C'est gagné\u00A0!!!",
     "DRAW": "Match nul\u00A0!",
     "YOU_LOST": "C'est perdu\u00A0:("

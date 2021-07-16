@@ -39,8 +39,7 @@
     "CANCEL": "Cancel",
     "BACK": "Back",
     "WARNING": "Warning",
-    "SORRY": "Sorry...",
-    "SETTINGS": "Settings"
+    "SORRY": "Sorry..."
   },
   "UPDATE": {
     "MESSAGE": "A new version is available!<br><br>Do you want to load it now?"
@@ -102,7 +101,7 @@
     "OPP_POINTS": "pts",
     "RANKING_POPUP": {
       "TITLE": "Information about ranking",
-      "CONTENT": "The ranking shows the players connected in the last 15 days.<br><br>For each game (launched by yourself or someone else), you get 2 points for a win, 1 for a draw and 0 for a loss.<br><br>Be careful, you can only face each opponent once a day (if you play the same game again, points will be updated but will only count once).<br><br>If you abandon a game in progress, it is considered lost!"
+      "CONTENT": "The ranking shows the players connected in the last 15 days.<br><br>For each game (launched by yourself or someone else), you get 2 points for a win, 1 for a draw and 0 for a loss.<br><br>Be careful, you can only face each opponent once a day (if you play the same game again, points will be updated but will only count once).<br><br>If you give up a game in progress, it is considered lost!"
     },
     "REPLAY": {
       "HEADER": "You already played that game today ",
@@ -136,9 +135,11 @@
     "VALIDATE_BLOCKS": "Validate my strategy"
   },
   "GAME": {
-    "SOUND_ENABLED": "Sound enabled",
-    "GAME_ACCELERATED": "Game accelerated",
-    "KICK_OFF": "Kick-off",
+    "STOP": "Stop game",
+    "STOP_MODAL": "Do you want to stop this game?",
+    "SOUND_ENABLED": "Sound",
+    "GAME_ACCELERATED": "Accelerated",
+    "KICK_OFF": "Let's go!",
     "YOU_WON": "You won!!!",
     "DRAW": "Draw!",
     "YOU_LOST": "You lost\u00A0:("
