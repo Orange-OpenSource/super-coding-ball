@@ -9,21 +9,23 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {HowtoDemoComponent} from '../howto-demo/howto-demo.component';
 
 @Component({
   selector: 'app-howto',
   templateUrl: './howto.component.html',
   styleUrls: ['./howto.component.scss']
 })
-export class HowtoComponent implements OnInit {
+export class HowtoComponent {
 
-  constructor(public translate: TranslateService) {
+  constructor(public translate: TranslateService, private modalService: NgbModal) {
     translate.addLangs(['fr', 'en']);
   }
 
-  ngOnInit(): void {
+  openDemo(): void {
+    this.modalService.open(HowtoDemoComponent);
   }
-
 }

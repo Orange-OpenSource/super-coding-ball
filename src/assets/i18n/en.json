@@ -60,7 +60,21 @@
     "BLOCK": "To define your strategy, you will tell your players <strong> at all times </strong> what action to take.<br>For example, if you want your players to shoot to the goal as soon as they have the ball, you have to choose: <br>",
     "PARAMETER": "You can change the parameters of some blocks.<br>For example, by changing the pink block above, you can tell your players to make a pass to their closest teammate, as soon as they have the ball: <br>",
     "CONDITION": "Finally you can also add conditions to improve your strategies!<br>For example, you can choose one of the two actions above, depending on the distance to the opponents goal: <br>",
-    "DISCOVER": "It's up to you to play now and discover the rest!"
+    "DISCOVER": "It's up to you to play now and discover the rest!",
+    "DEMO": "You can also analyze a complete strategy by clicking here"
+  },
+  "HOW_TO_DEMO": {
+    "TITLE": "Strategy example",
+    "OPP_HAS_BALL": "When an opponent has the ball,\nall players run to the ball\nto get it",
+    "OWN_HAS_BALL": "When a teammate has the ball,\nthe other players return to their positions\n(front for attackers,\nrear for defenders)",
+    "NOONE_HAS_BALL": "When no one has the ball,\nonly the closest player will get it.\nThe others stay at their positions",
+    "CONDITION_NEAR": "For that, we use this condition",
+    "BALL_MINE": "When one of our players has the ball,\nwe want to know if he is close to an opponent...",
+    "CONDITION_COMPARISON": "For that we use a condition to compare...",
+    "PARAM_DISTANCE": "His distance from the nearest opponent...",
+    "PARAM_VALUE": "And the value 50",
+    "TEAMMATE": "In case of danger, we make a pass\nto the teammate closest to the goal",
+    "RUN_TOWARDS_GOAL": "Otherwise we run towards the opposing goal"
   },
   "ABOUT": {
     "TITLE": "Find out more",

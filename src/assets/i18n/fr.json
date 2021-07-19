@@ -60,7 +60,21 @@
     "BLOCK": "Pour définir ta stratégie, tu vas dire aux joueurs <strong>à chaque instant</strong> l'action qu'ils doivent faire.<br>Par exemple, si tu veux que tes joueurs tirent au but dès qu'ils ont le ballon, il faut choisir\u00A0:<br>",
     "PARAMETER": "Tu peux changer les paramètres de certains blocs.<br>Par exemple, en remplaçant le bloc rose ci-dessus, tu peux dire à tes joueurs de faire une passe à leur coéquipier le plus proche, dès qu'ils ont le ballon\u00A0:<br>",
     "CONDITION": "Enfin tu peux aussi ajouter des conditions pour améliorer tes stratégies\u00A0!<br>Par exemple, tu peux choisir une des deux actions précédentes, selon la distance de tes joueurs au but adverse\u00A0:<br>",
-    "DISCOVER": "À toi de jouer maintenant et de découvrir le reste\u00A0!"
+    "DISCOVER": "À toi de jouer maintenant et de découvrir le reste\u00A0!",
+    "DEMO": "Tu peux aussi analyser une stratégie complète en cliquant ici"
+  },
+  "HOW_TO_DEMO": {
+    "TITLE": "Exemple de stratégie",
+    "OPP_HAS_BALL": "Quand un adversaire a le ballon,\ntous les joueurs courent vers le ballon\npour le récupérer",
+    "OWN_HAS_BALL": "Quand un coéquipier a le ballon,\nles autres joueurs reviennent à leur poste\n(avant pour les attaquants,\narrière pour les défenseurs)",
+    "NOONE_HAS_BALL": "Quand personne n'a le ballon,\nseul le joueur le plus près va le chercher.\nLes autres restent à leur poste",
+    "CONDITION_NEAR": "Pour ça, on utilise cette condition",
+    "BALL_MINE": "Quand un de nos joueurs a le ballon,\non veut savoir s'il est proche d' un adversaire...",
+    "CONDITION_COMPARISON": "Pour ça on utilise une condition pour comparer...",
+    "PARAM_DISTANCE": "Sa distance avec l'adversaire le plus proche...",
+    "PARAM_VALUE": "Et la valeur 50",
+    "TEAMMATE": "En cas de danger, on fait une passe\nau coéquipier le plus proche du but",
+    "RUN_TOWARDS_GOAL": "Sinon on court vers le but adverse"
   },
   "ABOUT": {
     "TITLE": "En savoir\u00A0+",

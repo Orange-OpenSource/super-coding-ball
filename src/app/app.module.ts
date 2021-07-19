@@ -16,6 +16,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './components/home/home.component';
 import {HowtoComponent} from './components/howto/howto.component';
+import {HowtoDemoComponent} from './components/howto-demo/howto-demo.component';
 import {AboutComponent} from './components/about/about.component';
 import {PrivacyComponent} from './components/privacy/privacy.component';
 import {TermsComponent} from './components/terms/terms.component';
@@ -39,6 +40,7 @@ import {CustomTranslateLoader} from './services/custom-translate-loader';
     AppComponent,
     HomeComponent,
     HowtoComponent,
+    HowtoDemoComponent,
     AboutComponent,
     PrivacyComponent,
     TermsComponent,
