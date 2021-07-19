@@ -82,6 +82,7 @@ export class GameComponent implements OnInit, OnDestroy {
   gamePaused = true;
   gameStopped = false;
   periodType = PeriodType.BeforeFirstPeriod;
+  lastTimeout = 0;
 
   get soundActivated(): boolean {
     return this.localStorageService.getSoundActivatedStatus();
@@ -182,14 +183,23 @@ export class GameComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.gameStopped = true;
+    if (this.lastTimeout !== 0) {
+      clearTimeout(this.lastTimeout);
+      this.lastTimeout = 0;
+    }
   }
 
   openKickOffPopup(): void {
+    if (this.lastTimeout !== 0) {
+      clearTimeout(this.lastTimeout);
+      this.lastTimeout = 0;
+    }
     // If launched immediately, the popup is empty on mobile
-    setTimeout(() => {
+    this.lastTimeout = setTimeout(() => {
       this.modalService.open(this.kickOffContent, {size: 'sm'}).result.then(
         () => this.kickOff(),
         () => this.kickOff());
+      this.lastTimeout = 0;
     }, 1000);
   }
 
