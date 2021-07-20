@@ -35,13 +35,14 @@ export class AudioService {
   public playSound(mySound: SoundEnum): void {
     switch (mySound) {
       case SoundEnum.WhistleStart:
-        return this.setAudio('./assets/sounds/whistle_start.wav');
+        return this.setAudio('./assets/sounds/whistle_start.m4a');
       case SoundEnum.WhistleEnd:
-        return this.setAudio('./assets/sounds/whistle_end.wav');
+        return this.setAudio('./assets/sounds/whistle_end.m4a');
     }
   }
 
   private setAudio(src: string): void {
+    console.log('play');
     this.audio.src = src;
     this.audio.play();
   }
