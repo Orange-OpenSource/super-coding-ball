@@ -300,6 +300,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.modalService.open(this.stopGameContent, {size: 'sm'})
       .result.then((stopValidated: boolean) => {
       if (stopValidated) {
+        this.periodType = PeriodType.BeforeFirstPeriod;
         this.gamePaused = true;
         this.gameTime = 0;
         this.gameTimeDisplayed = '00';
