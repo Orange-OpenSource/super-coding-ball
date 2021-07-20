@@ -35,9 +35,9 @@ export class AudioService {
   public playSound(mySound: SoundEnum): void {
     switch (mySound) {
       case SoundEnum.WhistleStart:
-        return this.setAudio('./assets/sounds/whistle_start.m4a');
+        return this.setAudio('./assets/sounds/whistle_start.mp3');
       case SoundEnum.WhistleEnd:
-        return this.setAudio('./assets/sounds/whistle_end.m4a');
+        return this.setAudio('./assets/sounds/whistle_end.mp3');
     }
   }
 
