@@ -14,7 +14,7 @@
   <div *ngIf="!isStandaloneScreen" class="pr-1"></div>
   <button
     *ngIf="isStandaloneScreen"
-    class="btn btn-lg"
+    class="btn btn-lg d-flex"
     type="button"
     ngbTooltip="{{'GLOBAL.BACK' | translate }}"
     (click)="location.back()">
@@ -23,14 +23,14 @@
   <button
     *ngIf="!isStandaloneScreen"
     [disabled]="!gameLaunched"
-    class="btn btn-lg"
+    class="btn btn-lg d-flex"
     type="button"
     ngbTooltip="{{'GAME.STOP' | translate }}"
     (click)="stopGame()">
     <img src="../../../assets/icons/stop-solid.png" height="24" width="24"/>
   </button>
   <div class="align-middle d-flex flex-grow-1">
-    <div class="p-1 m-1 h6 bg-secondary rounded flex-grow-1 d-flex justify-content-between align-items-center">
+    <div class="m-1 h6 bg-secondary rounded flex-grow-1 d-flex justify-content-between align-items-center">
       <div>
         <img class="pixelated" src="../../../assets/icons/own.png" height="32" width="32">
         <span class="align-middle">{{ownScore}}</span>
@@ -41,29 +41,30 @@
         <img class="pixelated" src="../../../assets/icons/opp.png" height="32" width="32">
       </div>
     </div>
-    <button
-      class="btn btn-lg"
-      type="button"
-      ngbTooltip="{{'GAME.SOUND_ENABLED' | translate }}"
-      onclick="this.blur()"
-      (click)="soundActivated = !soundActivated">
-      <ng-container [ngSwitch]="soundActivated">
-        <img *ngSwitchCase="true" src="../../../assets/icons/volume-off-solid.png" height="24"/>
-        <img *ngSwitchCase="false" src="../../../assets/icons/volume-off-solid-empty.png" height="24"/>
-      </ng-container>
-    </button>
-    <button
-      class="btn btn-lg"
-      type="button"
-      ngbTooltip="{{'GAME.GAME_ACCELERATED' | translate }}"
-      onclick="this.blur()"
-      (click)="acceleratedGame = !acceleratedGame">
-      <ng-container [ngSwitch]="acceleratedGame">
-        <img *ngSwitchCase="true" src="../../../assets/icons/forward-solid.png" height="24"/>
-        <img *ngSwitchCase="false" src="../../../assets/icons/forward-solid-empty.png" height="24"/>
-      </ng-container>
-    </button>
   </div>
+  <button
+    class="btn btn-lg d-flex"
+    type="button"
+    ngbTooltip="{{'GAME.SOUND_ENABLED' | translate }}"
+    onclick="this.blur()"
+    (click)="soundActivated = !soundActivated">
+    <ng-container [ngSwitch]="soundActivated">
+      <img *ngSwitchCase="true"  src="../../../assets/icons/volume-off-solid.png" height="24"/>
+      <img *ngSwitchCase="false" src="../../../assets/icons/volume-off-solid-empty.png" height="24"/>
+    </ng-container>
+  </button>
+  <button
+    class="btn btn-lg d-flex"
+    type="button"
+    ngbTooltip="{{'GAME.GAME_ACCELERATED' | translate }}"
+    onclick="this.blur()"
+    (click)="acceleratedGame = !acceleratedGame">
+    <ng-container [ngSwitch]="acceleratedGame">
+      <img *ngSwitchCase="true" src="../../../assets/icons/forward-solid.png" height="24"/>
+      <img *ngSwitchCase="false" src="../../../assets/icons/forward-solid-empty.png" height="24"/>
+    </ng-container>
+  </button>
+
 </nav>
 <div class="text-center">
   <canvas

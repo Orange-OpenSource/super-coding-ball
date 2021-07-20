@@ -13,7 +13,7 @@
   <div style="flex: 1" class="d-flex flex-column">
     <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0">
       <button
-        class="btn btn-lg"
+        class="btn btn-lg d-flex"
         type="button"
         ngbTooltip="{{'GLOBAL.BACK' | translate }}"
         (click)="location.back()">
@@ -21,7 +21,7 @@
       </button>
       <button
         [disabled]="gameLaunched"
-        class="btn"
+        class="btn d-flex"
         type="button"
         ngbTooltip="{{'BLOCKLY.FIELD_POPUP.TOOLTIP' | translate }}"
         onclick="this.blur()"
@@ -30,7 +30,7 @@
       </button>
       <button
         [disabled]="gameLaunched"
-        class="btn"
+        class="btn d-flex"
         type="button"
         ngbTooltip="{{'BLOCKLY.DELETE' | translate }}"
         onclick="this.blur()"
@@ -39,7 +39,7 @@
       </button>
       <button
         [disabled]="gameLaunched"
-        class="btn"
+        class="btn d-flex"
         type="button"
         ngbTooltip="{{'BLOCKLY.UNDO' | translate }}"
         onclick="this.blur()"
@@ -48,7 +48,7 @@
       </button>
       <button
         [disabled]="gameLaunched"
-        class="btn"
+        class="btn d-flex"
         type="button"
         ngbTooltip="{{'BLOCKLY.REDO' | translate }}"
         onclick="this.blur()"
@@ -57,7 +57,7 @@
       </button>
       <button
         *ngIf="debug"
-        class="btn"
+        class="btn d-flex"
         type="button"
         [disabled]="gameLaunched"
         ngbTooltip="{{'BLOCKLY.COPY_OPPONENT' | translate }}"
@@ -68,7 +68,7 @@
       <div style="flex-grow: 1; text-align: right"></div>
       <button
         [disabled]="gameLaunched"
-        class="btn"
+        class="btn d-flex"
         type="button"
         ngbTooltip="{{'BLOCKLY.VALIDATE_BLOCKS' | translate }}"
         onclick="this.blur()"
