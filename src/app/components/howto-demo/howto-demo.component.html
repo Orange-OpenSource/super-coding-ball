@@ -15,7 +15,7 @@
     <ul class="pagination pagination-sm justify-content-center">
       <li class="page-item">
         <a class="page-link" (click)="currentStep = currentStep - 1">
-          <span>&laquo;</span>
+          <span><<</span>
         </a>
       </li>
       <li *ngFor="let step of steps; let index = index" class="page-item" [class.active]="currentStep === index">
@@ -23,7 +23,7 @@
       </li>
       <li class="page-item">
         <a class="page-link" (click)="currentStep = currentStep + 1">
-          <span>&raquo;</span>
+          <span>>></span>
         </a>
       </li>
     </ul>
@@ -33,4 +33,3 @@
   </button>
 </div>
 <div id="blocklyDiv" style="height: 75vh;"></div>
-

@@ -26,6 +26,6 @@ export class HowtoComponent {
   }
 
   openDemo(): void {
-    this.modalService.open(HowtoDemoComponent);
+    this.modalService.open(HowtoDemoComponent, {size: 'xl'});
   }
 }
