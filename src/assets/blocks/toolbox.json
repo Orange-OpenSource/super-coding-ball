@@ -154,11 +154,7 @@
         },
         {
           "kind": "block",
-          "type": "math_arithmetic"
-        },
-        {
-          "kind": "block",
-          "type": "math_number"
+          "blockxml": "<block type='math_arithmetic'><value name='B'><shadow type='math_number'></shadow></value></block>"
         }
       ]
     }
