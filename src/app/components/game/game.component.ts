@@ -300,10 +300,17 @@ export class GameComponent implements OnInit, OnDestroy {
     this.modalService.open(this.stopGameContent, {size: 'sm'})
       .result.then((stopValidated: boolean) => {
       if (stopValidated) {
+        if (this.lastTimeout !== 0) {
+          clearTimeout(this.lastTimeout);
+          this.lastTimeout = 0;
+        }
+
         this.periodType = PeriodType.BeforeFirstPeriod;
         this.gamePaused = true;
         this.gameTime = 0;
         this.gameTimeDisplayed = '00';
+        this.oppScore = 0;
+        this.ownScore = 0;
         this.positionPlayersAndBall(true);
         this.gameLaunchedChange.emit(false);
       }
