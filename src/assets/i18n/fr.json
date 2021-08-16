@@ -80,7 +80,8 @@
     "TITLE": "En savoir\u00A0+",
     "IDEA": "L'idée de SuperCodingBall est de te montrer quelques concepts de code (instructions, paramètres, événements, conditions) sans te prendre la tête\u00A0:)",
     "SCRATCH": "Si tu as aimé ça et que tu veux découvrir plus de choses en programmation, va vite découvrir <a href=\"https://scratch.mit.edu\">Scratch</a>.<br>C'est un site incroyable qui te permet de créer tes propres histoires/jeux avec des blocs de code\u00A0!",
-    "OPENSOURCE": "SuperCodingBall est un projet Open Source, voir le code source sur GitHub\n        <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">\n            <img src=\"assets/about/GitHub-Mark-120px-plus.png\" class=\"ml-2\" height=\"48\">\n        </a>",
+    "BLOCKLY": "Dans SuperCodingBall, tu peux manipuler les blocs comme dans Scratch grâce à <a href=\"https://developers.google.com/blockly\">Blockly</a>\u00A0!",
+    "OPENSOURCE": "SuperCodingBall est un projet Open Source, voir le <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">code source sur GitHub</a>.",
     "LEGAL": "Lire les <a href='/legal'>mentions légales</a> et (en anglais) la <a href=\"/privacy\">politique de protection des données personnelles</a>.",
     "CONTACT": "Contact\u00A0:"
   },
