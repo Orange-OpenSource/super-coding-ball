@@ -56,3 +56,8 @@ All player sprites come from the "Open Game Art Liberated Pixel Cup" and were ge
 * Skeleton: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=skeleton3
 * Zombie: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?legs=pants_green&shoes=boots_brown1&body=zombie&ribs_blood=1&eyes=yellow
 
+## Translations (for now English and French)
+
+All translations are in the [i18n folder](./src/assets/i18n).
+
+Feel free to contribute if you want to add another language!
