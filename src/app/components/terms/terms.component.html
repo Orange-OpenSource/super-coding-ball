@@ -17,13 +17,8 @@
     routerLink="/about">
     <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24"/>
   </button>
-  <h4 class="m-0">Terms and conditions</h4>
+  <h4 class="m-0">{{'TERMS.TITLE' | translate }}</h4>
 </nav>
 <div class="p-4" style="background-color: #ccffcc;">
-  <div class="card">
-    <div class="card-body">
-      <strong>Terms and conditions are currently being written by legal team.</strong>
-    </div>
-  </div>
+  <div class="card card-body" [innerHTML]="'INTERNAL_TERMS.CONTENT' | translate"></div>
 </div>
-

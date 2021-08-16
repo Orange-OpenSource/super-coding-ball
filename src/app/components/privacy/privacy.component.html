@@ -17,46 +17,19 @@
     routerLink="/about">
     <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24"/>
   </button>
-  <h4 class="m-0">Privacy policy</h4>
+  <h4 class="m-0">{{'PRIVACY.TITLE' | translate}}</h4>
 </nav>
 <div class="p-4" style="background-color: #ccffcc;">
-  <div class="card mt-4">
-    <div class="card-body">
-      When you connect to the online mode, SuperCodingBall stores your nickname and a link to your profile picture
-      if you were connected with Facebook or Google.
-    </div>
-  </div>
-
-  <div class="card mt-4">
-    <div class="card-body">
-      To allow online players to play against each other, SuperCodingBall stores the blocks defining your team's
-      strategy.
-      To compute the players ranking, SuperCodingBall also stores the results of the games you played.
-    </div>
-  </div>
-
-  <div class="card mt-4">
-    <div class="card-body">
-      At any moment, you can choose to delete all this information by going
-      to the <a routerLink="/online-opponents">online page</a>, clicking your profile
-      on the top right corner and choose "Delete my account".
-    </div>
-  </div>
-
-  <div class="card mt-4">
-    <div class="card-body">
-
-      SuperCodingBall uses Firebase Analytics to get anonymous statistics about the usage of the application.<br>
-      <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="soundActivated"
-                 [(ngModel)]="trackingDisabled">
-          <label class="form-check-label" for="soundActivated">
-            Disable Firebase Analytics
-          </label>
-        </div>
+  <div class="card card-body" [innerHTML]="'INTERNAL_PRIVACY.CONTENT' | translate"></div>
+  <div class="card card-body mt-4">
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="trackingDisabled"
+               [(ngModel)]="trackingDisabled">
+        <label class="form-check-label" for="trackingDisabled">
+          {{'PRIVACY.DISABLE_TRACKING' | translate}}
+        </label>
       </div>
     </div>
   </div>
 </div>
-
