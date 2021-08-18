@@ -126,6 +126,10 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    // Case where component was not completely initialized (e.g. when hitting back on game result modal)
+    if (!this.workspace) {
+      return;
+    }
     // If game is launched, blocks are readonly and should not be saved
     // They have been saved before game launch
     if (!this.gameLaunched) {
