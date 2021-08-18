@@ -20,7 +20,6 @@
     "@angular/router": "~11.2.4",
     "@angular/service-worker": "~11.2.4",
     "@blockly/field-slider": "^2.1.16",
-    "@blockly/zoom-to-fit": "^1.1.0",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
     "@ngx-translate/core": "^13.0.0",
     "blockly": "^5.20210325.1",

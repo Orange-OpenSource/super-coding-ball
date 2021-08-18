@@ -14,8 +14,6 @@ import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/cor
 import toolboxJson from '../../../assets/blocks/toolbox.json';
 import * as Blockly from 'blockly';
 import '@blockly/field-slider';
-// @ts-ignore
-import {ZoomToFitControl} from '@blockly/zoom-to-fit';
 import {CodeService} from '../../services/code.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
@@ -34,7 +32,6 @@ import {Location} from '@angular/common';
 export class BlocklyComponent implements OnInit, OnDestroy {
   @ViewChild('gameComponent') gameComponent?: GameComponent;
   private workspace!: Blockly.WorkspaceSvg;
-  private zoomToFit!: ZoomToFitControl;
   private _gameLaunched = false;
   get gameLaunched(): boolean {
     return this._gameLaunched;
@@ -94,7 +91,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
       theme: this.codeService.customTheme,
       renderer: 'customized_zelos',
       toolbox: toolboxJson,
-      trashcan: false,
+      trashcan: true,
       zoom: {
         controls: false,
         wheel: true,
@@ -104,8 +101,6 @@ export class BlocklyComponent implements OnInit, OnDestroy {
       }
     } as Blockly.BlocklyOptions);
     this.workspace.addChangeListener(Blockly.Events.disableOrphans);
-    this.zoomToFit = new ZoomToFitControl(this.workspace);
-    this.zoomToFit.init();
   }
 
   setWorspaceForViewing(): void {
