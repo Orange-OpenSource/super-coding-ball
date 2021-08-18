@@ -10,26 +10,26 @@
 -->
 
 <div class="modal-header">
-  <nav class="w-100">
-    <h6 class="modal-title">{{"HOW_TO_DEMO.TITLE" | translate }}</h6>
-    <ul class="pagination pagination-sm justify-content-center">
-      <li class="page-item">
-        <a class="page-link" (click)="currentStep = currentStep - 1">
-          <span><<</span>
-        </a>
-      </li>
-      <li *ngFor="let step of steps; let index = index" class="page-item" [class.active]="currentStep === index">
-        <a class="page-link" (click)="currentStep = index">{{index + 1}}</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" (click)="currentStep = currentStep + 1">
-          <span>>></span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+  <h6 class="modal-title">{{"HOW_TO_DEMO.TITLE" | translate }}</h6>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
     <span>&times;</span>
   </button>
+</div>
+<div class="modal-header">
+  <ul class="pagination pagination-sm justify-content-center m-0 w-100">
+    <li class="page-item">
+      <a class="page-link" (click)="currentStep = currentStep - 1">
+        <span><<</span>
+      </a>
+    </li>
+    <li *ngFor="let step of steps; let index = index" class="page-item" [class.active]="currentStep === index">
+      <a class="page-link" (click)="currentStep = index">{{index + 1}}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" (click)="currentStep = currentStep + 1">
+        <span>>></span>
+      </a>
+    </li>
+  </ul>
 </div>
 <div id="blocklyDiv" style="height: 75vh;"></div>
