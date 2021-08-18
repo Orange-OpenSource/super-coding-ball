@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnDestroy, ViewChild} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
@@ -21,7 +21,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnDestroy {
   @ViewChild('online_info') private onlineInfoModal: any;
   @ViewChild('offline_info') private offlineInfoModal: any;
   public appName = environment.APP_NAME;
@@ -42,5 +42,9 @@ export class HomeComponent {
     } else {
       this.router.navigate(['/online-opponents']);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.modalService.dismissAll();
   }
 }

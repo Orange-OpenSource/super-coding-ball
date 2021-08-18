@@ -79,6 +79,7 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.connectionStatusSubscription?.unsubscribe();
+    this.modalService.dismissAll();
   }
 
   loadData(): void {

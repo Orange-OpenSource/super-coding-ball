@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import firebase from 'firebase/app';
 import 'firebase/analytics';
 import {environment} from '../environments/environment';
@@ -23,7 +23,7 @@ import {LocalStorageService} from './services/local-storage.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('content') private content: any;
 
   constructor(
@@ -66,5 +66,9 @@ export class AppComponent implements OnInit {
         });
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.modalService.dismissAll();
   }
 }

@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {HowtoDemoComponent} from '../howto-demo/howto-demo.component';
@@ -19,7 +19,7 @@ import {HowtoDemoComponent} from '../howto-demo/howto-demo.component';
   templateUrl: './howto.component.html',
   styleUrls: ['./howto.component.scss']
 })
-export class HowtoComponent {
+export class HowtoComponent implements OnDestroy {
 
   constructor(public translate: TranslateService, private modalService: NgbModal) {
     translate.addLangs(['fr', 'en']);
@@ -27,5 +27,9 @@ export class HowtoComponent {
 
   openDemo(): void {
     this.modalService.open(HowtoDemoComponent, {size: 'xl'});
+  }
+
+  ngOnDestroy(): void {
+    this.modalService.dismissAll();
   }
 }

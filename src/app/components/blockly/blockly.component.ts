@@ -133,6 +133,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
       this.localStorageService.saveXmlBlocks(ownBlocks);
     }
     this.workspace.dispose();
+    this.modalService.dismissAll();
   }
 
   play(): void {

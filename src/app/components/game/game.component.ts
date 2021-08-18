@@ -191,6 +191,7 @@ export class GameComponent implements OnInit, OnDestroy {
       clearTimeout(this.lastTimeout);
       this.lastTimeout = 0;
     }
+    this.modalService.dismissAll();
   }
 
   openKickOffPopup(): void {
