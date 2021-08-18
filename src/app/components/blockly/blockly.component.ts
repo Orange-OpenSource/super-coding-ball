@@ -80,7 +80,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         event_ball_opponent: 1,
         event_ball_teammate: 1,
         event_ball_none: 1
-      } as any,
+      },
       comments: false,
       disable: false,
       move: {
@@ -90,7 +90,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
       },
       theme: this.codeService.customTheme,
       renderer: 'customized_zelos',
-      toolbox: toolboxJson,
+      toolbox: toolboxJson as Blockly.utils.toolbox.ToolboxInfo,
       trashcan: true,
       zoom: {
         controls: false,
@@ -99,7 +99,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         maxScale: 1,
         minScale: 0.2
       }
-    } as Blockly.BlocklyOptions);
+    });
     this.workspace.addChangeListener(Blockly.Events.disableOrphans);
   }
 
@@ -122,7 +122,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         maxScale: 1,
         minScale: 0.2
       }
-    } as Blockly.BlocklyOptions);
+    });
   }
 
   ngOnDestroy(): void {

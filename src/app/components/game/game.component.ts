@@ -20,6 +20,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AudioService, SoundEnum} from '../../services/audio.service';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {OnlineService} from '../../services/online.service';
+import {environment} from '../../../environments/environment';
 
 interface FieldDivision {
   start: number;
@@ -151,6 +152,9 @@ export class GameComponent implements OnInit, OnDestroy {
 
   public loadOwnCode(): void {
     this.ownCode = this.codeService.loadOwnCode();
+    if (!environment.production) {
+      console.log(this.ownCode);
+    }
     this.openKickOffPopup();
   }
 
@@ -641,7 +645,7 @@ export class GameComponent implements OnInit, OnDestroy {
     return this.computeDistance(player.coord, posRefCoord) < this.computeDistance(closerTeammate.coord, posRefCoord);
   }
 
-  private getDistance(targetA: SpriteCoord | Player, targetB: SpriteCoord | Player): number | null {
+  private getDistance(targetA: SpriteCoord | Player, targetB: SpriteCoord | Player): number {
     if (targetA === null || targetB === null) {
       return fieldHeight;
     }

@@ -13,8 +13,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 
 import * as Blockly from 'blockly';
 import '@blockly/field-slider';
-// @ts-ignore
-import {ZoomToFitControl} from '@blockly/zoom-to-fit';
 import {CodeService} from '../../services/code.service';
 import {TranslateService} from '@ngx-translate/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
@@ -141,7 +139,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
         maxScale: 1,
         minScale: 0.2
       }
-    } as Blockly.BlocklyOptions);
+    });
   }
 
   ngOnDestroy(): void {

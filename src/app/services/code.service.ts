@@ -79,7 +79,7 @@ export class CodeService {
   static computeCode(xmlBlocks: Element): string {
     const workspace = new Blockly.Workspace();
     Blockly.Xml.domToWorkspace(xmlBlocks, workspace);
-    const code = (Javascript as unknown as Blockly.Generator).workspaceToCode(workspace);
+    const code = Javascript.workspaceToCode(workspace);
     workspace.dispose();
     return code;
   }
@@ -114,48 +114,48 @@ export class CodeService {
   private defineBlocksCodeGen(): void {
     (Javascript as any).event_ball_mine = (block: Block) => {
       return `if(ball.owner !== null && ball.owner === player) {
-${(Javascript as any).statementToCode(block, 'DO')}
+${Javascript.statementToCode(block, 'DO')}
 }`;
     };
 
     (Javascript as any).event_ball_teammate = (block: Block) => {
       return `if(ball.owner !== null && ball.owner !== player && ball.owner.ownTeam === player.ownTeam) {
-${(Javascript as any).statementToCode(block, 'DO')}
+${Javascript.statementToCode(block, 'DO')}
 }`;
     };
 
     (Javascript as any).event_ball_opponent = (block: Block) => {
       return `if(ball.owner !== null && ball.owner !== player && ball.owner.ownTeam !== player.ownTeam) {
-${(Javascript as any).statementToCode(block, 'DO')}
+${Javascript.statementToCode(block, 'DO')}
 }`;
     };
 
     (Javascript as any).event_ball_none = (block: Block) => {
       return `if(ball.owner === null) {
-${(Javascript as any).statementToCode(block, 'DO')}
+${Javascript.statementToCode(block, 'DO')}
 }`;
     };
 
     (Javascript as any).move = (block: Block) => {
-      const target = (Javascript as any).statementToCode(block, 'NAME');
+      const target = Javascript.statementToCode(block, 'NAME');
       // Can't be empty because of shadow block
       return `game.move(player, ${target}, false);`;
     };
 
     (Javascript as any).sprint = (block: Block) => {
-      const target = (Javascript as any).statementToCode(block, 'NAME');
+      const target = Javascript.statementToCode(block, 'NAME');
       // Can't be empty because of shadow block
       return `game.move(player, ${target}, true);`;
     };
 
     (Javascript as any).shoot = (block: Block) => {
-      const target = (Javascript as any).statementToCode(block, 'NAME');
+      const target = Javascript.statementToCode(block, 'NAME');
       // Can't be empty because of shadow block
       return `game.shoot(player, ${target})`;
     };
 
     (Javascript as any).player = (block: Block) => {
-      const ref = (Javascript as any).statementToCode(block, 'PLAYER_POS_REF');
+      const ref = Javascript.statementToCode(block, 'PLAYER_POS_REF');
       // Can't be empty because of shadow blocks
       const isOwnTeam = block.getFieldValue('PLAYER_TEAM') === 'PLAYER_TEAM_OWN';
       let isAtkRole: boolean | null = null;
@@ -195,20 +195,20 @@ ${(Javascript as any).statementToCode(block, 'DO')}
     };
 
     (Javascript as any).closest = (block: Block) => {
-      const ref = (Javascript as any).statementToCode(block, 'NAME');
+      const ref = Javascript.statementToCode(block, 'NAME');
       // Can't be empty because of shadow block
-      return [`game.isClosest(player, ${ref})`, (Javascript as any).ORDER_ADDITION];
+      return [`game.isClosest(player, ${ref})`, 0];
     };
 
     (Javascript as any).distance = (block: Block) => {
-      const from = (Javascript as any).statementToCode(block, 'FROM');
-      const to = (Javascript as any).statementToCode(block, 'TO');
+      const from = Javascript.statementToCode(block, 'FROM');
+      const to = Javascript.statementToCode(block, 'TO');
       // Can't be empty because of shadow blocks
-      return [`game.getDistance(${from}, ${to})`, (Javascript as any).ORDER_ADDITION];
+      return [`game.getDistance(${from}, ${to})`, 0];
     };
 
     (Javascript as any).role_and_side = (block: Block) => {
-      const player = (Javascript as any).statementToCode(block, 'PLAYER');
+      const player = Javascript.statementToCode(block, 'PLAYER');
       // Can't be empty because of shadow blocks
       let isAtkRole: boolean | null = null;
       if (block.getFieldValue('ROLE') === 'ROLE_ATK') {
@@ -222,33 +222,31 @@ ${(Javascript as any).statementToCode(block, 'DO')}
       } else if (block.getFieldValue('SIDE') === 'SIDE_LEFT') {
         isRightSide = false;
       }
-      return [`game.playerIsRoleAndSide(${player}, ${isAtkRole}, ${isRightSide})`,
-        (Javascript as any).ORDER_ADDITION];
+      return [`game.playerIsRoleAndSide(${player}, ${isAtkRole}, ${isRightSide})`, 0];
     };
 
     (Javascript as any).place = (block: Block) => {
-      const item = (Javascript as any).statementToCode(block, 'ITEM');
+      const item = Javascript.statementToCode(block, 'ITEM');
       // Can't be empty because of shadow block
-      return [`game.itemInGrid(!player.ownTeam,${item},${+block.getFieldValue('POS_COL')},${+block.getFieldValue('POS_ROW')})`,
-        (Javascript as any).ORDER_ADDITION];
+      return [`game.itemInGrid(!player.ownTeam,${item},${+block.getFieldValue('POS_COL')},${+block.getFieldValue('POS_ROW')})`, 0];
 
     };
 
     (Javascript as any).energy = (block: Block) => {
-      const player = (Javascript as any).statementToCode(block, 'NAME');
+      const player = Javascript.statementToCode(block, 'NAME');
       // Can't be empty because of shadow block
-      return [`(${player} === null ? null : ${player}.energy)`, (Javascript as any).ORDER_ADDITION];
+      return [`(${player} === null ? null : ${player}.energy)`, 0];
     };
 
     (Javascript as any).custom_if = (block: Block) => {
-      const ifStatement = (Javascript as any).valueToCode(block, 'IF', (Javascript as any).ORDER_ADDITION);
-      const thenStatement = (Javascript as any).statementToCode(block, 'THEN');
-      const elseStatement = (Javascript as any).statementToCode(block, 'ELSE');
+      const ifStatement = Javascript.valueToCode(block, 'IF', 0);
+      const thenStatement = Javascript.statementToCode(block, 'THEN');
+      const elseStatement = Javascript.statementToCode(block, 'ELSE');
       if (!ifStatement) { // No shadow block on if statement
         return null;
       } else {
         return `if(${ifStatement} === null) {
-null;
+  null;
 } else if(${ifStatement}) {
 ${thenStatement}
 } else {
@@ -258,15 +256,15 @@ ${elseStatement}
     };
 
     (Javascript as any).custom_compare = (block: Block) => {
-      const left = (Javascript as any).valueToCode(block, 'LEFT', (Javascript as any).ORDER_ADDITION);
-      const right = (Javascript as any).valueToCode(block, 'RIGHT', (Javascript as any).ORDER_ADDITION);
+      const left = Javascript.valueToCode(block, 'LEFT', 0);
+      const right = Javascript.valueToCode(block, 'RIGHT', 0);
       if (!left || !right) { // No shadow block on left statement
-        return [`null`, (Javascript as any).ORDER_ADDITION];
+        return [`null`, 0];
       } else {
         if (block.getFieldValue('INEQUALITY') === 'LOWER') {
-          return [`((${left} === null || ${right} === null) ? null : ${left} < ${right})`, (Javascript as any).ORDER_ADDITION];
+          return [`((${left} === null || ${right} === null) ? null : ${left} < ${right})`, 0];
         } else {
-          return [`((${left} === null || ${right} === null) ? null : ${left} > ${right})`, (Javascript as any).ORDER_ADDITION];
+          return [`((${left} === null || ${right} === null) ? null : ${left} > ${right})`, 0];
         }
       }
     };

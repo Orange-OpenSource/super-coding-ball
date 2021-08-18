@@ -42,7 +42,6 @@ export class AudioService {
   }
 
   private setAudio(src: string): void {
-    console.log('play');
     this.audio.src = src;
     this.audio.play();
   }

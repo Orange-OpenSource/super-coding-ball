@@ -18,7 +18,7 @@ export class CustomizedZelosRenderer extends BlocklyJs.zelos.Renderer {
   }
 
   static register(): void {
-    BlocklyJs.blockRendering.register('customized_zelos', CustomizedZelosRenderer);
+    Blockly.blockRendering.register('customized_zelos', CustomizedZelosRenderer);
   }
 
   makeConstants_(): Blockly.blockRendering.ConstantProvider {
