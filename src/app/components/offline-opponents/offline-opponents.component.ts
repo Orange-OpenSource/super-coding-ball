@@ -33,4 +33,8 @@ export class OfflineOpponentsComponent implements OnInit {
   ngOnInit(): void {
     this.strategies = this.localStorageService.getLocalStrategies();
   }
+
+  getLetter(index: number): string {
+    return String.fromCharCode(index + 65);
+  }
 }
