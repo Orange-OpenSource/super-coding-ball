@@ -7,9 +7,9 @@
    width="200"
    height="200"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
-   inkscape:export-filename="C:\Applications\Projects\SuperCodingBall\src\assets\app-icons\icon-maskable-180x180.png"
-   inkscape:export-xdpi="86.400002"
-   inkscape:export-ydpi="86.400002"
+   inkscape:export-filename="C:\Applications\Projects\SuperCodingBall\src\assets\app-icons\icon-maskable-512x512.png"
+   inkscape:export-xdpi="245.75999"
+   inkscape:export-ydpi="245.75999"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,8 +25,8 @@
      showgrid="false"
      width="200px"
      inkscape:zoom="3.1741238"
-     inkscape:cx="-20.79314"
-     inkscape:cy="100.6577"
+     inkscape:cx="88.055797"
+     inkscape:cy="101.28779"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      inkscape:window-x="-9"
@@ -61,7 +61,7 @@
     </style>
   </defs>
   <rect
-     style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:48.9669"
+     style="display:inline;fill:#ccffcc;fill-opacity:1;stroke:none;stroke-width:48.9669"
      id="rect36"
      width="200"
      height="200"
