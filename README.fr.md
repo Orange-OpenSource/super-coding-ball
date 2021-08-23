@@ -48,14 +48,14 @@ Une fois le fichier [blocks.json](./src/assets/blocks/blocks.json) généré, il
 
 Tous les sprites des joueurs viennent "l'Open Game Art Liberated Pixel Cup" et ont été générés par [cet outil](https://github.com/sanderfrenken/Universal-LPC-Spritesheet-Character-Generator) :
 
-* Guy 1: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?shoes=boots_brown1&hair=messy1_blonde&body=tanned&legs=pants_red&clothes=sleevless_blue
-* Guy 2: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?shoes=boots_brown1&hair=bedhead_green&body=black&legs=pants_red&=eyes_brown&armor=chest_leather3
-* Girl 1: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?sex=female&hair=ponytail2_black&clothes=sleeveless_blue&legs=pants_red&shoes=boots_brown1&body=brown&=eyes_brown
-* Girl 2: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?sex=female&hair=tied_long_purple&clothes=corset_lavender&legs=pants_red&shoes=boots_brown1&body=peach&=eyes_brown
-* Orc: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=orc3&legs=pants_black
-* Reptile: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?shoes=boots_brown1&body=reptwings&legs=pants_green&=eyes_brown
-* Skeleton: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=skeleton3
-* Zombie: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?legs=pants_green&shoes=boots_brown1&body=zombie&ribs_blood=1&eyes=yellow
+* Guy 1: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=Humanlike_tanned&shoes=Shoes_brown&hair=Messy_blonde&legs=Pants_red&clothes=No_sleeves_blue
+* Guy 2: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=Humanlike_black&shoes=Shoes_brown&hair=Bedhead_green&legs=Pants_red&eyes=Eyes_brown&armour=Leather_blue
+* Girl 1: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?sex=female&body=Humanlike_brown&hair=Ponytail_2_black&clothes=Sleeveless_blue&legs=Pants_red&shoes=Shoes_brown&eyes=Eyes_brown
+* Girl 2: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?sex=female&body=Humanlike_tanned_2&hair=Long_tied_purple&clothes=Corset_lavender&legs=Pants_red&shoes=Shoes_brown&eyes=Eyes_brown
+* Orc: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=Orc_green_2&legs=Pantalons_black
+* Reptile: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=Reptile_lightgreen_winged&legs=Pantalons_black
+* Skeleton: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=Skeleton_green&legs=Pantalons_black
+* Zombie: https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=Humanlike_zombie&legs=Pantalons_black&wound_ribs=Ribs_ribs&eyes=Eyes_yellow
 
 ## Traductions (pour le moment français/anglais)
 
