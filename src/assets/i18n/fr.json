@@ -161,6 +161,9 @@
     "SOUND_ENABLED": "Son",
     "GAME_ACCELERATED": "Accéléré",
     "KICK_OFF": "C'est parti\u00A0!",
+    "CLICK_ANYWHERE": "(clique n'importe où)",
+    "HALF_TIME": "Mi-temps",
+    "GOAL": "But\u00A0!",
     "YOU_WON": "C'est gagné\u00A0!!!",
     "DRAW": "Match nul\u00A0!",
     "YOU_LOST": "C'est perdu\u00A0:("

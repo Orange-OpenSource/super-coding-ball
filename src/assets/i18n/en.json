@@ -162,6 +162,9 @@
     "SOUND_ENABLED": "Sound",
     "GAME_ACCELERATED": "Accelerated",
     "KICK_OFF": "Let's go!",
+    "CLICK_ANYWHERE": "(click anywhere)",
+    "HALF_TIME": "Half-time",
+    "GOAL": "Goal!",
     "YOU_WON": "You won!!!",
     "DRAW": "Draw!",
     "YOU_LOST": "You lost\u00A0:("

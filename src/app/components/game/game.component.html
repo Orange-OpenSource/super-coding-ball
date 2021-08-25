@@ -49,7 +49,7 @@
     onclick="this.blur()"
     (click)="soundActivated = !soundActivated">
     <ng-container [ngSwitch]="soundActivated">
-      <img *ngSwitchCase="true"  src="../../../assets/icons/volume-off-solid.png" height="24"/>
+      <img *ngSwitchCase="true" src="../../../assets/icons/volume-off-solid.png" height="24"/>
       <img *ngSwitchCase="false" src="../../../assets/icons/volume-off-solid-empty.png" height="24"/>
     </ng-container>
   </button>
@@ -76,8 +76,13 @@
 </div>
 
 <ng-template #kickOffContent let-modal>
-  <div class="modal-header">
-    <h6 class="modal-title">{{"GAME.KICK_OFF" | translate  }}</h6>
+  <div class="modal-header" [ngSwitch]="periodType">
+    <h6 *ngSwitchCase="1" class="modal-title">{{'GAME.KICK_OFF' | translate}}</h6>
+    <h6 *ngSwitchCase="3" class="modal-title">{{"GAME.HALF_TIME" | translate}}</h6>
+    <h6 *ngSwitchDefault class="modal-title">{{"GAME.GOAL" | translate}}</h6>
+  </div>
+  <div *ngIf="periodType === 1" class="modal-body">
+    {{'GAME.CLICK_ANYWHERE' | translate}}
   </div>
 </ng-template>
 
