@@ -9,9 +9,11 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Direction, Sprite, SpriteAnim} from './sprite';
+import {Dir, Sprite, SpriteAnim} from './sprite';
 
 export enum PlayerState {
+  Entering,
+  Greeting,
   Playing,
   Pushed,
   Falling,
@@ -34,15 +36,16 @@ export class Player extends Sprite {
     this._energy = Math.min(100, Math.max(0, value));
   }
 
-  private _pushedUpAnim: SpriteAnim = {row: 0, colStart: 4, length: 1, speed: 0.1, restart: true};
-  private _pushedLeftAnim: SpriteAnim = {row: 1, colStart: 4, length: 1, speed: 0.1, restart: true};
-  private _pushedDownAnim: SpriteAnim = {row: 2, colStart: 4, length: 1, speed: 0.1, restart: true};
-  private _pushedRightAnim: SpriteAnim = {row: 3, colStart: 4, length: 1, speed: 0.1, restart: true};
-  private _fallingAnim: SpriteAnim = {row: 20, colStart: 0, length: 5, speed: 0.05, restart: true};
-  private _celebratingAnim: SpriteAnim = {row: 18, colStart: 2, length: 8, speed: 0.4, restart: true};
-  private _coCelebratingAnim: SpriteAnim = {row: 14, colStart: 0, length: 5, speed: 0.4, restart: true};
-  private _cryingAnim: SpriteAnim = {row: 20, colStart: 0, length: 5, speed: 0.1, restart: false};
-  private _waitingAnim: SpriteAnim = {row: 2, colStart: 0, length: 3, speed: 0.1, restart: true};
+  private _greetingAnim: SpriteAnim = {next: Dir.Down, rowBeg: 0, colBeg: 5, length: 4, speed: 0.1, loop: true};
+  private _pushedUpAnim: SpriteAnim = {next: Dir.Right, rowBeg: 0, colBeg: 4, length: 2, speed: 0.1, loop: true};
+  private _pushedLeftAnim: SpriteAnim = {next: Dir.Right, rowBeg: 1, colBeg: 4, length: 2, speed: 0.1, loop: true};
+  private _pushedDownAnim: SpriteAnim = {next: Dir.Right, rowBeg: 2, colBeg: 4, length: 2, speed: 0.1, loop: true};
+  private _pushedRightAnim: SpriteAnim = {next: Dir.Right, rowBeg: 3, colBeg: 4, length: 2, speed: 0.1, loop: true};
+  private _fallingAnim: SpriteAnim = {next: Dir.Right, rowBeg: 20, colBeg: 0, length: 6, speed: 0.05, loop: true};
+  private _celebratingAnim: SpriteAnim = {next: Dir.Right, rowBeg: 18, colBeg: 2, length: 9, speed: 0.4, loop: true};
+  private _coCelebratingAnim: SpriteAnim = {next: Dir.Right, rowBeg: 14, colBeg: 0, length: 6, speed: 0.4, loop: true};
+  private _cryingAnim: SpriteAnim = {next: Dir.Right, rowBeg: 20, colBeg: 0, length: 6, speed: 0.1, loop: false};
+  private _waitingAnim: SpriteAnim = {next: Dir.Right, rowBeg: 2, colBeg: 0, length: 2, speed: 0.1, loop: true};
   private _state: PlayerState = PlayerState.Waiting;
   get state(): PlayerState {
     return this._state;
@@ -50,7 +53,8 @@ export class Player extends Sprite {
 
   set state(value: PlayerState) {
     this._state = value;
-    this.currentCol = this.animData.colStart;
+    this.currentRow = this.animData.rowBeg;
+    this.currentCol = this.animData.colBeg;
   }
 
   constructor(
@@ -65,10 +69,10 @@ export class Player extends Sprite {
       64,
       32,
       58,
-      {row: 8, colStart: 1, length: 8, speed: 1, restart: true},
-      {row: 9, colStart: 0, length: 9, speed: 1, restart: true},
-      {row: 10, colStart: 1, length: 8, speed: 1, restart: true},
-      {row: 11, colStart: 0, length: 9, speed: 1, restart: true}
+      {next: Dir.Right, rowBeg: 8, colBeg: 1, length: 8, speed: 1, loop: true},
+      {next: Dir.Right, rowBeg: 9, colBeg: 0, length: 9, speed: 1, loop: true},
+      {next: Dir.Right, rowBeg: 10, colBeg: 1, length: 8, speed: 1, loop: true},
+      {next: Dir.Right, rowBeg: 11, colBeg: 0, length: 9, speed: 1, loop: true}
     );
     this.ownTeam = ownTeam;
     this.isAtkRole = isAtkRole;
@@ -77,17 +81,19 @@ export class Player extends Sprite {
 
   get animData(): SpriteAnim {
     switch (this.state) {
+      case PlayerState.Greeting:
+        return this._greetingAnim;
       case PlayerState.Falling:
         return this._fallingAnim;
       case PlayerState.Pushed:
         switch (Sprite.getDirection(this.angle)) {
-          case Direction.Up:
+          case Dir.Up:
             return this._pushedUpAnim;
-          case Direction.Left:
+          case Dir.Left:
             return this._pushedLeftAnim;
-          case Direction.Down:
+          case Dir.Down:
             return this._pushedDownAnim;
-          case Direction.Right:
+          case Dir.Right:
             return this._pushedRightAnim;
         }
         break;
@@ -108,24 +114,32 @@ export class Player extends Sprite {
     switch (this.state) {
       case PlayerState.Playing:
         return !this.still;
-      case PlayerState.Pushed:
-      case PlayerState.Falling:
-      case PlayerState.Celebrating:
-      case PlayerState.CoCelebrating:
-      case PlayerState.Crying:
-      case PlayerState.Waiting:
+      default:
         return true;
     }
   }
 
   animate(): void {
     super.animate();
+    // When greeting is done, go back to waiting
+    if (this.state === PlayerState.Greeting
+      && this.currentRow === this.animData.rowBeg
+      && this.currentCol === this.animData.colBeg
+    ) {
+      this.state = PlayerState.Waiting;
+    }
     // When pushed is done, go back to playing
-    if (this.state === PlayerState.Pushed && this.currentCol === this.animData.colStart) {
+    if (this.state === PlayerState.Pushed
+      && this.currentRow === this.animData.rowBeg
+      && this.currentCol === this.animData.colBeg
+    ) {
       this.state = PlayerState.Playing;
     }
     // When falling is done, go back to playing and recover full energy
-    if (this.state === PlayerState.Falling && this.currentCol === this.animData.colStart) {
+    if (this.state === PlayerState.Falling
+      && this.currentRow === this.animData.rowBeg
+      && this.currentCol === this.animData.colBeg
+    ) {
       this.state = PlayerState.Playing;
       this.energy = 100;
     }

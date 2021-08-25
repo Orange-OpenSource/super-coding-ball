@@ -13,7 +13,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} fr
 import {Location} from '@angular/common';
 import {Player, PlayerState} from '../../models/player';
 import {Ball} from '../../models/ball';
-import {Sprite, SpriteCoord} from '../../models/sprite';
+import {Dir, Sprite, SpriteCoord} from '../../models/sprite';
 import {CodeService} from '../../services/code.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -123,6 +123,7 @@ export class GameComponent implements OnInit, OnDestroy {
   ];
   private ball = new Ball();
   private framesCount = 0;
+  private enteringCode = '';
   private ownCode = '';
   private oppCode = '';
 
@@ -136,6 +137,7 @@ export class GameComponent implements OnInit, OnDestroy {
     public modalService: NgbModal,
     private audioService: AudioService
   ) {
+    this.computeGridPositions();
     this.isOnline = this.router.url.includes('/online/');
     this.opponentId = this.route.snapshot.paramMap.get('id') ?? '';
     this.codeService.loadOppCode(this.isOnline, this.opponentId)
@@ -145,7 +147,6 @@ export class GameComponent implements OnInit, OnDestroy {
     if (this.isStandaloneScreen) {
       this.loadOwnCode();
     }
-    this.computeGridPositions();
 
     this.audioService.setMuted(!this.soundActivated);
   }
@@ -155,6 +156,7 @@ export class GameComponent implements OnInit, OnDestroy {
     if (!environment.production) {
       console.log(this.ownCode);
     }
+    this.positionPlayersAndBallBeforeKickOff(true);
     this.openKickOffPopup();
   }
 
@@ -176,12 +178,16 @@ export class GameComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.ownerMark = new Image();
     this.ownerMark.src = 'assets/icons/owner-mark.png';
-    this.positionPlayersAndBall(true);
+    this.positionPlayersAndBallBeforeEntry();
     this.fieldContext = (document.getElementById('fieldCanvas') as HTMLCanvasElement).getContext('2d') as CanvasRenderingContext2D;
     this.field = new Image();
     this.field.src = 'assets/football-pitch-with-marks.png';
     this.field.onload = () => {
-      this.drawingLoop();
+      this.codeService.loadOppCode(false, 'entering')
+        .then(code => {
+          this.enteringCode = code;
+          this.drawingLoop();
+        });
     };
   }
 
@@ -209,7 +215,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   kickOff(): void {
-    this.positionPlayersAndBall(this.ownTeamWillStart);
+    this.positionPlayersAndBallBeforeKickOff(this.ownTeamWillStart);
     this.gamePaused = false;
     if (this.periodType === PeriodType.BeforeFirstPeriod) {
       if (this.isOnline) {
@@ -225,7 +231,20 @@ export class GameComponent implements OnInit, OnDestroy {
     this.players.forEach(it => it.state = PlayerState.Playing);
   }
 
-  positionPlayersAndBall(ownTeamStarts: boolean): void {
+  positionPlayersAndBallBeforeEntry(): void {
+    for (const player of this.players) {
+      player.angle = 0;
+      player.energy = 100;
+      const col = player.ownTeam ? 1 : 5;
+      const row = 4;
+      player.coord = this.getGridPosition(!player.ownTeam, col, row);
+      player.state = PlayerState.Entering;
+    }
+    this.ball.coord = this.getGridPosition(false, 3, 3);
+    this.ball.owner = null;
+  }
+
+  positionPlayersAndBallBeforeKickOff(ownTeamStarts: boolean): void {
     for (const player of this.players) {
       player.angle = player.ownTeam ? -Math.PI / 2 : Math.PI / 2;
       player.energy = 100;
@@ -316,7 +335,7 @@ export class GameComponent implements OnInit, OnDestroy {
         this.gameTimeDisplayed = '00';
         this.oppScore = 0;
         this.ownScore = 0;
-        this.positionPlayersAndBall(true);
+        this.positionPlayersAndBallBeforeKickOff(true);
         this.gameLaunchedChange.emit(false);
       }
     });
@@ -333,7 +352,7 @@ export class GameComponent implements OnInit, OnDestroy {
   private handleSprites(): void {
     for (const player of this.players) {
       player.still = true;
-      if (player.state === PlayerState.Playing || player.state === PlayerState.Pushed) {
+      if (player.state === PlayerState.Entering || player.state === PlayerState.Playing || player.state === PlayerState.Pushed) {
         this.executePlayerCode(player);
         this.handlePlayerCollisions(player);
       }
@@ -347,11 +366,15 @@ export class GameComponent implements OnInit, OnDestroy {
 
 // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#Never_use_eval!
   private executePlayerCode(player: Player): void {
-    if (player.ownTeam) {
-      return Function('"use strict";return (function(game, ball, player){ ' + this.ownCode + ' })')()(this, this.ball, player);
+    let code: string;
+    if (player.state === PlayerState.Entering) {
+      code = this.enteringCode;
+    } else if (player.ownTeam) {
+      code = this.ownCode;
     } else {
-      return Function('"use strict";return (function(game, ball, player){ ' + this.oppCode + ' })')()(this, this.ball, player);
+      code = this.oppCode;
     }
+    return Function('"use strict";return (function(game, ball, player){ ' + code + ' })')()(this, this.ball, player);
   }
 
   private handlePlayerCollisions(player: Player): void {
@@ -489,10 +512,27 @@ export class GameComponent implements OnInit, OnDestroy {
     sprites.push(...this.players);
     sprites.push(this.ball);
     for (const sprite of sprites.sort((a, b) => a.offsetCoord.y - b.offsetCoord.y)) {
+      let currentRow = sprite.currentRow;
+      let currentCol = sprite.currentCol;
+      switch (sprite.animData.next) {
+        case Dir.Right:
+          currentCol = Math.floor(sprite.currentCol);
+          break;
+        case Dir.Left:
+          currentCol = Math.ceil(sprite.currentCol);
+          break;
+        case Dir.Up:
+          currentRow = Math.ceil(sprite.currentRow);
+          break;
+        case Dir.Down:
+          currentRow = Math.floor(sprite.currentRow);
+          break;
+      }
+
       this.fieldContext.drawImage(
         sprite.image,
-        sprite.width * Math.round(sprite.currentCol),
-        sprite.height * sprite.animData.row,
+        sprite.width * currentCol,
+        sprite.height * currentRow,
         sprite.width, sprite.height,
         Math.round(sprite.offsetCoord.x) - sprite.widthBaseOffset,
         Math.round(sprite.offsetCoord.y) - sprite.heightBaseOffset,
@@ -535,11 +575,20 @@ export class GameComponent implements OnInit, OnDestroy {
     }
 
     const targetCoord = this.getSpritePosition(target);
-    // Stop if close enough from the target
-    if (this.computeDistance(player.coord, targetCoord) < moveThreshold
-      // Except when running to score a goal
-      && !(this.ball.owner === player && targetCoord === this.getGoal(player, false))) {
-      player.currentCol = player.animData.colStart;
+    // When entering, stop on target and greet
+    if (player.state === PlayerState.Entering && this.computeDistance(player.coord, targetCoord) < 2) {
+      player.state = PlayerState.Greeting;
+      return;
+      // else if not entering
+    } else if (player.state !== PlayerState.Entering
+      // and not running to score a goal
+      && !(this.ball.owner === player && targetCoord === this.getGoal(player, false))
+      // and close enough to the target
+      && this.computeDistance(player.coord, targetCoord) < moveThreshold
+    ) {
+      // stop and reset anim
+      player.currentRow = player.animData.rowBeg;
+      player.currentCol = player.animData.colBeg;
       return;
     }
     const directAngle = this.computeAngle(player.coord, targetCoord);
@@ -552,7 +601,7 @@ export class GameComponent implements OnInit, OnDestroy {
     player.coord.y += velocity * Math.sin(correctedAngle);
     player.angle = correctedAngle;
     player.still = false;
-    if (isSprinting) {
+    if (isSprinting && player.state !== PlayerState.Entering) {
       player.energy = player.energy - 2 * Math.random();
     }
     if (player.energy === 0) {

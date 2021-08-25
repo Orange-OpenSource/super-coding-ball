@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-export enum Direction {
+export enum Dir {
   Up = 1,
   Left,
   Down,
@@ -22,15 +22,17 @@ export interface SpriteCoord {
 }
 
 export interface SpriteAnim {
-  row: number;
-  colStart: number;
+  next: Dir;
+  rowBeg: number;
+  colBeg: number;
   length: number;
   speed: number;
-  restart: boolean;
+  loop: boolean;
 }
 
 export class Sprite {
   assetName;
+  currentRow = 0;
   currentCol = 0;
   image;
   width;
@@ -42,7 +44,7 @@ export class Sprite {
   leftAnim;
   rightAnim;
   coord!: SpriteCoord;
-  angle!: number;
+  angle = 0;
   still!: boolean;
 
   constructor(
@@ -73,13 +75,13 @@ export class Sprite {
 
   get animData(): SpriteAnim {
     switch (Sprite.getDirection(this.angle)) {
-      case Direction.Up:
+      case Dir.Up:
         return this.upAnim;
-      case Direction.Left:
+      case Dir.Left:
         return this.leftAnim;
-      case Direction.Down:
+      case Dir.Down:
         return this.downAnim;
-      case Direction.Right:
+      case Dir.Right:
         return this.rightAnim;
     }
   }
@@ -88,17 +90,17 @@ export class Sprite {
     return this.coord;
   }
 
-  static getDirection(angle: number): Direction {
+  static getDirection(angle: number): Dir {
     const cos = Math.cos(angle);
     const sin = Math.sin(angle);
     if (sin <= -Math.sqrt(2) / 2) {
-      return Direction.Up;
+      return Dir.Up;
     } else if (sin >= Math.sqrt(2) / 2) {
-      return Direction.Down;
+      return Dir.Down;
     } else if (cos <= -Math.sqrt(2) / 2) {
-      return Direction.Left;
+      return Dir.Left;
     } else {
-      return Direction.Right;
+      return Dir.Right;
     }
   }
 
@@ -108,13 +110,38 @@ export class Sprite {
 
   animate(): void {
     if (this.shouldAnimate) {
-      this.currentCol = this.currentCol + this.animData.speed;
+      let horizontalMovement = 0;
+      let verticalMovement = 0;
+      switch (this.animData.next) {
+        case Dir.Right:
+          horizontalMovement = 1;
+          break;
+        case Dir.Left:
+          horizontalMovement = -1;
+          break;
+        case Dir.Up:
+          verticalMovement = -1;
+          break;
+        case Dir.Down:
+          verticalMovement = 1;
+          break;
+      }
+      this.currentRow = this.currentRow + verticalMovement * this.animData.speed;
+      this.currentCol = this.currentCol + horizontalMovement * this.animData.speed;
+
       // Keep two decimal digits to avoid js rounding errors
+      this.currentRow = Math.round(this.currentRow * 100) / 100;
       this.currentCol = Math.round(this.currentCol * 100) / 100;
-      if (this.animData.restart) {
-        this.currentCol = this.animData.colStart + ((this.currentCol - this.animData.colStart) % this.animData.length);
+      if (this.animData.loop) {
+        this.currentRow = this.animData.rowBeg +
+          verticalMovement * (Math.abs(this.currentRow - this.animData.rowBeg) % this.animData.length);
+        this.currentCol = this.animData.colBeg +
+          horizontalMovement * (Math.abs(this.currentCol - this.animData.colBeg) % this.animData.length);
       } else {
-        this.currentCol = Math.min(this.currentCol, this.animData.colStart + this.animData.length);
+        this.currentRow = this.animData.rowBeg +
+          verticalMovement * Math.min(Math.abs(this.currentRow - this.animData.rowBeg), (this.animData.length - 1));
+        this.currentCol = this.animData.colBeg +
+          horizontalMovement * Math.min(Math.abs(this.currentCol - this.animData.colBeg), (this.animData.length - 1));
       }
     }
   }

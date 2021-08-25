@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Direction, Sprite, SpriteCoord} from './sprite';
+import {Dir, Sprite, SpriteCoord} from './sprite';
 import {Player} from './player';
 
 export class Ball extends Sprite {
@@ -39,10 +39,10 @@ export class Ball extends Sprite {
       20,
       10,
       16,
-      {row: 1, colStart: 0, length: 10, speed: 1, restart: true},
-      {row: 3, colStart: 0, length: 4, speed: 1, restart: true},
-      {row: 0, colStart: 0, length: 10, speed: 1, restart: true},
-      {row: 2, colStart: 0, length: 4, speed: 1, restart: true}
+      {next: Dir.Right, rowBeg: 1, colBeg: 0, length: 10, speed: 1, loop: true},
+      {next: Dir.Right, rowBeg: 3, colBeg: 0, length: 4, speed: 1, loop: true},
+      {next: Dir.Right, rowBeg: 0, colBeg: 0, length: 10, speed: 1, loop: true},
+      {next: Dir.Right, rowBeg: 2, colBeg: 0, length: 4, speed: 1, loop: true}
     );
   }
 
@@ -51,16 +51,16 @@ export class Ball extends Sprite {
       return this.coord;
     } else {
       switch (Sprite.getDirection(this.angle)) {
-        case Direction.Up:
+        case Dir.Up:
           return {x: this.coord.x + this.width / 3, y: this.coord.y - this.height / 8};
           break;
-        case Direction.Down:
+        case Dir.Down:
           return {x: this.coord.x - this.width / 3, y: this.coord.y + this.height / 8};
           break;
-        case Direction.Left:
+        case Dir.Left:
           return {x: this.coord.x - this.width / 3, y: this.coord.y + this.height / 8};
           break;
-        case Direction.Right:
+        case Dir.Right:
           return {x: this.coord.x + this.width / 3, y: this.coord.y + this.height / 8};
           break;
       }
