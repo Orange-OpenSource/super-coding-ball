@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, Input, OnDestroy, OnInit, Output, EventEmitter, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Location} from '@angular/common';
 import {Player, PlayerState} from '../../models/player';
 import {Ball} from '../../models/ball';
@@ -473,6 +473,9 @@ export class GameComponent implements OnInit, OnDestroy {
       }
     }
     this.gamePaused = true;
+    if (this.ball.owner === null) {
+      this.ball.velocity = 0;
+    }
     this.openKickOffPopup();
     this.ownTeamWillStart = !forOwnTeam;
   }
