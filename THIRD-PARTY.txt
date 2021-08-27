@@ -20,7 +20,7 @@ Angular - version 11.2.4 - https://github.com/angular/angular
 Copyright (c) 2010-2021 Google LLC.
 The MIT License - https://angular.io/license
 
-Blockly - version 5.20210325.1 - https://github.com/google/blockly
+Blockly - version 6.20210701.0 - https://github.com/google/blockly
 Copyright (c) 2012-2021 Google, Inc.
 Apache License 2.0 - https://github.com/google/blockly/blob/master/LICENSE
 
