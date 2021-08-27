@@ -152,11 +152,12 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   public loadOwnCode(): void {
+    this.ownTeamWillStart = true;
     this.ownCode = this.codeService.loadOwnCode();
     if (!environment.production) {
       console.log(this.ownCode);
     }
-    this.positionPlayersAndBallBeforeKickOff(true);
+    this.positionPlayersAndBallBeforeKickOff();
     this.openKickOffPopup();
   }
 
@@ -215,7 +216,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   kickOff(): void {
-    this.positionPlayersAndBallBeforeKickOff(this.ownTeamWillStart);
+    this.positionPlayersAndBallBeforeKickOff();
     this.gamePaused = false;
     if (this.periodType === PeriodType.BeforeFirstPeriod) {
       if (this.isOnline) {
@@ -242,7 +243,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.ball.owner = null;
   }
 
-  positionPlayersAndBallBeforeKickOff(ownTeamStarts: boolean): void {
+  positionPlayersAndBallBeforeKickOff(): void {
     for (const player of this.players) {
       player.angle = player.ownTeam ? -Math.PI / 2 : Math.PI / 2;
       player.energy = 100;
@@ -254,7 +255,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
     this.ball.owner = this.getPlayer(
       new Player(null, true, true, true),
-      ownTeamStarts,
+      this.ownTeamWillStart,
       true,
       true,
       true,
@@ -319,6 +320,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   stopGame(): void {
+    this.ownTeamWillStart = true;
     this.modalService.open(this.stopGameContent, {size: 'sm'})
       .result.then((stopValidated: boolean) => {
       if (stopValidated) {
@@ -333,7 +335,7 @@ export class GameComponent implements OnInit, OnDestroy {
         this.gameTimeDisplayed = '00';
         this.oppScore = 0;
         this.ownScore = 0;
-        this.positionPlayersAndBallBeforeKickOff(true);
+        this.positionPlayersAndBallBeforeKickOff();
         this.gameLaunchedChange.emit(false);
       }
     });
