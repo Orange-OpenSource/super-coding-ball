@@ -33,7 +33,7 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
   private connectionStatusSubscription?: Subscription;
   opponents: Opponent[] = [];
   myGames: { [opponentId: string]: number; } = {};
-  lastResult = 0;
+  lastResult?: number;
   filteredOpponents: Opponent[] = [];
   personalRanking = 0;
   loading = false;
@@ -101,7 +101,7 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
   private computeOpponentsScore(allGames: DayAndGames[]): void {
     this.opponents = [];
     const today = OnlineService.getUtcTimestamp(Date.now());
-    this.myGames = allGames.find(dayAndGames => +dayAndGames.dayTimestamp === today)
+    const myGames = allGames.find(dayAndGames => +dayAndGames.dayTimestamp === today)
         ?.games[this.onlineService.webcomId]
         ?.dailyGames
       ?? {};
@@ -132,6 +132,10 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
         }
       }
     }
+    this.opponents = this.opponents.map(opponent => {
+      opponent.lastResult = myGames[opponent.webcomId];
+      return opponent;
+    });
   }
 
   private computeRankings(): void {
@@ -166,7 +170,7 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
     if (opponentId === this.onlineService.webcomId) {
       return;
     }
-    this.lastResult = this.myGames[opponentId];
+    this.lastResult = this.opponents.find(opponent => opponent.webcomId === opponentId)?.lastResult;
     if (this.lastResult !== undefined) {
       this.modalService.open(this.replayGameContent)
         .result.then((replayValidated: boolean) => {

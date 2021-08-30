@@ -15,6 +15,7 @@ export class Opponent {
   points: number;
   ranking: number;
   lastSeen: number;
+  lastResult?: number;
 
   constructor(webcomId: string, userDisplay: UserDisplay | null, points: number, ranking: number, lastSeen: number) {
     this.webcomId = webcomId;
@@ -22,6 +23,7 @@ export class Opponent {
     this.points = points;
     this.ranking = ranking;
     this.lastSeen = lastSeen;
+    this.lastResult = undefined;
   }
 }
 
