@@ -122,7 +122,7 @@
     "OPP_POINTS": "pts",
     "RANKING_POPUP": {
       "TITLE": "Infos sur le classement",
-      "CONTENT": "Le classement montre les joueurs connectés pendant les 15 derniers jours.<br><br>À chaque match (lancé par toi ou quelqu'un d'autre), tu marques 2 points pour une victoire, 1 pour un nul et 0 pour une défaite.<br><br>Attention, tu ne peux affronter chaque adversaire qu'une fois par jour (si tu rejoues le même match, les points seront mis à jour mais ne compteront qu'une fois).<br><br>Si tu abandonnes un match en cours, il est considéré perdu\u00A0!"
+      "CONTENT": "Le classement montre les joueurs connectés pendant les 15 derniers jours.<br><br>À chaque match (lancé par toi ou quelqu'un d'autre), tu marques 2 points pour une victoire {{won}}, 1 pour un nul {{draw}} et 0 pour une défaite {{lost}}.<br><br>Attention, tu ne peux affronter chaque adversaire qu'une fois par jour (si tu rejoues le même match, les points seront mis à jour mais ne compteront qu'une fois).<br><br>Si tu abandonnes un match en cours, il est considéré perdu\u00A0!"
     },
     "REPLAY": {
       "HEADER": "Tu as déjà joué ce match aujourd'hui ",

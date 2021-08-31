@@ -123,7 +123,7 @@
     "OPP_POINTS": "pts",
     "RANKING_POPUP": {
       "TITLE": "Information about ranking",
-      "CONTENT": "The ranking shows the players connected in the last 15 days.<br><br>For each game (launched by yourself or someone else), you get 2 points for a win, 1 for a draw and 0 for a loss.<br><br>Be careful, you can only face each opponent once a day (if you play the same game again, points will be updated but will only count once).<br><br>If you give up a game in progress, it is considered lost!"
+      "CONTENT": "The ranking shows the players connected in the last 15 days.<br><br>For each game (launched by yourself or someone else), you get 2 points for a win {{won}}, 1 for a draw {{draw}} and 0 for a loss {{lost}}.<br><br>Be careful, you can only face each opponent once a day (if you play the same game again, points will be updated but will only count once).<br><br>If you give up a game in progress, it is considered lost!"
     },
     "REPLAY": {
       "HEADER": "You already played that game today ",
