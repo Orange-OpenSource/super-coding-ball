@@ -341,6 +341,10 @@ export class GameComponent implements OnInit, OnDestroy {
     });
   }
 
+  backToCodeEdition(): void {
+    this.router.navigate([`/code/${this.isOnline ? 'online' : 'offline'}/` + this.opponentId]);
+  }
+
   private backToOpponentsList(): void {
     if (this.isOnline) {
       this.router.navigate(['/online-opponents']);

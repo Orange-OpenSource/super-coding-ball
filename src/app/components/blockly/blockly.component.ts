@@ -143,7 +143,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   play(): void {
     const ownBlocks = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace));
     this.localStorageService.saveXmlBlocks(ownBlocks);
-    if (this.router.url.includes('/online/')) {
+    if (this.isOnline) {
       this.onlineService.updateUserBlocks(ownBlocks)
         .subscribe();
     }
@@ -155,6 +155,14 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     } else {
       this.gameComponent?.loadOwnCode();
       this.gameLaunched = true;
+    }
+  }
+
+  backToOpponentsList(): void {
+    if (this.isOnline) {
+      this.router.navigate(['/online-opponents']);
+    } else {
+      this.router.navigate(['/offline-opponents']);
     }
   }
 
