@@ -11,6 +11,10 @@ html, body {
   image-rendering: crisp-edges;
 }
 
+.team-not-won{
+  opacity: 0.2;
+}
+
 // https://github.com/google/blockly/issues/865#issuecomment-275351345
 .blocklyMainBackground {
   // Ugly hack to fix black safari background

@@ -45,9 +45,10 @@
       </td>
       <td>
         <button class="btn text-left">
-          <img [class.not-won]="!strategy.won"
-               height="24px" width="24px"
+          <img *ngIf="strategy.won" height="24px" width="24px"
                src="../../../assets/icons/trophy-solid-warning.png">
+          <img *ngIf="!strategy.won" class="team-not-won" height="24px" width="24px"
+               src="../../../assets/icons/trophy-solid-secondary.png">
         </button>
       </td>
     </tr>

@@ -39,7 +39,7 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
   loading = false;
   modalParams = {
     won: '<img src="assets/icons/trophy-solid-warning.png" width="24" height="24" />',
-    draw: '<img src="assets/icons/trophy-solid-info.png" width="24" height="24" />',
+    draw: '<img src="assets/icons/trophy-solid-secondary.png" width="24" height="24" />',
     lost: '<img src="assets/icons/trophy-solid-danger.png" width="24" height="24" />',
   };
 
