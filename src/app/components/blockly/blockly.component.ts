@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 
 import toolboxJson from '../../../assets/blocks/toolbox.json';
 import * as Blockly from 'blockly';
@@ -29,7 +29,7 @@ import {Location} from '@angular/common';
   templateUrl: './blockly.component.html',
   styleUrls: ['./blockly.component.scss']
 })
-export class BlocklyComponent implements OnInit, OnDestroy {
+export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('gameComponent') gameComponent?: GameComponent;
   private workspace!: Blockly.WorkspaceSvg;
   private _gameLaunched = false;
@@ -123,6 +123,15 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         minScale: 0.2
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    // Workaround for https://github.com/google/blockly/issues/5404
+    // Cf https://groups.google.com/g/blockly/c/EMu8DKmiWQc/m/Nb8Y5D02BQAJ
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+      this.workspace.zoomToFit();
+    }, 100);
   }
 
   ngOnDestroy(): void {
