@@ -3,18 +3,23 @@
 
 *Read in [English](README.md).*
 
-SuperCodingBall est un jeu éducatif gratuit, qui vise à faire découvrir la programmation, à travers le thème du football !
+SuperCodingBall est un jeu éducatif gratuit pour les enfants de 10 ans et plus.
 
-Le joueur va entraîner une équipe de 4 footballeurs (les humains) qui vont affronter 4 monstres.
+Le but est de découvrir la programmation avec un jeu de foot ! (c'est un excellent moyen pour des enseignants de présenter des concepts de programmation)
 
-La stratégie de l'équipe est faite avec des blocs (type [Scratch](https://scratch.mit.edu/projects/editor)),
-ensuite le match se déroule automatiquement en suivant les stratégies des deux adversaires.
+La programmation est faite de façon visuelle, comme dans [Scratch](https://scratch.mit.edu/), mais avec moins de blocs (il n'y a par exemple pas de "boucles").
+
+Le joueur va entraîner une équipe de 4 footballeurs ![screenshot](./src/assets/howto/players.png)
+
+qui vont affronter 4 monstres ![screenshot](./src/assets/howto/opponents.png).
+
+La stratégie de l'équipe est construite avec des blocs, ensuite le match se déroule automatiquement en suivant les stratégies des deux équipes.
 
 ![screenshot](./src/assets/howto/screenshot-fr.png)
 
 # Mobile
 
-On peut jouer à SuperCodingBall sur un appareil mobile ou un ordinateur (dans ce cas, les blocs sont affichés à côté du terrain de foot).
+On peut jouer à SuperCodingBall sur mobile, tablette ou ordinateur (dans ce cas, les blocs sont affichés à côté du terrain de foot).
 
 Sur un appareil Android ou iOS, on peut installer l'application en tant que [PWA](https://web.dev/progressive-web-apps) (ça permet de pouvoir y jouer même sans connexion).
 
@@ -62,3 +67,6 @@ Tous les sprites des joueurs viennent "l'Open Game Art Liberated Pixel Cup" et o
 Toutes les traductions sont dans le [dossier i18n](./src/assets/i18n).
 
 N'hésitez pas à contribuer si vous voulez ajouter une autre langue !
+
+## Genèse
+SuperCodingBall a été créé pour un concours interne, mais le site est gratuit, open source et sans publicité.

@@ -3,18 +3,23 @@
 
 *Lire en [français](README.fr.md).*
 
-SuperCodingBall is a free educational game, which aims to introduce programming, through the theme of football!
+SuperCodingBall is a free educational game for 10+ years old children.
 
-The player will train a team of 4 footballers (the humans) who will face 4 monsters.
+The goal is to discover programming with a football game! (it is a great way for teachers to introduce programming concepts)
 
-The team's strategy is made with blocks ([Scratch-like](https://scratch.mit.edu/projects/editor)),
-then the game takes place automatically following the strategies of the two opponents.
+The programming is done visually, like in [Scratch](https://scratch.mit.edu), but with fewer blocks (there is for example no "loops").
+
+The player will train a team of 4 footballers ![screenshot](./src/assets/howto/players.png)
+
+who will face 4 monsters ![screenshot](./src/assets/howto/opponents.png).
+
+The team's strategy is built with blocks, then the game takes place automatically following the strategies of the two teams.
 
 ![screenshot](./src/assets/howto/screenshot.png)
 
 # Mobile
 
-SuperCodingBall can be played on a mobile device or a computer (in this case, the blocks are displayed next to the football field).
+SuperCodingBall can be played on a mobile, tablet or a computer (in this case, the blocks are displayed next to the football field).
 
 On an Android or iOS device, one can install the application as [PWA](https://web.dev/progressive-web-apps) (it allows to play even without connection).
 
@@ -61,3 +66,6 @@ All player sprites come from the "Open Game Art Liberated Pixel Cup" and were ge
 All translations are in the [i18n folder](./src/assets/i18n).
 
 Feel free to contribute if you want to add another language!
+
+## Genesis
+SuperCodingBall has been created during an internal competition, but it is fully free, open source and without any ads.
