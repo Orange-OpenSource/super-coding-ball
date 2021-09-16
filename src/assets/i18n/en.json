@@ -45,7 +45,7 @@
     "MESSAGE": "A new version is available!<br><br>Do you want to load it now?"
   },
   "HOME": {
-    "MOTTO": "Become the best coach!",
+    "MOTTO": "Explore coding with football!",
     "BUTTON_PLAY_OFFLINE": "Play against computer",
     "BUTTON_PLAY_ONLINE": "Play online!",
     "BUTTON_HOW_TO": "How do we play?",
@@ -123,7 +123,7 @@
     "OPP_POINTS": "pts",
     "RANKING_POPUP": {
       "TITLE": "Information about ranking",
-      "CONTENT": "The ranking shows the players connected in the last 15 days.<br><br>For each game (launched by yourself or someone else), you get:<br>{{won}} 2 points for a win,<br>{{draw}} 1 point for a draw,<br>{{lost}} 0 point for a loss.<br><br>Be careful, you can only face each opponent once a day (if you play the same game again, points will be updated but will only count once).<br><br>If you give up a game in progress, it is considered lost!"
+      "CONTENT": "The ranking shows the players connected in the last 15 days.<br><br>Every day, you can play against every opponent and score:<br>{{won}} 2 points for a win,<br>{{draw}} 1 point for a draw,<br>{{lost}} 0 point for a loss.<br><br>(you can replay games to improve your score).<br><br>If you give up a game in progress, it is considered lost!"
     },
     "REPLAY": {
       "HEADER": "You already played that game today ",
@@ -138,9 +138,9 @@
     "NICKNAME_LIMIT": "20 characters max",
     "CHANGE_NICKNAME": "Change my nickname",
     "DISCONNECT_ACCOUNT": "Logout",
-    "SYNC_TEXT": "Your blocks are sent automatically to the server every time you start an online game.",
-    "UPLOAD_TEXT": "If you want to send your blocks manually, without starting a new game, click here:",
-    "DOWNLOAD_TEXT": "If you want to retrieve your blocks from the server (for example if you have modified your strategy on another device), click here:",
+    "SYNC_TEXT": "Your blocks are exported automatically every time you start an online game.",
+    "UPLOAD_TEXT": "If you want to export your blocks without starting a new game, click here:",
+    "DOWNLOAD_TEXT": "If you want to import your blocks (for example if you have modified your strategy on another device), click here:",
     "DELETE_ACCOUNT": "Delete my account permanently",
     "DELETE_MODAL": "Are you sure you want to delete your account??"
   },

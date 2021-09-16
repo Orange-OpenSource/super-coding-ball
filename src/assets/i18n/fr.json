@@ -45,7 +45,7 @@
     "MESSAGE": "Une nouvelle version est dispo\u00A0!<br><br>Est-ce que tu veux la charger tout de suite\u00A0?"
   },
   "HOME": {
-    "MOTTO": "Deviens le meilleur entraîneur\u00A0!",
+    "MOTTO": "Explore le code grâce au foot\u00A0!",
     "BUTTON_PLAY_OFFLINE": "Jouer contre l'ordi",
     "BUTTON_PLAY_ONLINE": "Jouer en ligne\u00A0!",
     "BUTTON_HOW_TO": "Comment on joue\u00A0?",
@@ -122,7 +122,7 @@
     "OPP_POINTS": "pts",
     "RANKING_POPUP": {
       "TITLE": "Infos sur le classement",
-      "CONTENT": "Le classement montre les joueurs connectés pendant les 15 derniers jours.<br><br>À chaque match (lancé par toi ou quelqu'un d'autre), tu marques\u00A0:<br>{{won}} 2 points pour une victoire,<br>{{draw}} 1 point pour un nul,<br>{{lost}} 0 point pour une défaite.<br><br>Attention, tu ne peux affronter chaque adversaire qu'une fois par jour (si tu rejoues le même match, les points seront mis à jour mais ne compteront qu'une fois).<br><br>Si tu abandonnes un match en cours, il est considéré perdu\u00A0!"
+      "CONTENT": "Le classement montre les joueurs connectés pendant les 15 derniers jours.<br><br>Tous les jours, tu peux jouer contre chaque adversaire et marquer\u00A0:<br>{{won}} 2 points pour une victoire,<br>{{draw}} 1 point pour un nul,<br>{{lost}} 0 point pour une défaite.<br><br>(tu peux rejouer les matches pour améliorer ton score)<br><br>Si tu abandonnes un match en cours, il est considéré perdu\u00A0!"
     },
     "REPLAY": {
       "HEADER": "Tu as déjà joué ce match aujourd'hui ",
@@ -137,9 +137,9 @@
     "NICKNAME_LIMIT": "20 caractères max",
     "CHANGE_NICKNAME": "Changer mon pseudo",
     "DISCONNECT_ACCOUNT": "Me déconnecter",
-    "SYNC_TEXT": "Tes blocs sont envoyés automatiquement au serveur à chaque fois que tu démarres un match en ligne.",
-    "UPLOAD_TEXT": "Si tu veux envoyer manuellement tes blocs, sans démarrer un match, clique ici\u00A0:",
-    "DOWNLOAD_TEXT": "Si tu veux récupérer tes blocs du serveur (par exemple si tu as modifié ta stratégie sur un autre appareil), clique ici \u00A0:",
+    "SYNC_TEXT": "Tes blocs sont exportés automatiquement à chaque fois que tu démarres un match en ligne.",
+    "UPLOAD_TEXT": "Si tu veux exporter tes blocs sans démarrer un match, clique ici\u00A0:",
+    "DOWNLOAD_TEXT": "Si tu veux importer tes blocs (par exemple si tu as modifié ta stratégie sur un autre appareil), clique ici \u00A0:",
     "DELETE_ACCOUNT": "Supprimer définitivement mon compte",
     "DELETE_MODAL": "Tu es sûr de supprimer ton compte\u00A0??"
   },
