@@ -133,7 +133,8 @@
       "RISK": "Tu prends le risque de le rejouer\u00A0?"
     },
     "ACCOUNT": "Compte",
-    "DISCONNECT_DETAILS": "Si tu te déconnectes d'un compte invité, tu perdras ton classement\u00A0!",
+    "DISCONNECT_GUEST": "Si tu te déconnectes, tu perdras ton compte invité\u00A0!",
+    "DISCONNECT_OTHER": "Déconnecte-toi si tu veux utiliser un autre compte",
     "NICKNAME_LIMIT": "20 caractères max",
     "CHANGE_NICKNAME": "Changer mon pseudo",
     "DISCONNECT_ACCOUNT": "Me déconnecter",

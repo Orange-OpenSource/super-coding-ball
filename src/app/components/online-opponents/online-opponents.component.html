@@ -152,7 +152,8 @@
   <div class="modal-body">
 
     <div class="w-100 d-flex justify-content-between align-items-center">
-      <p [innerHTML]="'ONLINE.DISCONNECT_DETAILS' | translate"></p>
+      <p *ngIf="onlineService.userDisplay.pictureUrl === null" [innerHTML]="'ONLINE.DISCONNECT_GUEST' | translate"></p>
+      <p *ngIf="onlineService.userDisplay.pictureUrl !== null" [innerHTML]="'ONLINE.DISCONNECT_OTHER' | translate"></p>
       <button
         type="button"
         class="btn btn-primary ml-1"
