@@ -53,7 +53,7 @@ export class Ball extends Sprite {
 
   get offsetCoord(): SpriteCoord {
     if (this.owner === null) {
-      return this.coord;
+      return {x: this.coord.x, y: this.coord.y + this.height / 3};
     } else {
       switch (Sprite.getDirection(this.angle)) {
         case Dir.Up:
