@@ -13,7 +13,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} fr
 import {Location} from '@angular/common';
 import {Player, PlayerState} from '../../models/player';
 import {Ball} from '../../models/ball';
-import {Dir, Sprite, SpriteCoord} from '../../models/sprite';
+import {Sprite, SpriteCoord} from '../../models/sprite';
 import {CodeService} from '../../services/code.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -456,17 +456,19 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private checkIfBallHasBeenCaught(): void {
-    const nearestPlayer = this.players
+    const playersNearBall = this.players
+      // A falling player can't catch the ball
       .filter(it => it.state !== PlayerState.Falling)
-      .sort((a, b) => this.computeDistance(this.ball.coord, a.coord) - this.computeDistance(this.ball.coord, b.coord))
-      [0];
-    // There should be a nearestPlayer (not falling) next to the ball
-    if (nearestPlayer && this.computeDistance(this.ball.coord, nearestPlayer.coord) < ballCatchingDistance
-      // If rolling, ball should be rolling towards nearestPlayer +/- 45°
-      && (this.ball.still || Math.cos(this.computeAngle(this.ball.coord, nearestPlayer.coord) - this.ball.angle) > Math.cos(Math.PI / 4))
-      // Can't catch ball if it is too fast
-      && Math.random() * shotVelocityMax > this.ball.velocity) {
-      this.ball.owner = nearestPlayer;
+      // Only players close to the ball can catch it
+      .filter(it => this.computeDistance(this.ball.coord, it.coord) < ballCatchingDistance)
+      // The closest player is the most likely to catch the ball
+      .sort((a, b) => this.computeDistance(this.ball.coord, a.coord) - this.computeDistance(this.ball.coord, b.coord));
+    // Can't catch ball if it is too fast
+    for (const playerNearBall of playersNearBall) {
+      if (Math.random() * shotVelocityMax > this.ball.velocity) {
+        this.ball.owner = playerNearBall;
+        break;
+      }
     }
   }
 
