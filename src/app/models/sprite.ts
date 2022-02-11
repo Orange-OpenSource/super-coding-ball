@@ -22,18 +22,38 @@ export interface SpriteCoord {
 }
 
 export interface SpriteAnim {
-  next: Dir;
-  rowBeg: number;
-  colBeg: number;
-  length: number;
+  frames: { row: number, col: number }[];
   speed: number;
   loop: boolean;
 }
 
+export function buildFrames(next: Dir, rowBeg: number, colBeg: number, length: number): { row: number, col: number }[] {
+  const frames: { row: number, col: number }[] = [];
+  let horizontalMovement = 0;
+  let verticalMovement = 0;
+  switch (next) {
+    case Dir.Right:
+      horizontalMovement = 1;
+      break;
+    case Dir.Left:
+      horizontalMovement = -1;
+      break;
+    case Dir.Up:
+      verticalMovement = -1;
+      break;
+    case Dir.Down:
+      verticalMovement = 1;
+      break;
+  }
+  for (let i = 0; i < length; i++) {
+    frames.push({row: rowBeg + verticalMovement * i, col: colBeg + horizontalMovement * i});
+  }
+  return frames;
+}
+
 export class Sprite {
   assetName;
-  currentRow = 0;
-  currentCol = 0;
+  currentFrame = 0;
   image;
   width;
   height;
@@ -110,38 +130,14 @@ export class Sprite {
 
   animate(): void {
     if (this.shouldAnimate) {
-      let horizontalMovement = 0;
-      let verticalMovement = 0;
-      switch (this.animData.next) {
-        case Dir.Right:
-          horizontalMovement = 1;
-          break;
-        case Dir.Left:
-          horizontalMovement = -1;
-          break;
-        case Dir.Up:
-          verticalMovement = -1;
-          break;
-        case Dir.Down:
-          verticalMovement = 1;
-          break;
-      }
-      this.currentRow = this.currentRow + verticalMovement * this.animData.speed;
-      this.currentCol = this.currentCol + horizontalMovement * this.animData.speed;
+      this.currentFrame = this.currentFrame + this.animData.speed;
 
       // Keep two decimal digits to avoid js rounding errors
-      this.currentRow = Math.round(this.currentRow * 100) / 100;
-      this.currentCol = Math.round(this.currentCol * 100) / 100;
+      this.currentFrame = Math.round(this.currentFrame * 100) / 100;
       if (this.animData.loop) {
-        this.currentRow = this.animData.rowBeg +
-          verticalMovement * (Math.abs(this.currentRow - this.animData.rowBeg) % this.animData.length);
-        this.currentCol = this.animData.colBeg +
-          horizontalMovement * (Math.abs(this.currentCol - this.animData.colBeg) % this.animData.length);
+        this.currentFrame = this.currentFrame % this.animData.frames.length;
       } else {
-        this.currentRow = this.animData.rowBeg +
-          verticalMovement * Math.min(Math.abs(this.currentRow - this.animData.rowBeg), (this.animData.length - 1));
-        this.currentCol = this.animData.colBeg +
-          horizontalMovement * Math.min(Math.abs(this.currentCol - this.animData.colBeg), (this.animData.length - 1));
+        this.currentFrame = Math.min(this.currentFrame, (this.animData.frames.length - 1));
       }
     }
   }

@@ -516,27 +516,12 @@ export class GameComponent implements OnInit, OnDestroy {
     sprites.push(...this.players);
     sprites.push(this.ball);
     for (const sprite of sprites.sort((a, b) => a.offsetCoord.y - b.offsetCoord.y)) {
-      let currentRow = sprite.currentRow;
-      let currentCol = sprite.currentCol;
-      switch (sprite.animData.next) {
-        case Dir.Right:
-          currentCol = Math.floor(sprite.currentCol);
-          break;
-        case Dir.Left:
-          currentCol = Math.ceil(sprite.currentCol);
-          break;
-        case Dir.Up:
-          currentRow = Math.ceil(sprite.currentRow);
-          break;
-        case Dir.Down:
-          currentRow = Math.floor(sprite.currentRow);
-          break;
-      }
-
+      sprite.animate();
+      const currentFrame = Math.floor(sprite.currentFrame);
       this.fieldContext.drawImage(
         sprite.image,
-        sprite.width * currentCol,
-        sprite.height * currentRow,
+        sprite.width * sprite.animData.frames[currentFrame].col,
+        sprite.height * sprite.animData.frames[currentFrame].row,
         sprite.width, sprite.height,
         Math.round(sprite.offsetCoord.x) - sprite.widthBaseOffset,
         Math.round(sprite.offsetCoord.y) - sprite.heightBaseOffset,
@@ -544,7 +529,6 @@ export class GameComponent implements OnInit, OnDestroy {
       if (sprite instanceof Player && !this.gamePaused) {
         this.drawEnergyBar(sprite);
       }
-      sprite.animate();
     }
   }
 
@@ -591,8 +575,7 @@ export class GameComponent implements OnInit, OnDestroy {
       && this.computeDistance(player.coord, targetCoord) < moveThreshold
     ) {
       // stop and reset anim
-      player.currentRow = player.animData.rowBeg;
-      player.currentCol = player.animData.colBeg;
+      player.currentFrame = 0;
       return;
     }
     const directAngle = this.computeAngle(player.coord, targetCoord);

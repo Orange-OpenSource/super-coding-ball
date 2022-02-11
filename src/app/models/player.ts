@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Dir, Sprite, SpriteAnim} from './sprite';
+import {buildFrames, Dir, Sprite, SpriteAnim} from './sprite';
 
 export enum PlayerState {
   Entering,
@@ -22,6 +22,21 @@ export enum PlayerState {
   Crying,
   Waiting
 }
+
+const runningUpAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 8, 1, 8), speed: 1, loop: true};
+const runningLeftAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 9, 0, 9), speed: 1, loop: true};
+const runningDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 10, 1, 8), speed: 1, loop: true};
+const runningRightAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 11, 0, 9), speed: 1, loop: true};
+const greetingAnim: SpriteAnim = {frames: buildFrames(Dir.Down, 0, 5, 4), speed: 0.1, loop: true};
+const pushedUpAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 0, 4, 2), speed: 0.1, loop: true};
+const pushedLeftAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 1, 4, 2), speed: 0.1, loop: true};
+const pushedDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 2, 4, 2), speed: 0.1, loop: true};
+const pushedRightAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 3, 4, 2), speed: 0.1, loop: true};
+const fallingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 20, 0, 6), speed: 0.05, loop: true};
+const celebratingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 18, 2, 9), speed: 0.4, loop: true};
+const coCelebratingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 14, 0, 6), speed: 0.4, loop: true};
+const cryingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 20, 0, 6), speed: 0.1, loop: false};
+const waitingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 2, 0, 2), speed: 0.1, loop: true};
 
 export class Player extends Sprite {
   ownTeam: boolean;
@@ -36,16 +51,6 @@ export class Player extends Sprite {
     this._energy = Math.min(100, Math.max(0, value));
   }
 
-  private _greetingAnim: SpriteAnim = {next: Dir.Down, rowBeg: 0, colBeg: 5, length: 4, speed: 0.1, loop: true};
-  private _pushedUpAnim: SpriteAnim = {next: Dir.Right, rowBeg: 0, colBeg: 4, length: 2, speed: 0.1, loop: true};
-  private _pushedLeftAnim: SpriteAnim = {next: Dir.Right, rowBeg: 1, colBeg: 4, length: 2, speed: 0.1, loop: true};
-  private _pushedDownAnim: SpriteAnim = {next: Dir.Right, rowBeg: 2, colBeg: 4, length: 2, speed: 0.1, loop: true};
-  private _pushedRightAnim: SpriteAnim = {next: Dir.Right, rowBeg: 3, colBeg: 4, length: 2, speed: 0.1, loop: true};
-  private _fallingAnim: SpriteAnim = {next: Dir.Right, rowBeg: 20, colBeg: 0, length: 6, speed: 0.05, loop: true};
-  private _celebratingAnim: SpriteAnim = {next: Dir.Right, rowBeg: 18, colBeg: 2, length: 9, speed: 0.4, loop: true};
-  private _coCelebratingAnim: SpriteAnim = {next: Dir.Right, rowBeg: 14, colBeg: 0, length: 6, speed: 0.4, loop: true};
-  private _cryingAnim: SpriteAnim = {next: Dir.Right, rowBeg: 20, colBeg: 0, length: 6, speed: 0.1, loop: false};
-  private _waitingAnim: SpriteAnim = {next: Dir.Right, rowBeg: 2, colBeg: 0, length: 2, speed: 0.1, loop: true};
   private _state: PlayerState = PlayerState.Waiting;
   get state(): PlayerState {
     return this._state;
@@ -53,8 +58,7 @@ export class Player extends Sprite {
 
   set state(value: PlayerState) {
     this._state = value;
-    this.currentRow = this.animData.rowBeg;
-    this.currentCol = this.animData.colBeg;
+    this.currentFrame = 0;
   }
 
   constructor(
@@ -69,10 +73,10 @@ export class Player extends Sprite {
       64,
       32,
       58,
-      {next: Dir.Right, rowBeg: 8, colBeg: 1, length: 8, speed: 1, loop: true},
-      {next: Dir.Right, rowBeg: 9, colBeg: 0, length: 9, speed: 1, loop: true},
-      {next: Dir.Right, rowBeg: 10, colBeg: 1, length: 8, speed: 1, loop: true},
-      {next: Dir.Right, rowBeg: 11, colBeg: 0, length: 9, speed: 1, loop: true}
+      runningUpAnim,
+      runningLeftAnim,
+      runningDownAnim,
+      runningRightAnim
     );
     this.ownTeam = ownTeam;
     this.isAtkRole = isAtkRole;
@@ -82,29 +86,29 @@ export class Player extends Sprite {
   get animData(): SpriteAnim {
     switch (this.state) {
       case PlayerState.Greeting:
-        return this._greetingAnim;
+        return greetingAnim;
       case PlayerState.Falling:
-        return this._fallingAnim;
+        return fallingAnim;
       case PlayerState.Pushed:
         switch (Sprite.getDirection(this.angle)) {
           case Dir.Up:
-            return this._pushedUpAnim;
+            return pushedUpAnim;
           case Dir.Left:
-            return this._pushedLeftAnim;
+            return pushedLeftAnim;
           case Dir.Down:
-            return this._pushedDownAnim;
+            return pushedDownAnim;
           case Dir.Right:
-            return this._pushedRightAnim;
+            return pushedRightAnim;
         }
         break;
       case PlayerState.Celebrating:
-        return this._celebratingAnim;
+        return celebratingAnim;
       case PlayerState.CoCelebrating:
-        return this._coCelebratingAnim;
+        return coCelebratingAnim;
       case PlayerState.Crying:
-        return this._cryingAnim;
+        return cryingAnim;
       case PlayerState.Waiting:
-        return this._waitingAnim;
+        return waitingAnim;
       default:
         return super.animData;
     }
@@ -122,23 +126,15 @@ export class Player extends Sprite {
   animate(): void {
     super.animate();
     // When greeting is done, go back to waiting
-    if (this.state === PlayerState.Greeting
-      && this.currentRow === this.animData.rowBeg
-      && this.currentCol === this.animData.colBeg
-    ) {
+    if (this.state === PlayerState.Greeting && this.currentFrame === 0) {
       this.state = PlayerState.Waiting;
     }
     // When pushed is done, go back to playing
-    if (this.state === PlayerState.Pushed
-      && this.currentRow === this.animData.rowBeg
-      && this.currentCol === this.animData.colBeg
-    ) {
+    if (this.state === PlayerState.Pushed && this.currentFrame === 0) {
       this.state = PlayerState.Playing;
     }
     // When falling is done, go back to playing and recover full energy
-    if (this.state === PlayerState.Falling
-      && this.currentRow === this.animData.rowBeg
-      && this.currentCol === this.animData.colBeg
+    if (this.state === PlayerState.Falling && this.currentFrame === 0
     ) {
       this.state = PlayerState.Playing;
       this.energy = 100;
