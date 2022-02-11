@@ -103,7 +103,7 @@
     "STRATEGIES": {
       "DO-NOTHING": "Ils ne font rien\u00A0!",
       "1PLAYER-ONLY": "Un seul joueur se bouge",
-      "ALL-DEFENDERS": "Tous les joueurs en defense",
+      "ALL-DEFENDERS": "Tous les joueurs en défense",
       "DEFENDERS-PASS-TO-ATTACKERS": "Les défenseurs interceptent et envoient aux attaquants",
       "ONLY-PASSES": "Ils ne font que des passes et des tirs",
       "3ATTACKERS": "3 attaquants",
