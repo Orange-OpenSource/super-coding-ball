@@ -24,7 +24,6 @@ export interface SpriteCoord {
 export interface SpriteAnim {
   frames: { row: number, col: number }[];
   speed: number;
-  loop: boolean;
 }
 
 export function buildFrames(next: Dir, rowBeg: number, colBeg: number, length: number): { row: number, col: number }[] {
@@ -131,14 +130,9 @@ export class Sprite {
   animate(): void {
     if (this.shouldAnimate) {
       this.currentFrame = this.currentFrame + this.animData.speed;
-
-      // Keep two decimal digits to avoid js rounding errors
-      this.currentFrame = Math.round(this.currentFrame * 100) / 100;
-      if (this.animData.loop) {
-        this.currentFrame = this.currentFrame % this.animData.frames.length;
-      } else {
-        this.currentFrame = Math.min(this.currentFrame, (this.animData.frames.length - 1));
-      }
     }
+    // Keep two decimal digits to avoid js rounding errors
+    this.currentFrame = Math.round(this.currentFrame * 100) / 100;
+    this.currentFrame = this.currentFrame % this.animData.frames.length;
   }
 }

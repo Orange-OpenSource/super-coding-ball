@@ -12,10 +12,10 @@
 import {buildFrames, Dir, Sprite, SpriteAnim, SpriteCoord} from './sprite';
 import {Player} from './player';
 
-const rollingUpAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 1, 0, 10), speed: 1, loop: true};
-const rollingLeftAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 3, 0, 4), speed: 1, loop: true};
-const rollingDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 0, 0, 10), speed: 1, loop: true};
-const rollingRightAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 2, 0, 4), speed: 1, loop: true};
+const rollingUpAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 1, 0, 10), speed: 1};
+const rollingLeftAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 3, 0, 4), speed: 1};
+const rollingDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 0, 0, 10), speed: 1};
+const rollingRightAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 2, 0, 4), speed: 1};
 
 export class Ball extends Sprite {
   velocity = 0;
