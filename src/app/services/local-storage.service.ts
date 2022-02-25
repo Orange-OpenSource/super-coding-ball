@@ -76,12 +76,4 @@ export class LocalStorageService {
   setAcceleratedGameStatus(accelerated: boolean): void {
     localStorage.setItem('accelerated', String(accelerated));
   }
-
-  getSoundActivatedStatus(): boolean {
-    return localStorage.getItem('sound-activated') === 'true';
-  }
-
-  setSoundActivatedStatus(activated: boolean): void {
-    localStorage.setItem('sound-activated', String(activated));
-  }
 }

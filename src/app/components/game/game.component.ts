@@ -17,7 +17,6 @@ import {Sprite, SpriteCoord} from '../../models/sprite';
 import {CodeService} from '../../services/code.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AudioService, SoundEnum} from '../../services/audio.service';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {OnlineService} from '../../services/online.service';
 import {environment} from '../../../environments/environment';
@@ -85,15 +84,6 @@ export class GameComponent implements OnInit, OnDestroy {
   periodType = PeriodType.BeforeFirstPeriod;
   lastTimeout = 0;
 
-  get soundActivated(): boolean {
-    return this.localStorageService.getSoundActivatedStatus();
-  }
-
-  set soundActivated(activated: boolean) {
-    this.audioService.setMuted(!activated);
-    this.localStorageService.setSoundActivatedStatus(activated);
-  }
-
   private _acceleratedGame = this.localStorageService.getAcceleratedGameStatus();
   get acceleratedGame(): boolean {
     return this._acceleratedGame;
@@ -133,9 +123,7 @@ export class GameComponent implements OnInit, OnDestroy {
     private localStorageService: LocalStorageService,
     private router: Router,
     private route: ActivatedRoute,
-    public location: Location,
     public modalService: NgbModal,
-    private audioService: AudioService
   ) {
     this.computeGridPositions();
     this.isOnline = this.router.url.includes('/online/');
@@ -147,8 +135,6 @@ export class GameComponent implements OnInit, OnDestroy {
     if (this.isStandaloneScreen) {
       this.loadOwnCode();
     }
-
-    this.audioService.setMuted(!this.soundActivated);
   }
 
   public loadOwnCode(): void {
@@ -224,10 +210,8 @@ export class GameComponent implements OnInit, OnDestroy {
           .subscribe();
       }
       this.periodType = PeriodType.FirstPeriod;
-      this.audioService.playSound(SoundEnum.WhistleStart);
     } else if (this.periodType === PeriodType.HalfTime) {
       this.periodType = PeriodType.SecondPeriod;
-      this.audioService.playSound(SoundEnum.WhistleStart);
     }
     this.players.forEach(it => it.state = PlayerState.Playing);
   }
@@ -284,10 +268,8 @@ export class GameComponent implements OnInit, OnDestroy {
       this.gameTimeDisplayed = String(Math.round(this.gameTime)).padStart(2, '0');
       if (this.gameTime === periodDuration) {
         this.periodFinished(true);
-        this.audioService.playSound(SoundEnum.WhistleEnd);
       } else if (this.gameTime === 2 * periodDuration) {
         this.periodFinished(false);
-        this.audioService.playSound(SoundEnum.WhistleEnd);
       }
     }
   }

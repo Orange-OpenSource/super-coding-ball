@@ -45,17 +45,6 @@
   <button
     class="btn btn-lg d-flex"
     type="button"
-    ngbTooltip="{{'GAME.SOUND_ENABLED' | translate }}"
-    onclick="this.blur()"
-    (click)="soundActivated = !soundActivated">
-    <ng-container [ngSwitch]="soundActivated">
-      <img *ngSwitchCase="true" src="../../../assets/icons/volume-off-solid.png" height="24"/>
-      <img *ngSwitchCase="false" src="../../../assets/icons/volume-off-solid-empty.png" height="24"/>
-    </ng-container>
-  </button>
-  <button
-    class="btn btn-lg d-flex"
-    type="button"
     ngbTooltip="{{'GAME.GAME_ACCELERATED' | translate }}"
     onclick="this.blur()"
     (click)="acceleratedGame = !acceleratedGame">
