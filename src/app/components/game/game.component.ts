@@ -443,10 +443,13 @@ export class GameComponent implements OnInit, OnDestroy {
       .filter(it => it.state !== PlayerState.Falling)
       // Only players close to the ball can catch it
       .filter(it => this.computeDistance(this.ball.coord, it.coord) < ballCatchingDistance)
+      // If rolling, ball should be rolling towards player +/- 90°
+      .filter(it => (this.ball.still || Math.cos(this.computeAngle(this.ball.coord, it.coord) - this.ball.angle) > Math.cos(Math.PI / 2)))
       // The closest player is the most likely to catch the ball
       .sort((a, b) => this.computeDistance(this.ball.coord, a.coord) - this.computeDistance(this.ball.coord, b.coord));
-    // Can't catch ball if it is too fast
+
     for (const playerNearBall of playersNearBall) {
+      // Can't catch ball if it is too fast
       if (Math.random() * shotVelocityMax > this.ball.velocity) {
         this.ball.owner = playerNearBall;
         break;
