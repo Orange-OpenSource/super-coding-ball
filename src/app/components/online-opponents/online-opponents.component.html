@@ -42,29 +42,31 @@
 <div class="p-4 text-center" style="background-color: #ccffcc;">
   <div *ngIf="onlineService.connectionStatus === ConnectionStatus.Disconnected"
        class="d-flex flex-column align-items-center">
-    <button
-      class="btn btn-lg m-2 p-0 text-start bg-secondary col-sm-7 col-md-5 col-lg-3"
-      type="button"
-      (click)="modalService.open(guestInfoContent)">
-      <img class="p-1" src="assets/icons/user-solid.png" width="48px" height="48px">
-      <span class="p-2 text-white h6">{{'ONLINE.CONNECT_GUEST' | translate }}</span>
-    </button>
-    <button
-      style="background-color: #5890FF"
-      class="btn btn-lg m-2 p-0 text-start col-sm-7 col-md-5 col-lg-3"
-      type="button"
-      (click)="onlineService.connectWithFacebook()">
-      <img src="assets/icons/f_logo_RGB-White.png" width="48px" height="48px">
-      <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_FACEBOOK' | translate }}</span>
-    </button>
-    <button
-      style="background-color: #4285F4"
-      class="btn btn-lg m-2 p-0 text-start col-sm-7 col-md-5 col-lg-3"
-      type="button"
-      (click)="onlineService.connectWithGoogle()">
-      <img src="assets/icons/btn_google_dark_normal.png" width="48px" height="48px">
-      <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_GOOGLE' | translate }}</span>
-    </button>
+    <div class="col-sm-7 col-md-5 col-lg-3">
+      <button
+        class="btn btn-lg m-2 p-0 text-start bg-secondary w-100"
+        type="button"
+        (click)="modalService.open(guestInfoContent)">
+        <img class="p-1" src="assets/icons/user-solid.png" width="48px" height="48px">
+        <span class="p-2 text-white h6">{{'ONLINE.CONNECT_GUEST' | translate }}</span>
+      </button>
+      <button
+        style="background-color: #5890FF"
+        class="btn btn-lg m-2 p-0 text-start w-100"
+        type="button"
+        (click)="onlineService.connectWithFacebook()">
+        <img src="assets/icons/f_logo_RGB-White.png" width="48px" height="48px">
+        <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_FACEBOOK' | translate }}</span>
+      </button>
+      <button
+        style="background-color: #4285F4"
+        class="btn btn-lg m-2 p-0 text-start w-100"
+        type="button"
+        (click)="onlineService.connectWithGoogle()">
+        <img src="assets/icons/btn_google_dark_normal.png" width="48px" height="48px">
+        <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_GOOGLE' | translate }}</span>
+      </button>
+    </div>
   </div>
 
   <div *ngIf="onlineService.connectionStatus === ConnectionStatus.Connected">
