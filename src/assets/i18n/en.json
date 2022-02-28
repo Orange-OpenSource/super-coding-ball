@@ -160,7 +160,6 @@
   "GAME": {
     "STOP": "Stop game",
     "STOP_MODAL": "Do you want to stop this game?",
-    "SOUND_ENABLED": "Sound",
     "GAME_ACCELERATED": "Accelerated",
     "KICK_OFF": "Let's go!",
     "CLICK_ANYWHERE": "(click anywhere)",
