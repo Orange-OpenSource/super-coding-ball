@@ -42,9 +42,7 @@
 <ng-template #online_info let-modal>
   <div class="modal-header">
     <h6 class="modal-title">{{"GLOBAL.WARNING" | translate }}</h6>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
-      <span>&times;</span>
-    </button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
   <div class="modal-body" [innerHTML]="'HOME.CONNECTION_WARNING' | translate"></div>
 </ng-template>
@@ -52,9 +50,7 @@
 <ng-template #offline_info let-modal>
   <div class="modal-header">
     <h6 class="modal-title">{{"GLOBAL.SORRY" | translate }}</h6>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
-      <span>&times;</span>
-    </button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
   <div class="modal-body" [innerHTML]="'HOME.STRONG_ENOUGH_WARNING' | translate"></div>
 </ng-template>

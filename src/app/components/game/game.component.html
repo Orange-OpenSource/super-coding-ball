@@ -10,8 +10,8 @@
 -->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-between p-0">
-  <div *ngIf="!isStandaloneScreen" class="position-absolute h-100 bg-dark pl-1"></div>
-  <div *ngIf="!isStandaloneScreen" class="pr-1"></div>
+  <div *ngIf="!isStandaloneScreen" class="position-absolute h-100 bg-dark ps-1"></div>
+  <div *ngIf="!isStandaloneScreen" class="pe-1"></div>
   <button
     *ngIf="isStandaloneScreen"
     class="btn btn-lg d-flex"
@@ -78,9 +78,7 @@
 <ng-template #stopGameContent let-modal>
   <div class="modal-header">
     <h6 class="modal-title">{{"GLOBAL.WARNING" | translate }}</h6>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
-      <span>&times;</span>
-    </button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
   <div class="modal-body">
     <p [innerHTML]="'GAME.STOP_MODAL' | translate"></p>
@@ -106,8 +104,6 @@
     <h6 class="modal-title" *ngIf="ownScore > oppScore">{{'GAME.YOU_WON' | translate }}</h6>
     <h6 class="modal-title" *ngIf="ownScore === oppScore">{{'GAME.DRAW' | translate }}</h6>
     <h6 class="modal-title" *ngIf="ownScore < oppScore">{{'GAME.YOU_LOST' | translate }}(</h6>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
-      <span>&times;</span>
-    </button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
 </ng-template>

@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.translate.addLangs(['fr', 'en']);
     if (this.translate.getBrowserLang()) {
-      this.translate.use(this.translate.getBrowserLang());
+      this.translate.use(this.translate.getBrowserLang() ?? 'en');
     }
 
     const firebaseConfig = {
