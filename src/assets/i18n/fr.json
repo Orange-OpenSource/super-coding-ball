@@ -18,7 +18,7 @@
     "RIGHT": "droit",
     "LEFT": "gauche",
     "PLACE_COL_LINE": "%1 est dans col %2 et ligne %3",
-    "ENERGY_OF": "energie de %1",
+    "ENERGY_OF": "énergie de %1",
     "DISTANCE_BETWEEN": "distance entre %1 et %2",
     "SHOOT_TO": "tirer vers %1",
     "GO_TO": "courir vers %1",
