@@ -32,7 +32,8 @@
     "BALL": "ballon",
     "OPPONENTS_GOAL": "but adverse",
     "OUR_GOAL": "notre but",
-    "MY_TARGET_POSITION": "mon poste cible"
+    "MY_TARGET_POSITION": "mon poste cible",
+    "MIDDLE_BETWEEN": "milieu entre %1 et %2"
   },
   "GLOBAL": {
     "OK": "Ok",

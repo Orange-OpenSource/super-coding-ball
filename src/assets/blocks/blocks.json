@@ -1,28 +1,29 @@
-[{
-  "type": "custom_if",
-  "message0": "%{BKY_CUSTOM_IF}",
-  "args0": [
-    {
-      "type": "input_value",
-      "name": "IF",
-      "check": "Boolean",
-      "align": "RIGHT"
-    },
-    {
-      "type": "input_statement",
-      "name": "THEN"
-    },
-    {
-      "type": "input_statement",
-      "name": "ELSE"
-    }
-  ],
-  "inputsInline": false,
-  "previousStatement": null,
-  "style": "control_blocks",
-  "tooltip": "",
-  "helpUrl": ""
-},
+[
+  {
+    "type": "custom_if",
+    "message0": "%{BKY_CUSTOM_IF}",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "IF",
+        "check": "Boolean",
+        "align": "RIGHT"
+      },
+      {
+        "type": "input_statement",
+        "name": "THEN"
+      },
+      {
+        "type": "input_statement",
+        "name": "ELSE"
+      }
+    ],
+    "inputsInline": false,
+    "previousStatement": null,
+    "style": "control_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
   {
     "type": "custom_compare",
     "message0": "%1 %2 %3 %4",
@@ -267,6 +268,34 @@
   {
     "type": "position",
     "message0": "%{BKY_MY_TARGET_POSITION}",
+    "output": "place",
+    "style": "positions_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "middle",
+    "message0": "%{BKY_MIDDLE_BETWEEN}",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "POS1",
+        "check": [
+          "place",
+          "player"
+        ],
+        "align": "RIGHT"
+      },
+      {
+        "type": "input_value",
+        "name": "POS2",
+        "check": [
+          "place",
+          "player"
+        ],
+        "align": "RIGHT"
+      }
+    ],
     "output": "place",
     "style": "positions_blocks",
     "tooltip": "",
@@ -586,4 +615,5 @@
     "style": "math_blocks",
     "tooltip": "",
     "helpUrl": ""
-  }]
+  }
+]

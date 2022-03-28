@@ -32,7 +32,8 @@
     "BALL": "ball",
     "OPPONENTS_GOAL": "opponents goal",
     "OUR_GOAL": "our goal",
-    "MY_TARGET_POSITION": "my target position"
+    "MY_TARGET_POSITION": "my target position",
+    "MIDDLE_BETWEEN": "middle between %1 and %2"
   },
   "GLOBAL": {
     "OK": "Ok",

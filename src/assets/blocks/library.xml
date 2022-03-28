@@ -1,4 +1,5 @@
-<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="6Jl~Meo5K%.u8OMpvvLv" deletable="false" movable="false" x="10" y="10">
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="factory_base" id="6Jl~Meo5K%.u8OMpvvLv" deletable="false" movable="false" x="10" y="10">
     <mutation connections="TOP"></mutation>
     <field name="NAME">custom_if</field>
     <field name="INLINE">EXT</field>
@@ -59,7 +60,8 @@
     <value name="TOPTYPE">
       <shadow type="type_null" id="$k1)cmb5*6.zbFFvG){+"></shadow>
     </value>
-  </block><block type="factory_base" id="6Jl~Meo5K%.u8OMpvvLv" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="6Jl~Meo5K%.u8OMpvvLv" deletable="false" movable="false" x="10" y="10">
     <mutation connections="LEFT"></mutation>
     <field name="NAME">custom_compare</field>
     <field name="INLINE">AUTO</field>
@@ -113,7 +115,8 @@
       <shadow type="type_null" id="L-C:usoL5u48yujsLTiZ"></shadow>
       <block type="type_boolean" id="U*)y_yLzO-IKL*9z518b"></block>
     </value>
-  </block><block type="factory_base" id="KKYq_m6H*BVa~x?#C3qV" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="KKYq_m6H*BVa~x?#C3qV" deletable="false" movable="false" x="10" y="10">
     <mutation connections="NONE"></mutation>
     <field name="NAME">event_ball_mine</field>
     <field name="INLINE">AUTO</field>
@@ -147,7 +150,8 @@
         <field name="TEXT"></field>
       </block>
     </value>
-  </block><block type="factory_base" id="KKYq_m6H*BVa~x?#C3qV" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="KKYq_m6H*BVa~x?#C3qV" deletable="false" movable="false" x="10" y="10">
     <mutation connections="NONE"></mutation>
     <field name="NAME">event_ball_teammate</field>
     <field name="INLINE">AUTO</field>
@@ -181,7 +185,8 @@
         <field name="TEXT"></field>
       </block>
     </value>
-  </block><block type="factory_base" id="KKYq_m6H*BVa~x?#C3qV" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="KKYq_m6H*BVa~x?#C3qV" deletable="false" movable="false" x="10" y="10">
     <mutation connections="NONE"></mutation>
     <field name="NAME">event_ball_opponent</field>
     <field name="INLINE">AUTO</field>
@@ -215,7 +220,8 @@
         <field name="TEXT"></field>
       </block>
     </value>
-  </block><block type="factory_base" id="KKYq_m6H*BVa~x?#C3qV" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="KKYq_m6H*BVa~x?#C3qV" deletable="false" movable="false" x="10" y="10">
     <mutation connections="NONE"></mutation>
     <field name="NAME">event_ball_none</field>
     <field name="INLINE">AUTO</field>
@@ -249,7 +255,8 @@
         <field name="TEXT"></field>
       </block>
     </value>
-  </block><block type="factory_base" id="k0u?}2XFD%3_fWPA9IW=" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="k0u?}2XFD%3_fWPA9IW=" deletable="false" movable="false" x="10" y="10">
     <mutation connections="TOP"></mutation>
     <field name="NAME">shoot</field>
     <field name="INLINE">AUTO</field>
@@ -294,7 +301,8 @@
     <value name="TOPTYPE">
       <shadow type="type_null" id="YB4TC(LE|sVt^?y:hyHq"></shadow>
     </value>
-  </block><block type="factory_base" id="k0u?}2XFD%3_fWPA9IW=" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="k0u?}2XFD%3_fWPA9IW=" deletable="false" movable="false" x="10" y="10">
     <mutation connections="TOP"></mutation>
     <field name="NAME">move</field>
     <field name="INLINE">AUTO</field>
@@ -339,7 +347,8 @@
     <value name="TOPTYPE">
       <shadow type="type_null" id="YB4TC(LE|sVt^?y:hyHq"></shadow>
     </value>
-  </block><block type="factory_base" id="k0u?}2XFD%3_fWPA9IW=" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="k0u?}2XFD%3_fWPA9IW=" deletable="false" movable="false" x="10" y="10">
     <mutation connections="TOP"></mutation>
     <field name="NAME">sprint</field>
     <field name="INLINE">AUTO</field>
@@ -384,7 +393,8 @@
     <value name="TOPTYPE">
       <shadow type="type_null" id="YB4TC(LE|sVt^?y:hyHq"></shadow>
     </value>
-  </block><block type="factory_base" id="uc=zbkUNwg;.?f`,u`Du" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="uc=zbkUNwg;.?f`,u`Du" deletable="false" movable="false" x="10" y="10">
     <mutation connections="LEFT"></mutation>
     <field name="NAME">goal</field>
     <field name="INLINE">AUTO</field>
@@ -420,7 +430,8 @@
         <field name="TYPE">place</field>
       </block>
     </value>
-  </block><block type="factory_base" id="uc=zbkUNwg;.?f`,u`Du" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="uc=zbkUNwg;.?f`,u`Du" deletable="false" movable="false" x="10" y="10">
     <mutation connections="LEFT"></mutation>
     <field name="NAME">grid</field>
     <field name="INLINE">AUTO</field>
@@ -430,7 +441,8 @@
         <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_dropdown" id="@YAh2GW|v{^1na][miIL">
-            <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+            <mutation
+              options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
             <field name="FIELDNAME">GRID_COL</field>
             <field name="USER0">A</field>
             <field name="CPU0">1</field>
@@ -444,7 +456,8 @@
             <field name="CPU4">5</field>
             <next>
               <block type="field_dropdown" id="1GCT[,^C*irsn~gN(DK,">
-                <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                <mutation
+                  options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
                 <field name="FIELDNAME">GRID_ROW</field>
                 <field name="USER0">1</field>
                 <field name="CPU0">1</field>
@@ -478,7 +491,8 @@
         <field name="TYPE">place</field>
       </block>
     </value>
-  </block><block type="factory_base" id="uc=zbkUNwg;.?f`,u`Du" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="uc=zbkUNwg;.?f`,u`Du" deletable="false" movable="false" x="10" y="10">
     <mutation connections="LEFT"></mutation>
     <field name="NAME">position</field>
     <field name="INLINE">AUTO</field>
@@ -509,7 +523,84 @@
         <field name="TYPE">place</field>
       </block>
     </value>
-  </block><block type="factory_base" id="8;C!-J_;2t(lwIg`%Q~9" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="($frHf~44YTQ5hIJ{?t;" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">middle</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="Xp)ow9MRu--)?6y4cTRe">
+        <field name="INPUTNAME">POS1</field>
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="WCdt4Sq(|6+r/EF[![E.">
+            <field name="TEXT">milieu entre</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="Eat!m-y~6Bql`(|b?93#"></shadow>
+          <block type="type_group" id="5,2?7O@bxfd$[hdR*[KE">
+            <mutation types="2"></mutation>
+            <value name="TYPE0">
+              <block type="type_other" id="r3`;dslCzc13P|/,E/n(">
+                <field name="TYPE">place</field>
+              </block>
+            </value>
+            <value name="TYPE1">
+              <block type="type_other" id="iZ*}i(sB[ILjZ|.wU$lM">
+                <field name="TYPE">player</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="input_value" id="|3u^QOQU2ab^It]NV!Dj">
+            <field name="INPUTNAME">POS2</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="?g}WOG|!VX!M/z`$gXI+">
+                <field name="TEXT">et</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="voULwwk]~~_izUk`LZt$"></shadow>
+              <block type="type_group" id="plR##4S!Ua01^-3Xd?wW">
+                <mutation types="2"></mutation>
+                <value name="TYPE0">
+                  <block type="type_other" id="lj5Mky2PUv1h|9wp$B-=">
+                    <field name="TYPE">place</field>
+                  </block>
+                </value>
+                <value name="TYPE1">
+                  <block type="type_other" id="fDu4og3X8ItISWOy3(J!">
+                    <field name="TYPE">player</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="1skeJ.e.]=PV9#)qB49l" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="R2nl_7t!#)L{Y-%~/,L!" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="3M(Vr-cj*,~|q)e`#L#f"></shadow>
+      <block type="type_other" id="5%%?k|Avl|G?-]_43DSh">
+        <field name="TYPE">place</field>
+      </block>
+    </value>
+  </block>
+  <block type="factory_base" id="8;C!-J_;2t(lwIg`%Q~9" deletable="false" movable="false" x="10" y="10">
     <mutation connections="LEFT"></mutation>
     <field name="NAME">player</field>
     <field name="INLINE">EXT</field>
@@ -616,7 +707,8 @@
         <field name="TYPE">player</field>
       </block>
     </value>
-  </block><block type="factory_base" id="UCBAs{4Uo-%2^8WDH=`V" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="UCBAs{4Uo-%2^8WDH=`V" deletable="false" movable="false" x="10" y="10">
     <mutation connections="LEFT"></mutation>
     <field name="NAME">ball</field>
     <field name="INLINE">AUTO</field>
@@ -647,7 +739,8 @@
         <field name="TYPE">place</field>
       </block>
     </value>
-  </block><block type="factory_base" id="@*GbxSO[a73G535va~k6" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="@*GbxSO[a73G535va~k6" deletable="false" movable="false" x="10" y="10">
     <mutation connections="LEFT"></mutation>
     <field name="NAME">myself</field>
     <field name="INLINE">AUTO</field>
@@ -678,7 +771,8 @@
         <field name="TYPE">player</field>
       </block>
     </value>
-  </block><block type="factory_base" id="S!q?=Qe_p39ja96pMsNG" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="S!q?=Qe_p39ja96pMsNG" deletable="false" movable="false" x="10" y="10">
     <mutation connections="LEFT"></mutation>
     <field name="NAME">distance</field>
     <field name="INLINE">AUTO</field>
@@ -751,7 +845,8 @@
       <shadow type="type_null" id="{ihk77Pswu{AgLa(N?XA"></shadow>
       <block type="type_number" id="6*=$XO4ktoO=y;hNrKCW"></block>
     </value>
-  </block><block type="factory_base" id="S!q?=Qe_p39ja96pMsNG" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="S!q?=Qe_p39ja96pMsNG" deletable="false" movable="false" x="10" y="10">
     <mutation connections="LEFT"></mutation>
     <field name="NAME">place</field>
     <field name="INLINE">AUTO</field>
@@ -784,7 +879,8 @@
                 <field name="TEXT">est dans col</field>
                 <next>
                   <block type="field_dropdown" id="l*R|Map0Iv)r:q4l/_r(">
-                    <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                    <mutation
+                      options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
                     <field name="FIELDNAME">POS_COL</field>
                     <field name="USER0">A</field>
                     <field name="CPU0">1</field>
@@ -803,7 +899,8 @@
                         <field name="TEXT">et ligne</field>
                         <next>
                           <block type="field_dropdown" id="H)8$v1|~7)^~5{mGJQ4%">
-                            <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+                            <mutation
+                              options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
                             <field name="FIELDNAME">POS_ROW</field>
                             <field name="USER0">1</field>
                             <field name="CPU0">1</field>
@@ -843,7 +940,8 @@
       <shadow type="type_null" id="{ihk77Pswu{AgLa(N?XA"></shadow>
       <block type="type_boolean" id="~,nu%J6#JR%tTwvlS%dJ"></block>
     </value>
-  </block><block type="factory_base" id="oYj@kcRXcC}KvQ-](.}h" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="oYj@kcRXcC}KvQ-](.}h" deletable="false" movable="false" x="10" y="10">
     <mutation connections="LEFT"></mutation>
     <field name="NAME">energy</field>
     <field name="INLINE">AUTO</field>
@@ -879,7 +977,8 @@
       <shadow type="type_null" id="PBPS83C=)j8;K{R+5kwi"></shadow>
       <block type="type_number" id="^t_kv*0.z-y0t48+qb!H"></block>
     </value>
-  </block><block type="factory_base" id="8$*OfG5nM!kYB1}8m;F=" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="8$*OfG5nM!kYB1}8m;F=" deletable="false" movable="false" x="10" y="10">
     <mutation connections="LEFT"></mutation>
     <field name="NAME">closest</field>
     <field name="INLINE">AUTO</field>
@@ -925,7 +1024,8 @@
       <shadow type="type_null" id="xO]y?(LXv%Y:#iaIz_-6"></shadow>
       <block type="type_boolean" id="x/whSA){)`DE(Hnox@X]"></block>
     </value>
-  </block><block type="factory_base" id="ydvJz3N[#$n9_peaWac(" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="ydvJz3N[#$n9_peaWac(" deletable="false" movable="false" x="10" y="10">
     <mutation connections="LEFT"></mutation>
     <field name="NAME">role_and_side</field>
     <field name="INLINE">AUTO</field>
@@ -995,7 +1095,8 @@
       <shadow type="type_null" id="{+iTY7)#+8KuvUEOn}GS"></shadow>
       <block type="type_boolean" id="1BCg}m!%{Hc$6{hp-],Q"></block>
     </value>
-  </block><block type="factory_base" id="=r6g_a.i]M/8?N:-:PB*" deletable="false" movable="false" x="10" y="10">
+  </block>
+  <block type="factory_base" id="=r6g_a.i]M/8?N:-:PB*" deletable="false" movable="false" x="10" y="10">
     <mutation connections="LEFT"></mutation>
     <field name="NAME">math_number</field>
     <field name="INLINE">AUTO</field>
@@ -1028,4 +1129,5 @@
       <shadow type="type_null" id="W2Q4TOL7SrMM9*5_U]~~"></shadow>
       <block type="type_number" id="xsk`y_aKwc,KLp((g~e{"></block>
     </value>
-  </block></xml>
+  </block>
+</xml>

@@ -194,6 +194,13 @@ ${Javascript.statementToCode(block, 'DO')}
       return `game.getTargetPosition(player)`;
     };
 
+    (Javascript as any).middle = (block: Block) => {
+      const pos1 = Javascript.statementToCode(block, 'POS1');
+      const pos2 = Javascript.statementToCode(block, 'POS2');
+      // Can't be empty because of shadow blocks
+      return `game.getMiddle(${pos1}, ${pos2})`;
+    };
+
     (Javascript as any).closest = (block: Block) => {
       const ref = Javascript.statementToCode(block, 'NAME');
       // Can't be empty because of shadow block

@@ -51,7 +51,7 @@
         },
         {
           "kind": "block",
-          "blockxml": "<block type='custom_compare'><value name='LEFT'><block type='distance'><value name='FROM'><shadow type='myself'></shadow></value><value name='TO'><shadow type='goal'><value name='GOAL_TYPE'>GOAL_OPP</value></shadow></value></block></value><value name='RIGHT'><shadow type='math_number'><field name='NUM'>50</field></shadow></value></block>"
+          "blockxml": "<block type='custom_compare'><value name='LEFT'><block type='distance'><value name='FROM'><shadow type='myself'></shadow></value><value name='TO'><shadow type='goal'><field name='GOAL_TYPE'>GOAL_OPP</field></shadow></value></block></value><value name='RIGHT'><shadow type='math_number'><field name='NUM'>50</field></shadow></value></block>"
         },
         {
           "kind": "block",
@@ -67,7 +67,7 @@
         },
         {
           "kind": "block",
-          "blockxml": "<block type='distance'><value name='FROM'><shadow type='myself'></shadow></value><value name='TO'><shadow type='goal'><value name='GOAL_TYPE'>GOAL_OPP</value></shadow></value></block>"
+          "blockxml": "<block type='distance'><value name='FROM'><shadow type='myself'></shadow></value><value name='TO'><shadow type='goal'><field name='GOAL_TYPE'>GOAL_OPP</field></shadow></value></block>"
         }
       ]
     },
@@ -130,6 +130,10 @@
         {
           "kind": "block",
           "type": "position"
+        },
+        {
+          "kind": "block",
+          "blockxml": "<block type='middle'><value name='POS1'><shadow type='ball'></shadow></value><value name='POS2'><shadow type='goal'><field name='GOAL_TYPE'>GOAL_OWN</field></shadow></value></block>"
         }
       ]
     },

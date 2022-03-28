@@ -679,6 +679,16 @@ export class GameComponent implements OnInit, OnDestroy {
     return this.computeDistance(this.getSpritePosition(targetA), this.getSpritePosition(targetB));
   }
 
+  private getMiddle(pos1: SpriteCoord | Player, pos2: SpriteCoord | Player): SpriteCoord | null {
+    if (pos1 === null || pos2 === null) {
+      return null;
+    }
+    return {
+      x: (this.getSpritePosition(pos1).x + this.getSpritePosition(pos2).x) / 2,
+      y: (this.getSpritePosition(pos1).y + this.getSpritePosition(pos2).y) / 2
+    };
+  }
+
   private playerIsRoleAndSide(player: Player, isAtkRole: boolean | null, isRightSide: boolean | null): boolean {
     if (player === null) {
       return false;
