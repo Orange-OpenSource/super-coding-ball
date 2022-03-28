@@ -35,10 +35,10 @@ const greetingLeftAnim: SpriteAnim = {frames: [{row: 1, col: 5}, {row: 2, col: 5
 const greetingDownAnim: SpriteAnim = {frames: [{row: 2, col: 5}, {row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}], speed: 0.1};
 // tslint:disable-next-line:max-line-length
 const greetingRightAnim: SpriteAnim = {frames: [{row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}], speed: 0.1};
-const pushedUpAnim: SpriteAnim = {frames: [{row: 0, col: 6}, {row: 0, col: 4}, {row: 0, col: 5}, {row: 0, col: 4}], speed: 0.1};
-const pushedLeftAnim: SpriteAnim = {frames: [{row: 1, col: 6}, {row: 1, col: 4}, {row: 1, col: 5}, {row: 1, col: 4}], speed: 0.1};
-const pushedDownAnim: SpriteAnim = {frames: [{row: 2, col: 6}, {row: 2, col: 4}, {row: 2, col: 5}, {row: 2, col: 4}], speed: 0.1};
-const pushedRightAnim: SpriteAnim = {frames: [{row: 3, col: 6}, {row: 3, col: 4}, {row: 3, col: 5}, {row: 3, col: 4}], speed: 0.1};
+const pushedUpAnim: SpriteAnim = {frames: [{row: 0, col: 5}, {row: 0, col: 4}, {row: 0, col: 6}, {row: 0, col: 4}], speed: 0.2};
+const pushedLeftAnim: SpriteAnim = {frames: [{row: 1, col: 5}, {row: 1, col: 4}, {row: 1, col: 6}, {row: 1, col: 4}], speed: 0.2};
+const pushedDownAnim: SpriteAnim = {frames: [{row: 2, col: 5}, {row: 2, col: 4}, {row: 2, col: 6}, {row: 2, col: 4}], speed: 0.2};
+const pushedRightAnim: SpriteAnim = {frames: [{row: 3, col: 5}, {row: 3, col: 4}, {row: 3, col: 6}, {row: 3, col: 4}], speed: 0.2};
 const fallingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 20, 0, 6), speed: 0.05};
 const celebratingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 18, 2, 9)
     .concat(buildFrames(Dir.Right, 19, 2, 9))
