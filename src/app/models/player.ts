@@ -161,5 +161,9 @@ export class Player extends Sprite {
       this.state = PlayerState.Playing;
       this.energy = 100;
     }
+    // If playing and still, reset frame so that the player looks still
+    if (this.state === PlayerState.Playing && this.still) {
+      this.currentFrame = 0;
+    }
   }
 }

@@ -561,8 +561,7 @@ export class GameComponent implements OnInit, OnDestroy {
       // and close enough to the target
       && this.computeDistance(player.coord, targetCoord) < moveThreshold
     ) {
-      // stop and reset anim
-      player.currentFrame = 0;
+      // don't go closer
       return;
     }
     const directAngle = this.computeAngle(player.coord, targetCoord);
