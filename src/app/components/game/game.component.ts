@@ -10,7 +10,6 @@
  */
 
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
-import {Location} from '@angular/common';
 import {Player, PlayerState} from '../../models/player';
 import {Ball} from '../../models/ball';
 import {Sprite, SpriteCoord} from '../../models/sprite';
@@ -736,18 +735,26 @@ export class GameComponent implements OnInit, OnDestroy {
       .filter(it => isRightSide === null || isRightSide === it.isRightSide)
       .filter(it => it.ownTeam === (isOwnTeam ? player.ownTeam : !player.ownTeam));
 
-    if (isAtkRole !== null && isRightSide !== null) {
+    // If the player is already fully determined (role, side and team), return it
+    if (roleSideAndTeamFiltered.length === 1) {
       return roleSideAndTeamFiltered[0];
     }
+
+    if (posRef === null) {
+      return null;
+    }
+
     const fullyFilteredPlayers = roleSideAndTeamFiltered
+      // discard current player
       .filter(it => it !== player)
+      // discard the position reference if it is a player
+      .filter(it => posRef instanceof Player ? (it !== posRef) : true)
+      // discard falling players (to avoid passing the ball to them)
       .filter(it => it.state !== PlayerState.Falling);
     if (fullyFilteredPlayers.length === 0) {
       return null;
     }
-    if (posRef === null) {
-      return null;
-    }
+
     const posRefCoord = this.getSpritePosition(posRef);
     return fullyFilteredPlayers
       .sort((a, b) => {
