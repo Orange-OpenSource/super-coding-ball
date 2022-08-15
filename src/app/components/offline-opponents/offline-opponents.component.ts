@@ -10,7 +10,6 @@
  */
 
 import {Component, OnInit} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
 import {Router} from '@angular/router';
 import {LocalStorageService} from '../../services/local-storage.service';
 
@@ -24,10 +23,8 @@ export class OfflineOpponentsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public translate: TranslateService,
     private localStorageService: LocalStorageService
   ) {
-    translate.addLangs(['fr', 'en']);
   }
 
   ngOnInit(): void {

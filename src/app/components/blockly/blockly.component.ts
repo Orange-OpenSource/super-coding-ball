@@ -16,7 +16,6 @@ import * as Blockly from 'blockly';
 import '@blockly/field-slider';
 import {CodeService} from '../../services/code.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {GameComponent} from '../game/game.component';
 import {environment} from '../../../environments/environment';
@@ -53,7 +52,6 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
   debug: boolean;
 
   constructor(
-    public translate: TranslateService,
     private localStorageService: LocalStorageService,
     public codeService: CodeService,
     private onlineService: OnlineService,
@@ -62,7 +60,6 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
     public location: Location,
     public modalService: NgbModal
   ) {
-    translate.addLangs(['fr', 'en']);
     this.debug = !environment.production;
     this.isOnline = this.router.url.includes('/online/');
     this.opponentId = this.route.snapshot.paramMap.get('id') ?? '';

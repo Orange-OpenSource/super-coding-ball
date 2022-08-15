@@ -10,7 +10,6 @@
  */
 
 import {Component, OnDestroy, ViewChild} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
 import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
 import {LocalStorageService} from '../../services/local-storage.service';
@@ -27,11 +26,9 @@ export class HomeComponent implements OnDestroy {
   public appName = environment.APP_NAME;
 
   constructor(
-    public translate: TranslateService,
     private router: Router,
     private modalService: NgbModal,
     private localStorageService: LocalStorageService) {
-    translate.addLangs(['fr', 'en']);
   }
 
   goOnline(): void {

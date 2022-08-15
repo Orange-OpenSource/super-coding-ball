@@ -9,20 +9,12 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, OnInit} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-licenses',
   templateUrl: './legal.component.html',
   styleUrls: ['./legal.component.scss']
 })
-export class LegalComponent implements OnInit {
-
-  constructor(public translate: TranslateService) {
-    translate.addLangs(['fr', 'en']);
-  }
-
-  ngOnInit(): void {
-  }
+export class LegalComponent {
 }

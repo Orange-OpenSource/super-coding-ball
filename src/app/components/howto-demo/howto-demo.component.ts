@@ -91,7 +91,6 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
     public codeService: CodeService,
     public activeModal: NgbActiveModal
   ) {
-    translate.addLangs(['fr', 'en']);
   }
 
   ngOnInit(): void {

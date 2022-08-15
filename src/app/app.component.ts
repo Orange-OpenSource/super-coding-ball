@@ -33,7 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
     localStorageService: LocalStorageService
   ) {
 
-    this.translate.addLangs(['fr', 'en']);
+    this.translate.addLangs(['fr', 'ru', 'en']);
     if (this.translate.getBrowserLang()) {
       this.translate.use(this.translate.getBrowserLang() ?? 'en');
     }

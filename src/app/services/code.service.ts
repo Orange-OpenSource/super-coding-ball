@@ -21,6 +21,8 @@ import * as Javascript from 'blockly/javascript';
 import {Block} from 'blockly/blockly';
 import * as Fr from 'blockly/msg/fr';
 import * as CustomFr from '../../assets/i18n/fr.json';
+import * as Ru from 'blockly/msg/ru';
+import * as CustomRu from '../../assets/i18n/ru.json';
 import * as En from 'blockly/msg/en';
 import * as CustomEn from '../../assets/i18n/en.json';
 import {TranslateService} from '@ngx-translate/core';
@@ -62,6 +64,9 @@ export class CodeService {
     if (this.translate.currentLang === 'fr') {
       Blockly.setLocale(Fr);
       Blockly.setLocale((CustomFr as any).default.BLOCKS);
+    } else if (this.translate.currentLang === 'ru') {
+      Blockly.setLocale(Ru);
+      Blockly.setLocale((CustomRu as any).default.BLOCKS);
     } else {
       Blockly.setLocale(En);
       Blockly.setLocale((CustomEn as any).default.BLOCKS);

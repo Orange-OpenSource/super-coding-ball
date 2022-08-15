@@ -1,0 +1,174 @@
+{
+  "TRANSLATION_AUTHOR": "Перевел на русский язык Лужнов Алексей Владимирович - преподаватель программирования г.Краснодар",
+  "BLOCKS": {
+    "EVENTS": "События",
+    "CONTROLS": "Управление",
+    "ACTIONS": "Действия",
+    "POSITIONS": "Объекты",
+    "ADVANCED": "Операторы",
+    "WHEN_HAVE_BALL": "когда мяч у меня %1 %2",
+    "WHEN_TEAMMATE_HAS_BALL": "когда мяч у товарища по команде %1 %2",
+    "WHEN_OPPONENT_HAS_BALL": "когда мяч у соперника %1 %2",
+    "WHEN_NOONE_HAS_BALL": "когда ни у кого нет мяча %1 %2",
+    "CUSTOM_IF": "если %1 выполнить %2 иначе %3",
+    "I_AM_CLOSEST_TO": "я ближе всех к %1",
+    "ROLE_AND_SIDE": "%1 %2 на %3 фланге",
+    "ATTACKER": "нападающий",
+    "DEFENDER": "защитник",
+    "ALL": "все",
+    "RIGHT": "справа",
+    "LEFT": "слева",
+    "PLACE_COL_LINE": "%1 находится на вертикали %2 и на линии %3",
+    "ENERGY_OF": "энергия %1",
+    "DISTANCE_BETWEEN": "дистанция между %1 и %2",
+    "SHOOT_TO": "удар в сторону %1",
+    "GO_TO": "бежать к %1",
+    "SPRINT_TO": "рывок к %1",
+    "PLAYER": "%1 %2 роль %3 фланг %4 %5 %6 %7",
+    "TEAMMATE": "товарищ по команде",
+    "OPPONENT": "coперник",
+    "NEAR": "рядом с",
+    "FAR": "далеко от",
+    "MYSELF": "игрок",
+    "BALL": "мяч",
+    "OPPONENTS_GOAL": "ворота соперника",
+    "OUR_GOAL": "наши ворота",
+    "MY_TARGET_POSITION": "своя позиция",
+    "MIDDLE_BETWEEN": "середина между %1 и %2"
+  },
+  "GLOBAL": {
+    "OK": "Ок",
+    "CANCEL": "Отмена",
+    "BACK": "Назад",
+    "WARNING": "Внимание",
+    "SORRY": "Извините..."
+  },
+  "UPDATE": {
+    "MESSAGE": "Доступна новая версия!<br><br>Вы хотите загрузить ее сейчас?"
+  },
+  "HOME": {
+    "MOTTO": "Изучайте программирование с помощью футбола!",
+    "BUTTON_PLAY_OFFLINE": "Игра против компьютера",
+    "BUTTON_PLAY_ONLINE": "Игра онлайн!",
+    "BUTTON_HOW_TO": "Как играем?",
+    "BUTTON_ABOUT": "Узнать больше",
+    "CONNECTION_WARNING": "Вы должны быть подключены к Интернету, чтобы играть онлайн!",
+    "STRONG_ENOUGH_WARNING": "Для игры по сети необходимо обыграть как минимум 3 компьютерные команды!"
+  },
+  "HOW_TO": {
+    "TITLE": "Как играем?",
+    "GOAL": "SuperCodingBall - это футбольная игра, в которой все игроки глупые, и только от вас зависит, что им делать!",
+    "RULES": "Правила игры очень просты: <ul> <li> Мяч не может выйти за пределы поля </li><li> Офсайдов нет </li> <li> Энергия игрока начинается со 100 и уменьшается при рывке или толчке </li><li> Игрок без сил падает и теряет мяч! </li> </ul>",
+    "BLOCK": "Чтобы осуществить свою стратегию, вы будете  <strong> постоянно  </strong> говорить своим игрокам, какие действия им следует совершить.<br>Например, если вы хотите, чтобы ваши игроки били по воротам, как только мяч окажется у них, вам нужно составить код: <br>",
+    "PARAMETER": "Вы можете изменить параметры некоторых блоков.<br>Например, изменив этот розовый блок, вы можете сказать своим игрокам сделать пас ближайшему товарищу по команде, как только мяч окажется у них: <br>",
+    "CONDITION": "Наконец, вы также можете добавить условия для улучшения ваших стратегий!<br>Например, вы можете выбрать одно из двух действий в зависимости от расстояния до ворот соперника: <br>",
+    "DISCOVER": "Играйте прямо сейчас и узнаете все остальное!",
+    "DEMO": "Вы также можете проанализировать пример стратегии, нажав здесь"
+  },
+  "HOW_TO_DEMO": {
+    "TITLE": "Пример стратегии",
+    "OPP_HAS_BALL": "Когда мяч у соперника,\nвсе ваши игроки бегут к мячу\n, чтобы отобрать его",
+    "OWN_HAS_BALL": "Когда мяч у товарища по команде,\nостальные ваш игроки возвращаются на свои позиции\n(нападающие - вперед,\nзащитники - назад)",
+    "NOONE_HAS_BALL": "Когда ни у кого нет мяча,\nтолько ближайший игрок бежит к нему.\nОстальные остаются на своих позициях",
+    "CONDITION_NEAR": "Для этого мы используем такое условие",
+    "BALL_MINE": "Когда мяч у одного из наших игроков,\nмы хотим знать, близок ли он к сопернику...",
+    "CONDITION_COMPARISON": "Для этого мы используем условие для сравнения...",
+    "PARAM_DISTANCE": "Его расстояние до ближайшего соперника...",
+    "PARAM_VALUE": "И значение 50",
+    "TEAMMATE": "В случае опасности мы делаем пас партнеру по \nкоманде, который находится ближе всего к воротам",
+    "RUN_TOWARDS_GOAL": "Иначе мы бежим к воротам соперника"
+  },
+  "ABOUT": {
+    "TITLE": "Узнать больше",
+    "IDEA": "Идея SuperCodingBall заключается в том, чтобы показать вам некоторые концепции программирования (параметры, события, условия и т.д.) в игровой форме.\u00A0:)",
+    "SCRATCH": "Если вам понравилось и вы хотите узнать больше нового в программировании, скорее заходите на сайт <a href=\"https://scratch.mit.edu\">Scratch</a>.<br>Это невероятный сайт, который позволит вам создавать свои собственные истории/игры с помощью блоков кода!",
+    "BLOCKLY": "В SuperCodingBall вы можете програмировать блоками, как в Scratch, благодаря функции <a href=\"https://developers.google.com/blockly\">Blockly</a>!",
+    "OPENSOURCE": "SuperCodingBall - это проект с открытым исходным кодом, найти который можно на <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">GitHub</a>.",
+    "LEGAL": "Прочитайте <a href='/legal'>правовую информацию</a>, <a href='/terms'>общие условия использования </a> и <a href='/privacy'>политику конфиденциальности</a>.",
+    "CONTACT": "Связь с нами:"
+  },
+  "LEGAL": {
+    "TITLE": "Legal notice",
+    "OPENSOURCE_TITLE": "Third party software",
+    "OPENSOURCE_CONTENT": "Player sprites by: David Conway Jr. (JaidynReiman), Nila122, Johannes Sjölund (wulax), Stephen Challener\n      (Redshrike),\n      Luke Mehl, bluecarrot16, Thane Brimhall (pennomi), laetissima, Michael Whitlock (bigbeargames), Matthew Krohn\n      (makrohn), Rhimlock, Benjamin K. Smith (BenCreating), Sander Frenken (castelonia), kheftel, Marcel van de Steeg\n      (MadMarcel), kirts, Mark Weyer, Lanea Zimmerman (Sharm), Manuel Riecke (MrBeast), Charles Sanchez\n      (CharlesGabriel), Zi Ye, William.Thompsonj, drjamgo@hotmail.com, dalonedrau, ElizaWy, Evert, Daniel Eddeland\n      (daneeklu), Carlo Enrico Victoria (Nemisys), Mandi Paugh, Joe White, Barbara Riviera, Tracy, DarkwallLKE,\n      thecilekli, Stafford McIntyre, PlatForge project, Shaun Williams, Tuomo Untinen (reemax), Pierre Vigier (pvigier),\n      Lori Angela Nagel (jastiv), tskaufma, gr3yh47, LordNeo, XOR, pswerlang, Inboxninja<br>\n      Sprites contributed as part of the Liberated Pixel Cup project from OpenGameArt.org:\n      http://opengameart.org/content/lpc-collection <br>\n      License: Creative Commons Attribution-ShareAlike 3.0 https://creativecommons.org/licenses/by-sa/3.0/<br>\n      Detailed credits:\n      https://github.com/sanderfrenken/Universal-LPC-Spritesheet-Character-Generator/blob/master/CREDITS.csv\n      <hr>\n      Original football pitch by Amon (http://amon.pro)<br>\n      License Creative Commons Attribution-ShareAlike 3.0: https://creativecommons.org/licenses/by-sa/3.0/\n      <hr>\n      Icons by Font Awesome Free<br>\n      License Creative Commons Attribution 4.0 International: https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt\n      <hr>\n      Angular - version 11.2.4 - https://github.com/angular/angular<br>\n      Copyright (c) 2010-2021 Google LLC.<br>\n      The MIT License - https://angular.io/license\n      <hr>\n      Blockly - version 6.20210701.0 - https://github.com/google/blockly<br>\n      Copyright (c) 2012-2021 Google, Inc.<br>\n      Apache License 2.0 - https://github.com/google/blockly/blob/master/LICENSE\n      <hr>\n      Bootstrap - version 4.5.0 - https://github.com/twbs/bootstrap<br>\n      Copyright (c) 2011–2021 - the Bootstrap Authors and Twitter, Inc.<br>\n      The MIT License - https://github.com/twbs/bootstrap/blob/main/LICENSE\n      <hr>\n      NG Bootstrap - version 9.1.0 - https://github.com/ng-bootstrap/ng-bootstrap<br>\n      Copyright (c) 2015-2018 - Angular ng-bootstrap team<br>\n      The MIT License - https://github.com/ng-bootstrap/ng-bootstrap/blob/master/LICENSE\n      <hr>\n      ngx-translate - version 13.0.0 - https://github.com/ngx-translate/core<br>\n      Copyright (c) 2018 Olivier Combe<br>\n      The MIT License - https://github.com/ngx-translate/core/blob/master/LICENSE\n      <hr>\n      Firebase Javascript SDK - version 8.6.3 - https://github.com/firebase/firebase-js-sdk<br>\n      Copyright (c) Google, Inc.<br>\n      Apache License Version 2.0 - https://github.com/firebase/firebase-js-sdk/blob/master/LICENSE\n      <hr>\n      RxJS - version 6.6.0 - https://github.com/ReactiveX/rxjs<br>\n      Copyright (c) 2015-2018 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors<br>\n      Apache License Version 2.0 - https://github.com/ReactiveX/rxjs/blob/master/LICENSE.txt\n      <hr>\n      tslib - version 2.0.0 - https://github.com/microsoft/tslib<br>\n      Copyright (c) Microsoft Corporation.<br>\n      BSD Zero Clause License - https://github.com/microsoft/tslib/blob/main/LICENSE.txt\n      <hr>\n      zone.js - version 0.11.3 - https://github.com/angular/zone.js<br>\n      Copyright (c) 2016-2018 Google, Inc.<br>\n      The MIT License - https://github.com/angular/zone.js/blob/master/LICENSE"
+  },
+  "PRIVACY": {
+    "TITLE": "Privacy notice",
+    "DISABLE_TRACKING": "Disable anonymous tracking"
+  },
+  "TERMS": {
+    "TITLE": "General Conditions of Use of the SuperCodingBall Service"
+  },
+  "OFFLINE": {
+    "TITLE": "Игра против компьютера",
+    "STRATEGY": "Стратегия противника",
+    "WON": "Победил?",
+    "STRATEGIES": {
+      "DO-NOTHING": "Они ничего не делают!",
+      "1PLAYER-ONLY": "Двигается только один игрок",
+      "ALL-DEFENDERS": "Все игроки в защите",
+      "DEFENDERS-PASS-TO-ATTACKERS": "Защитники перехватывают и отправляют нападающим",
+      "ONLY-PASSES": "Они только пасуют и бьют",
+      "3ATTACKERS": "3 нападающих",
+      "COLUMN": "Все игроки в центральной вертикали",
+      "SPRINTERS": "Они бегут за мячом"
+    }
+  },
+  "ONLINE": {
+    "TITLE": "Игра онлайн",
+    "CONNECT_GUEST": "Подключиться как гость",
+    "GUEST_WARNING": "Если вы подключитесь как гость, вы сможете играть, как и остальные, но у вас не будет фотографии вашего профиля.<br><br>Вы не сможете найти свою учетную запись на другом устройстве, а если вы выйдете из системы, ваш рейтинг будет потерян!",
+    "CONNECT_WITH_FACEBOOK": "Войти с помощью Facebook",
+    "CONNECT_WITH_GOOGLE": "Войти с помощью Google",
+    "PERSONAL_RANK": "Ваш текущий рейтинг:",
+    "RANKING": "Рейтинг за последние 15 дней",
+    "OPP_POINTS": " очков",
+    "RANKING_POPUP": {
+      "TITLE": "Информация о рейтинге",
+      "CONTENT": "В рейтинге представлены игроки, присоединившиеся за последние 15 дней.<br><br>Каждый день вы можете играть против любого соперника и набирать очки:<br>{{won}} 2 очка за победу,<br>{{draw}} 1 очко за ничью,<br>{{lost}} 0 очков за поражение.<br><br>(вы можете переигрывать матчи, чтобы улучшить свой результат).<br><br>Если вы откажетесь от текущей игры, то она засчитается поражением!"
+    },
+    "REPLAY": {
+      "HEADER": "Ты уже играл в эту игру сегодня ",
+      "LOST": "(ты проиграл).",
+      "DRAW": "(ничья).",
+      "WON": "(ты выиграл).",
+      "IMPROVE": "Вы хотите улучшить свой результат?",
+      "RISK": "Вы рискнете сыграть еще раз?"
+    },
+    "ACCOUNT": "Аккаунт",
+    "DISCONNECT_GUEST": "Если вы выйдете из системы, вы потеряете гостевую учетную запись!",
+    "DISCONNECT_OTHER": "Выйдите из системы, если хотите использовать другую учетную запись",
+    "NICKNAME_LIMIT": "максимум 20 символов",
+    "CHANGE_NICKNAME": "Изменить мой никнейм",
+    "DISCONNECT_ACCOUNT": "Выход из аккаунта",
+    "SYNC_TEXT": "Ваши блоки экспортируются автоматически каждый раз, когда вы начинаете онлайн-игру.",
+    "UPLOAD_TEXT": "Если вы хотите экспортировать свои блоки, не начиная новую игру, нажмите здесь:",
+    "DOWNLOAD_TEXT": "Если вы хотите импортировать свои блоки (например, если вы изменили свою стратегию на другом устройстве), нажмите здесь:",
+    "DELETE_ACCOUNT": "Удалить мой аккаунт навсегда",
+    "DELETE_MODAL": "Вы уверены, что хотите удалить свой аккаунт??"
+  },
+  "BLOCKLY": {
+    "FIELD_POPUP": {
+      "TOOLTIP": "Обзор поля",
+      "TITLE": "Обзор поля с указанием позиции каждого игрока"
+    },
+    "DELETE": "Удалить все мои блоки",
+    "DELETE_WARNING": "Вы действительно хотите удалить все свои блоки!?",
+    "UNDO": "Отменить",
+    "REDO": "Повторить",
+    "COPY_OPPONENT": "Копировать стратегию соперника",
+    "VALIDATE_BLOCKS": "Подтвердить мою стратегию"
+  },
+  "GAME": {
+    "STOP": "Остановить игру",
+    "STOP_MODAL": "Вы хотите прекратить эту игру?",
+    "GAME_ACCELERATED": "Ускорение",
+    "KICK_OFF": "Поехали!",
+    "CLICK_ANYWHERE": "(нажмите в любом месте)",
+    "HALF_TIME": "Перерыв",
+    "GOAL": "Гоол!",
+    "YOU_WON": "Ты победил!!!",
+    "DRAW": "Ничья!",
+    "YOU_LOST": "Ты проиграл\u00A0:("
+  }
+}
