@@ -35,30 +35,21 @@
     <div class="card-body">
       <span [innerHTML]="'HOW_TO.BLOCK' | translate"></span>
       <br>
-      <ng-container [ngSwitch]="translate.currentLang">
-        <img *ngSwitchCase="'fr'" style="width: 300px;" src="../../../assets/howto/shoot-fr.png">
-        <img *ngSwitchDefault style="width: 300px;" src="../../../assets/howto/shoot-en.png">
-      </ng-container>
+      <div id="blocklyShootDiv" style="height: 150px;"></div>
     </div>
   </div>
   <div class="card mt-4">
     <div class="card-body">
       <span [innerHTML]="'HOW_TO.PARAMETER' | translate"></span>
       <br>
-      <ng-container [ngSwitch]="translate.currentLang">
-        <img *ngSwitchCase="'fr'" style="width: 300px;" src="../../../assets/howto/pass-fr.png">
-        <img *ngSwitchDefault style="width: 300px;" src="../../../assets/howto/pass-en.png">
-      </ng-container>
+      <div id="blocklyPassDiv" style="height: 200px;"></div>
     </div>
   </div>
   <div class="card mt-4">
     <div class="card-body">
       <span [innerHTML]="'HOW_TO.CONDITION' | translate"></span>
       <br>
-      <ng-container [ngSwitch]="translate.currentLang">
-        <img *ngSwitchCase="'fr'" style="width: 300px;" src="../../../assets/howto/shoot-if-close-to-goal-fr.png">
-        <img *ngSwitchDefault style="width: 300px;" src="../../../assets/howto/shoot-if-close-to-goal-en.png">
-      </ng-container>
+      <div id="blocklyShootOrPassDiv" style="height: 300px;"></div>
     </div>
   </div>
   <div class="card mt-4">

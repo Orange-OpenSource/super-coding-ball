@@ -1,0 +1,13 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="event_ball_mine" id="!J#OdpYWY;04Ou*8~@CM">
+    <statement name="DO">
+      <block type="shoot" id="yr;uvg!KMGPSO*kD2,iT">
+        <value name="NAME">
+          <shadow type="goal" id="E^iKkB@jfad(BUg^OtyH">
+            <field name="GOAL_TYPE">GOAL_OPP</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+  </block>
+</xml>

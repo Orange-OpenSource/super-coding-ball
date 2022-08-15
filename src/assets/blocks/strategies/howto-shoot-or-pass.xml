@@ -1,0 +1,57 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="event_ball_mine" id="!J#OdpYWY;04Ou*8~@CM">
+    <statement name="DO">
+      <block type="custom_if" id=":R].iOm!BYgjdgz_mL/3">
+        <value name="IF">
+          <block type="custom_compare" id="DYix56?RT.E6q)5~FU!A">
+            <field name="INEQUALITY">LOWER</field>
+            <value name="LEFT">
+              <block type="distance" id="H,~YfrVdos50;~dRxKuN">
+                <value name="FROM">
+                  <shadow type="myself" id="cZnp$Yt_Es(5$tIppqU("></shadow>
+                </value>
+                <value name="TO">
+                  <shadow type="goal" id="E)mJ?aC)VND8S!T-.He-">
+                    <field name="GOAL_TYPE">GOAL_OPP</field>
+                  </shadow>
+                </value>
+              </block>
+            </value>
+            <value name="RIGHT">
+              <shadow type="math_number" id="GGZh2d~n_nQ7x$)xDUT|">
+                <field name="NUM">50</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <statement name="THEN">
+          <block type="shoot" id="htzFI*LnoK9aUiKpL/NJ">
+            <value name="NAME">
+              <shadow type="goal" id="*WUj.Onk!QoaX=bKHs6s">
+                <field name="GOAL_TYPE">GOAL_OPP</field>
+              </shadow>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="shoot" id="yr;uvg!KMGPSO*kD2,iT">
+            <value name="NAME">
+              <shadow type="goal" id="E^iKkB@jfad(BUg^OtyH">
+                <field name="GOAL_TYPE">GOAL_OPP</field>
+              </shadow>
+              <block type="player" id="C82)*YT7+P@KE8Kzo#u[">
+                <field name="PLAYER_TEAM">PLAYER_TEAM_OWN</field>
+                <field name="PLAYER_ROLE">PLAYER_ROLE_ALL</field>
+                <field name="PLAYER_SIDE">PLAYER_SIDE_ALL</field>
+                <field name="PLAYER_POS">PLAYER_POS_NEAR</field>
+                <value name="PLAYER_POS_REF">
+                  <shadow type="myself" id="T^:%M9PugXxj7v:y)1V."></shadow>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>
