@@ -10,9 +10,8 @@
  */
 
 import * as Blockly from 'blockly';
-import * as BlocklyJs from 'blockly/blockly_compressed.js';
 
-export class CustomizedZelosRenderer extends BlocklyJs.zelos.Renderer {
+export class CustomizedZelosRenderer extends Blockly.zelos.Renderer {
   constructor(name: string) {
     super(name);
   }
@@ -21,8 +20,8 @@ export class CustomizedZelosRenderer extends BlocklyJs.zelos.Renderer {
     Blockly.blockRendering.register('customized_zelos', CustomizedZelosRenderer);
   }
 
-  makeConstants_(): Blockly.blockRendering.ConstantProvider {
-    const constantsProvider = new BlocklyJs.zelos.ConstantProvider();
+  makeConstants_(): Blockly.zelos.ConstantProvider {
+    const constantsProvider = new Blockly.zelos.ConstantProvider();
     constantsProvider.BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT = 2 * constantsProvider.GRID_UNIT;
     constantsProvider.DUMMY_INPUT_MIN_HEIGHT =  0;
     return constantsProvider;

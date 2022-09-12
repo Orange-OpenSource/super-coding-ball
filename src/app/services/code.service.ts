@@ -11,47 +11,55 @@
 
 import {Injectable} from '@angular/core';
 import * as Blockly from 'blockly';
+// @ts-ignore
+import {javascriptGenerator} from 'blockly/javascript';
 import {CustomizedZelosRenderer} from '../components/blockly/customizedZelosRenderer';
 import blockStyles from '../../assets/blocks/styles/blockStyles.json';
 import categoryStyles from '../../assets/blocks/styles/categoryStyles.json';
 import componentStyles from '../../assets/blocks/styles/componentStyles.json';
 import componentDarkStyles from '../../assets/blocks/styles/componentDarkStyles.json';
 import blocksJson from '../../assets/blocks/blocks.json';
-import * as Javascript from 'blockly/javascript';
-import {Block} from 'blockly/blockly';
+// @ts-ignore
 import * as Fr from 'blockly/msg/fr';
 import * as CustomFr from '../../assets/i18n/fr.json';
+// @ts-ignore
 import * as Ru from 'blockly/msg/ru';
 import * as CustomRu from '../../assets/i18n/ru.json';
+// @ts-ignore
 import * as En from 'blockly/msg/en';
 import * as CustomEn from '../../assets/i18n/en.json';
 import {TranslateService} from '@ngx-translate/core';
 import {OnlineService} from './online.service';
 import {LocalStorageService} from './local-storage.service';
 import {CustomCategory} from '../components/blockly/custom-category';
+import {Theme} from 'blockly';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CodeService {
-  customTheme = Blockly.Theme.defineTheme('customTheme', {
-    blockStyles,
-    categoryStyles,
-    componentStyles,
-    startHats: true
-  });
-  customDarkTheme = Blockly.Theme.defineTheme('customDarkTheme', {
-    blockStyles,
-    categoryStyles,
-    componentStyles: componentDarkStyles,
-    startHats: true
-  });
+  customTheme: Blockly.Theme;
+  customDarkTheme: Blockly.Theme;
 
   constructor(
     public translate: TranslateService,
     private localStorageService: LocalStorageService,
     private onlineService: OnlineService
   ) {
+    const lightTheme = new Theme('lightTheme',
+      (blockStyles as unknown as { [key: string]: Blockly.Theme.BlockStyle }),
+      categoryStyles,
+      componentStyles);
+    lightTheme.startHats = true;
+    this.customTheme = Blockly.Theme.defineTheme('customTheme', lightTheme);
+
+    const darkTheme = new Theme('darkTheme',
+      (blockStyles as unknown as { [key: string]: Blockly.Theme.BlockStyle }),
+      categoryStyles,
+      componentDarkStyles);
+    darkTheme.startHats = true;
+    this.customDarkTheme = Blockly.Theme.defineTheme('customDarkTheme', darkTheme);
+
     // Initiated in the service because it can only be done once
     Blockly.defineBlocksWithJsonArray(blocksJson);
 
@@ -62,14 +70,20 @@ export class CodeService {
     this.defineBlocksCodeGen();
 
     if (this.translate.currentLang === 'fr') {
+      // @ts-ignore
       Blockly.setLocale(Fr);
+      // @ts-ignore
       Blockly.setLocale((CustomFr as any).default.BLOCKS);
     } else if (this.translate.currentLang === 'ru') {
-      Blockly.setLocale(Ru);
-      Blockly.setLocale((CustomRu as any).default.BLOCKS);
+      // @ts-ignore
+        Blockly.setLocale(Ru);
+      // @ts-ignore
+        Blockly.setLocale((CustomRu as any).default.BLOCKS);
     } else {
-      Blockly.setLocale(En);
-      Blockly.setLocale((CustomEn as any).default.BLOCKS);
+      // @ts-ignore
+        Blockly.setLocale(En);
+      // @ts-ignore
+        Blockly.setLocale((CustomEn as any).default.BLOCKS);
     }
 
     Blockly.registry.register(
@@ -84,7 +98,7 @@ export class CodeService {
   static computeCode(xmlBlocks: Element): string {
     const workspace = new Blockly.Workspace();
     Blockly.Xml.domToWorkspace(xmlBlocks, workspace);
-    const code = Javascript.workspaceToCode(workspace);
+    const code = javascriptGenerator.workspaceToCode(workspace);
     workspace.dispose();
     return code;
   }
@@ -117,50 +131,50 @@ export class CodeService {
   }
 
   private defineBlocksCodeGen(): void {
-    (Javascript as any).event_ball_mine = (block: Block) => {
+    javascriptGenerator.event_ball_mine = (block: Blockly.Block) => {
       return `if(ball.owner !== null && ball.owner === player) {
-${Javascript.statementToCode(block, 'DO')}
+${javascriptGenerator.statementToCode(block, 'DO')}
 }`;
     };
 
-    (Javascript as any).event_ball_teammate = (block: Block) => {
+    javascriptGenerator.event_ball_teammate = (block: Blockly.Block) => {
       return `if(ball.owner !== null && ball.owner !== player && ball.owner.ownTeam === player.ownTeam) {
-${Javascript.statementToCode(block, 'DO')}
+${javascriptGenerator.statementToCode(block, 'DO')}
 }`;
     };
 
-    (Javascript as any).event_ball_opponent = (block: Block) => {
+    javascriptGenerator.event_ball_opponent = (block: Blockly.Block) => {
       return `if(ball.owner !== null && ball.owner !== player && ball.owner.ownTeam !== player.ownTeam) {
-${Javascript.statementToCode(block, 'DO')}
+${javascriptGenerator.statementToCode(block, 'DO')}
 }`;
     };
 
-    (Javascript as any).event_ball_none = (block: Block) => {
+    javascriptGenerator.event_ball_none = (block: Blockly.Block) => {
       return `if(ball.owner === null) {
-${Javascript.statementToCode(block, 'DO')}
+${javascriptGenerator.statementToCode(block, 'DO')}
 }`;
     };
 
-    (Javascript as any).move = (block: Block) => {
-      const target = Javascript.statementToCode(block, 'NAME');
+    javascriptGenerator.move = (block: Blockly.Block) => {
+      const target = javascriptGenerator.statementToCode(block, 'NAME');
       // Can't be empty because of shadow block
       return `game.move(player, ${target}, false);`;
     };
 
-    (Javascript as any).sprint = (block: Block) => {
-      const target = Javascript.statementToCode(block, 'NAME');
+    javascriptGenerator.sprint = (block: Blockly.Block) => {
+      const target = javascriptGenerator.statementToCode(block, 'NAME');
       // Can't be empty because of shadow block
       return `game.move(player, ${target}, true);`;
     };
 
-    (Javascript as any).shoot = (block: Block) => {
-      const target = Javascript.statementToCode(block, 'NAME');
+    javascriptGenerator.shoot = (block: Blockly.Block) => {
+      const target = javascriptGenerator.statementToCode(block, 'NAME');
       // Can't be empty because of shadow block
       return `game.shoot(player, ${target})`;
     };
 
-    (Javascript as any).player = (block: Block) => {
-      const ref = Javascript.statementToCode(block, 'PLAYER_POS_REF');
+    javascriptGenerator.player = (block: Blockly.Block) => {
+      const ref = javascriptGenerator.statementToCode(block, 'PLAYER_POS_REF');
       // Can't be empty because of shadow blocks
       const isOwnTeam = block.getFieldValue('PLAYER_TEAM') === 'PLAYER_TEAM_OWN';
       let isAtkRole: boolean | null = null;
@@ -179,48 +193,48 @@ ${Javascript.statementToCode(block, 'DO')}
       return `game.getPlayer(player, ${isOwnTeam}, ${isAtkRole}, ${isRightSide}, ${isNear}, ${ref})`;
     };
 
-    (Javascript as any).goal = (block: Block) => {
+    javascriptGenerator.goal = (block: Blockly.Block) => {
       return `game.getGoal(player, ${block.getFieldValue('GOAL_TYPE') === 'GOAL_OWN'})`;
     };
 
-    (Javascript as any).grid = (block: Block) => {
+    javascriptGenerator.grid = (block: Blockly.Block) => {
       return `game.getGridPosition(!player.ownTeam, ${+block.getFieldValue('GRID_COL')}, ${+block.getFieldValue('GRID_ROW')})`;
     };
 
-    (Javascript as any).ball = (block: Block) => {
+    javascriptGenerator.ball = (block: Blockly.Block) => {
       return `game.ball.coord`;
     };
 
-    (Javascript as any).myself = (block: Block) => {
+    javascriptGenerator.myself = (block: Blockly.Block) => {
       return `player`;
     };
 
-    (Javascript as any).position = (block: Block) => {
+    javascriptGenerator.position = (block: Blockly.Block) => {
       return `game.getTargetPosition(player)`;
     };
 
-    (Javascript as any).middle = (block: Block) => {
-      const pos1 = Javascript.statementToCode(block, 'POS1');
-      const pos2 = Javascript.statementToCode(block, 'POS2');
+    javascriptGenerator.middle = (block: Blockly.Block) => {
+      const pos1 = javascriptGenerator.statementToCode(block, 'POS1');
+      const pos2 = javascriptGenerator.statementToCode(block, 'POS2');
       // Can't be empty because of shadow blocks
       return `game.getMiddle(${pos1}, ${pos2})`;
     };
 
-    (Javascript as any).closest = (block: Block) => {
-      const ref = Javascript.statementToCode(block, 'NAME');
+    javascriptGenerator.closest = (block: Blockly.Block) => {
+      const ref = javascriptGenerator.statementToCode(block, 'NAME');
       // Can't be empty because of shadow block
       return [`game.isClosest(player, ${ref})`, 0];
     };
 
-    (Javascript as any).distance = (block: Block) => {
-      const from = Javascript.statementToCode(block, 'FROM');
-      const to = Javascript.statementToCode(block, 'TO');
+    javascriptGenerator.distance = (block: Blockly.Block) => {
+      const from = javascriptGenerator.statementToCode(block, 'FROM');
+      const to = javascriptGenerator.statementToCode(block, 'TO');
       // Can't be empty because of shadow blocks
       return [`game.getDistance(${from}, ${to})`, 0];
     };
 
-    (Javascript as any).role_and_side = (block: Block) => {
-      const player = Javascript.statementToCode(block, 'PLAYER');
+    javascriptGenerator.role_and_side = (block: Blockly.Block) => {
+      const player = javascriptGenerator.statementToCode(block, 'PLAYER');
       // Can't be empty because of shadow blocks
       let isAtkRole: boolean | null = null;
       if (block.getFieldValue('ROLE') === 'ROLE_ATK') {
@@ -237,23 +251,23 @@ ${Javascript.statementToCode(block, 'DO')}
       return [`game.playerIsRoleAndSide(${player}, ${isAtkRole}, ${isRightSide})`, 0];
     };
 
-    (Javascript as any).place = (block: Block) => {
-      const item = Javascript.statementToCode(block, 'ITEM');
+    javascriptGenerator.place = (block: Blockly.Block) => {
+      const item = javascriptGenerator.statementToCode(block, 'ITEM');
       // Can't be empty because of shadow block
       return [`game.itemInGrid(!player.ownTeam,${item},${+block.getFieldValue('POS_COL')},${+block.getFieldValue('POS_ROW')})`, 0];
 
     };
 
-    (Javascript as any).energy = (block: Block) => {
-      const player = Javascript.statementToCode(block, 'NAME');
+    javascriptGenerator.energy = (block: Blockly.Block) => {
+      const player = javascriptGenerator.statementToCode(block, 'NAME');
       // Can't be empty because of shadow block
       return [`(${player} === null ? null : ${player}.energy)`, 0];
     };
 
-    (Javascript as any).custom_if = (block: Block) => {
-      const ifStatement = Javascript.valueToCode(block, 'IF', 0);
-      const thenStatement = Javascript.statementToCode(block, 'THEN');
-      const elseStatement = Javascript.statementToCode(block, 'ELSE');
+    javascriptGenerator.custom_if = (block: Blockly.Block) => {
+      const ifStatement = javascriptGenerator.valueToCode(block, 'IF', 0);
+      const thenStatement = javascriptGenerator.statementToCode(block, 'THEN');
+      const elseStatement = javascriptGenerator.statementToCode(block, 'ELSE');
       if (!ifStatement) { // No shadow block on if statement
         return null;
       } else {
@@ -267,9 +281,9 @@ ${elseStatement}
       }
     };
 
-    (Javascript as any).custom_compare = (block: Block) => {
-      const left = Javascript.valueToCode(block, 'LEFT', 0);
-      const right = Javascript.valueToCode(block, 'RIGHT', 0);
+    javascriptGenerator.custom_compare = (block: Blockly.Block) => {
+      const left = javascriptGenerator.valueToCode(block, 'LEFT', 0);
+      const right = javascriptGenerator.valueToCode(block, 'RIGHT', 0);
       if (!left || !right) { // No shadow block on left statement
         return [`null`, 0];
       } else {

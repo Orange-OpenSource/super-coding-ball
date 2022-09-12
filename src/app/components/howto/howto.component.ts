@@ -33,11 +33,11 @@ export class HowtoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.shootWorkspace = this.setWorspaceForViewing('blocklyShootDiv');
-    this.loadAndZoomOut(this.shootWorkspace, 'howto-shoot');
+    this.loadStrategy(this.shootWorkspace, 'howto-shoot');
     this.passWorkspace = this.setWorspaceForViewing('blocklyPassDiv');
-    this.loadAndZoomOut(this.passWorkspace, 'howto-pass');
+    this.loadStrategy(this.passWorkspace, 'howto-pass');
     this.shootOrPassWorkspace = this.setWorspaceForViewing('blocklyShootOrPassDiv');
-    this.loadAndZoomOut(this.shootOrPassWorkspace, 'howto-shoot-or-pass');
+    this.loadStrategy(this.shootOrPassWorkspace, 'howto-shoot-or-pass');
   }
 
   setWorspaceForViewing(divId: string): WorkspaceSvg {
@@ -45,7 +45,7 @@ export class HowtoComponent implements OnInit, OnDestroy {
     return Blockly.inject(blocklyDiv, {
       readOnly: true,
       move: {
-        scrollbars: true,
+        scrollbars: {horizontal: false, vertical: true},
         drag: false,
         wheel: false
       },
@@ -60,12 +60,11 @@ export class HowtoComponent implements OnInit, OnDestroy {
     });
   }
 
-  loadAndZoomOut(workspace: WorkspaceSvg, strategyId: string): void {
+  loadStrategy(workspace: WorkspaceSvg, strategyId: string): void {
     this.codeService.loadOppXmlBlocks(false, strategyId)
       .then(xmlBlocks => {
         Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(xmlBlocks), workspace);
         workspace.zoomToFit();
-        workspace.zoomCenter(-1);
       });
   }
 
