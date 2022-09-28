@@ -1,18 +1,4 @@
 {
   "workspaceBackgroundColour": "#ccffcc",
-  "toolboxBackgroundColour": "#eee",
-  "toolboxForegroundColour": null,
-  "flyoutBackgroundColour": null,
-  "flyoutForegroundColour": null,
-  "flyoutOpacity": null,
-  "scrollbarColour": null,
-  "scrollbarOpacity": null,
-  "insertionMarkerColour": null,
-  "insertionMarkerOpacity": null,
-  "markerColour": null,
-  "cursorColour": null,
-  "selectedGlowColour": null,
-  "selectedGlowOpacity": null,
-  "replacementGlowColour": null,
-  "replacementGlowOpacity": null
+  "toolboxBackgroundColour": "#eee"
 }

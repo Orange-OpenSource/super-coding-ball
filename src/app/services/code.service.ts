@@ -11,55 +11,48 @@
 
 import {Injectable} from '@angular/core';
 import * as Blockly from 'blockly';
-// @ts-ignore
-import {javascriptGenerator} from 'blockly/javascript';
 import {CustomizedZelosRenderer} from '../components/blockly/customizedZelosRenderer';
 import blockStyles from '../../assets/blocks/styles/blockStyles.json';
 import categoryStyles from '../../assets/blocks/styles/categoryStyles.json';
 import componentStyles from '../../assets/blocks/styles/componentStyles.json';
 import componentDarkStyles from '../../assets/blocks/styles/componentDarkStyles.json';
 import blocksJson from '../../assets/blocks/blocks.json';
-// @ts-ignore
+import {javascriptGenerator} from 'blockly/javascript';
 import * as Fr from 'blockly/msg/fr';
 import * as CustomFr from '../../assets/i18n/fr.json';
-// @ts-ignore
 import * as Ru from 'blockly/msg/ru';
 import * as CustomRu from '../../assets/i18n/ru.json';
-// @ts-ignore
 import * as En from 'blockly/msg/en';
 import * as CustomEn from '../../assets/i18n/en.json';
 import {TranslateService} from '@ngx-translate/core';
 import {OnlineService} from './online.service';
 import {LocalStorageService} from './local-storage.service';
 import {CustomCategory} from '../components/blockly/custom-category';
-import {Theme} from 'blockly';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CodeService {
-  customTheme: Blockly.Theme;
-  customDarkTheme: Blockly.Theme;
+  customTheme = Blockly.Theme.defineTheme('customTheme', {
+    name: 'lightTheme',
+    blockStyles,
+    categoryStyles,
+    componentStyles,
+    startHats: true
+  });
+  customDarkTheme = Blockly.Theme.defineTheme('customDarkTheme', {
+    name: 'darkTheme',
+    blockStyles,
+    categoryStyles,
+    componentStyles: componentDarkStyles,
+    startHats: true
+  });
 
   constructor(
     public translate: TranslateService,
     private localStorageService: LocalStorageService,
     private onlineService: OnlineService
   ) {
-    const lightTheme = new Theme('lightTheme',
-      (blockStyles as unknown as { [key: string]: Blockly.Theme.BlockStyle }),
-      categoryStyles,
-      componentStyles);
-    lightTheme.startHats = true;
-    this.customTheme = Blockly.Theme.defineTheme('customTheme', lightTheme);
-
-    const darkTheme = new Theme('darkTheme',
-      (blockStyles as unknown as { [key: string]: Blockly.Theme.BlockStyle }),
-      categoryStyles,
-      componentDarkStyles);
-    darkTheme.startHats = true;
-    this.customDarkTheme = Blockly.Theme.defineTheme('customDarkTheme', darkTheme);
-
     // Initiated in the service because it can only be done once
     Blockly.defineBlocksWithJsonArray(blocksJson);
 
@@ -70,20 +63,14 @@ export class CodeService {
     this.defineBlocksCodeGen();
 
     if (this.translate.currentLang === 'fr') {
-      // @ts-ignore
       Blockly.setLocale(Fr);
-      // @ts-ignore
       Blockly.setLocale((CustomFr as any).default.BLOCKS);
     } else if (this.translate.currentLang === 'ru') {
-      // @ts-ignore
-        Blockly.setLocale(Ru);
-      // @ts-ignore
-        Blockly.setLocale((CustomRu as any).default.BLOCKS);
+      Blockly.setLocale(Ru);
+      Blockly.setLocale((CustomRu as any).default.BLOCKS);
     } else {
-      // @ts-ignore
-        Blockly.setLocale(En);
-      // @ts-ignore
-        Blockly.setLocale((CustomEn as any).default.BLOCKS);
+      Blockly.setLocale(En);
+      Blockly.setLocale((CustomEn as any).default.BLOCKS);
     }
 
     Blockly.registry.register(

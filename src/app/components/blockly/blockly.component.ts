@@ -30,7 +30,7 @@ import {Location} from '@angular/common';
 })
 export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('gameComponent') gameComponent?: GameComponent;
-  private workspace!: Blockly.WorkspaceSvg;
+  private workspace?: Blockly.WorkspaceSvg;
   private _gameLaunched = false;
   get gameLaunched(): boolean {
     return this._gameLaunched;
@@ -127,7 +127,7 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
     // Cf https://groups.google.com/g/blockly/c/EMu8DKmiWQc/m/Nb8Y5D02BQAJ
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
-      this.workspace.zoomToFit();
+      this.workspace?.zoomToFit();
     }, 100);
   }
 
@@ -147,20 +147,22 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   play(): void {
-    const ownBlocks = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace));
-    this.localStorageService.saveXmlBlocks(ownBlocks);
-    if (this.isOnline) {
-      this.onlineService.updateUserBlocks(ownBlocks)
-        .subscribe();
-    }
+    if (this.workspace) {
+      const ownBlocks = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace));
+      this.localStorageService.saveXmlBlocks(ownBlocks);
+      if (this.isOnline) {
+        this.onlineService.updateUserBlocks(ownBlocks)
+          .subscribe();
+      }
 
-    const gameDiv = document.getElementById('gameComponent') as HTMLElement;
-    const display = window.getComputedStyle(gameDiv).display;
-    if (display === 'none') {
-      this.router.navigate([`/play/${this.isOnline ? 'online' : 'offline'}/` + this.opponentId]);
-    } else {
-      this.gameComponent?.loadOwnCode();
-      this.gameLaunched = true;
+      const gameDiv = document.getElementById('gameComponent') as HTMLElement;
+      const display = window.getComputedStyle(gameDiv).display;
+      if (display === 'none') {
+        this.router.navigate([`/play/${this.isOnline ? 'online' : 'offline'}/` + this.opponentId]);
+      } else {
+        this.gameComponent?.loadOwnCode();
+        this.gameLaunched = true;
+      }
     }
   }
 
@@ -176,24 +178,26 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
     this.modalService.open(content)
       .result.then((deletionValidated: boolean) => {
       if (deletionValidated) {
-        this.workspace.clear();
-        this.workspace.setScale(1);
+        this.workspace?.clear();
+        this.workspace?.setScale(1);
       }
     });
   }
 
   loadBlocksFromLocalStorage(): void {
-    Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(this.codeService.loadOwnXmlBlocksFromLocalStorage()),
-      this.workspace);
-    this.workspace.zoomToFit();
+    if (this.workspace) {
+      Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(this.codeService.loadOwnXmlBlocksFromLocalStorage()),
+        this.workspace);
+      this.workspace.zoomToFit();
+    }
   }
 
   undo(): void {
-    this.workspace.undo(false);
+    this.workspace?.undo(false);
   }
 
   redo(): void {
-    this.workspace.undo(true);
+    this.workspace?.undo(true);
   }
 
   loadOpp(): void {
@@ -201,8 +205,10 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
       this.router.url.includes('/online/'),
       this.route.snapshot.paramMap.get('id') ?? '')
       .then(xmlBlocks => {
-        Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(xmlBlocks), this.workspace);
-        this.workspace.zoomToFit();
+        if (this.workspace) {
+          Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(xmlBlocks), this.workspace);
+          this.workspace.zoomToFit();
+        }
       });
   }
 }

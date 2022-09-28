@@ -84,7 +84,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
     this.goToStep(this._currentStep);
   }
 
-  private stepBlock?: Blockly.BlockSvg | null;
+  private stepBlock: Blockly.BlockSvg | null = null;
 
   constructor(
     public translate: TranslateService,
