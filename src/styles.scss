@@ -82,5 +82,12 @@ html, body {
   background-image: url("/assets/icons/flask-solid.png");
 }
 
+// Disabled blocks are grey (first-of-type because the second element is the yellow focus)
+.blocklyDisabled>.blocklyPath:first-of-type {
+  fill-opacity: 1;
+  stroke-opacity: 1;
+  fill: lightgrey;
+}
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
