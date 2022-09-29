@@ -71,24 +71,13 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   setWorkspaceForEdition(): void {
     const blocklyDiv = document.getElementById('blocklyDiv') as HTMLElement;
-    this.workspace = Blockly.inject(blocklyDiv, {
-      maxInstances: {
-        event_ball_mine: 1,
-        event_ball_opponent: 1,
-        event_ball_teammate: 1,
-        event_ball_none: 1
-      },
-      comments: false,
-      disable: false,
+    this.workspace = CodeService.getBaseWorkspace(blocklyDiv, {
       move: {
         scrollbars: true,
         drag: true,
         wheel: false
       },
       theme: this.codeService.customTheme,
-      renderer: 'customized_zelos',
-      toolbox: toolboxJson as Blockly.utils.toolbox.ToolboxInfo,
-      trashcan: true,
       zoom: {
         controls: false,
         wheel: true,
@@ -102,7 +91,7 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   setWorspaceForViewing(): void {
     const blocklyDiv = document.getElementById('blocklyDiv') as HTMLElement;
-    this.workspace = Blockly.inject(blocklyDiv, {
+    this.workspace = CodeService.getBaseWorkspace(blocklyDiv, {
       readOnly: true,
       move: {
         scrollbars: true,
@@ -110,8 +99,6 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
         wheel: false
       },
       theme: this.codeService.customDarkTheme,
-      renderer: 'customized_zelos',
-      trashcan: false,
       zoom: {
         controls: false,
         wheel: true,

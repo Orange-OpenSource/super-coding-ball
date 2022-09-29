@@ -11,7 +11,7 @@
 
 import {Injectable} from '@angular/core';
 import * as Blockly from 'blockly';
-import {CustomizedZelosRenderer} from '../components/blockly/customizedZelosRenderer';
+import {BlocklyOptions} from 'blockly/core/blockly_options';
 import blockStyles from '../../assets/blocks/styles/blockStyles.json';
 import categoryStyles from '../../assets/blocks/styles/categoryStyles.json';
 import componentStyles from '../../assets/blocks/styles/componentStyles.json';
@@ -28,6 +28,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {OnlineService} from './online.service';
 import {LocalStorageService} from './local-storage.service';
 import {CustomCategory} from '../components/blockly/custom-category';
+import toolboxJson from '../../assets/blocks/toolbox.json';
 
 @Injectable({
   providedIn: 'root'
@@ -56,8 +57,7 @@ export class CodeService {
     // Initiated in the service because it can only be done once
     Blockly.defineBlocksWithJsonArray(blocksJson);
 
-    // Disable two beginners confusing contextual menu entries
-    Blockly.ContextMenuRegistry.registry.unregister('blockCollapseExpand');
+    // Disable contextual menu entry that enable/disable inlining (confusing for beginners)
     Blockly.ContextMenuRegistry.registry.unregister('blockInline');
 
     this.defineBlocksCodeGen();
@@ -78,8 +78,26 @@ export class CodeService {
       Blockly.ToolboxCategory.registrationName,
       CustomCategory,
       true);
+  }
 
-    CustomizedZelosRenderer.register();
+  static getBaseWorkspace(blocklyDiv: HTMLElement, options: BlocklyOptions): Blockly.WorkspaceSvg {
+    options.toolbox = toolboxJson;
+    options.comments = false;
+    options.collapse = false;
+    options.disable = false;
+    options.sounds = false;
+    options.maxInstances = {
+      event_ball_mine: 1,
+      event_ball_opponent: 1,
+      event_ball_teammate: 1,
+      event_ball_none: 1
+    };
+    options.renderer = 'zelos';
+    options.rendererOverrides = {
+      DUMMY_INPUT_MIN_HEIGHT: 0,
+      BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT: 0
+    };
+    return Blockly.inject(blocklyDiv, options);
   }
 
   static computeCode(xmlBlocks: Element): string {

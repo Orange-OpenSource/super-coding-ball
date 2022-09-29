@@ -120,25 +120,24 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
 
   setWorspaceForViewing(): void {
     const blocklyDiv = document.getElementById('blocklyDiv') as HTMLElement;
-    this.workspace = Blockly.inject(blocklyDiv, {
-      readOnly: true,
-      move: {
-        scrollbars: true,
-        drag: true,
-        wheel: false
-      },
-      theme: this.codeService.customTheme,
-      renderer: 'customized_zelos',
-      trashcan: false,
-      zoom: {
-        startScale: 0.6,
-        controls: false,
-        wheel: true,
-        pinch: true,
-        maxScale: 1,
-        minScale: 0.2
-      }
-    });
+    this.workspace = CodeService.getBaseWorkspace(blocklyDiv,
+      {
+        readOnly: true,
+        move: {
+          scrollbars: true,
+          drag: true,
+          wheel: false
+        },
+        theme: this.codeService.customTheme,
+        zoom: {
+          startScale: 0.6,
+          controls: false,
+          wheel: true,
+          pinch: true,
+          maxScale: 1,
+          minScale: 0.2
+        }
+      });
   }
 
   ngOnDestroy(): void {
