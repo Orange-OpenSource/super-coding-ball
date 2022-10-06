@@ -37,6 +37,7 @@
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },
+          "defaultConfiguration": "production",
           "configurations": {
             "production": {
               "fileReplacements": [
@@ -64,6 +65,14 @@
                   "maximumError": "4kb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
@@ -72,9 +81,13 @@
           "options": {
             "browserTarget": "super-coding-ball:build"
           },
+          "defaultConfiguration": "development",
           "configurations": {
             "production": {
               "browserTarget": "super-coding-ball:build:production"
+            },
+            "development": {
+              "browserTarget": "super-coding-ball:build:development"
             }
           }
         },

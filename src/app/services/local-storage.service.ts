@@ -16,10 +16,6 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class LocalStorageService {
-
-  constructor() {
-  }
-
   getTrackingDisabledStatus(): boolean {
     return localStorage.getItem('tracking-disabled') === 'true';
   }

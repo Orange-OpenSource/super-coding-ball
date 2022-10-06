@@ -84,7 +84,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
     this.goToStep(this._currentStep);
   }
 
-  private stepBlock?: Blockly.BlockSvg = undefined;
+  private stepBlock: Blockly.BlockSvg | null = null;
 
   constructor(
     public translate: TranslateService,
@@ -112,33 +112,32 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
         toArray(),
         concatMap(() => this.translate.get('HOW_TO_DEMO.' + this.steps[stepNumber].commentId)))
       .subscribe(comment => {
-        this.stepBlock = this.workspace.getBlockById(blockId) as Blockly.BlockSvg;
-        this.stepBlock.setCommentText(comment);
-        this.stepBlock.getCommentIcon().setVisible(true);
+        this.stepBlock = this.workspace.getBlockById(blockId);
+        this.stepBlock?.setCommentText(comment);
+        this.stepBlock?.getCommentIcon()?.setVisible(true);
       });
   }
 
   setWorspaceForViewing(): void {
     const blocklyDiv = document.getElementById('blocklyDiv') as HTMLElement;
-    this.workspace = Blockly.inject(blocklyDiv, {
-      readOnly: true,
-      move: {
-        scrollbars: true,
-        drag: true,
-        wheel: false
-      },
-      theme: this.codeService.customTheme,
-      renderer: 'customized_zelos',
-      trashcan: false,
-      zoom: {
-        startScale: 0.6,
-        controls: false,
-        wheel: true,
-        pinch: true,
-        maxScale: 1,
-        minScale: 0.2
-      }
-    });
+    this.workspace = CodeService.getBaseWorkspace(blocklyDiv,
+      {
+        readOnly: true,
+        move: {
+          scrollbars: true,
+          drag: true,
+          wheel: false
+        },
+        theme: this.codeService.customTheme,
+        zoom: {
+          startScale: 0.6,
+          controls: false,
+          wheel: true,
+          pinch: true,
+          maxScale: 1,
+          minScale: 0.2
+        }
+      });
   }
 
   ngOnDestroy(): void {

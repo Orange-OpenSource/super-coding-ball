@@ -32,40 +32,39 @@ export class HowtoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.shootWorkspace = this.setWorspaceForViewing('blocklyShootDiv');
-    this.loadAndZoomOut(this.shootWorkspace, 'howto-shoot');
-    this.passWorkspace = this.setWorspaceForViewing('blocklyPassDiv');
-    this.loadAndZoomOut(this.passWorkspace, 'howto-pass');
-    this.shootOrPassWorkspace = this.setWorspaceForViewing('blocklyShootOrPassDiv');
-    this.loadAndZoomOut(this.shootOrPassWorkspace, 'howto-shoot-or-pass');
+    this.shootWorkspace = this.getWorspaceForViewing('blocklyShootDiv');
+    this.loadStrategy(this.shootWorkspace, 'howto-shoot');
+    this.passWorkspace = this.getWorspaceForViewing('blocklyPassDiv');
+    this.loadStrategy(this.passWorkspace, 'howto-pass');
+    this.shootOrPassWorkspace = this.getWorspaceForViewing('blocklyShootOrPassDiv');
+    this.loadStrategy(this.shootOrPassWorkspace, 'howto-shoot-or-pass');
   }
 
-  setWorspaceForViewing(divId: string): WorkspaceSvg {
+  getWorspaceForViewing(divId: string): WorkspaceSvg {
     const blocklyDiv = document.getElementById(divId) as HTMLElement;
-    return Blockly.inject(blocklyDiv, {
-      readOnly: true,
-      move: {
-        scrollbars: true,
-        drag: false,
-        wheel: false
-      },
-      theme: this.codeService.customDarkTheme,
-      renderer: 'customized_zelos',
-      trashcan: false,
-      zoom: {
-        controls: false,
-        wheel: false,
-        pinch: false
-      }
-    });
+    return CodeService.getBaseWorkspace(
+      blocklyDiv,
+      {
+        readOnly: true,
+        move: {
+          scrollbars: {horizontal: false, vertical: true},
+          drag: false,
+          wheel: false
+        },
+        theme: this.codeService.customDarkTheme,
+        zoom: {
+          controls: false,
+          wheel: false,
+          pinch: false
+        }
+      });
   }
 
-  loadAndZoomOut(workspace: WorkspaceSvg, strategyId: string): void {
+  loadStrategy(workspace: WorkspaceSvg, strategyId: string): void {
     this.codeService.loadOppXmlBlocks(false, strategyId)
       .then(xmlBlocks => {
         Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(xmlBlocks), workspace);
         workspace.zoomToFit();
-        workspace.zoomCenter(-1);
       });
   }
 
