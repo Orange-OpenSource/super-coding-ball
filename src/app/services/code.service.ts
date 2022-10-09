@@ -161,26 +161,26 @@ ${javascriptGenerator.statementToCode(block, 'DO')}
     };
 
     javascriptGenerator.move = (block: Blockly.Block) => {
+      // target can't be empty because of shadow block
       const target = javascriptGenerator.statementToCode(block, 'NAME');
-      // Can't be empty because of shadow block
       return `game.move(player, ${target}, false);`;
     };
 
     javascriptGenerator.sprint = (block: Blockly.Block) => {
+      // target can't be empty because of shadow block
       const target = javascriptGenerator.statementToCode(block, 'NAME');
-      // Can't be empty because of shadow block
       return `game.move(player, ${target}, true);`;
     };
 
     javascriptGenerator.shoot = (block: Blockly.Block) => {
+      // target can't be empty because of shadow block
       const target = javascriptGenerator.statementToCode(block, 'NAME');
-      // Can't be empty because of shadow block
       return `game.shoot(player, ${target})`;
     };
 
     javascriptGenerator.player = (block: Blockly.Block) => {
+      // ref can't be empty because of shadow blocks
       const ref = javascriptGenerator.statementToCode(block, 'PLAYER_POS_REF');
-      // Can't be empty because of shadow blocks
       const isOwnTeam = block.getFieldValue('PLAYER_TEAM') === 'PLAYER_TEAM_OWN';
       let isAtkRole: boolean | null = null;
       if (block.getFieldValue('PLAYER_ROLE') === 'PLAYER_ROLE_ATK') {
@@ -219,28 +219,30 @@ ${javascriptGenerator.statementToCode(block, 'DO')}
     };
 
     javascriptGenerator.middle = (block: Blockly.Block) => {
+      // pos1 can't be empty because of shadow blocks
       const pos1 = javascriptGenerator.statementToCode(block, 'POS1');
+      // pos2 can't be empty because of shadow blocks
       const pos2 = javascriptGenerator.statementToCode(block, 'POS2');
-      // Can't be empty because of shadow blocks
       return `game.getMiddle(${pos1}, ${pos2})`;
     };
 
     javascriptGenerator.closest = (block: Blockly.Block) => {
+      // ref can't be empty because of shadow block
       const ref = javascriptGenerator.statementToCode(block, 'NAME');
-      // Can't be empty because of shadow block
       return [`game.isClosest(player, ${ref})`, 0];
     };
 
     javascriptGenerator.distance = (block: Blockly.Block) => {
+      // from can't be empty because of shadow blocks
       const from = javascriptGenerator.statementToCode(block, 'FROM');
+      // to can't be empty because of shadow blocks
       const to = javascriptGenerator.statementToCode(block, 'TO');
-      // Can't be empty because of shadow blocks
       return [`game.getDistance(${from}, ${to})`, 0];
     };
 
     javascriptGenerator.role_and_side = (block: Blockly.Block) => {
+      // player can't be empty because of shadow blocks
       const player = javascriptGenerator.statementToCode(block, 'PLAYER');
-      // Can't be empty because of shadow blocks
       let isAtkRole: boolean | null = null;
       if (block.getFieldValue('ROLE') === 'ROLE_ATK') {
         isAtkRole = true;
@@ -257,18 +259,21 @@ ${javascriptGenerator.statementToCode(block, 'DO')}
     };
 
     javascriptGenerator.place = (block: Blockly.Block) => {
+      // item can't be empty because of shadow block
       const item = javascriptGenerator.statementToCode(block, 'ITEM');
-      // Can't be empty because of shadow block
       return [`game.itemInGrid(!player.ownTeam,${item},${+block.getFieldValue('POS_COL')},${+block.getFieldValue('POS_ROW')})`, 0];
 
     };
 
     javascriptGenerator.energy = (block: Blockly.Block) => {
+      // player can't be empty because of shadow block
       const player = javascriptGenerator.statementToCode(block, 'NAME');
-      // Can't be empty because of shadow block
       return [`(${player} === null ? null : ${player}.energy)`, 0];
     };
 
+    // We can't use standard 'controls_ifelse' because an empty condition
+    // is interpreted as false, whereas we don't want any action when
+    // condition is empty or evaluated as null
     javascriptGenerator.custom_if = (block: Blockly.Block) => {
       const ifStatement = javascriptGenerator.valueToCode(block, 'IF', 0);
       const thenStatement = javascriptGenerator.statementToCode(block, 'THEN');
@@ -286,6 +291,9 @@ ${elseStatement}
       }
     };
 
+    // We can't use standard 'logic_compare' because an empty member
+    // is interpreted as 0, whereas we don't want any action when
+    // there is any empty member or a member evaluated as null
     javascriptGenerator.custom_compare = (block: Blockly.Block) => {
       const left = javascriptGenerator.valueToCode(block, 'LEFT', 0);
       const right = javascriptGenerator.valueToCode(block, 'RIGHT', 0);
