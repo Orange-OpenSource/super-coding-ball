@@ -75,6 +75,7 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
     }
     this.connectionStatusSubscription = this.onlineService.connectionStatusChanged.subscribe(
       status => {
+        this.loading = false;
         if (status === ConnectionStatus.Connected) {
           this.loadData();
         }

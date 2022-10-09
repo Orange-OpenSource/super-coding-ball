@@ -15,25 +15,17 @@
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0">
-  <button
-    class="btn btn-lg d-flex"
-    type="button"
-    ngbTooltip="{{'GLOBAL.BACK' | translate }}"
-    routerLink="/home">
-    <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24"/>
+  <button class="btn btn-lg d-flex" type="button" ngbTooltip="{{'GLOBAL.BACK' | translate }}" routerLink="/home">
+    <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24" />
   </button>
   <h4 class="m-0">{{"ONLINE.TITLE" | translate }}</h4>
   <div class="flex-grow-1 text-end">
-    <button
-      *ngIf="onlineService.connectionStatus === ConnectionStatus.Connected"
-      class="btn p-0 m-1 border border-dark rounded"
-      type="button"
-      ngbTooltip="{{'ONLINE.ACCOUNT' | translate }}"
-      onclick="this.blur()"
-      (click)="modalService.open(accountInfoContent)">
+    <button *ngIf="onlineService.connectionStatus === ConnectionStatus.Connected"
+      class="btn p-0 m-1 border border-dark rounded" type="button" ngbTooltip="{{'ONLINE.ACCOUNT' | translate }}"
+      onclick="this.blur()" (click)="modalService.open(accountInfoContent)">
       {{onlineService.userDisplay.displayName}}
       <img class="border border-dark rounded ms-1" height="40px"
-           src="{{onlineService.userDisplay.pictureUrl | anonPicturePipe}}">
+        src="{{onlineService.userDisplay.pictureUrl | anonPicturePipe}}">
     </button>
   </div>
 
@@ -41,28 +33,20 @@
 
 <div class="p-4 text-center" style="background-color: #ccffcc;">
   <div *ngIf="onlineService.connectionStatus === ConnectionStatus.Disconnected"
-       class="d-flex flex-column align-items-center">
+    class="d-flex flex-column align-items-center">
     <div class="col-sm-7 col-md-5 col-lg-3">
-      <button
-        class="btn btn-lg my-2 p-0 text-start bg-secondary w-100"
-        type="button"
+      <button class="btn btn-lg my-2 p-0 text-start bg-secondary w-100" type="button"
         (click)="modalService.open(guestInfoContent)">
         <img class="p-1" src="assets/icons/user-solid.png" width="48px" height="48px">
         <span class="p-2 text-white h6">{{'ONLINE.CONNECT_GUEST' | translate }}</span>
       </button>
-      <button
-        style="background-color: #5890FF"
-        class="btn btn-lg my-2 p-0 text-start w-100"
-        type="button"
-        (click)="onlineService.connectWithFacebook()">
+      <button style="background-color: #5890FF" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
+        (click)="loading=true;onlineService.connectWithFacebook()">
         <img src="assets/icons/f_logo_RGB-White.png" width="48px" height="48px">
         <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_FACEBOOK' | translate }}</span>
       </button>
-      <button
-        style="background-color: #4285F4"
-        class="btn btn-lg my-2 p-0 text-start w-100"
-        type="button"
-        (click)="onlineService.connectWithGoogle()">
+      <button style="background-color: #4285F4" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
+        (click)="loading=true;onlineService.connectWithGoogle()">
         <img src="assets/icons/btn_google_dark_normal.png" width="48px" height="48px">
         <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_GOOGLE' | translate }}</span>
       </button>
@@ -74,69 +58,58 @@
     <div class="col-sm-10 col-md-8 col-lg-6 border border-dark" style="margin: auto">
       <table class="table table-sm table-hover text-start">
         <thead class="table-dark">
-        <tr>
-          <th class="text-center" scope="col" colspan="5">
-            {{"ONLINE.RANKING" | translate }}
-            <button
-              class="btn btn-sm pt-0"
-              type="button"
-              onclick="this.blur()"
-              (click)="modalService.open(rankingInfoContent)">
-              <img src="../../../assets/icons/info-circle-solid-white.png" height="20" width="20"/>
-            </button>
-          </th>
-        </tr>
+          <tr>
+            <th class="text-center" scope="col" colspan="5">
+              {{"ONLINE.RANKING" | translate }}
+              <button class="btn btn-sm pt-0" type="button" onclick="this.blur()"
+                (click)="modalService.open(rankingInfoContent)">
+                <img src="../../../assets/icons/info-circle-solid-white.png" height="20" width="20" />
+              </button>
+            </th>
+          </tr>
         </thead>
         <tbody>
-        <td colspan="5">
-          <div class="input-group">
-            <input type="text" class="form-control bg-transparent" placeholder="..." [(ngModel)]="searchTerm">
-            <div class="input-group-text bg-transparent"><img src="assets/icons/search-solid.png" width="18px"></div>
-          </div>
-        </td>
-        <tr *ngFor="let opponent of filteredOpponents" (click)="play(opponent.webcomId)"
+          <td colspan="5">
+            <div class="input-group">
+              <input type="text" class="form-control bg-transparent" placeholder="..." [(ngModel)]="searchTerm">
+              <div class="input-group-text bg-transparent"><img src="assets/icons/search-solid.png" width="18px"></div>
+            </div>
+          </td>
+          <tr *ngFor="let opponent of filteredOpponents" (click)="play(opponent.webcomId)"
             [class.bg-secondary]="opponent.webcomId === onlineService.webcomId">
-          <td>
-            <button class="btn text-start px-0">
-              {{opponent.ranking}}
-            </button>
-          </td>
-          <td *ngIf="opponent.userDisplay" class="p-0">
-            <button class="btn text-start px-0">
-              <img
-                class="rounded border border-dark"
-                height="40px"
-                src="{{opponent.userDisplay.pictureUrl | anonPicturePipe}}">
-            </button>
-          </td>
-          <td>
-            <button class="btn text-start px-0">
-              {{opponent.userDisplay?.displayName}}
-            </button>
-          </td>
-          <td>
-            <button class="btn text-start px-0">
-              {{opponent.points}}{{"ONLINE.OPP_POINTS" | translate }}
-            </button>
-          </td>
-          <td>
-            <button *ngIf="opponent.webcomId !== onlineService.webcomId" class="btn px-0"
-                    [ngSwitch]="opponent.lastResult">
-              <img *ngSwitchCase="2"
-                   height="24px" width="24px"
-                   src="../../../assets/icons/trophy-solid-warning.png">
-              <img *ngSwitchCase="1"
-                   height="24px" width="24px"
-                   src="../../../assets/icons/trophy-solid-secondary.png">
-              <img *ngSwitchCase="0"
-                   height="24px" width="24px"
-                   src="../../../assets/icons/trophy-solid-danger.png">
-              <img *ngSwitchDefault class="team-not-won"
-                   height="24px" width="24px"
-                   src="../../../assets/icons/trophy-solid-secondary.png">
-            </button>
-          </td>
-        </tr>
+            <td>
+              <button class="btn text-start px-0">
+                {{opponent.ranking}}
+              </button>
+            </td>
+            <td *ngIf="opponent.userDisplay" class="p-0">
+              <button class="btn text-start px-0">
+                <img class="rounded border border-dark" height="40px"
+                  src="{{opponent.userDisplay.pictureUrl | anonPicturePipe}}">
+              </button>
+            </td>
+            <td>
+              <button class="btn text-start px-0">
+                {{opponent.userDisplay?.displayName}}
+              </button>
+            </td>
+            <td>
+              <button class="btn text-start px-0">
+                {{opponent.points}}{{"ONLINE.OPP_POINTS" | translate }}
+              </button>
+            </td>
+            <td>
+              <button *ngIf="opponent.webcomId !== onlineService.webcomId" class="btn px-0"
+                [ngSwitch]="opponent.lastResult">
+                <img *ngSwitchCase="2" height="24px" width="24px" src="../../../assets/icons/trophy-solid-warning.png">
+                <img *ngSwitchCase="1" height="24px" width="24px"
+                  src="../../../assets/icons/trophy-solid-secondary.png">
+                <img *ngSwitchCase="0" height="24px" width="24px" src="../../../assets/icons/trophy-solid-danger.png">
+                <img *ngSwitchDefault class="team-not-won" height="24px" width="24px"
+                  src="../../../assets/icons/trophy-solid-secondary.png">
+              </button>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -153,10 +126,7 @@
     <div class="w-100 d-flex justify-content-between align-items-center">
       <p *ngIf="onlineService.userDisplay.pictureUrl === null" [innerHTML]="'ONLINE.DISCONNECT_GUEST' | translate"></p>
       <p *ngIf="onlineService.userDisplay.pictureUrl !== null" [innerHTML]="'ONLINE.DISCONNECT_OTHER' | translate"></p>
-      <button
-        type="button"
-        class="btn btn-primary ms-1"
-        (click)="modal.close();onlineService.disconnect()">
+      <button type="button" class="btn btn-primary ms-1" (click)="modal.close();onlineService.disconnect()">
         {{"ONLINE.DISCONNECT_ACCOUNT" | translate }}
       </button>
     </div>
@@ -164,12 +134,10 @@
     <div class="w-100 d-flex justify-content-between align-items-center">
       <form class="form-floating">
         <input #currentNickname id="nickname" class="form-control" type="text"
-               value="{{onlineService.userDisplay.displayName}}">
+          value="{{onlineService.userDisplay.displayName}}">
         <label for="nickname">{{'ONLINE.NICKNAME_LIMIT' | translate}}</label>
       </form>
-      <button
-        type="button"
-        class="btn btn-warning ms-1"
+      <button type="button" class="btn btn-warning ms-1"
         (click)="modal.close();updateUserDisplayName(currentNickname.value)"
         [innerHTML]="'ONLINE.CHANGE_NICKNAME' | translate">
       </button>
@@ -179,29 +147,20 @@
     <div class="w-100 mt-2 d-flex justify-content-between align-items-center">
       <p class="me-2">
         <span [innerHTML]="'ONLINE.UPLOAD_TEXT' | translate "></span>
-        <button
-          class="btn btn-sm"
-          type="button"
-          (click)="uploadBlocks()">
-          <img src="../../../assets/icons/cloud-upload-alt-solid.png" height="24"/>
+        <button class="btn btn-sm" type="button" (click)="uploadBlocks()">
+          <img src="../../../assets/icons/cloud-upload-alt-solid.png" height="24" />
         </button>
       </p>
       <p class="ms-2">
         <span [innerHTML]="'ONLINE.DOWNLOAD_TEXT' | translate "></span>
-        <button
-          class="btn btn-sm"
-          type="button"
-          (click)="downloadBlocks()">
-          <img src="../../../assets/icons/cloud-download-alt-solid.png" height="24"/>
+        <button class="btn btn-sm" type="button" (click)="downloadBlocks()">
+          <img src="../../../assets/icons/cloud-download-alt-solid.png" height="24" />
         </button>
       </p>
     </div>
     <hr>
     <div class="w-100 text-center">
-      <button
-        type="button"
-        class="btn btn-danger"
-        (click)="modal.close();removeAccount()"
+      <button type="button" class="btn btn-danger" (click)="modal.close();removeAccount()"
         [innerHTML]="'ONLINE.DELETE_ACCOUNT' | translate">
       </button>
     </div>
@@ -236,16 +195,10 @@
     </p>
   </div>
   <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="modal.close(false)">
+    <button type="button" class="btn btn-secondary" (click)="modal.close(false)">
       {{"GLOBAL.CANCEL" | translate }}
     </button>
-    <button
-      type="button"
-      class="btn btn-primary"
-      (click)="modal.close(true)">
+    <button type="button" class="btn btn-primary" (click)="modal.close(true)">
       {{"GLOBAL.OK" | translate }}
     </button>
   </div>
@@ -260,16 +213,11 @@
     <p [innerHTML]="'ONLINE.GUEST_WARNING' | translate"></p>
   </div>
   <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="modal.close()">
+    <button type="button" class="btn btn-secondary" (click)="modal.close()">
       {{"GLOBAL.CANCEL" | translate }}
     </button>
-    <button
-      type="button"
-      class="btn btn-danger"
-      (click)="modal.close(); onlineService.connectAnonymously()">
+    <button type="button" class="btn btn-danger"
+      (click)="modal.close();loading=true;onlineService.connectAnonymously()">
       {{"GLOBAL.OK" | translate }}
     </button>
   </div>
@@ -284,16 +232,10 @@
     <p [innerHTML]="'ONLINE.DELETE_MODAL' | translate"></p>
   </div>
   <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="modal.close(false)">
+    <button type="button" class="btn btn-secondary" (click)="modal.close(false)">
       {{"GLOBAL.CANCEL" | translate }}
     </button>
-    <button
-      type="button"
-      class="btn btn-danger"
-      (click)="modal.close(true)">
+    <button type="button" class="btn btn-danger" (click)="modal.close(true)">
       {{"GLOBAL.OK" | translate }}
     </button>
   </div>
