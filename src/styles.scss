@@ -13,7 +13,7 @@ html, body {
 
 // Disable Bootstrap border around disabled buttons
 .btn:disabled, .btn.disabled, fieldset:disabled .btn {
-  border: 0;
+  border-color: transparent!important;
 }
 
 .team-not-won {
