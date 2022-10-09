@@ -42,7 +42,7 @@ export class HowtoComponent implements OnInit, OnDestroy {
 
   getWorspaceForViewing(divId: string): WorkspaceSvg {
     const blocklyDiv = document.getElementById(divId) as HTMLElement;
-    return CodeService.getBaseWorkspace(
+    return CodeService.getWorkspace(
       blocklyDiv,
       {
         readOnly: true,
@@ -61,9 +61,9 @@ export class HowtoComponent implements OnInit, OnDestroy {
   }
 
   loadStrategy(workspace: WorkspaceSvg, strategyId: string): void {
-    this.codeService.loadOppXmlBlocks(false, strategyId)
-      .then(xmlBlocks => {
-        Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(xmlBlocks), workspace);
+    this.codeService.loadOppBlocks(false, strategyId)
+      .then(blocks => {
+        this.codeService.loadBlocksInWorkspace(blocks, workspace)
         workspace.zoomToFit();
       });
   }

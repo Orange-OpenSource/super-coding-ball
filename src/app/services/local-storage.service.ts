@@ -24,7 +24,7 @@ export class LocalStorageService {
     localStorage.setItem('tracking-disabled', String(disabled));
   }
 
-  getLocalStrategies(): { id: string, won: boolean }[] {
+  getLocalStrategies(): {id: string, won: boolean}[] {
     return [
       'do-nothing',
       '1player-only',
@@ -44,13 +44,12 @@ export class LocalStorageService {
     return this.getLocalStrategies().filter(it => it.won).length >= 3;
   }
 
-  loadXmlBlocks(): string {
-    const ownTextBlocks = localStorage.getItem('savedBlocks') ||
-      '<xml xmlns="https://developers.google.com/blockly/xml" id="workspaceBlocks" style="display: none"></xml>';
+  loadBlocks(): string {
+    const ownTextBlocks = localStorage.getItem('savedBlocks') || '{}';
     return ownTextBlocks;
   }
 
-  saveXmlBlocks(savedBlocks: string): void {
+  saveBlocks(savedBlocks: string): void {
     if (!environment.production) {
       console.log(savedBlocks);
     }

@@ -11,7 +11,10 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js",
-          "/assets/**/*.(png|xml|json)"
+          "/assets/**/*.(png|json)",
+          "!/assets/howto/screenshot-fr.png",
+          "!/assets/howto/screenshot.png",
+          "!/assets/football-pitch.png"
         ]
       }
     },

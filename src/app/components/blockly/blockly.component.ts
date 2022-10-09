@@ -11,7 +11,6 @@
 
 import {AfterViewInit, Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 
-import toolboxJson from '../../../assets/blocks/toolbox.json';
 import * as Blockly from 'blockly';
 import '@blockly/field-slider';
 import {CodeService} from '../../services/code.service';
@@ -71,7 +70,7 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   setWorkspaceForEdition(): void {
     const blocklyDiv = document.getElementById('blocklyDiv') as HTMLElement;
-    this.workspace = CodeService.getBaseWorkspace(blocklyDiv, {
+    this.workspace = CodeService.getWorkspace(blocklyDiv, {
       move: {
         scrollbars: true,
         drag: true,
@@ -91,7 +90,7 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   setWorspaceForViewing(): void {
     const blocklyDiv = document.getElementById('blocklyDiv') as HTMLElement;
-    this.workspace = CodeService.getBaseWorkspace(blocklyDiv, {
+    this.workspace = CodeService.getWorkspace(blocklyDiv, {
       readOnly: true,
       move: {
         scrollbars: true,
@@ -126,8 +125,8 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
     // If game is launched, blocks are readonly and should not be saved
     // They have been saved before game launch
     if (!this.gameLaunched) {
-      const ownBlocks = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace));
-      this.localStorageService.saveXmlBlocks(ownBlocks);
+      const ownBlocks = this.codeService.getBlocksFromWorkspace(this.workspace);
+      this.localStorageService.saveBlocks(ownBlocks);
     }
     this.workspace.dispose();
     this.modalService.dismissAll();
@@ -135,8 +134,8 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   play(): void {
     if (this.workspace) {
-      const ownBlocks = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace));
-      this.localStorageService.saveXmlBlocks(ownBlocks);
+      const ownBlocks = this.codeService.getBlocksFromWorkspace(this.workspace);
+      this.localStorageService.saveBlocks(ownBlocks);
       if (this.isOnline) {
         this.onlineService.updateUserBlocks(ownBlocks)
           .subscribe();
@@ -173,8 +172,8 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   loadBlocksFromLocalStorage(): void {
     if (this.workspace) {
-      Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(this.codeService.loadOwnXmlBlocksFromLocalStorage()),
-        this.workspace);
+      const blocks = this.codeService.loadOwnBlocksFromLocalStorage();
+      this.codeService.loadBlocksInWorkspace(blocks, this.workspace);
       this.workspace.zoomToFit();
     }
   }
@@ -188,12 +187,12 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   loadOpp(): void {
-    this.codeService.loadOppXmlBlocks(
+    this.codeService.loadOppBlocks(
       this.router.url.includes('/online/'),
       this.route.snapshot.paramMap.get('id') ?? '')
-      .then(xmlBlocks => {
+      .then(blocks => {
         if (this.workspace) {
-          Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(xmlBlocks), this.workspace);
+          this.codeService.loadBlocksInWorkspace(blocks, this.workspace)
           this.workspace.zoomToFit();
         }
       });

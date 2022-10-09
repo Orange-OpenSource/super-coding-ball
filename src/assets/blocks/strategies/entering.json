@@ -1,0 +1,193 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "event_ball_none",
+        "id": "BOB~/P8P7npFt#RxS7TA",
+        "x": -57,
+        "y": 96,
+        "inputs": {
+          "DO": {
+            "block": {
+              "type": "custom_if",
+              "id": "W.f.I}X/Dn!_`s)3sJB:",
+              "inputs": {
+                "IF": {
+                  "block": {
+                    "type": "role_and_side",
+                    "id": "3,]YOzvIz!KWT?}p9x!i",
+                    "fields": {
+                      "ROLE": "ROLE_ATK",
+                      "SIDE": "SIDE_RIGHT"
+                    },
+                    "inputs": {
+                      "PLAYER": {
+                        "shadow": {
+                          "type": "myself",
+                          "id": "QAn+Tb{iJN:YCYN,2hM/"
+                        }
+                      }
+                    }
+                  }
+                },
+                "THEN": {
+                  "block": {
+                    "type": "sprint",
+                    "id": "Hw2JySrsOf1!ScvjUyY!",
+                    "inputs": {
+                      "NAME": {
+                        "shadow": {
+                          "type": "goal",
+                          "id": "rCz:XTiT#Ct,$awwm-_#",
+                          "fields": {
+                            "GOAL_TYPE": "GOAL_OPP"
+                          }
+                        },
+                        "block": {
+                          "type": "grid",
+                          "id": "+%wmv@a%O1xxZqxe*h[J",
+                          "fields": {
+                            "GRID_COL": "4",
+                            "GRID_ROW": "4"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "ELSE": {
+                  "block": {
+                    "type": "custom_if",
+                    "id": "dKpd+-u`+f.+$9;;#zWq",
+                    "inputs": {
+                      "IF": {
+                        "block": {
+                          "type": "role_and_side",
+                          "id": "+/v,TLX$Kr6zBS)EcQxV",
+                          "fields": {
+                            "ROLE": "ROLE_DFS",
+                            "SIDE": "SIDE_RIGHT"
+                          },
+                          "inputs": {
+                            "PLAYER": {
+                              "shadow": {
+                                "type": "myself",
+                                "id": "|aOnX%Qg[H%GVt4pLA`N"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "THEN": {
+                        "block": {
+                          "type": "sprint",
+                          "id": "wE6m`}G.qy2$=dh+Ks-n",
+                          "inputs": {
+                            "NAME": {
+                              "shadow": {
+                                "type": "goal",
+                                "id": "kEwAqq,=W){!m?Rs9L=D",
+                                "fields": {
+                                  "GOAL_TYPE": "GOAL_OPP"
+                                }
+                              },
+                              "block": {
+                                "type": "grid",
+                                "id": "Z!,Vj;!6a!muf48`,D{#",
+                                "fields": {
+                                  "GRID_COL": "4",
+                                  "GRID_ROW": "5"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "ELSE": {
+                        "block": {
+                          "type": "custom_if",
+                          "id": "SEwo%Ork)f=nj9G_;5O:",
+                          "inputs": {
+                            "IF": {
+                              "block": {
+                                "type": "role_and_side",
+                                "id": "LWErl-B:R-1/#L;Un=y2",
+                                "fields": {
+                                  "ROLE": "ROLE_ATK",
+                                  "SIDE": "SIDE_LEFT"
+                                },
+                                "inputs": {
+                                  "PLAYER": {
+                                    "shadow": {
+                                      "type": "myself",
+                                      "id": "bf0[ioMb[v1A#*wQ:=j2"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "THEN": {
+                              "block": {
+                                "type": "sprint",
+                                "id": "b]-fCQUx8SMnZMdV8Yrx",
+                                "inputs": {
+                                  "NAME": {
+                                    "shadow": {
+                                      "type": "goal",
+                                      "id": "x!6-L0%;,j`$gGWpGW6M",
+                                      "fields": {
+                                        "GOAL_TYPE": "GOAL_OPP"
+                                      }
+                                    },
+                                    "block": {
+                                      "type": "grid",
+                                      "id": "oblI|D/Ga6O:DSoAHjK$",
+                                      "fields": {
+                                        "GRID_COL": "2",
+                                        "GRID_ROW": "4"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "ELSE": {
+                              "block": {
+                                "type": "sprint",
+                                "id": "`eX63}vH3^_rwdrYS8*i",
+                                "inputs": {
+                                  "NAME": {
+                                    "shadow": {
+                                      "type": "goal",
+                                      "id": "]zWUKF7I,ZK%fXrUn!uu",
+                                      "fields": {
+                                        "GOAL_TYPE": "GOAL_OPP"
+                                      }
+                                    },
+                                    "block": {
+                                      "type": "grid",
+                                      "id": "1jCl5Y=V(GEyv._)/~Wa",
+                                      "fields": {
+                                        "GRID_COL": "2",
+                                        "GRID_ROW": "5"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

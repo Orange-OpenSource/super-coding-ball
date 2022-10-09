@@ -95,15 +95,14 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setWorspaceForViewing();
-    this.codeService.loadOppXmlBlocks(false, 'demo')
-      .then(xmlBlocks => {
-        Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(xmlBlocks), this.workspace);
+    this.codeService.loadOppBlocks(false, 'demo')
+      .then(blocks => {
+        this.codeService.loadBlocksInWorkspace(blocks, this.workspace)
         this.currentStep = 0;
       });
   }
 
   goToStep(stepNumber: number): void {
-    // @ts-ignore
     this.stepBlock?.setCommentText(null);
     this.stepBlock?.getCommentIcon()?.setVisible(false);
     const blockId = this.steps[stepNumber].blockId;
@@ -120,7 +119,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
 
   setWorspaceForViewing(): void {
     const blocklyDiv = document.getElementById('blocklyDiv') as HTMLElement;
-    this.workspace = CodeService.getBaseWorkspace(blocklyDiv,
+    this.workspace = CodeService.getWorkspace(blocklyDiv,
       {
         readOnly: true,
         move: {

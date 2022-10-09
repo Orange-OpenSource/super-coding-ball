@@ -1,0 +1,50 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "event_ball_mine",
+        "id": "!J#OdpYWY;04Ou*8~@CM",
+        "x": 10,
+        "y": 10,
+        "inputs": {
+          "DO": {
+            "block": {
+              "type": "shoot",
+              "id": "yr;uvg!KMGPSO*kD2,iT",
+              "inputs": {
+                "NAME": {
+                  "shadow": {
+                    "type": "goal",
+                    "id": "E^iKkB@jfad(BUg^OtyH",
+                    "fields": {
+                      "GOAL_TYPE": "GOAL_OPP"
+                    }
+                  },
+                  "block": {
+                    "type": "player",
+                    "id": "C82)*YT7+P@KE8Kzo#u[",
+                    "fields": {
+                      "PLAYER_TEAM": "PLAYER_TEAM_OWN",
+                      "PLAYER_ROLE": "PLAYER_ROLE_ALL",
+                      "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                      "PLAYER_POS": "PLAYER_POS_NEAR"
+                    },
+                    "inputs": {
+                      "PLAYER_POS_REF": {
+                        "shadow": {
+                          "type": "myself",
+                          "id": "T^:%M9PugXxj7v:y)1V."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -90,7 +90,7 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
 
   loadData(): void {
     this.loading = true;
-    this.onlineService.syncUserData(this.codeService.loadOwnXmlBlocksFromLocalStorage())
+    this.onlineService.syncUserData(this.codeService.loadOwnBlocksFromLocalStorage())
       .pipe(
         concatMap(() => this.onlineService.loadGamesAndRemoveOldOnes()),
         finalize(() => this.loading = false)
@@ -195,14 +195,14 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
   }
 
   uploadBlocks(): void {
-    this.onlineService.updateUserBlocks(this.codeService.loadOwnXmlBlocksFromLocalStorage())
+    this.onlineService.updateUserBlocks(this.codeService.loadOwnBlocksFromLocalStorage())
       .subscribe(() => this.modalService.dismissAll());
   }
 
   downloadBlocks(): void {
-    this.codeService.loadOwnXmlBlocksFromServer()
+    this.codeService.loadOwnBlocksFromServer()
       .then(blocks => {
-        this.localStorageService.saveXmlBlocks(blocks);
+        this.localStorageService.saveBlocks(blocks);
         this.modalService.dismissAll();
       });
   }

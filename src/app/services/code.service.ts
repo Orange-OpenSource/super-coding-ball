@@ -80,7 +80,7 @@ export class CodeService {
       true);
   }
 
-  static getBaseWorkspace(blocklyDiv: HTMLElement, options: BlocklyOptions): Blockly.WorkspaceSvg {
+  static getWorkspace(blocklyDiv: HTMLElement, options: BlocklyOptions): Blockly.WorkspaceSvg {
     type ConstantProviderKey = keyof Blockly.blockRendering.ConstantProvider;
     const DUMMY_INPUT_MIN_HEIGHT: ConstantProviderKey = "DUMMY_INPUT_MIN_HEIGHT";
     const BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT: ConstantProviderKey = "BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT";
@@ -96,7 +96,7 @@ export class CodeService {
       event_ball_teammate: 1,
       event_ball_none: 1
     };
-    options.renderer = 'zelos',
+    options.renderer = 'zelos';
     options.rendererOverrides = {};
     options.rendererOverrides[DUMMY_INPUT_MIN_HEIGHT] = 0;
     options.rendererOverrides[BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT] = 0;
@@ -104,38 +104,50 @@ export class CodeService {
     return Blockly.inject(blocklyDiv, options);
   }
 
-  static computeCode(xmlBlocks: Element): string {
+  computeCode(blocks: string): string {
     const workspace = new Blockly.Workspace();
-    Blockly.Xml.domToWorkspace(xmlBlocks, workspace);
+    this.loadBlocksInWorkspace(blocks, workspace);
     const code = javascriptGenerator.workspaceToCode(workspace);
     workspace.dispose();
     return code;
   }
 
-  loadOppCode(online: boolean, opponentId: string): Promise<string> {
-    return this.loadOppXmlBlocks(online, opponentId)
-      .then(blocks => CodeService.computeCode(Blockly.Xml.textToDom(blocks)));
+  loadBlocksInWorkspace(blocks: string, workspace: Blockly.Workspace) {
+    if (blocks.startsWith('{')) {
+      Blockly.serialization.workspaces.load(JSON.parse(blocks), workspace);
+    } else {
+      Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(blocks), workspace);
+    }
   }
 
-  loadOppXmlBlocks(online: boolean, opponentId: string): Promise<string> {
+  getBlocksFromWorkspace(workspace: Blockly.Workspace): string {
+    return JSON.stringify(Blockly.serialization.workspaces.save(workspace));
+  }
+
+  loadOppCode(online: boolean, opponentId: string): Promise<string> {
+    return this.loadOppBlocks(online, opponentId)
+      .then(blocks => this.computeCode(blocks));
+  }
+
+  loadOppBlocks(online: boolean, opponentId: string): Promise<string> {
     if (online) {
       return this.onlineService.loadUserBlocks(opponentId);
     } else {
-      const oppXmlFile = 'assets/blocks/strategies/' + opponentId + '.xml';
+      const oppXmlFile = 'assets/blocks/strategies/' + opponentId + '.json';
       return fetch(oppXmlFile)
         .then(response => response.text());
     }
   }
 
   loadOwnCode(): string {
-    return CodeService.computeCode(Blockly.Xml.textToDom(this.loadOwnXmlBlocksFromLocalStorage()));
+    return this.computeCode(this.loadOwnBlocksFromLocalStorage());
   }
 
-  loadOwnXmlBlocksFromLocalStorage(): string {
-    return this.localStorageService.loadXmlBlocks();
+  loadOwnBlocksFromLocalStorage(): string {
+    return this.localStorageService.loadBlocks();
   }
 
-  loadOwnXmlBlocksFromServer(): Promise<string> {
+  loadOwnBlocksFromServer(): Promise<string> {
     return this.onlineService.loadUserBlocks(this.onlineService.webcomId);
   }
 

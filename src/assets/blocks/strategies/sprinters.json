@@ -1,0 +1,1332 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "event_ball_mine",
+        "id": "zM}%h.|B|Xwk:IGl{EjC",
+        "x": 144,
+        "y": -190,
+        "inputs": {
+          "DO": {
+            "block": {
+              "type": "custom_if",
+              "id": "N|AhrB%eL0@SQ]U^v0o-",
+              "inputs": {
+                "IF": {
+                  "block": {
+                    "type": "custom_compare",
+                    "id": "%,-o|/;@2DJB$_L7u%0x",
+                    "fields": {
+                      "INEQUALITY": "LOWER"
+                    },
+                    "inputs": {
+                      "LEFT": {
+                        "block": {
+                          "type": "distance",
+                          "id": "T=!/gtK~Ms@`yWY}NhVQ",
+                          "inputs": {
+                            "FROM": {
+                              "shadow": {
+                                "type": "myself",
+                                "id": "1Td^LmIU_s/W{:G:JYn0"
+                              }
+                            },
+                            "TO": {
+                              "shadow": {
+                                "type": "goal",
+                                "id": "O6D*ch/CP!xo#!.ZWB]w",
+                                "fields": {
+                                  "GOAL_TYPE": "GOAL_OPP"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "RIGHT": {
+                        "shadow": {
+                          "type": "math_number",
+                          "id": "3UO`TGNxL7TnvgI$}|Ra",
+                          "fields": {
+                            "NUM": 150
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "THEN": {
+                  "block": {
+                    "type": "shoot",
+                    "id": "~T|#vA^VSVR;Pw01IBaw",
+                    "inputs": {
+                      "NAME": {
+                        "shadow": {
+                          "type": "goal",
+                          "id": "yMxJ/Nd6]+if(n:CrJ0R",
+                          "fields": {
+                            "GOAL_TYPE": "GOAL_OPP"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "ELSE": {
+                  "block": {
+                    "type": "custom_if",
+                    "id": "kC1y3B;|SKi;V0MIgNV7",
+                    "inputs": {
+                      "IF": {
+                        "block": {
+                          "type": "role_and_side",
+                          "id": "i1(`^a8;)HP#/,.UG6HX",
+                          "fields": {
+                            "ROLE": "ROLE_DFS",
+                            "SIDE": "SIDE_ALL"
+                          },
+                          "inputs": {
+                            "PLAYER": {
+                              "shadow": {
+                                "type": "myself",
+                                "id": "XvmRz7.](r8,ZJj@wh@1"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "THEN": {
+                        "block": {
+                          "type": "custom_if",
+                          "id": "yE=*8qe!$qFit^`D-!!4",
+                          "inputs": {
+                            "IF": {
+                              "block": {
+                                "type": "logic_operation",
+                                "id": "hTEMr3/bEZ~Geiw|Lal0",
+                                "fields": {
+                                  "OP": "OR"
+                                },
+                                "inputs": {
+                                  "A": {
+                                    "block": {
+                                      "type": "custom_compare",
+                                      "id": "yM7{bUcuNk(jenH-o%CG",
+                                      "fields": {
+                                        "INEQUALITY": "LOWER"
+                                      },
+                                      "inputs": {
+                                        "LEFT": {
+                                          "block": {
+                                            "type": "distance",
+                                            "id": "%ovr@4xvE?wlOB./Pm-H",
+                                            "inputs": {
+                                              "FROM": {
+                                                "shadow": {
+                                                  "type": "myself",
+                                                  "id": "%GYf~~?MegeJRsCl6)1q"
+                                                }
+                                              },
+                                              "TO": {
+                                                "shadow": {
+                                                  "type": "goal",
+                                                  "id": "EL}UiBbuXC`9F;F]*Cd6",
+                                                  "fields": {
+                                                    "GOAL_TYPE": "GOAL_OPP"
+                                                  }
+                                                },
+                                                "block": {
+                                                  "type": "player",
+                                                  "id": "0B+t7CTkn(^id+PN|vi.",
+                                                  "fields": {
+                                                    "PLAYER_TEAM": "PLAYER_TEAM_OWN",
+                                                    "PLAYER_ROLE": "PLAYER_ROLE_ATK",
+                                                    "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                                                    "PLAYER_POS": "PLAYER_POS_NEAR"
+                                                  },
+                                                  "inputs": {
+                                                    "PLAYER_POS_REF": {
+                                                      "shadow": {
+                                                        "type": "myself",
+                                                        "id": ",fbyXQ/)A`hAV-Si0qNj"
+                                                      },
+                                                      "block": {
+                                                        "type": "goal",
+                                                        "id": "yJfM+4uF`{@V*{{q^%|E",
+                                                        "fields": {
+                                                          "GOAL_TYPE": "GOAL_OPP"
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "RIGHT": {
+                                          "shadow": {
+                                            "type": "math_number",
+                                            "id": "QVQvwM/S{Y:czx{r:wnc",
+                                            "fields": {
+                                              "NUM": 200
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "B": {
+                                    "block": {
+                                      "type": "custom_compare",
+                                      "id": "7wQl9vY`RxdeJWo)^*iu",
+                                      "fields": {
+                                        "INEQUALITY": "LOWER"
+                                      },
+                                      "inputs": {
+                                        "LEFT": {
+                                          "block": {
+                                            "type": "energy",
+                                            "id": "r!rDuFz~boSL$ov_^RQ3",
+                                            "inputs": {
+                                              "NAME": {
+                                                "shadow": {
+                                                  "type": "myself",
+                                                  "id": "?=}se0f4wN$Jt%A:k_eL"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "RIGHT": {
+                                          "shadow": {
+                                            "type": "math_number",
+                                            "id": "bUve#MtEf,^RqS_+p=mH",
+                                            "fields": {
+                                              "NUM": 5
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "THEN": {
+                              "block": {
+                                "type": "shoot",
+                                "id": "`2!sLyPbaBK(2s!yKsnJ",
+                                "inputs": {
+                                  "NAME": {
+                                    "shadow": {
+                                      "type": "goal",
+                                      "id": "~^4FOz6~a8n6;u0Gg,bh",
+                                      "fields": {
+                                        "GOAL_TYPE": "GOAL_OPP"
+                                      }
+                                    },
+                                    "block": {
+                                      "type": "player",
+                                      "id": "1tBc5qp]`mtzDtQ^lZSz",
+                                      "fields": {
+                                        "PLAYER_TEAM": "PLAYER_TEAM_OWN",
+                                        "PLAYER_ROLE": "PLAYER_ROLE_ATK",
+                                        "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                                        "PLAYER_POS": "PLAYER_POS_NEAR"
+                                      },
+                                      "inputs": {
+                                        "PLAYER_POS_REF": {
+                                          "shadow": {
+                                            "type": "myself",
+                                            "id": "ZbV_(y`:Akf}:B}OkO92"
+                                          },
+                                          "block": {
+                                            "type": "goal",
+                                            "id": ".)id}?K@X@Ckr/kL-f.p",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "ELSE": {
+                              "block": {
+                                "type": "custom_if",
+                                "id": "5YVB7}*!h*ut2mWEzWF(",
+                                "inputs": {
+                                  "IF": {
+                                    "block": {
+                                      "type": "custom_compare",
+                                      "id": "tWB-qxv3%22v{$e;qWEw",
+                                      "fields": {
+                                        "INEQUALITY": "LOWER"
+                                      },
+                                      "inputs": {
+                                        "LEFT": {
+                                          "block": {
+                                            "type": "distance",
+                                            "id": "kA1D%e-e=R0Z$[,9qV;~",
+                                            "inputs": {
+                                              "FROM": {
+                                                "shadow": {
+                                                  "type": "myself",
+                                                  "id": "L)N6*O#HJO;$@j5VaMG:"
+                                                }
+                                              },
+                                              "TO": {
+                                                "shadow": {
+                                                  "type": "goal",
+                                                  "id": "c0NHgUTJ~HU6aAu%w^(|",
+                                                  "fields": {
+                                                    "GOAL_TYPE": "GOAL_OPP"
+                                                  }
+                                                },
+                                                "block": {
+                                                  "type": "player",
+                                                  "id": "e3X[kVd2+Q2lQ!dD8{52",
+                                                  "fields": {
+                                                    "PLAYER_TEAM": "PLAYER_TEAM_OPP",
+                                                    "PLAYER_ROLE": "PLAYER_ROLE_ALL",
+                                                    "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                                                    "PLAYER_POS": "PLAYER_POS_NEAR"
+                                                  },
+                                                  "inputs": {
+                                                    "PLAYER_POS_REF": {
+                                                      "shadow": {
+                                                        "type": "myself",
+                                                        "id": ".(A*pD_A=r:FI=/Zbyhf"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "RIGHT": {
+                                          "shadow": {
+                                            "type": "math_number",
+                                            "id": ".XofE]Q-s.}1TtGc:*Cw",
+                                            "fields": {
+                                              "NUM": 50
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "THEN": {
+                                    "block": {
+                                      "type": "sprint",
+                                      "id": "`+P!Y:Fni}4j2ZQtEsHO",
+                                      "inputs": {
+                                        "NAME": {
+                                          "shadow": {
+                                            "type": "goal",
+                                            "id": "B^{,x$cQEG6?=psc3D6@",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          },
+                                          "block": {
+                                            "type": "player",
+                                            "id": "XDmM@:Lu,~ps_h!aV4VU",
+                                            "fields": {
+                                              "PLAYER_TEAM": "PLAYER_TEAM_OWN",
+                                              "PLAYER_ROLE": "PLAYER_ROLE_ATK",
+                                              "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                                              "PLAYER_POS": "PLAYER_POS_NEAR"
+                                            },
+                                            "inputs": {
+                                              "PLAYER_POS_REF": {
+                                                "shadow": {
+                                                  "type": "myself",
+                                                  "id": "kQofKAATJfrVt-W.ib.`"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "ELSE": {
+                                    "block": {
+                                      "type": "move",
+                                      "id": "LotKJQ1@|}{-.FUf/jF`",
+                                      "inputs": {
+                                        "NAME": {
+                                          "shadow": {
+                                            "type": "goal",
+                                            "id": "|275]BoEfIC=B=31lD]X",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          },
+                                          "block": {
+                                            "type": "player",
+                                            "id": "htct8J`u%2+3O|res(p}",
+                                            "fields": {
+                                              "PLAYER_TEAM": "PLAYER_TEAM_OWN",
+                                              "PLAYER_ROLE": "PLAYER_ROLE_ATK",
+                                              "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                                              "PLAYER_POS": "PLAYER_POS_NEAR"
+                                            },
+                                            "inputs": {
+                                              "PLAYER_POS_REF": {
+                                                "shadow": {
+                                                  "type": "myself",
+                                                  "id": "dO!//Hv})a]reM~fTYM|"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "ELSE": {
+                        "block": {
+                          "type": "custom_if",
+                          "id": "UyjVo9WhQ:Xob#b)zC|x",
+                          "inputs": {
+                            "IF": {
+                              "block": {
+                                "type": "custom_compare",
+                                "id": "W?uAJ.=uS`X7u4Fu]jTH",
+                                "fields": {
+                                  "INEQUALITY": "LOWER"
+                                },
+                                "inputs": {
+                                  "LEFT": {
+                                    "block": {
+                                      "type": "energy",
+                                      "id": "]g^jW4^|@K/0UYJ4Sn$3",
+                                      "inputs": {
+                                        "NAME": {
+                                          "shadow": {
+                                            "type": "myself",
+                                            "id": "hff`-OEHJpXW+$($V_VE"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "RIGHT": {
+                                    "shadow": {
+                                      "type": "math_number",
+                                      "id": "]jEUINOh)r+w|nuCJ^}*",
+                                      "fields": {
+                                        "NUM": 10
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "THEN": {
+                              "block": {
+                                "type": "custom_if",
+                                "id": "-QIoQ=c`raIG33,u3D_o",
+                                "inputs": {
+                                  "IF": {
+                                    "block": {
+                                      "type": "custom_compare",
+                                      "id": "fF`Y]f3@^P8~#_}DY_d}",
+                                      "fields": {
+                                        "INEQUALITY": "LOWER"
+                                      },
+                                      "inputs": {
+                                        "LEFT": {
+                                          "block": {
+                                            "type": "distance",
+                                            "id": "JQm.UH@GxYTKju/5RotK",
+                                            "inputs": {
+                                              "FROM": {
+                                                "shadow": {
+                                                  "type": "myself",
+                                                  "id": "HYW-DkW7AH-{7gjcw2x("
+                                                },
+                                                "block": {
+                                                  "type": "player",
+                                                  "id": "yHkQ?]#C~3nMO9/KU[,^",
+                                                  "fields": {
+                                                    "PLAYER_TEAM": "PLAYER_TEAM_OWN",
+                                                    "PLAYER_ROLE": "PLAYER_ROLE_ATK",
+                                                    "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                                                    "PLAYER_POS": "PLAYER_POS_NEAR"
+                                                  },
+                                                  "inputs": {
+                                                    "PLAYER_POS_REF": {
+                                                      "shadow": {
+                                                        "type": "myself",
+                                                        "id": ",@qUV6D6`8SK[#1-Jm;@"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "TO": {
+                                                "shadow": {
+                                                  "type": "goal",
+                                                  "id": "XI.2)n)fpzNF4w~QT26p",
+                                                  "fields": {
+                                                    "GOAL_TYPE": "GOAL_OPP"
+                                                  }
+                                                },
+                                                "block": {
+                                                  "type": "player",
+                                                  "id": "z,DW1XDC*YS35@8MZ=xZ",
+                                                  "fields": {
+                                                    "PLAYER_TEAM": "PLAYER_TEAM_OPP",
+                                                    "PLAYER_ROLE": "PLAYER_ROLE_ALL",
+                                                    "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                                                    "PLAYER_POS": "PLAYER_POS_NEAR"
+                                                  },
+                                                  "inputs": {
+                                                    "PLAYER_POS_REF": {
+                                                      "shadow": {
+                                                        "type": "myself",
+                                                        "id": "f{5o#hi7UTxo.U4#@U!p"
+                                                      },
+                                                      "block": {
+                                                        "type": "player",
+                                                        "id": "_81V$@b2Xx|TQ$_AD(Nb",
+                                                        "fields": {
+                                                          "PLAYER_TEAM": "PLAYER_TEAM_OWN",
+                                                          "PLAYER_ROLE": "PLAYER_ROLE_ATK",
+                                                          "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                                                          "PLAYER_POS": "PLAYER_POS_NEAR"
+                                                        },
+                                                        "inputs": {
+                                                          "PLAYER_POS_REF": {
+                                                            "shadow": {
+                                                              "type": "myself",
+                                                              "id": "zGa0Dco]kR+(J^B.=r?o"
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "RIGHT": {
+                                          "shadow": {
+                                            "type": "math_number",
+                                            "id": "90Wv:8](IAIOV%xt5(dW",
+                                            "fields": {
+                                              "NUM": 50
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "THEN": {
+                                    "block": {
+                                      "type": "shoot",
+                                      "id": "|b::hm^|C7V?N%(#J[u3",
+                                      "inputs": {
+                                        "NAME": {
+                                          "shadow": {
+                                            "type": "goal",
+                                            "id": "q/WE%a|Pud*grp.?Jzd$",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "ELSE": {
+                                    "block": {
+                                      "type": "shoot",
+                                      "id": "]$4Iyg~{_Ppnreit`}[3",
+                                      "inputs": {
+                                        "NAME": {
+                                          "shadow": {
+                                            "type": "goal",
+                                            "id": "x0OcG7b9tiuJq(!)I-~m",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          },
+                                          "block": {
+                                            "type": "player",
+                                            "id": "$}.K`uTqLF:1n3c|00#V",
+                                            "fields": {
+                                              "PLAYER_TEAM": "PLAYER_TEAM_OWN",
+                                              "PLAYER_ROLE": "PLAYER_ROLE_ATK",
+                                              "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                                              "PLAYER_POS": "PLAYER_POS_NEAR"
+                                            },
+                                            "inputs": {
+                                              "PLAYER_POS_REF": {
+                                                "shadow": {
+                                                  "type": "myself",
+                                                  "id": ";b{K}pdwu{p7=Ak2IUH="
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "ELSE": {
+                              "block": {
+                                "type": "custom_if",
+                                "id": "ht1^SO`(x^5yJxc:ZBof",
+                                "inputs": {
+                                  "IF": {
+                                    "block": {
+                                      "type": "custom_compare",
+                                      "id": "(}^$dE/Iz+OQ_4o[ogny",
+                                      "fields": {
+                                        "INEQUALITY": "LOWER"
+                                      },
+                                      "inputs": {
+                                        "LEFT": {
+                                          "block": {
+                                            "type": "distance",
+                                            "id": "YSy{t9ml}rns2+Lk*q+o",
+                                            "inputs": {
+                                              "FROM": {
+                                                "shadow": {
+                                                  "type": "myself",
+                                                  "id": "?yGdU[!K%{2SrwEK(N4l"
+                                                }
+                                              },
+                                              "TO": {
+                                                "shadow": {
+                                                  "type": "goal",
+                                                  "id": "~RgKOu1;X4QwLuArDl}s",
+                                                  "fields": {
+                                                    "GOAL_TYPE": "GOAL_OPP"
+                                                  }
+                                                },
+                                                "block": {
+                                                  "type": "player",
+                                                  "id": "(3UOjTdq3zs_9/Qu90wH",
+                                                  "fields": {
+                                                    "PLAYER_TEAM": "PLAYER_TEAM_OPP",
+                                                    "PLAYER_ROLE": "PLAYER_ROLE_ALL",
+                                                    "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                                                    "PLAYER_POS": "PLAYER_POS_NEAR"
+                                                  },
+                                                  "inputs": {
+                                                    "PLAYER_POS_REF": {
+                                                      "shadow": {
+                                                        "type": "myself",
+                                                        "id": "EYm~v~?d[+1+;}a{-*[a"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "RIGHT": {
+                                          "shadow": {
+                                            "type": "math_number",
+                                            "id": "q21/~2tW+g2B,1+xOqIV",
+                                            "fields": {
+                                              "NUM": 50
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "THEN": {
+                                    "block": {
+                                      "type": "sprint",
+                                      "id": "^xSdsqsHJFeP%x$]!bQ%",
+                                      "inputs": {
+                                        "NAME": {
+                                          "shadow": {
+                                            "type": "goal",
+                                            "id": "**u1$rM=z$G[7TXrt,;N",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "ELSE": {
+                                    "block": {
+                                      "type": "move",
+                                      "id": "$}7GGr5?ucEq8|0~9K^M",
+                                      "inputs": {
+                                        "NAME": {
+                                          "shadow": {
+                                            "type": "goal",
+                                            "id": "*Gti%vPb6.,wI52:_#z}",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "event_ball_teammate",
+        "id": "ws%5#?/+p8o~`DlP$XbQ",
+        "x": 1457,
+        "y": -194,
+        "inputs": {
+          "DO": {
+            "block": {
+              "type": "custom_if",
+              "id": "+uv2`6j~zrfLLHDc;]NX",
+              "inputs": {
+                "IF": {
+                  "block": {
+                    "type": "role_and_side",
+                    "id": "_H7.Q_!xaCF4j^9zA#-]",
+                    "fields": {
+                      "ROLE": "ROLE_DFS",
+                      "SIDE": "SIDE_ALL"
+                    },
+                    "inputs": {
+                      "PLAYER": {
+                        "shadow": {
+                          "type": "myself",
+                          "id": "Edx,.aJ9]FR=buR.rqZ3"
+                        }
+                      }
+                    }
+                  }
+                },
+                "THEN": {
+                  "block": {
+                    "type": "move",
+                    "id": "W]x^LC}8-JVgKpnJhUo^",
+                    "inputs": {
+                      "NAME": {
+                        "shadow": {
+                          "type": "goal",
+                          "id": "tyQZvuzT[C4uJtR6/tq|",
+                          "fields": {
+                            "GOAL_TYPE": "GOAL_OPP"
+                          }
+                        },
+                        "block": {
+                          "type": "position",
+                          "id": "660-hDzfILb4x;g!CkqU"
+                        }
+                      }
+                    }
+                  }
+                },
+                "ELSE": {
+                  "block": {
+                    "type": "custom_if",
+                    "id": "6^z%`kz-=a_)8/n-A4nj",
+                    "inputs": {
+                      "IF": {
+                        "block": {
+                          "type": "role_and_side",
+                          "id": "8Luguvn~;H@?74[w8C~6",
+                          "fields": {
+                            "ROLE": "ROLE_ATK",
+                            "SIDE": "SIDE_ALL"
+                          },
+                          "inputs": {
+                            "PLAYER": {
+                              "shadow": {
+                                "type": "myself",
+                                "id": "/6F-kfucQjD]#k(qAn9F"
+                              },
+                              "block": {
+                                "type": "player",
+                                "id": "Q.ZcwqbMC,TB+ZQfTa1M",
+                                "fields": {
+                                  "PLAYER_TEAM": "PLAYER_TEAM_OWN",
+                                  "PLAYER_ROLE": "PLAYER_ROLE_ALL",
+                                  "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                                  "PLAYER_POS": "PLAYER_POS_NEAR"
+                                },
+                                "inputs": {
+                                  "PLAYER_POS_REF": {
+                                    "shadow": {
+                                      "type": "myself",
+                                      "id": "qcHjo4{!Z]h-nLsy(tYf"
+                                    },
+                                    "block": {
+                                      "type": "ball",
+                                      "id": "KP[TC@AIJRg,fcu*r%6o"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "THEN": {
+                        "block": {
+                          "type": "custom_if",
+                          "id": "{$ZDO2*GpDM[ANsjJc}9",
+                          "inputs": {
+                            "IF": {
+                              "block": {
+                                "type": "custom_compare",
+                                "id": "U$On(71ySJ0Lcgt?!_:?",
+                                "fields": {
+                                  "INEQUALITY": "LOWER"
+                                },
+                                "inputs": {
+                                  "LEFT": {
+                                    "block": {
+                                      "type": "distance",
+                                      "id": "@}c]R$Wg|_`HIBpd1:*o",
+                                      "inputs": {
+                                        "FROM": {
+                                          "shadow": {
+                                            "type": "myself",
+                                            "id": "2e.^R@=!6x!I^7`F@0tC"
+                                          },
+                                          "block": {
+                                            "type": "grid",
+                                            "id": "~?pSD=9=2wz5KI2qTsr8",
+                                            "fields": {
+                                              "GRID_COL": "2",
+                                              "GRID_ROW": "1"
+                                            }
+                                          }
+                                        },
+                                        "TO": {
+                                          "shadow": {
+                                            "type": "goal",
+                                            "id": "XWfWYcz_}}Coc]aoO[$x",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          },
+                                          "block": {
+                                            "type": "player",
+                                            "id": "?1ymb~KLj%U0n]V:?@Fp",
+                                            "fields": {
+                                              "PLAYER_TEAM": "PLAYER_TEAM_OPP",
+                                              "PLAYER_ROLE": "PLAYER_ROLE_ALL",
+                                              "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                                              "PLAYER_POS": "PLAYER_POS_NEAR"
+                                            },
+                                            "inputs": {
+                                              "PLAYER_POS_REF": {
+                                                "shadow": {
+                                                  "type": "myself",
+                                                  "id": "VMSZC.smV~xhBgUAhFSL"
+                                                },
+                                                "block": {
+                                                  "type": "grid",
+                                                  "id": "Ibe;9#:MO}fur($cS+BP",
+                                                  "fields": {
+                                                    "GRID_COL": "2",
+                                                    "GRID_ROW": "1"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "RIGHT": {
+                                    "shadow": {
+                                      "type": "math_number",
+                                      "id": "(!pLG:gsH/Dv+F^0QsCz",
+                                      "fields": {
+                                        "NUM": 50
+                                      }
+                                    },
+                                    "block": {
+                                      "type": "distance",
+                                      "id": "fbPKOIA3=Zqp%WBlK?QU",
+                                      "inputs": {
+                                        "FROM": {
+                                          "shadow": {
+                                            "type": "myself",
+                                            "id": "T.vcGwpz40@+}(+d6LB{"
+                                          },
+                                          "block": {
+                                            "type": "grid",
+                                            "id": "yo`a_*8wsVauvvrf]G+4",
+                                            "fields": {
+                                              "GRID_COL": "4",
+                                              "GRID_ROW": "1"
+                                            }
+                                          }
+                                        },
+                                        "TO": {
+                                          "shadow": {
+                                            "type": "goal",
+                                            "id": "i#sUhOa?K:J8{1b*SBmE",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          },
+                                          "block": {
+                                            "type": "player",
+                                            "id": "0e@8TXNOyIc5O$APB9+A",
+                                            "fields": {
+                                              "PLAYER_TEAM": "PLAYER_TEAM_OPP",
+                                              "PLAYER_ROLE": "PLAYER_ROLE_ALL",
+                                              "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                                              "PLAYER_POS": "PLAYER_POS_NEAR"
+                                            },
+                                            "inputs": {
+                                              "PLAYER_POS_REF": {
+                                                "shadow": {
+                                                  "type": "myself",
+                                                  "id": "[Ec:5*jdFIh55sCi5~@3"
+                                                },
+                                                "block": {
+                                                  "type": "grid",
+                                                  "id": "!`ge2Ly]O1cOL}dDO2`*",
+                                                  "fields": {
+                                                    "GRID_COL": "4",
+                                                    "GRID_ROW": "1"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "THEN": {
+                              "block": {
+                                "type": "move",
+                                "id": "q5rGbb_63teJ75Cx^SrN",
+                                "inputs": {
+                                  "NAME": {
+                                    "shadow": {
+                                      "type": "goal",
+                                      "id": "%Po0OCIl^HTCO10+Vkz.",
+                                      "fields": {
+                                        "GOAL_TYPE": "GOAL_OPP"
+                                      }
+                                    },
+                                    "block": {
+                                      "type": "grid",
+                                      "id": "A:e-GTC-p^]6e_$O|]v4",
+                                      "fields": {
+                                        "GRID_COL": "4",
+                                        "GRID_ROW": "1"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "ELSE": {
+                              "block": {
+                                "type": "move",
+                                "id": "L+=gjxPO9Mm;{2W,{o=v",
+                                "inputs": {
+                                  "NAME": {
+                                    "shadow": {
+                                      "type": "goal",
+                                      "id": "8/@tDqj6!oO9{h`gk2Fg",
+                                      "fields": {
+                                        "GOAL_TYPE": "GOAL_OPP"
+                                      }
+                                    },
+                                    "block": {
+                                      "type": "grid",
+                                      "id": "GX-H:Gwe/#N`-M@2/}!9",
+                                      "fields": {
+                                        "GRID_COL": "2",
+                                        "GRID_ROW": "1"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "ELSE": {
+                        "block": {
+                          "type": "move",
+                          "id": "kVKOVfh1L/!0aEOUMGko",
+                          "inputs": {
+                            "NAME": {
+                              "shadow": {
+                                "type": "goal",
+                                "id": "yX#F:emyuC=rI-^CZO.]",
+                                "fields": {
+                                  "GOAL_TYPE": "GOAL_OPP"
+                                }
+                              },
+                              "block": {
+                                "type": "position",
+                                "id": "#p!hTE8ZaTHC!)ur0xZ("
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "event_ball_opponent",
+        "id": "oB:tpNV)7ySsrT!{R[bY",
+        "x": 1453,
+        "y": 571,
+        "inputs": {
+          "DO": {
+            "block": {
+              "type": "custom_if",
+              "id": "G}r`)3q8ggU^C|-Aq4B!",
+              "inputs": {
+                "IF": {
+                  "block": {
+                    "type": "logic_operation",
+                    "id": "B}QYz.Dp~WJ7QHEm7ac(",
+                    "fields": {
+                      "OP": "OR"
+                    },
+                    "inputs": {
+                      "A": {
+                        "block": {
+                          "type": "role_and_side",
+                          "id": "Tl^Mb`o6#4#qTM~abRQf",
+                          "fields": {
+                            "ROLE": "ROLE_DFS",
+                            "SIDE": "SIDE_ALL"
+                          },
+                          "inputs": {
+                            "PLAYER": {
+                              "shadow": {
+                                "type": "myself",
+                                "id": "dGnPG$v*Y!6h0T^mar4l"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "B": {
+                        "block": {
+                          "type": "custom_compare",
+                          "id": "Nhq%hY1Fgfrt:63ftyEU",
+                          "fields": {
+                            "INEQUALITY": "LOWER"
+                          },
+                          "inputs": {
+                            "LEFT": {
+                              "block": {
+                                "type": "distance",
+                                "id": "Y`/#|2jS`W(i]7nTpW5%",
+                                "inputs": {
+                                  "FROM": {
+                                    "shadow": {
+                                      "type": "myself",
+                                      "id": ";wD2-Y!%|FTcf.U.yTJE"
+                                    }
+                                  },
+                                  "TO": {
+                                    "shadow": {
+                                      "type": "goal",
+                                      "id": ":zE8RoqqT#3`FQC(XsXA",
+                                      "fields": {
+                                        "GOAL_TYPE": "GOAL_OPP"
+                                      }
+                                    },
+                                    "block": {
+                                      "type": "ball",
+                                      "id": "f*.,QI::l.:;J4AGVctg"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "RIGHT": {
+                              "shadow": {
+                                "type": "math_number",
+                                "id": "XmZ]3=e!~TNo|//D#]y{",
+                                "fields": {
+                                  "NUM": 200
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "THEN": {
+                  "block": {
+                    "type": "move",
+                    "id": "1*4G]h[_QcDjnVu1pPaj",
+                    "inputs": {
+                      "NAME": {
+                        "shadow": {
+                          "type": "goal",
+                          "id": "RrlL6COUT@^(K`K2Q3CR",
+                          "fields": {
+                            "GOAL_TYPE": "GOAL_OPP"
+                          }
+                        },
+                        "block": {
+                          "type": "ball",
+                          "id": "u=T,Dn[gsPjhtFqHxC],"
+                        }
+                      }
+                    }
+                  }
+                },
+                "ELSE": {
+                  "block": {
+                    "type": "move",
+                    "id": ",nd3HXSfmzu,:7FZbb,a",
+                    "inputs": {
+                      "NAME": {
+                        "shadow": {
+                          "type": "goal",
+                          "id": "!jXXu.h29JJM%-sqtD]|",
+                          "fields": {
+                            "GOAL_TYPE": "GOAL_OPP"
+                          }
+                        },
+                        "block": {
+                          "type": "player",
+                          "id": ")Z,Q@6+#Xq=yp1++-gH[",
+                          "fields": {
+                            "PLAYER_TEAM": "PLAYER_TEAM_OPP",
+                            "PLAYER_ROLE": "PLAYER_ROLE_ALL",
+                            "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                            "PLAYER_POS": "PLAYER_POS_NEAR"
+                          },
+                          "inputs": {
+                            "PLAYER_POS_REF": {
+                              "shadow": {
+                                "type": "myself",
+                                "id": "am[P1bw%H4pKqVYb%~h9"
+                              },
+                              "block": {
+                                "type": "position",
+                                "id": "d!TS9L#W+Fp0$vb6oNDM"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "event_ball_none",
+        "id": "Sog::L:Jgn@dm~/5Zde6",
+        "x": 1463,
+        "y": 1004,
+        "inputs": {
+          "DO": {
+            "block": {
+              "type": "custom_if",
+              "id": "v(pjx5GedONRm(|3VnN8",
+              "inputs": {
+                "IF": {
+                  "block": {
+                    "type": "closest",
+                    "id": "N^2q]ZyUKn(,$_H{YrOK",
+                    "inputs": {
+                      "NAME": {
+                        "shadow": {
+                          "type": "ball",
+                          "id": "rn_G2)sIn[@1A)-IYd:d"
+                        }
+                      }
+                    }
+                  }
+                },
+                "THEN": {
+                  "block": {
+                    "type": "custom_if",
+                    "id": "E]T0u0$lVAe$m%y.!IJ0",
+                    "inputs": {
+                      "IF": {
+                        "block": {
+                          "type": "custom_compare",
+                          "id": "||Bd[H2a/@C:[A2C|,q;",
+                          "fields": {
+                            "INEQUALITY": "GREATER"
+                          },
+                          "inputs": {
+                            "LEFT": {
+                              "block": {
+                                "type": "energy",
+                                "id": "8bu8Q#nTk.Sx_0^0CPP*",
+                                "inputs": {
+                                  "NAME": {
+                                    "shadow": {
+                                      "type": "myself",
+                                      "id": "|zjOLC,)X)LOg$.^/.v`"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "RIGHT": {
+                              "shadow": {
+                                "type": "math_number",
+                                "id": "%OO=[$,~+5JgU5+f.D3:",
+                                "fields": {
+                                  "NUM": 45
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "THEN": {
+                        "block": {
+                          "type": "sprint",
+                          "id": "/oM+7I}UtX+lNT#Z%+iY",
+                          "inputs": {
+                            "NAME": {
+                              "shadow": {
+                                "type": "goal",
+                                "id": "[u=);!d3R0sE1MI8(iQ7",
+                                "fields": {
+                                  "GOAL_TYPE": "GOAL_OPP"
+                                }
+                              },
+                              "block": {
+                                "type": "ball",
+                                "id": "x2`5Ngw[xT6`/bJG;y,+"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "ELSE": {
+                        "block": {
+                          "type": "move",
+                          "id": "W|*+zqX~#%^(*mZY`{QN",
+                          "inputs": {
+                            "NAME": {
+                              "shadow": {
+                                "type": "goal",
+                                "id": "/-FDHytv|Q3x4NUQN_1R",
+                                "fields": {
+                                  "GOAL_TYPE": "GOAL_OPP"
+                                }
+                              },
+                              "block": {
+                                "type": "ball",
+                                "id": "!+,E]8]aYX}t,t(i^bX|"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "ELSE": {
+                  "block": {
+                    "type": "move",
+                    "id": "-Ej`~]eGR6+$dHcYDTMg",
+                    "inputs": {
+                      "NAME": {
+                        "shadow": {
+                          "type": "goal",
+                          "id": "UpvQ${3XVRz/KDwUEKZ3",
+                          "fields": {
+                            "GOAL_TYPE": "GOAL_OPP"
+                          }
+                        },
+                        "block": {
+                          "type": "player",
+                          "id": "JoqjH=]%40*DN5o$bO(F",
+                          "fields": {
+                            "PLAYER_TEAM": "PLAYER_TEAM_OPP",
+                            "PLAYER_ROLE": "PLAYER_ROLE_ALL",
+                            "PLAYER_SIDE": "PLAYER_SIDE_ALL",
+                            "PLAYER_POS": "PLAYER_POS_NEAR"
+                          },
+                          "inputs": {
+                            "PLAYER_POS_REF": {
+                              "shadow": {
+                                "type": "myself",
+                                "id": "hi9+`ogfo)P{JS(ju!]o"
+                              },
+                              "block": {
+                                "type": "position",
+                                "id": "VABDw6k(][rVG/4IS3IF"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

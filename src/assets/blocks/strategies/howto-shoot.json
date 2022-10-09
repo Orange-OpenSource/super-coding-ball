@@ -1,0 +1,32 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "event_ball_mine",
+        "id": "!J#OdpYWY;04Ou*8~@CM",
+        "x": 10,
+        "y": 10,
+        "inputs": {
+          "DO": {
+            "block": {
+              "type": "shoot",
+              "id": "yr;uvg!KMGPSO*kD2,iT",
+              "inputs": {
+                "NAME": {
+                  "shadow": {
+                    "type": "goal",
+                    "id": "E^iKkB@jfad(BUg^OtyH",
+                    "fields": {
+                      "GOAL_TYPE": "GOAL_OPP"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}
