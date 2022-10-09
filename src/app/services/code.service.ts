@@ -81,6 +81,10 @@ export class CodeService {
   }
 
   static getBaseWorkspace(blocklyDiv: HTMLElement, options: BlocklyOptions): Blockly.WorkspaceSvg {
+    type ConstantProviderKey = keyof Blockly.blockRendering.ConstantProvider;
+    const DUMMY_INPUT_MIN_HEIGHT: ConstantProviderKey = "DUMMY_INPUT_MIN_HEIGHT";
+    const BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT: ConstantProviderKey = "BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT";
+
     options.toolbox = toolboxJson;
     options.comments = false;
     options.collapse = false;
@@ -92,11 +96,11 @@ export class CodeService {
       event_ball_teammate: 1,
       event_ball_none: 1
     };
-    options.renderer = 'zelos';
-    options.rendererOverrides = {
-      DUMMY_INPUT_MIN_HEIGHT: 0,
-      BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT: 0
-    };
+    options.renderer = 'zelos',
+    options.rendererOverrides = {};
+    options.rendererOverrides[DUMMY_INPUT_MIN_HEIGHT] = 0;
+    options.rendererOverrides[BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT] = 0;
+
     return Blockly.inject(blocklyDiv, options);
   }
 
