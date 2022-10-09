@@ -11,7 +11,12 @@ html, body {
   image-rendering: crisp-edges;
 }
 
-.team-not-won{
+// Disable Bootstrap border around disabled buttons
+.btn:disabled, .btn.disabled, fieldset:disabled .btn {
+  border: 0;
+}
+
+.team-not-won {
   opacity: 0.2;
 }
 
@@ -51,6 +56,7 @@ html, body {
   flex-direction: column;
   align-items: center;
 }
+
 .blocklyTreeRow {
   height: initial;
 }
