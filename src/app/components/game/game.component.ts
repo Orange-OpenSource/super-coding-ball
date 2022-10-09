@@ -192,7 +192,7 @@ export class GameComponent implements OnInit, OnDestroy {
       this.lastTimeout = 0;
     }
     // If launched immediately, the popup is empty on mobile
-    this.lastTimeout = setTimeout(() => {
+    this.lastTimeout = window.setTimeout(() => {
       this.modalService.open(this.kickOffContent, {size: 'sm'}).result.then(
         () => this.kickOff(),
         () => this.kickOff());
@@ -304,22 +304,22 @@ export class GameComponent implements OnInit, OnDestroy {
     this.ownTeamWillStart = true;
     this.modalService.open(this.stopGameContent, {size: 'sm'})
       .result.then((stopValidated: boolean) => {
-      if (stopValidated) {
-        if (this.lastTimeout !== 0) {
-          clearTimeout(this.lastTimeout);
-          this.lastTimeout = 0;
-        }
+        if (stopValidated) {
+          if (this.lastTimeout !== 0) {
+            clearTimeout(this.lastTimeout);
+            this.lastTimeout = 0;
+          }
 
-        this.periodType = PeriodType.BeforeFirstPeriod;
-        this.gamePaused = true;
-        this.gameTime = 0;
-        this.gameTimeDisplayed = '00';
-        this.oppScore = 0;
-        this.ownScore = 0;
-        this.positionPlayersAndBallBeforeKickOff();
-        this.gameLaunchedChange.emit(false);
-      }
-    });
+          this.periodType = PeriodType.BeforeFirstPeriod;
+          this.gamePaused = true;
+          this.gameTime = 0;
+          this.gameTimeDisplayed = '00';
+          this.oppScore = 0;
+          this.ownScore = 0;
+          this.positionPlayersAndBallBeforeKickOff();
+          this.gameLaunchedChange.emit(false);
+        }
+      });
   }
 
   backToCodeEdition(): void {
@@ -349,7 +349,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.drawSprites();
   }
 
-// See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#Never_use_eval!
+  // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#Never_use_eval!
   private executePlayerCode(player: Player): void {
     let code: string;
     if (player.state === PlayerState.Entering) {
@@ -696,9 +696,9 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private itemInGrid(invertCoord: boolean,
-                     item: SpriteCoord | Player,
-                     col: 0 | 1 | 2 | 3 | 4 | 5,
-                     row: 0 | 1 | 2 | 3 | 4 | 5): boolean | null {
+    item: SpriteCoord | Player,
+    col: 0 | 1 | 2 | 3 | 4 | 5,
+    row: 0 | 1 | 2 | 3 | 4 | 5): boolean | null {
     if (item === null) {
       return null;
     }
@@ -725,11 +725,11 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private getPlayer(player: Player,
-                    isOwnTeam: boolean,
-                    isAtkRole: boolean | null,
-                    isRightSide: boolean | null,
-                    isNear: boolean,
-                    posRef: SpriteCoord | Player): Player | null {
+    isOwnTeam: boolean,
+    isAtkRole: boolean | null,
+    isRightSide: boolean | null,
+    isNear: boolean,
+    posRef: SpriteCoord | Player): Player | null {
     const roleSideAndTeamFiltered = this.players
       .filter(it => isAtkRole === null || isAtkRole === it.isAtkRole)
       .filter(it => isRightSide === null || isRightSide === it.isRightSide)
@@ -791,8 +791,3 @@ export class GameComponent implements OnInit, OnDestroy {
     return input instanceof Player ? input.coord : input;
   }
 }
-
-
-
-
-

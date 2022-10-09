@@ -14,200 +14,198 @@ import * as Webcom from 'webcom/webcom.js';
 import {AllGames, ConnectionStatus, DayAndGames, User, UserDisplay} from '../models/webcom-models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {concatMap, filter, map, toArray} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
-import {fromArray} from 'rxjs/internal/observable/fromArray';
+import {firstValueFrom, Observable, of, from} from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class OnlineService implements OnDestroy {
-  webcomRef = new Webcom('super-coding-ball');
-  connectionStatusChanged = new EventEmitter<ConnectionStatus>();
-  private _connectionStatus = ConnectionStatus.Unknown;
+    webcomRef = new Webcom('super-coding-ball');
+    connectionStatusChanged = new EventEmitter<ConnectionStatus>();
+    private _connectionStatus = ConnectionStatus.Unknown;
 
-  get connectionStatus(): ConnectionStatus {
-    return this._connectionStatus;
-  }
-
-  set connectionStatus(status: ConnectionStatus) {
-    if (this._connectionStatus !== status) {
-      this.connectionStatusChanged.emit(status);
+    get connectionStatus(): ConnectionStatus {
+        return this._connectionStatus;
     }
-    this._connectionStatus = status;
-  }
 
-  authCallback: any;
-  webcomId = '';
-  authHeadersOption: { headers: HttpHeaders } = {headers: new HttpHeaders()};
-  webcomDisplayName = '';
-  userDisplay = new UserDisplay();
-  webcomBaseUrl = 'https://io.datasync.orange.com/datasync/v2/super-coding-ball/data';
-  webcomUsersUrl = `${this.webcomBaseUrl}/users`;
-  webcomGamesUrl = `${this.webcomBaseUrl}/games`;
-
-  constructor(private http: HttpClient) {
-    this.authCallback = (error: any, auth: any) => {
-      if (error) {
-        this.deleteCredentials();
-        this.connectionStatus = ConnectionStatus.Disconnected;
-        switch (error.code) {
-          case 'INVALID_CREDENTIALS':
-            console.log('The email or password is incorrect.');
-            break;
-          case 'PROVIDER_DISABLED':
-            console.log('The email/password method is disabled in the application. It must be enabled in the Webcom developer console.');
-            break;
-          default:
-            console.log('An unexpected error occurs, please retry and contact your administrator.', error);
+    set connectionStatus(status: ConnectionStatus) {
+        if (this._connectionStatus !== status) {
+            this.connectionStatusChanged.emit(status);
         }
-      } else {
-        if (auth?.provider) {
-          this.parseAuthInfo(auth);
-        } else {
-          console.log('Authentication failed', auth);
-          this.deleteCredentials();
-          this.connectionStatus = ConnectionStatus.Disconnected;
+        this._connectionStatus = status;
+    }
+
+    authCallback: any;
+    webcomId = '';
+    authHeadersOption: {headers: HttpHeaders} = {headers: new HttpHeaders()};
+    webcomDisplayName = '';
+    userDisplay = new UserDisplay();
+    webcomBaseUrl = 'https://io.datasync.orange.com/datasync/v2/super-coding-ball/data';
+    webcomUsersUrl = `${this.webcomBaseUrl}/users`;
+    webcomGamesUrl = `${this.webcomBaseUrl}/games`;
+
+    constructor(private http: HttpClient) {
+        this.authCallback = (error: any, auth: any) => {
+            if (error) {
+                this.deleteCredentials();
+                this.connectionStatus = ConnectionStatus.Disconnected;
+                switch (error.code) {
+                    case 'INVALID_CREDENTIALS':
+                        console.log('The email or password is incorrect.');
+                        break;
+                    case 'PROVIDER_DISABLED':
+                        console.log('The email/password method is disabled in the application. It must be enabled in the Webcom developer console.');
+                        break;
+                    default:
+                        console.log('An unexpected error occurs, please retry and contact your administrator.', error);
+                }
+            } else {
+                if (auth?.provider) {
+                    this.parseAuthInfo(auth);
+                } else {
+                    console.log('Authentication failed', auth);
+                    this.deleteCredentials();
+                    this.connectionStatus = ConnectionStatus.Disconnected;
+                }
+            }
+        };
+
+        if (!!this.webcomRef.authenticator.currentState) {
+            this.authCallback(null, this.webcomRef.authenticator.currentState.details);
         }
-      }
-    };
-
-    if (!!this.webcomRef.authenticator.currentState) {
-      this.authCallback(null, this.webcomRef.authenticator.currentState.details);
+        this.webcomRef.addAuthCallback(this.authCallback);
     }
-    this.webcomRef.addAuthCallback(this.authCallback);
-  }
 
-  static getUtcTimestamp(timestamp: number): number {
-    const localDateLocalMidnight = new Date(timestamp);
-    localDateLocalMidnight.setHours(0, 0, 0, 0);
-    const localDateUtcMidnight = new Date();
-    localDateUtcMidnight.setUTCFullYear(localDateLocalMidnight.getFullYear());
-    localDateUtcMidnight.setUTCMonth(localDateLocalMidnight.getMonth());
-    localDateUtcMidnight.setUTCDate(localDateLocalMidnight.getDate());
-    localDateUtcMidnight.setUTCHours(0, 0, 0, 0);
-    return localDateUtcMidnight.getTime();
-  }
-
-  private deleteCredentials(): void {
-    this.userDisplay = new UserDisplay();
-    this.webcomId = '';
-    this.authHeadersOption = {headers: new HttpHeaders()};
-  }
-
-  private parseAuthInfo(auth: any): void {
-    if (auth.provider === 'facebook') {
-      console.log('Facebook authentication succeeded', auth);
-      this.webcomDisplayName = auth.displayName;
-      this.userDisplay.pictureUrl = `https://graph.facebook.com/v10.0/${auth.providerProfile.id}/picture`;
-    } else if (auth?.provider === 'google') {
-      console.log('Google authentication succeeded', auth);
-      this.webcomDisplayName = auth.displayName;
-      this.userDisplay.pictureUrl = auth.providerProfile.picture;
-    } else if (auth.provider === 'anonymous') {
-      console.log('Anonymous authentication succeeded', auth);
-      this.webcomDisplayName = 'Team-' + auth.uid.substr(0, 4);
+    static getUtcTimestamp(timestamp: number): number {
+        const localDateLocalMidnight = new Date(timestamp);
+        localDateLocalMidnight.setHours(0, 0, 0, 0);
+        const localDateUtcMidnight = new Date();
+        localDateUtcMidnight.setUTCFullYear(localDateLocalMidnight.getFullYear());
+        localDateUtcMidnight.setUTCMonth(localDateLocalMidnight.getMonth());
+        localDateUtcMidnight.setUTCDate(localDateLocalMidnight.getDate());
+        localDateUtcMidnight.setUTCHours(0, 0, 0, 0);
+        return localDateUtcMidnight.getTime();
     }
-    this.webcomId = auth.uid;
-    this.authHeadersOption = {headers: new HttpHeaders().set('Authorization', 'Bearer ' + auth.webcomAuthToken)};
-    this.connectionStatus = ConnectionStatus.Connected;
-  }
 
-  ngOnDestroy(): void {
-    this.webcomRef.removeAuthCallback(this.authCallback);
-  }
+    private deleteCredentials(): void {
+        this.userDisplay = new UserDisplay();
+        this.webcomId = '';
+        this.authHeadersOption = {headers: new HttpHeaders()};
+    }
 
-  public connectAnonymously(): void {
-    this.webcomRef.authAnonymously();
-  }
+    private parseAuthInfo(auth: any): void {
+        if (auth.provider === 'facebook') {
+            console.log('Facebook authentication succeeded', auth);
+            this.webcomDisplayName = auth.displayName;
+            this.userDisplay.pictureUrl = `https://graph.facebook.com/v10.0/${auth.providerProfile.id}/picture`;
+        } else if (auth?.provider === 'google') {
+            console.log('Google authentication succeeded', auth);
+            this.webcomDisplayName = auth.displayName;
+            this.userDisplay.pictureUrl = auth.providerProfile.picture;
+        } else if (auth.provider === 'anonymous') {
+            console.log('Anonymous authentication succeeded', auth);
+            this.webcomDisplayName = 'Team-' + auth.uid.substr(0, 4);
+        }
+        this.webcomId = auth.uid;
+        this.authHeadersOption = {headers: new HttpHeaders().set('Authorization', 'Bearer ' + auth.webcomAuthToken)};
+        this.connectionStatus = ConnectionStatus.Connected;
+    }
 
-  public connectWithFacebook(): void {
-    this.webcomRef.authWithOAuth('facebook', {mode: 'redirect', scope: 'public_profile'});
-  }
+    ngOnDestroy(): void {
+        this.webcomRef.removeAuthCallback(this.authCallback);
+    }
 
-  public connectWithGoogle(): void {
-    this.webcomRef.authWithOAuth('google', {mode: 'redirect', scope: 'profile'});
-  }
+    public connectAnonymously(): void {
+        this.webcomRef.authAnonymously();
+    }
 
-  public disconnect(): void {
-    this.webcomRef.logout();
-  }
+    public connectWithFacebook(): void {
+        this.webcomRef.authWithOAuth('facebook', {mode: 'redirect', scope: 'public_profile'});
+    }
 
-  public removeAccount(): Observable<any> {
-    return this.http.delete(`${this.webcomUsersUrl}/${this.webcomId}`, this.authHeadersOption)
-      .pipe(
-        concatMap(() => fromArray(Array.from(Array<number>(15).keys()))),
-        map(pastDayCount => OnlineService.getUtcTimestamp(Date.now() - pastDayCount * 1000 * 60 * 60 * 24)),
-        concatMap(pastDayTimestamp =>
-          this.http.delete(`${this.webcomGamesUrl}/${pastDayTimestamp}/${this.webcomId}`, this.authHeadersOption))
-      );
-  }
+    public connectWithGoogle(): void {
+        this.webcomRef.authWithOAuth('google', {mode: 'redirect', scope: 'profile'});
+    }
 
-  syncUserData(blocks: string): Observable<any> {
-    return this.getAndCreateUserIfNeeded(blocks)
-      .pipe(concatMap(() => this.refreshUserDisplayInDailyGames()));
-  }
+    public disconnect(): void {
+        this.webcomRef.logout();
+    }
 
-  private getAndCreateUserIfNeeded(blocks: string): Observable<any> {
-    return this.http.get<User | null>(`${this.webcomUsersUrl}/${this.webcomId}`, this.authHeadersOption)
-      .pipe(
-        concatMap(currentUser => {
-          if (!!currentUser?.displayName) {
-            this.userDisplay.fullDisplayName = currentUser.displayName;
-          } else {
-            this.userDisplay.fullDisplayName = this.webcomDisplayName;
-          }
-          if (!currentUser?.blocks) {
-            return this.updateUserBlocks(blocks);
-          } else {
-            return of(true);
-          }
-        }));
-  }
+    public removeAccount(): Observable<any> {
+        return this.http.delete(`${this.webcomUsersUrl}/${this.webcomId}`, this.authHeadersOption)
+            .pipe(
+                concatMap(() => from(Array.from(Array<number>(15).keys()))),
+                map(pastDayCount => OnlineService.getUtcTimestamp(Date.now() - pastDayCount * 1000 * 60 * 60 * 24)),
+                concatMap(pastDayTimestamp =>
+                    this.http.delete(`${this.webcomGamesUrl}/${pastDayTimestamp}/${this.webcomId}`, this.authHeadersOption))
+            );
+    }
 
-  updateUserDisplayName(displayName: string): Observable<any> {
-    return this.http.patch(`${this.webcomUsersUrl}/${this.webcomId}`, {displayName}, this.authHeadersOption);
-  }
+    syncUserData(blocks: string): Observable<any> {
+        return this.getAndCreateUserIfNeeded(blocks)
+            .pipe(concatMap(() => this.refreshUserDisplayInDailyGames()));
+    }
 
-  updateUserBlocks(blocks: string): Observable<any> {
-    return this.http.patch(`${this.webcomUsersUrl}/${this.webcomId}`, {blocks}, this.authHeadersOption);
-  }
+    private getAndCreateUserIfNeeded(blocks: string): Observable<any> {
+        return this.http.get<User | null>(`${this.webcomUsersUrl}/${this.webcomId}`, this.authHeadersOption)
+            .pipe(
+                concatMap(currentUser => {
+                    if (!!currentUser?.displayName) {
+                        this.userDisplay.fullDisplayName = currentUser.displayName;
+                    } else {
+                        this.userDisplay.fullDisplayName = this.webcomDisplayName;
+                    }
+                    if (!currentUser?.blocks) {
+                        return this.updateUserBlocks(blocks);
+                    } else {
+                        return of(true);
+                    }
+                }));
+    }
 
-  private refreshUserDisplayInDailyGames(): Observable<any> {
-    const dateString = OnlineService.getUtcTimestamp(Date.now());
-    return this.http.put<UserDisplay>(`${this.webcomGamesUrl}/${dateString}/${this.webcomId}/userDisplay`,
-      this.userDisplay, this.authHeadersOption);
-  }
+    updateUserDisplayName(displayName: string): Observable<any> {
+        return this.http.patch(`${this.webcomUsersUrl}/${this.webcomId}`, {displayName}, this.authHeadersOption);
+    }
 
-  loadGamesAndRemoveOldOnes(): Observable<DayAndGames[]> {
-    return this.http.get<AllGames>(`${this.webcomGamesUrl}`, this.authHeadersOption)
-      .pipe(
-        concatMap(allGames =>
-          fromArray(Object.keys(allGames)
-            .map(dayTimestamp => ({dayTimestamp, games: allGames[dayTimestamp]})))
-        ),
-        concatMap((dayAndGames: DayAndGames) => {
-          if (+dayAndGames.dayTimestamp < Date.now() - 15 * 1000 * 60 * 60 * 24) {
-            return this.deleteDay(dayAndGames.dayTimestamp).pipe(map(() => null));
-          } else {
-            return of(dayAndGames);
-          }
-        }),
-        filter((dayAndGames: DayAndGames | null): dayAndGames is DayAndGames => dayAndGames !== null),
-        toArray()
-      );
-  }
+    updateUserBlocks(blocks: string): Observable<any> {
+        return this.http.patch(`${this.webcomUsersUrl}/${this.webcomId}`, {blocks}, this.authHeadersOption);
+    }
 
-  deleteDay(dayTimestamp: string): Observable<any> {
-    return this.http.delete<any>(`${this.webcomGamesUrl}/${dayTimestamp}`, this.authHeadersOption);
-  }
+    private refreshUserDisplayInDailyGames(): Observable<any> {
+        const dateString = OnlineService.getUtcTimestamp(Date.now());
+        return this.http.put<UserDisplay>(`${this.webcomGamesUrl}/${dateString}/${this.webcomId}/userDisplay`,
+            this.userDisplay, this.authHeadersOption);
+    }
 
-  loadUserBlocks(userId: string): Promise<string> {
-    return this.http.get<string>(`${this.webcomUsersUrl}/${userId}/blocks`, this.authHeadersOption)
-      .toPromise();
-  }
+    loadGamesAndRemoveOldOnes(): Observable<DayAndGames[]> {
+        return this.http.get<AllGames>(`${this.webcomGamesUrl}`, this.authHeadersOption)
+            .pipe(
+                concatMap(allGames =>
+                    from(Object.keys(allGames)
+                        .map(dayTimestamp => ({dayTimestamp, games: allGames[dayTimestamp]})))
+                ),
+                concatMap((dayAndGames: DayAndGames) => {
+                    if (+dayAndGames.dayTimestamp < Date.now() - 15 * 1000 * 60 * 60 * 24) {
+                        return this.deleteDay(dayAndGames.dayTimestamp).pipe(map(() => null));
+                    } else {
+                        return of(dayAndGames);
+                    }
+                }),
+                filter((dayAndGames: DayAndGames | null): dayAndGames is DayAndGames => dayAndGames !== null),
+                toArray()
+            );
+    }
 
-  setGameResult(opponentId: string, points: number): Observable<any> {
-    const today = OnlineService.getUtcTimestamp(Date.now());
-    return this.http.put(`${this.webcomGamesUrl}/${today}/${this.webcomId}/dailyGames/${opponentId}`, points, this.authHeadersOption);
-  }
+    deleteDay(dayTimestamp: string): Observable<any> {
+        return this.http.delete<any>(`${this.webcomGamesUrl}/${dayTimestamp}`, this.authHeadersOption);
+    }
+
+    loadUserBlocks(userId: string): Promise<string> {
+        return firstValueFrom(this.http.get<string>(`${this.webcomUsersUrl}/${userId}/blocks`, this.authHeadersOption));
+    }
+
+    setGameResult(opponentId: string, points: number): Observable<any> {
+        const today = OnlineService.getUtcTimestamp(Date.now());
+        return this.http.put(`${this.webcomGamesUrl}/${today}/${this.webcomId}/dailyGames/${opponentId}`, points, this.authHeadersOption);
+    }
 }

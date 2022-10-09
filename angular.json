@@ -113,5 +113,7 @@
       }
     }
   },
-  "defaultProject": "super-coding-ball"
+  "cli": {
+    "analytics": false
+  }
 }
