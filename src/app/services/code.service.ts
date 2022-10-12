@@ -59,6 +59,8 @@ export class CodeService {
 
     // Disable contextual menu entry that enable/disable inlining (confusing for beginners)
     Blockly.ContextMenuRegistry.registry.unregister('blockInline');
+    // Disable contextual menu entry with 'help' (otherwise enabled on standard blocks)
+    Blockly.ContextMenuRegistry.registry.unregister('blockHelp');
 
     this.defineBlocksCodeGen();
 
@@ -133,8 +135,8 @@ export class CodeService {
     if (online) {
       return this.onlineService.loadUserBlocks(opponentId);
     } else {
-      const oppXmlFile = 'assets/blocks/strategies/' + opponentId + '.json';
-      return fetch(oppXmlFile)
+      const oppJsonFile = 'assets/blocks/strategies/' + opponentId + '.json';
+      return fetch(oppJsonFile)
         .then(response => response.text());
     }
   }
