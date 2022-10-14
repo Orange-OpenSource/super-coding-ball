@@ -20,6 +20,8 @@ import blocksJson from '../../assets/blocks/blocks.json';
 import {javascriptGenerator} from 'blockly/javascript';
 import * as Fr from 'blockly/msg/fr';
 import * as CustomFr from '../../assets/i18n/fr.json';
+import * as Es from 'blockly/msg/es';
+import * as CustomEs from '../../assets/i18n/es.json';
 import * as Ru from 'blockly/msg/ru';
 import * as CustomRu from '../../assets/i18n/ru.json';
 import * as En from 'blockly/msg/en';
@@ -67,6 +69,9 @@ export class CodeService {
     if (this.translate.currentLang === 'fr') {
       Blockly.setLocale(Fr);
       Blockly.setLocale((CustomFr as any).default.BLOCKS);
+    } else if (this.translate.currentLang === 'es') {
+      Blockly.setLocale(Es);
+      Blockly.setLocale((CustomEs as any).default.BLOCKS);
     } else if (this.translate.currentLang === 'ru') {
       Blockly.setLocale(Ru);
       Blockly.setLocale((CustomRu as any).default.BLOCKS);

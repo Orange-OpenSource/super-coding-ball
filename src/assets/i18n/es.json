@@ -1,0 +1,172 @@
+{
+  "BLOCKS": {
+    "EVENTS": "Eventos",
+    "CONTROLS": "Controles",
+    "ACTIONS": "Acciones",
+    "POSITIONS": "Posiciones",
+    "ADVANCED": "Avanzado",
+    "WHEN_HAVE_BALL": "Cuando tengo el balón %1 %2",
+    "WHEN_TEAMMATE_HAS_BALL": "Cuando un compañero tiene el balón %1 %2",
+    "WHEN_OPPONENT_HAS_BALL": "Cuando un adversario tiene el balón %1 %2",
+    "WHEN_NOONE_HAS_BALL": "Cuando nadie tiene el balón %1 %2",
+    "CUSTOM_IF": "si %1 entonces %2 y si no, %3",
+    "I_AM_CLOSEST_TO": "soy el más cercano a %1",
+    "ROLE_AND_SIDE": "%1 está %2 al lado %3",
+    "ATTACKER": "delantero",
+    "DEFENDER": "defensa",
+    "ALL": "todos",
+    "RIGHT": "derecha",
+    "LEFT": "izquierda",
+    "PLACE_COL_LINE": "%1 está en col %2 y línea %3",
+    "ENERGY_OF": "energía de %1",
+    "DISTANCE_BETWEEN": "distancia entre %1 y %2",
+    "SHOOT_TO": "tirar hacia %1",
+    "GO_TO": "correr hacia %1",
+    "SPRINT_TO": "hacer sprint hacia %1",
+    "PLAYER": "%1 %2 rol %3 lado %4 %5 %6 %7",
+    "TEAMMATE": "compañero de equipo",
+    "OPPONENT": "contrincante",
+    "NEAR": "cerca de",
+    "FAR": "loin de",
+    "MYSELF": "yo mismo",
+    "BALL": "balón",
+    "OPPONENTS_GOAL": "gol del contrincante",
+    "OUR_GOAL": "gol nuestro",
+    "MY_TARGET_POSITION": "mi posición objetivo",
+    "MIDDLE_BETWEEN": "en medio entre %1 y %2"
+  },
+  "GLOBAL": {
+    "OK": "Ok",
+    "CANCEL": "Cancelar",
+    "BACK": "Retorno",
+    "WARNING": "Atención",
+    "SORRY": "Lo siento..."
+  },
+  "UPDATE": {
+    "MESSAGE": "Una nueva versión está disponible!<br><br>Quieres descargarla ahora?"
+  },
+  "HOME": {
+    "MOTTO": "Explora el código gracias al fútbol!",
+    "BUTTON_PLAY_OFFLINE": "Jugar contre el ordenador",
+    "BUTTON_PLAY_ONLINE": "Jugar en línea!",
+    "BUTTON_HOW_TO": "¿Como jugar?",
+    "BUTTON_ABOUT": "Acerca de...",
+    "CONNECTION_WARNING": "¡Debes estar conectado a Internet para jugar en línea!",
+    "STRONG_ENOUGH_WARNING": "¡Debes haber vencido al menos 3 veces al ordenador para poder jugar en línea!"
+  },
+  "HOW_TO": {
+    "TITLE": "¿Como jugar?",
+    "GOAL": "SuperCodingBall es un juego de fútbol donde los jugadores no saben nada y tú debes decirles qué hacer!",
+    "RULES": "Las reglas del juego son simples:<ul><li>El balón no puede salir del terreno de juego</li><li>No hay fuera de juego</li><li>La energía de un jugador comienza en 100 y disminuye cuando hace sprint o cuando lo empujan</li><li>Un jugador sin energía cae y pierde el balón!</li></ul>",
+    "BLOCK": "Para definir tu estrategia vas a decir a tus jugadores <strong>a cada momento</strong> la acción que deben hacer.<br>Por ejemploe, si quieres que tus jugadores tiren a puerta desde que tengan el balón hay que elegir:<br>",
+    "PARAMETER": "Puedes cambiar los parámetros de ciertos bloques.<br>Por ejemplo reemplazando este bloque rosa, puedes pedir a tus jugadore que pasen el balón a su compañero más cercano, en cuanto tengan el balón:<br>",
+    "CONDITION": "Finalmente puedes añadir condiciones para mejorar tus estrategias!<br>Por ejemplo, puedes escoger una de las dos acciones precedentes, según la distance entre tus jugadores y la portería adversa:<br>",
+    "DISCOVER": "Ahora te toca jugar a tí y descubrir el resto!",
+    "DEMO": "También puedes analizar una estrategía completa pulsando aquí"
+  },
+  "HOW_TO_DEMO": {
+    "TITLE": "Ejemplo de estrategia",
+    "OPP_HAS_BALL": "Cuando el contrincante tiene el balón,\ntodos los jugadores corren hacia el balón\npara recuperarlo",
+    "OWN_HAS_BALL": "Cuando el compañero de equipo tiene el balón,\nlos otros jugadores vuelven a sus puestos\n(delante para los delanteros,\natrás para los defensas)",
+    "NOONE_HAS_BALL": "Cuando nadie tiene el balón,\nsólo el jugador más cercano va a buscarlo.\nLos otros se quedan en sus puestos",
+    "CONDITION_NEAR": "Para esto, se usa esta condición",
+    "BALL_MINE": "Cuando uno de nuestros jugadores tiene el balón,\nqueremos saber si está cerca de un contrincante...",
+    "CONDITION_COMPARISON": "Para esto se usa una condición para comparar...",
+    "PARAM_DISTANCE": "Su distancia al contrincante más cercano...",
+    "PARAM_VALUE": "Y el valor 50",
+    "TEAMMATE": "En caso de peligro, se pasa el balón\nal compañero más cercano a la portería del contrincante",
+    "RUN_TOWARDS_GOAL": "Si no, se corre hacia el contrincante"
+  },
+  "ABOUT": {
+    "TITLE": "Acerca de...",
+    "IDEA": "La idea de SuperCodingBall es mostrarte varios conceptos de programación (instrucciones, parámetros, eventos, condiciones) sin complicaciones:)",
+    "SCRATCH": "Si te ha gustado y quieres aprender más sobre progamación, visita rápido <a href=\"https://scratch.mit.edu\">Scratch</a>.<br>Es un sitio increíble que te permite crear tus propias historias y juegos con bloques de código!",
+    "BLOCKLY": "En SuperCodingBall, puedes manipular bloques como en Scratch gracias a  <a href=\"https://developers.google.com/blockly\">Blockly</a>!",
+    "OPENSOURCE": "SuperCodingBall es un proyecto Open Source, visita el <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">código fuente en GitHub</a>.",
+    "LEGAL": "Conoce las <a href='/legal'>condiciones legales</a>, las <a href='/terms'>condiciones generales de utilización</a> y la <a href=\"/privacy\">nota sobre datos personales</a>.",
+    "CONTACT": "Contacto:"
+  },
+  "LEGAL": {
+    "TITLE": "Menciones legales",
+    "OPENSOURCE_TITLE": "Software de terceros"
+  },
+  "PRIVACY": {
+    "TITLE": "Nota sobre datos personales",
+    "DISABLE_TRACKING": "Desactivar el segiumiento de actividad anónimo"
+  },
+  "TERMS": {
+    "TITLE": "Condiciones generales de utilización del servicio SuperCodingBall"
+  },
+  "OFFLINE": {
+    "TITLE": "Jugar contra el ordenador",
+    "STRATEGY": "Estrategia del contrincante",
+    "WON": "Ganaste?",
+    "STRATEGIES": {
+      "DO-NOTHING": "No hacen nada!",
+      "1PLAYER-ONLY": "Sólo un jugador se mueve",
+      "ALL-DEFENDERS": "Todos los jugadores a la defensa",
+      "DEFENDERS-PASS-TO-ATTACKERS": "Los defensas interceptan y pasan a los delanteros",
+      "ONLY-PASSES": "Sólo hacen pases y tiros a puerta",
+      "3ATTACKERS": "3 delanteros",
+      "COLUMN": "Todos los jugadores de la columna central",
+      "SPRINTERS": "Hacen sprint para atrapar el balón"
+    }
+  },
+  "ONLINE": {
+    "TITLE": "Jugar en línea",
+    "CONNECT_GUEST": "Conexión como invitado",
+    "GUEST_WARNING": "Si te conectas como invitado, puedes jugar como los otros, pero no tendrás imagen de perfil.<br><br>No podrás encontrar tu cuenta en otro dispositivo, y si te desconectas tu clasificación se perderá!",
+    "CONNECT_WITH_FACEBOOK": "Conexión con Facebook",
+    "CONNECT_WITH_GOOGLE": "Conexión con Google",
+    "PERSONAL_RANK": "Tu clasificación actual:",
+    "RANKING": "Clasificación de los últimos 15 días",
+    "OPP_POINTS": " puntos",
+    "RANKING_POPUP": {
+      "TITLE": "Información de la clasificación",
+      "CONTENT": "La clasificación muestra los jugadores conectados desde los últimos 15 días.<br><br>Todos los días, puedes jugar contra cada contrincante y marcar:<br>{{won}} 2 puntos por victoria,<br>{{draw}} 1 punto por empate,<br>{{lost}} 0 puntos por una derrota.<br><br>(puedes repetir el partido para mejorar tu puntuación)<br><br>Si abandonas un partido en curso, será considerado como derrota!"
+    },
+    "REPLAY": {
+      "HEADER": "Ya has jugado este partido hoy ",
+      "LOST": "(habías perdido).",
+      "DRAW": "(habías empatado).",
+      "WON": "(habías ganado).",
+      "IMPROVE": "Intentas mejorar tu puntuación?",
+      "RISK": "Te arriesgas a perder si vuelves a jugar?"
+    },
+    "ACCOUNT": "Cuenta",
+    "DISCONNECT_GUEST": "Si te desconectas, perderás tu cuenta de invitado!",
+    "DISCONNECT_OTHER": "Desconéctate si quieres usar otra cuenta",
+    "NICKNAME_LIMIT": "20 caracteres max",
+    "CHANGE_NICKNAME": "Cambiar mi nombre de usuario",
+    "DISCONNECT_ACCOUNT": "Desconectarme",
+    "SYNC_TEXT": "Tus bloques serán exportados automáticamenete cada vez que lances un partido en línea.",
+    "UPLOAD_TEXT": "Si quieres exportar tus bloques sin lanzar un partido, pulsa aquí:",
+    "DOWNLOAD_TEXT": "Si quieres importar tus bloques (por ejemplo si has modificado tu estrategia en otro dispositivo) pulsa aquí:",
+    "DELETE_ACCOUNT": "Suprimir mi cuenta definitivamente",
+    "DELETE_MODAL": "¿Estás seguro de que quieres suprimir tu cuenta??"
+  },
+  "BLOCKLY": {
+    "FIELD_POPUP": {
+      "TOOLTIP": "Vista previa del campo",
+      "TITLE": "Vista previa del campo con la posición de cada jugador"
+    },
+    "DELETE": "Borrar todos mis bloques",
+    "DELETE_WARNING": "¿Estás seguro de que quieres suprimir todos tus bloques!?",
+    "UNDO": "Cancelar",
+    "REDO": "Rehacer",
+    "COPY_OPPONENT": "Copiar la estrategia del contrincante",
+    "VALIDATE_BLOCKS": "Validar mi estrategia"
+  },
+  "GAME": {
+    "STOP": "Parar el partido",
+    "STOP_MODAL": "¿Quieres parar el partido?",
+    "GAME_ACCELERATED": "Acelerado",
+    "KICK_OFF": "¡Vamos!",
+    "CLICK_ANYWHERE": "(pulsa en cualquier lugar)",
+    "HALF_TIME": "Descanso",
+    "GOAL": "Gol!",
+    "YOU_WON": "Has ganado!!!",
+    "DRAW": "Empate!",
+    "YOU_LOST": "Has perdido\u00A0:("
+  }
+}
