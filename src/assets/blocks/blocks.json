@@ -6,8 +6,7 @@
       {
         "type": "input_value",
         "name": "IF",
-        "check": "Boolean",
-        "align": "RIGHT"
+        "check": "Boolean"
       },
       {
         "type": "input_statement",

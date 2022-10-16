@@ -7,7 +7,7 @@
     <statement name="INPUTS">
       <block type="input_value" id="=J9n,Vxl:g`t$0e{n+8c">
         <field name="INPUTNAME">IF</field>
-        <field name="ALIGN">RIGHT</field>
+        <field name="ALIGN">LEFT</field>
         <statement name="FIELDS">
           <block type="field_static" id="9a9tUVz@gEX=b|OQ:qJ%">
             <field name="TEXT">si</field>
