@@ -544,10 +544,6 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private move(player: Player, target: SpriteCoord | Player, isSprinting: boolean): void {
-    if (target === null) {
-      return;
-    }
-
     const targetCoord = this.getSpritePosition(target);
     // When entering, stop on target and greet
     if (player.state === PlayerState.Entering && this.computeDistance(player.coord, targetCoord) < 2) {
@@ -592,7 +588,7 @@ export class GameComponent implements OnInit, OnDestroy {
     }
     const closestOpp = this.getPlayer(player, false, null, null, true, player.coord);
     // If all opponents are falling, no collision to avoid
-    if (!closestOpp) {
+    if (closestOpp.state === PlayerState.Falling) {
       return directAngle;
     }
     const closestOppDistance = this.computeDistance(player.coord, closestOpp.coord);
@@ -617,35 +613,41 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private shoot(player: Player, target: SpriteCoord | Player): void {
-    if (target === null) {
-      return;
-    }
-
     if (this.ball.owner !== player) {
       return;
     }
+
     // When player just received ball, he can't make a pass yet
     if (this.ball.owningTime < 5) {
       return;
     }
+
+    // Don't pass the ball to a falling player
+    if (target instanceof Player && target.state == PlayerState.Falling) {
+      return;
+    }
+
     const targetCoord = this.getSpritePosition(target);
     // Don't shoot at player own position
     if (this.computeDistance(player.coord, targetCoord) === 0) {
       return;
     }
     const perfectAngle = this.computeAngle(player.coord, targetCoord);
-    // Add error margin
+    // Add angle error
     const randomizedAngle = perfectAngle + shotAngleErrorMargin / 90 * Math.PI * (Math.random() - 0.5);
     this.ball.angle = randomizedAngle;
     this.ball.owner.angle = randomizedAngle;
 
-    let targetVelocity;
+    let velocity;
     if (targetCoord === ownGoal || targetCoord === oppGoal) {
-      targetVelocity = shotVelocityMax;
+      // When shooting to a goal, use max velocity
+      velocity = shotVelocityMax;
     } else {
-      targetVelocity = Math.min(shotVelocityMax, this.getPerfectVelocity(player, targetCoord));
+      // Otherwise compute exact velocity to send the ball exactly on target
+      velocity = Math.min(shotVelocityMax, this.getPerfectVelocity(player, targetCoord));
     }
-    this.ball.velocity = targetVelocity * (1 + shotVelocityErrorMargin * (2 * Math.random() - 1));
+    // Add velocity error
+    this.ball.velocity = velocity * (1 + shotVelocityErrorMargin * (2 * Math.random() - 1));
     this.ball.owner = null;
   }
 
@@ -657,30 +659,21 @@ export class GameComponent implements OnInit, OnDestroy {
     return (Math.sqrt(8 * totalDist) - 1) / 2;
   }
 
-  private isClosest(player: Player, posRef: SpriteCoord | Player): boolean | null {
-    if (posRef === null) {
-      return null;
-    }
+  private isClosest(player: Player, posRef: SpriteCoord | Player): boolean {
     const posRefCoord = this.getSpritePosition(posRef);
-    const closerTeammate = this.getPlayer(player, true, null, null, true, posRefCoord);
+    const closestTeammate = this.getPlayer(player, true, null, null, true, posRefCoord);
     // If all teammates are falling, I'm the closest
-    if (!closerTeammate) {
+    if (closestTeammate.state == PlayerState.Falling) {
       return true;
     }
-    return this.computeDistance(player.coord, posRefCoord) < this.computeDistance(closerTeammate.coord, posRefCoord);
+    return this.computeDistance(player.coord, posRefCoord) < this.computeDistance(closestTeammate.coord, posRefCoord);
   }
 
   private getDistance(targetA: SpriteCoord | Player, targetB: SpriteCoord | Player): number {
-    if (targetA === null || targetB === null) {
-      return fieldHeight;
-    }
     return this.computeDistance(this.getSpritePosition(targetA), this.getSpritePosition(targetB));
   }
 
-  private getMiddle(pos1: SpriteCoord | Player, pos2: SpriteCoord | Player): SpriteCoord | null {
-    if (pos1 === null || pos2 === null) {
-      return null;
-    }
+  private getMiddle(pos1: SpriteCoord | Player, pos2: SpriteCoord | Player): SpriteCoord {
     return {
       x: (this.getSpritePosition(pos1).x + this.getSpritePosition(pos2).x) / 2,
       y: (this.getSpritePosition(pos1).y + this.getSpritePosition(pos2).y) / 2
@@ -688,9 +681,6 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private playerIsRoleAndSide(player: Player, isAtkRole: boolean | null, isRightSide: boolean | null): boolean {
-    if (player === null) {
-      return false;
-    }
     return (isAtkRole === null || isAtkRole === player.isAtkRole) &&
       (isRightSide === null || isRightSide === player.isRightSide);
   }
@@ -698,10 +688,7 @@ export class GameComponent implements OnInit, OnDestroy {
   private itemInGrid(invertCoord: boolean,
     item: SpriteCoord | Player,
     col: 0 | 1 | 2 | 3 | 4 | 5,
-    row: 0 | 1 | 2 | 3 | 4 | 5): boolean | null {
-    if (item === null) {
-      return null;
-    }
+    row: 0 | 1 | 2 | 3 | 4 | 5): boolean {
     const newCol = col === 0 ? 0 : (invertCoord ? 6 - col : col);
     const newRow = row === 0 ? 0 : (invertCoord ? 6 - row : row);
     const itemCoord = this.getSpritePosition(item);
@@ -729,38 +716,41 @@ export class GameComponent implements OnInit, OnDestroy {
     isAtkRole: boolean | null,
     isRightSide: boolean | null,
     isNear: boolean,
-    posRef: SpriteCoord | Player): Player | null {
-    const roleSideAndTeamFiltered = this.players
+    posRef: SpriteCoord | Player): Player {
+
+    // Filter by position (role, side and team)
+    let filteredPlayers = this.players
       .filter(it => isAtkRole === null || isAtkRole === it.isAtkRole)
       .filter(it => isRightSide === null || isRightSide === it.isRightSide)
       .filter(it => it.ownTeam === (isOwnTeam ? player.ownTeam : !player.ownTeam));
 
-    // If the player is already fully determined (role, side and team), return it
-    if (roleSideAndTeamFiltered.length === 1) {
-      return roleSideAndTeamFiltered[0];
+    if (filteredPlayers.length === 1) {
+      return filteredPlayers[0];
     }
 
-    if (posRef === null) {
-      return null;
-    }
+    // Discard current player     
+    filteredPlayers = filteredPlayers.filter(it => it !== player);
 
-    const fullyFilteredPlayers = roleSideAndTeamFiltered
-      // discard current player
-      .filter(it => it !== player)
-      // discard the position reference if it is a player
-      .filter(it => posRef instanceof Player ? (it !== posRef) : true)
-      // discard falling players (to avoid passing the ball to them)
-      .filter(it => it.state !== PlayerState.Falling);
-    if (fullyFilteredPlayers.length === 0) {
-      return null;
+    if (filteredPlayers.length === 1) {
+      return filteredPlayers[0];
     }
 
     const posRefCoord = this.getSpritePosition(posRef);
-    return fullyFilteredPlayers
-      .sort((a, b) => {
-        return isNear ?
-          this.computeDistance(posRefCoord, a.coord) - this.computeDistance(posRefCoord, b.coord) :
-          this.computeDistance(posRefCoord, b.coord) - this.computeDistance(posRefCoord, a.coord);
+    return filteredPlayers
+      // Discard the position reference if it is a player
+      .filter(it => posRef instanceof Player ? (it !== posRef) : true)
+      .sort((playerA, playerB) => {
+        // If a player is falling, sort it out
+        if (playerA.state === PlayerState.Falling && playerB.state !== PlayerState.Falling) {
+          return 1;
+        } else if (playerB.state === PlayerState.Falling && playerA.state !== PlayerState.Falling) {
+          return -1;
+        } else {
+          // Otherwise sort by distance to posRefCoord
+          return isNear ?
+            this.computeDistance(posRefCoord, playerA.coord) - this.computeDistance(posRefCoord, playerB.coord) :
+            this.computeDistance(posRefCoord, playerB.coord) - this.computeDistance(posRefCoord, playerA.coord);
+        }
       })[0];
   }
 

@@ -32,7 +32,7 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
   public ConnectionStatus = ConnectionStatus;
   private connectionStatusSubscription?: Subscription;
   opponents: Opponent[] = [];
-  myGames: { [opponentId: string]: number; } = {};
+  myGames: {[opponentId: string]: number;} = {};
   lastResult?: number;
   filteredOpponents: Opponent[] = [];
   personalRanking = 0;
@@ -108,8 +108,8 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
     this.opponents = [];
     const today = OnlineService.getUtcTimestamp(Date.now());
     const myGames = allGames.find(dayAndGames => +dayAndGames.dayTimestamp === today)
-        ?.games[this.onlineService.webcomId]
-        ?.dailyGames
+      ?.games[this.onlineService.webcomId]
+      ?.dailyGames
       ?? {};
 
     for (const dayAndGame of allGames) {
@@ -180,10 +180,10 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
     if (this.lastResult !== undefined) {
       this.modalService.open(this.replayGameContent)
         .result.then((replayValidated: boolean) => {
-        if (replayValidated) {
-          this.router.navigate([`/code/online/${opponentId}`]);
-        }
-      });
+          if (replayValidated) {
+            this.router.navigate([`/code/online/${opponentId}`]);
+          }
+        });
     } else {
       this.router.navigate([`/code/online/${opponentId}`]);
     }
@@ -210,13 +210,12 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
   removeAccount(): void {
     this.modalService.open(this.deleteAccountContent, {size: 'sm'})
       .result.then((deleteValidated: boolean) => {
-      if (deleteValidated) {
-        this.loading = true;
-        this.onlineService.removeAccount()
-          .pipe(finalize(() => this.loading = false))
-          .subscribe(() => null, () => null, () => this.onlineService.disconnect());
-
-      }
-    });
+        if (deleteValidated) {
+          this.loading = true;
+          this.onlineService.removeAccount()
+            .pipe(finalize(() => this.loading = false))
+            .subscribe({next: () => null, error: () => null, complete: () => this.onlineService.disconnect()});
+        }
+      });
   }
 }
