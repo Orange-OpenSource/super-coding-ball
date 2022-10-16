@@ -155,7 +155,6 @@
     "DELETE_WARNING": "You really want to delete all your blocks!?",
     "UNDO": "Cancel",
     "REDO": "Redo",
-    "COPY_OPPONENT": "Copy opponent's strategy",
     "VALIDATE_BLOCKS": "Validate my strategy"
   },
   "GAME": {

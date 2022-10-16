@@ -154,7 +154,6 @@
     "DELETE_WARNING": "¿Estás seguro de que quieres suprimir todos tus bloques!?",
     "UNDO": "Cancelar",
     "REDO": "Rehacer",
-    "COPY_OPPONENT": "Copiar la estrategia del contrincante",
     "VALIDATE_BLOCKS": "Validar mi estrategia"
   },
   "GAME": {

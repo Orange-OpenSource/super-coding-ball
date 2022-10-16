@@ -154,7 +154,6 @@
     "DELETE_WARNING": "Tu veux vraiment effacer tous tes blocs\u00A0!?",
     "UNDO": "Annuler",
     "REDO": "Refaire",
-    "COPY_OPPONENT": "Recopier la stratégie adverse",
     "VALIDATE_BLOCKS": "Valider ma stratégie"
   },
   "GAME": {
