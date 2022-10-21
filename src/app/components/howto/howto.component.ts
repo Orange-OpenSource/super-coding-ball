@@ -65,6 +65,7 @@ export class HowtoComponent implements OnInit, OnDestroy {
       .then(blocks => {
         this.codeService.loadBlocksInWorkspace(blocks, workspace)
         workspace.zoomToFit();
+        workspace.scrollbar?.setContainerVisible(false);
       });
   }
 
