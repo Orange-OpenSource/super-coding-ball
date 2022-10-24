@@ -24,9 +24,9 @@ export enum PlayerState {
 }
 
 const runningUpAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 8, 1, 8), speed: 1};
-const runningLeftAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 9, 0, 9), speed: 1};
+const runningLeftAnim: SpriteAnim = {frames: [{row: 9, col: 8}].concat(buildFrames(Dir.Right, 9, 1, 7)), speed: 1};
 const runningDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 10, 1, 8), speed: 1};
-const runningRightAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 11, 0, 9), speed: 1};
+const runningRightAnim: SpriteAnim = {frames: [{row: 11, col: 8}].concat(buildFrames(Dir.Right, 11, 1, 7)), speed: 1};
 // tslint:disable-next-line:max-line-length
 const greetingUpAnim: SpriteAnim = {frames: [{row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}, {row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}], speed: 0.1};
 // tslint:disable-next-line:max-line-length
