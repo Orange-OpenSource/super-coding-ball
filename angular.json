@@ -35,7 +35,17 @@
             ],
             "scripts": [],
             "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json"
+            "ngswConfigPath": "ngsw-config.json",
+            "allowedCommonJsDependencies": [
+              "blockly",
+              "blockly/javascript",
+              "blockly/msg/en",
+              "blockly/msg/es",
+              "blockly/msg/fr",
+              "blockly/msg/ru",
+              "@blockly/field-slider",
+              "webcom/webcom.js"
+            ]
           },
           "defaultConfiguration": "production",
           "configurations": {
