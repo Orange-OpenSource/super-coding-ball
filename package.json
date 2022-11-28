@@ -22,7 +22,7 @@
     "@blockly/field-slider": "^4.0.2",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@ngx-translate/core": "^14.0.0",
-    "blockly": "^9.0.1",
+    "blockly": "^9.1.1",
     "bootstrap": "^5.2.2",
     "firebase": "^9.11.0",
     "rxjs": "~7.5.0",
