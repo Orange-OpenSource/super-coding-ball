@@ -20,7 +20,6 @@ import {GameComponent} from '../game/game.component';
 import {environment} from '../../../environments/environment';
 import {OnlineService} from '../../services/online.service';
 import {LocalStorageService} from '../../services/local-storage.service';
-import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-blockly',
@@ -56,7 +55,6 @@ export class BlocklyComponent implements OnInit, AfterViewInit, OnDestroy {
     private onlineService: OnlineService,
     private router: Router,
     private route: ActivatedRoute,
-    public location: Location,
     public modalService: NgbModal
   ) {
     this.debug = !environment.production;

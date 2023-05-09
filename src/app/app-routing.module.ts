@@ -21,7 +21,7 @@ import {OfflineOpponentsComponent} from './components/offline-opponents/offline-
 import {OnlineOpponentsComponent} from './components/online-opponents/online-opponents.component';
 import {BlocklyComponent} from './components/blockly/blockly.component';
 import {GameComponent} from './components/game/game.component';
-import {IsStrongGuard} from './services/is-strong-guard';
+import {isStrongGuard} from './services/is-strong-guard';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -31,11 +31,11 @@ const routes: Routes = [
   {path: 'terms', component: TermsComponent},
   {path: 'legal', component: LegalComponent},
   {path: 'offline-opponents', component: OfflineOpponentsComponent},
-  {path: 'online-opponents', component: OnlineOpponentsComponent, canActivate: [IsStrongGuard]},
+  {path: 'online-opponents', component: OnlineOpponentsComponent, canActivate: [isStrongGuard]},
   {path: 'code/offline/:id', component: BlocklyComponent},
-  {path: 'code/online/:id', component: BlocklyComponent, canActivate: [IsStrongGuard]},
+  {path: 'code/online/:id', component: BlocklyComponent, canActivate: [isStrongGuard]},
   {path: 'play/offline/:id', component: GameComponent},
-  {path: 'play/online/:id', component: GameComponent, canActivate: [IsStrongGuard]},
+  {path: 'play/online/:id', component: GameComponent, canActivate: [isStrongGuard]},
   {path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];
 

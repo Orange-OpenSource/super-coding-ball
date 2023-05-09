@@ -123,7 +123,7 @@ export class CodeService {
     if (blocks.startsWith('{')) {
       Blockly.serialization.workspaces.load(JSON.parse(blocks), workspace);
     } else {
-      Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(blocks), workspace);
+      Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(blocks), workspace);
     }
   }
 

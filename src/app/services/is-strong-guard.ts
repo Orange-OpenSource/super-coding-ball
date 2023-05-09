@@ -9,27 +9,17 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Injectable} from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
+import {inject} from '@angular/core';
+import {Router} from '@angular/router';
 import {LocalStorageService} from './local-storage.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class IsStrongGuard implements CanActivate {
-  constructor(
-    private router: Router,
-    private localStorageService: LocalStorageService
-  ) {
-  }
+export const isStrongGuard = () => {
+  const router = inject(Router);
+  const localStorageService = inject(LocalStorageService);
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean | UrlTree {
-    if (!this.localStorageService.isStrongEnough()) {
-      return this.router.parseUrl('/home');
-    } else {
-      return true;
-    }
+  if (!localStorageService.isStrongEnough()) {
+    return router.parseUrl('/home');
+  } else {
+    return true;
   }
 }

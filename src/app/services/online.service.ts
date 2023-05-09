@@ -102,7 +102,7 @@ export class OnlineService implements OnDestroy {
             this.userDisplay.pictureUrl = auth.providerProfile.picture;
         } else if (auth.provider === 'anonymous') {
             console.log('Anonymous authentication succeeded', auth);
-            this.webcomDisplayName = 'Team-' + auth.uid.substr(0, 4);
+            this.webcomDisplayName = 'Team-' + auth.uid.substring(0, 4);
         }
         this.webcomId = auth.uid;
         this.authHeadersOption = {headers: new HttpHeaders().set('Authorization', 'Bearer ' + auth.webcomAuthToken)};

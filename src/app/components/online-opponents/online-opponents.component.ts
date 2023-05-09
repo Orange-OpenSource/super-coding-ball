@@ -32,7 +32,6 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
   public ConnectionStatus = ConnectionStatus;
   private connectionStatusSubscription?: Subscription;
   opponents: Opponent[] = [];
-  myGames: {[opponentId: string]: number;} = {};
   lastResult?: number;
   filteredOpponents: Opponent[] = [];
   personalRanking = 0;
