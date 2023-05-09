@@ -44,7 +44,7 @@
               "blockly/msg/fr",
               "blockly/msg/ru",
               "@blockly/field-slider",
-              "webcom/webcom.js"
+              "webcom/webcom-auth-sldblite.js"
             ]
           },
           "defaultConfiguration": "production",

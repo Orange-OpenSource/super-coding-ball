@@ -10,7 +10,7 @@
  */
 
 import {Injectable, OnDestroy, EventEmitter} from '@angular/core';
-import * as Webcom from 'webcom/webcom.js';
+import * as Webcom from 'webcom/webcom-auth-sldblite.js';
 import {AllGames, ConnectionStatus, DayAndGames, User, UserDisplay} from '../models/webcom-models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {concatMap, filter, map, toArray} from 'rxjs/operators';
@@ -20,7 +20,8 @@ import {firstValueFrom, Observable, of, from} from 'rxjs';
     providedIn: 'root'
 })
 export class OnlineService implements OnDestroy {
-    webcomRef = new Webcom('super-coding-ball');
+    webcomApp = Webcom.App('super-coding-ball');
+    webcomAuth = this.webcomApp.authentication;
     connectionStatusChanged = new EventEmitter<ConnectionStatus>();
     private _connectionStatus = ConnectionStatus.Unknown;
 
@@ -45,7 +46,7 @@ export class OnlineService implements OnDestroy {
     webcomGamesUrl = `${this.webcomBaseUrl}/games`;
 
     constructor(private http: HttpClient) {
-        this.authCallback = (error: any, auth: any) => {
+        this.authCallback = (error: any, authState: any) => {
             if (error) {
                 this.deleteCredentials();
                 this.connectionStatus = ConnectionStatus.Disconnected;
@@ -60,20 +61,20 @@ export class OnlineService implements OnDestroy {
                         console.log('An unexpected error occurs, please retry and contact your administrator.', error);
                 }
             } else {
-                if (auth?.provider) {
-                    this.parseAuthInfo(auth);
-                } else {
-                    console.log('Authentication failed', auth);
-                    this.deleteCredentials();
-                    this.connectionStatus = ConnectionStatus.Disconnected;
-                }
+              if (authState?.state == 'some') {
+                this.parseAuthInfo(authState.details);
+              } else {
+                console.log(authState?.state == 'none' ? 'No authentication' : 'Authentication failed', authState);
+                this.deleteCredentials();
+                this.connectionStatus = ConnectionStatus.Disconnected;
+              }
             }
         };
 
-        if (!!this.webcomRef.authenticator.currentState) {
-            this.authCallback(null, this.webcomRef.authenticator.currentState.details);
+        if (!!this.webcomAuth.currentState) {
+            this.authCallback(null, this.webcomAuth.currentState);
         }
-        this.webcomRef.addAuthCallback(this.authCallback);
+        this.webcomAuth.subscribe(this.authCallback);
     }
 
     static getUtcTimestamp(timestamp: number): number {
@@ -112,23 +113,23 @@ export class OnlineService implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.webcomRef.removeAuthCallback(this.authCallback);
+        this.webcomAuth.unsubscribe(this.authCallback);
     }
 
     public connectAnonymously(): void {
-        this.webcomRef.authAnonymously();
+        this.webcomAuth.signInAsGuest();
     }
 
     public connectWithFacebook(): void {
-        this.webcomRef.authWithOAuth('facebook', {mode: 'redirect', scope: 'public_profile'});
+        this.webcomAuth.signInWithOAuth('facebook', {mode: 'redirect', scope: 'public_profile'});
     }
 
     public connectWithGoogle(): void {
-        this.webcomRef.authWithOAuth('google', {mode: 'redirect', scope: 'profile'});
+        this.webcomAuth.signInWithOAuth('google', {mode: 'redirect', scope: 'profile'});
     }
 
     public disconnect(): void {
-        this.webcomRef.logout();
+        this.webcomAuth.signOut();
     }
 
     public removeAccount(): Observable<any> {
