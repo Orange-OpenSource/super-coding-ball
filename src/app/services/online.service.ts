@@ -71,9 +71,6 @@ export class OnlineService implements OnDestroy {
             }
         };
 
-        if (!!this.webcomAuth.currentState) {
-            this.authCallback(null, this.webcomAuth.currentState);
-        }
         this.webcomAuth.subscribe(this.authCallback);
     }
 
