@@ -68,23 +68,27 @@ html, body {
   width: 32px;
 }
 
-.customIconEvents {
+.customIconEvent {
   background-image: url("/assets/icons/flag-checkered-solid.png");
 }
 
-.customIconControl {
+.customIconCondition {
   background-image: url("/assets/icons/futbol-regular-question-mark.png");
 }
 
-.customIconActions {
+.customIconAction {
   background-image: url("/assets/icons/running-solid.png");
 }
 
-.customIconPositions {
+.customIconPosition {
   background-image: url("/assets/icons/map-marker-alt-solid.png");
 }
 
-.customIconSettings {
+.customIconValue {
+  background-image: url("/assets/icons/hashtag-solid.png");
+}
+
+.customIconAdvanced {
   background-image: url("/assets/icons/flask-solid.png");
 }
 

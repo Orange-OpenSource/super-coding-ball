@@ -230,7 +230,7 @@ ${javascriptGenerator.statementToCode(block, 'DO')}
     };
 
     javascriptGenerator.ball = (block: Blockly.Block) => {
-      return `game.ball.coord`;
+      return `ball.coord`;
     };
 
     javascriptGenerator.myself = (block: Blockly.Block) => {
@@ -285,7 +285,6 @@ ${javascriptGenerator.statementToCode(block, 'DO')}
       // item can't be empty because of shadow block
       const item = javascriptGenerator.statementToCode(block, 'ITEM');
       return [`game.itemInGrid(!player.ownTeam,${item},${+block.getFieldValue('POS_COL')},${+block.getFieldValue('POS_ROW')})`, 0];
-
     };
 
     javascriptGenerator.energy = (block: Blockly.Block) => {
@@ -325,6 +324,20 @@ ${elseStatement}
         return [`${left} < ${right}`, 0];
       } else {
         return [`${left} > ${right}`, 0];
+      }
+    };
+
+    javascriptGenerator.elapsed_time = (block: Blockly.Block) => {
+      return [`gameTime`, 0];
+    };
+
+    javascriptGenerator.leading_team = (block: Blockly.Block) => {
+      if (block.getFieldValue('TEAM') === 'TEAM_OWN') {
+        return [`ownScore > oppScore`, 0];
+      } else if (block.getFieldValue('TEAM') === 'TEAM_OPP') {
+        return [`ownScore < oppScore`, 0];
+      } else {
+        return [`ownScore == oppScore`, 0];
       }
     };
   }

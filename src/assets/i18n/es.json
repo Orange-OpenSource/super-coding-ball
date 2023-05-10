@@ -1,9 +1,10 @@
 {
   "BLOCKS": {
     "EVENTS": "Eventos",
-    "CONTROLS": "Controles",
+    "CONDITIONS": "Condiciones",
     "ACTIONS": "Acciones",
     "POSITIONS": "Posiciones",
+    "VALUES": "Valores",
     "ADVANCED": "Avanzado",
     "WHEN_HAVE_BALL": "Cuando tengo el balón %1 %2",
     "WHEN_TEAMMATE_HAS_BALL": "Cuando un compañero tiene el balón %1 %2",
@@ -33,7 +34,12 @@
     "OPPONENTS_GOAL": "gol del contrincante",
     "OUR_GOAL": "gol nuestro",
     "MY_TARGET_POSITION": "mi posición objetivo",
-    "MIDDLE_BETWEEN": "en medio entre %1 y %2"
+    "MIDDLE_BETWEEN": "en medio entre %1 y %2",
+    "ELAPSED_TIME": "tiempo transcurrido",
+    "LEADING_TEAM": "%1 va ganando",
+    "LEADING_TEAM_OWN": "nuestro equipo",
+    "LEADING_TEAM_OPP": "el equipo adversario",
+    "LEADING_TEAM_NONE": "ningún equipo"
   },
   "GLOBAL": {
     "OK": "Ok",

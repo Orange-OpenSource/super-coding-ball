@@ -1,9 +1,10 @@
 {
   "BLOCKS": {
     "EVENTS": "Events",
-    "CONTROLS": "Controls",
+    "CONDITIONS": "Conditions",
     "ACTIONS": "Actions",
     "POSITIONS": "Positions",
+    "VALUES": "Values",
     "ADVANCED": "Advanced",
     "WHEN_HAVE_BALL": "When I have the ball %1 %2",
     "WHEN_TEAMMATE_HAS_BALL": "When a teammate has the ball %1 %2",
@@ -33,7 +34,12 @@
     "OPPONENTS_GOAL": "opponents goal",
     "OUR_GOAL": "our goal",
     "MY_TARGET_POSITION": "my target position",
-    "MIDDLE_BETWEEN": "middle between %1 and %2"
+    "MIDDLE_BETWEEN": "middle between %1 and %2",
+    "ELAPSED_TIME": "elapsed time",
+    "LEADING_TEAM": "%1 is leading",
+    "LEADING_TEAM_OWN": "our team",
+    "LEADING_TEAM_OPP": "the opposing team",
+    "LEADING_TEAM_NONE": "nobody"
   },
   "GLOBAL": {
     "OK": "Ok",

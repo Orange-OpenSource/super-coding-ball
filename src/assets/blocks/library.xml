@@ -1130,4 +1130,76 @@
       <block type="type_number" id="xsk`y_aKwc,KLp((g~e{"></block>
     </value>
   </block>
+  <block type="factory_base" id="aCV+w_p-5k!=_A(oFmq_" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">elapsed_time</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="Y;^C~}HjvL2.Ww`N4=]a">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="0lUZ0I]2?KqeSspouv2o">
+            <field name="TEXT">temps écoulé</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="-.b|iFH}oAe;.mzLRi%T" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="eN)*R]lgp5{Mt*CmmJM," deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="gDKI_1{Au:ofq#wL~1oV"></shadow>
+      <block type="type_number" id="|r1jvlY+-Zv=5eAINQlh"></block>
+    </value>
+  </block>
+  <block type="factory_base" id="rjZp6}FAchA|=p1H[0eA" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">leading_team</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="JUc/]/MWQnA/Q,@pjY.x">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_dropdown" id="u9A~[E0b2|pmV4sL-FAC">
+            <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+            <field name="FIELDNAME">TEAM</field>
+            <field name="USER0">notre équipe</field>
+            <field name="CPU0">TEAM_OWN</field>
+            <field name="USER1">l'équipe adverse</field>
+            <field name="CPU1">TEAM_OPP</field>
+            <field name="USER2">personne</field>
+            <field name="CPU2">TEAM_NONE</field>
+            <next>
+              <block type="field_static" id="x.l)N5#b.$w_ft~S;7uS">
+                <field name="TEXT">mène</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="}pSh}e`E0-`e0bkl)tC$" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="_Z4sx4Eu#[eXzx%r[alM" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="w1ioo95z]Rgra^fxE-Uj"></shadow>
+      <block type="type_boolean" id="YNU2]v$U{q!:yzqXQ~fQ"></block>
+    </value>
+  </block>
 </xml>

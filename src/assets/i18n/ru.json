@@ -2,10 +2,11 @@
   "TRANSLATION_AUTHOR": "Перевел на русский язык Лужнов Алексей Владимирович - преподаватель программирования г.Краснодар",
   "BLOCKS": {
     "EVENTS": "События",
-    "CONTROLS": "Управление",
+    "CONDITIONS": "Условия",
     "ACTIONS": "Действия",
     "POSITIONS": "Объекты",
-    "ADVANCED": "Операторы",
+    "VALUES": "Значения",
+    "ADVANCED": "Передовой",
     "WHEN_HAVE_BALL": "когда мяч у меня %1 %2",
     "WHEN_TEAMMATE_HAS_BALL": "когда мяч у товарища по команде %1 %2",
     "WHEN_OPPONENT_HAS_BALL": "когда мяч у соперника %1 %2",
@@ -34,7 +35,12 @@
     "OPPONENTS_GOAL": "ворота соперника",
     "OUR_GOAL": "наши ворота",
     "MY_TARGET_POSITION": "своя позиция",
-    "MIDDLE_BETWEEN": "середина между %1 и %2"
+    "MIDDLE_BETWEEN": "середина между %1 и %2",
+    "ELAPSED_TIME": "пройденное время",
+    "LEADING_TEAM": "%1 лидирует",
+    "LEADING_TEAM_OWN": "наша команда",
+    "LEADING_TEAM_OPP": "команда соперника",
+    "LEADING_TEAM_NONE": "никто"
   },
   "GLOBAL": {
     "OK": "Ок",

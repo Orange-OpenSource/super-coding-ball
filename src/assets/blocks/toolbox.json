@@ -3,9 +3,9 @@
   "contents": [
     {
       "kind": "category",
-      "categorystyle": "events_category",
+      "categorystyle": "event_category",
       "cssConfig": {
-        "icon": "customIcon customIconEvents"
+        "icon": "customIcon customIconEvent"
       },
       "contents": [
         {
@@ -32,14 +32,14 @@
     },
     {
       "kind": "category",
-      "categorystyle": "control_category",
+      "categorystyle": "condition_category",
       "cssconfig": {
-        "icon": "customIcon customIconControl"
+        "icon": "customIcon customIconCondition"
       },
       "contents": [
         {
           "kind": "label",
-          "text": "%{BKY_CONTROLS}"
+          "text": "%{BKY_CONDITIONS}"
         },
         {
           "kind": "block",
@@ -114,41 +114,15 @@
         },
         {
           "kind": "block",
-          "type": "energy",
-          "inputs": {
-            "NAME": {
-              "shadow": {
-                "type": "myself"
-              }
-            }
-          }
-        },
-        {
-          "kind": "block",
-          "type": "distance",
-          "inputs": {
-            "FROM": {
-              "shadow": {
-                "type": "myself"
-              }
-            },
-            "TO": {
-              "shadow": {
-                "type": "goal",
-                "fields": {
-                  "GOAL_TYPE": "GOAL_OPP"
-                }
-              }
-            }
-          }
+          "type": "leading_team"
         }
       ]
     },
     {
       "kind": "category",
-      "categorystyle": "actions_category",
+      "categorystyle": "action_category",
       "cssConfig": {
-        "icon": "customIcon customIconActions"
+        "icon": "customIcon customIconAction"
       },
       "contents": [
         {
@@ -201,9 +175,9 @@
     },
     {
       "kind": "category",
-      "categorystyle": "positions_category",
+      "categorystyle": "position_category",
       "cssConfig": {
-        "icon": "customIcon customIconPositions"
+        "icon": "customIcon customIconPosition"
       },
       "contents": [
         {
@@ -264,9 +238,56 @@
     },
     {
       "kind": "category",
-      "categorystyle": "settings_category",
+      "categorystyle": "value_category",
       "cssconfig": {
-        "icon": "customIcon customIconSettings"
+        "icon": "customIcon customIconValue"
+      },
+      "contents": [
+        {
+          "kind": "label",
+          "text": "%{BKY_VALUES}"
+        },
+        {
+          "kind": "block",
+          "type": "distance",
+          "inputs": {
+            "FROM": {
+              "shadow": {
+                "type": "myself"
+              }
+            },
+            "TO": {
+              "shadow": {
+                "type": "goal",
+                "fields": {
+                  "GOAL_TYPE": "GOAL_OPP"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "energy",
+          "inputs": {
+            "NAME": {
+              "shadow": {
+                "type": "myself"
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "elapsed_time"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "categorystyle": "advanced_category",
+      "cssconfig": {
+        "icon": "customIcon customIconAdvanced"
       },
       "contents": [
         {

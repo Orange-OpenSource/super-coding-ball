@@ -19,7 +19,7 @@
     ],
     "inputsInline": false,
     "previousStatement": null,
-    "style": "control_blocks",
+    "style": "condition_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -56,7 +56,7 @@
       }
     ],
     "output": "Boolean",
-    "style": "control_blocks",
+    "style": "condition_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -198,7 +198,7 @@
       }
     ],
     "output": "place",
-    "style": "positions_blocks",
+    "style": "position_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -260,7 +260,7 @@
       }
     ],
     "output": "place",
-    "style": "positions_blocks",
+    "style": "position_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -268,7 +268,7 @@
     "type": "position",
     "message0": "%{BKY_MY_TARGET_POSITION}",
     "output": "place",
-    "style": "positions_blocks",
+    "style": "position_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -296,7 +296,7 @@
       }
     ],
     "output": "place",
-    "style": "positions_blocks",
+    "style": "position_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -385,7 +385,7 @@
     ],
     "inputsInline": false,
     "output": "player",
-    "style": "positions_blocks",
+    "style": "position_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -393,7 +393,7 @@
     "type": "ball",
     "message0": "%{BKY_BALL}",
     "output": "place",
-    "style": "positions_blocks",
+    "style": "position_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -401,7 +401,7 @@
     "type": "myself",
     "message0": "%{BKY_MYSELF}",
     "output": "player",
-    "style": "positions_blocks",
+    "style": "position_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -429,7 +429,7 @@
       }
     ],
     "output": "Number",
-    "style": "control_blocks",
+    "style": "value_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -509,7 +509,7 @@
       }
     ],
     "output": "Boolean",
-    "style": "control_blocks",
+    "style": "condition_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -524,7 +524,7 @@
       }
     ],
     "output": "Number",
-    "style": "control_blocks",
+    "style": "value_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -542,7 +542,7 @@
       }
     ],
     "output": "Boolean",
-    "style": "control_blocks",
+    "style": "condition_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -593,7 +593,7 @@
       }
     ],
     "output": "Boolean",
-    "style": "control_blocks",
+    "style": "condition_blocks",
     "tooltip": "",
     "helpUrl": ""
   },
@@ -612,6 +612,42 @@
     ],
     "output": "Number",
     "style": "math_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "elapsed_time",
+    "message0": "%{BKY_ELAPSED_TIME}",
+    "output": "Number",
+    "style": "value_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "leading_team",
+    "message0": "%{BKY_LEADING_TEAM}",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "TEAM",
+        "options": [
+          [
+            "%{BKY_LEADING_TEAM_OWN}",
+            "TEAM_OWN"
+          ],
+          [
+            "%{BKY_LEADING_TEAM_OPP}",
+            "TEAM_OPP"
+          ],
+          [
+            "%{BKY_LEADING_TEAM_NONE}",
+            "TEAM_NONE"
+          ]
+        ]
+      }
+    ],
+    "output": "Boolean",
+    "style": "condition_blocks",
     "tooltip": "",
     "helpUrl": ""
   }

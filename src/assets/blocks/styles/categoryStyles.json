@@ -1,17 +1,20 @@
 {
-  "events_category": {
+  "event_category": {
     "colour": "#ffbf00"
   },
-  "control_category": {
+  "condition_category": {
     "colour": "#59c059"
   },
-  "actions_category": {
+  "action_category": {
     "colour": "#4c97ff"
   },
-  "positions_category": {
+  "position_category": {
     "colour": "#ff6680"
   },
-  "settings_category": {
+  "value_category": {
+    "colour": "#ff8c1a"
+  },
+  "advanced_category": {
     "colour": "#888888"
   }
 }

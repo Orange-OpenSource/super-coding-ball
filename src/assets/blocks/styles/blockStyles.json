@@ -2,14 +2,17 @@
   "event_blocks": {
     "colourPrimary": "#ffbf00"
   },
-  "control_blocks": {
+  "condition_blocks": {
     "colourPrimary": "#59c059"
   },
   "action_blocks": {
     "colourPrimary": "#4c97ff"
   },
-  "positions_blocks": {
+  "position_blocks": {
     "colourPrimary": "#ff6680"
+  },
+  "value_blocks": {
+    "colourPrimary": "#ff8c1a"
   },
   "advanced_blocks": {
     "colourPrimary": "#888"
