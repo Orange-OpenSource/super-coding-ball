@@ -19,6 +19,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {OnlineService} from '../../services/online.service';
 import {environment} from '../../../environments/environment';
+import {GamePoint} from '../online-opponents/online-opponents.component';
 
 interface FieldDivision {
   start: number;
@@ -74,6 +75,7 @@ export class GameComponent implements OnInit, OnDestroy {
   @Input() gameLaunched = true;
   @Output() gameLaunchedChange = new EventEmitter<boolean>();
 
+  PeriodType = PeriodType;
   isStandaloneScreen: boolean;
   isOnline: boolean;
   opponentId = '';
@@ -205,7 +207,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.gamePaused = false;
     if (this.periodType === PeriodType.BeforeFirstPeriod) {
       if (this.isOnline) {
-        this.onlineService.setGameResult(this.opponentId, 0)
+        this.onlineService.setGameResult(this.opponentId, GamePoint.LOST)
           .subscribe();
       }
       this.periodType = PeriodType.FirstPeriod;
@@ -289,7 +291,7 @@ export class GameComponent implements OnInit, OnDestroy {
       if (this.isOnline) {
         this.onlineService.setGameResult(
           this.opponentId,
-          this.ownScore > this.oppScore ? 2 : (this.ownScore === this.oppScore ? 1 : 0))
+          this.ownScore > this.oppScore ? GamePoint.WON : (this.ownScore === this.oppScore ? GamePoint.DRAW : GamePoint.LOST))
           .subscribe();
       } else if (this.ownScore > this.oppScore) {
         this.localStorageService.setOfflineWonStatus(this.opponentId);
@@ -359,7 +361,8 @@ export class GameComponent implements OnInit, OnDestroy {
     } else {
       code = this.oppCode;
     }
-    return Function('"use strict";return (function(game, ball, player){ ' + code + ' })')()(this, this.ball, player);
+    return Function('"use strict";return (function(game, ball, player, gameTime, ownScore, oppScore){ ' + code + ' })')()
+    (this, this.ball, player, this.gameTime, this.ownScore, this.oppScore);
   }
 
   private handlePlayerCollisions(player: Player): void {
@@ -728,7 +731,7 @@ export class GameComponent implements OnInit, OnDestroy {
       return filteredPlayers[0];
     }
 
-    // Discard current player     
+    // Discard current player
     filteredPlayers = filteredPlayers.filter(it => it !== player);
 
     if (filteredPlayers.length === 1) {

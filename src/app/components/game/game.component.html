@@ -66,8 +66,8 @@
 
 <ng-template #kickOffContent let-modal>
   <div class="modal-header" [ngSwitch]="periodType">
-    <h6 *ngSwitchCase="1" class="modal-title">{{'GAME.KICK_OFF' | translate}}</h6>
-    <h6 *ngSwitchCase="3" class="modal-title">{{"GAME.HALF_TIME" | translate}}</h6>
+    <h6 *ngSwitchCase="PeriodType.BeforeFirstPeriod" class="modal-title">{{'GAME.KICK_OFF' | translate}}</h6>
+    <h6 *ngSwitchCase="PeriodType.HalfTime" class="modal-title">{{"GAME.HALF_TIME" | translate}}</h6>
     <h6 *ngSwitchDefault class="modal-title">{{"GAME.GOAL" | translate}}</h6>
   </div>
   <div *ngIf="periodType === 1" class="modal-body">

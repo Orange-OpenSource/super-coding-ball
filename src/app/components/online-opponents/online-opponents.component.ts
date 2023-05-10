@@ -20,6 +20,12 @@ import {Router} from '@angular/router';
 import {concatMap, finalize} from 'rxjs/operators';
 import {LocalStorageService} from '../../services/local-storage.service';
 
+export enum GamePoint {
+  LOST = 0,
+  DRAW,
+  WON
+}
+
 @Component({
   selector: 'app-online-opponents',
   templateUrl: './online-opponents.component.html',
@@ -29,6 +35,7 @@ import {LocalStorageService} from '../../services/local-storage.service';
 export class OnlineOpponentsComponent implements OnInit, OnDestroy {
   @ViewChild('replayGameContent') private replayGameContent: any;
   @ViewChild('deleteAccountContent') private deleteAccountContent: any;
+  GamePoint = GamePoint;
   public ConnectionStatus = ConnectionStatus;
   private connectionStatusSubscription?: Subscription;
   opponents: Opponent[] = [];
@@ -37,9 +44,9 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
   personalRanking = 0;
   loading = false;
   modalParams = {
-    won: '<img src="assets/icons/trophy-solid-warning.png" width="24" height="24" />',
-    draw: '<img src="assets/icons/trophy-solid-secondary.png" width="24" height="24" />',
-    lost: '<img src="assets/icons/trophy-solid-danger.png" width="24" height="24" />',
+    won: '<img src="../../../assets/icons/trophy-solid-warning.png" width="24" height="24" />',
+    draw: '<img src="../../../assets/icons/trophy-solid-secondary.png" width="24" height="24" />',
+    lost: '<img src="../../../assets/icons/trophy-solid-danger.png" width="24" height="24" />',
   };
 
   private _searchTerm = '';

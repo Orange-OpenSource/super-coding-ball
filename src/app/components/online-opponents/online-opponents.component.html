@@ -101,10 +101,10 @@
             <td>
               <button *ngIf="opponent.webcomId !== onlineService.webcomId" class="btn px-0"
                 [ngSwitch]="opponent.lastResult">
-                <img *ngSwitchCase="2" height="24px" width="24px" src="../../../assets/icons/trophy-solid-warning.png">
-                <img *ngSwitchCase="1" height="24px" width="24px"
+                <img *ngSwitchCase="GamePoint.WON" height="24px" width="24px" src="../../../assets/icons/trophy-solid-warning.png">
+                <img *ngSwitchCase="GamePoint.DRAW" height="24px" width="24px"
                   src="../../../assets/icons/trophy-solid-secondary.png">
-                <img *ngSwitchCase="0" height="24px" width="24px" src="../../../assets/icons/trophy-solid-danger.png">
+                <img *ngSwitchCase="GamePoint.LOST" height="24px" width="24px" src="../../../assets/icons/trophy-solid-danger.png">
                 <img *ngSwitchDefault class="team-not-won" height="24px" width="24px"
                   src="../../../assets/icons/trophy-solid-secondary.png">
               </button>
@@ -184,13 +184,13 @@
     <p>
       <span>{{"ONLINE.REPLAY.HEADER" | translate }}</span>
       <ng-container [ngSwitch]="lastResult">
-        <span *ngSwitchCase="0">{{"ONLINE.REPLAY.LOST" | translate }}</span>
-        <span *ngSwitchCase="1">{{"ONLINE.REPLAY.DRAW" | translate }}</span>
-        <span *ngSwitchCase="2">{{"ONLINE.REPLAY.WON" | translate }}</span>
+        <span *ngSwitchCase="GamePoint.LOST">{{"ONLINE.REPLAY.LOST" | translate }}</span>
+        <span *ngSwitchCase="GamePoint.DRAW">{{"ONLINE.REPLAY.DRAW" | translate }}</span>
+        <span *ngSwitchCase="GamePoint.WON">{{"ONLINE.REPLAY.WON" | translate }}</span>
       </ng-container>
     </p>
     <p [ngSwitch]="lastResult">
-      <span *ngSwitchCase="2">{{"ONLINE.REPLAY.RISK" | translate }}</span>
+      <span *ngSwitchCase="GamePoint.WON">{{"ONLINE.REPLAY.RISK" | translate }}</span>
       <span *ngSwitchDefault>{{"ONLINE.REPLAY.IMPROVE" | translate }}</span>
     </p>
   </div>
