@@ -40,7 +40,7 @@
     "LEADING_TEAM": "%1 лидирует",
     "LEADING_TEAM_OWN": "наша команда",
     "LEADING_TEAM_OPP": "команда соперника",
-    "LEADING_TEAM_NONE": "никто"
+    "LEADING_TEAM_NONE": "никто не"
   },
   "GLOBAL": {
     "OK": "Ок",

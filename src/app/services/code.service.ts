@@ -97,6 +97,7 @@ export class CodeService {
     options.collapse = false;
     options.disable = false;
     options.sounds = false;
+    options.maxTrashcanContents = 0;
     options.maxInstances = {
       event_ball_mine: 1,
       event_ball_opponent: 1,
