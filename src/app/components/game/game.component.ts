@@ -337,9 +337,14 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private handleSprites(): void {
+    let caller = this.ball.caller;
     for (const player of this.players) {
       player.still = true;
       if (player.state === PlayerState.Entering || player.state === PlayerState.Playing || player.state === PlayerState.Pushed) {
+        // Before anything, if a player has called for the ball, make the pass
+        if (caller) {
+          this.shoot(player, caller)
+        }
         this.executePlayerCode(player);
         this.handlePlayerCollisions(player);
       }
@@ -361,8 +366,8 @@ export class GameComponent implements OnInit, OnDestroy {
     } else {
       code = this.oppCode;
     }
-    return Function('"use strict";return (function(game, ball, player, gameTime, ownScore, oppScore){ ' + code + ' })')()
-    (this, this.ball, player, this.gameTime, this.ownScore, this.oppScore);
+    return Function('"use strict";return (function(game, player){ ' + code + ' })')()
+    (this, player);
   }
 
   private handlePlayerCollisions(player: Player): void {

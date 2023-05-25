@@ -179,6 +179,15 @@
     "helpUrl": ""
   },
   {
+    "type": "call_for_ball",
+    "message0": "%{BKY_CALL_FOR_BALL}",
+    "previousStatement": null,
+    "style": "action_blocks",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+
+  {
     "type": "goal",
     "message0": "%1",
     "args0": [

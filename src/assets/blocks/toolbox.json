@@ -170,6 +170,10 @@
               }
             }
           }
+        },
+        {
+          "kind": "block",
+          "type": "call_for_ball"
         }
       ]
     },

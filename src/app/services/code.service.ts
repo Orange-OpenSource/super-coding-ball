@@ -160,25 +160,25 @@ export class CodeService {
 
   private defineBlocksCodeGen(): void {
     javascriptGenerator.event_ball_mine = (block: Blockly.Block) => {
-      return `if(ball.owner === player) {
+      return `if(game.ball.owner === player) {
 ${javascriptGenerator.statementToCode(block, 'DO')}
 }`;
     };
 
     javascriptGenerator.event_ball_teammate = (block: Blockly.Block) => {
-      return `if(ball.owner !== null && ball.owner.ownTeam === player.ownTeam && ball.owner !== player) {
+      return `if(game.ball.owner !== null && game.ball.owner.ownTeam === player.ownTeam && game.ball.owner !== player) {
 ${javascriptGenerator.statementToCode(block, 'DO')}
 }`;
     };
 
     javascriptGenerator.event_ball_opponent = (block: Blockly.Block) => {
-      return `if(ball.owner !== null && ball.owner.ownTeam !== player.ownTeam) {
+      return `if(game.ball.owner !== null && game.ball.owner.ownTeam !== player.ownTeam) {
 ${javascriptGenerator.statementToCode(block, 'DO')}
 }`;
     };
 
     javascriptGenerator.event_ball_none = (block: Blockly.Block) => {
-      return `if(ball.owner === null) {
+      return `if(game.ball.owner === null) {
 ${javascriptGenerator.statementToCode(block, 'DO')}
 }`;
     };
@@ -198,7 +198,11 @@ ${javascriptGenerator.statementToCode(block, 'DO')}
     javascriptGenerator.shoot = (block: Blockly.Block) => {
       // target can't be empty because of shadow block
       const target = javascriptGenerator.statementToCode(block, 'NAME');
-      return `game.shoot(player,${target})`;
+      return `game.shoot(player,${target});`;
+    };
+
+    javascriptGenerator.call_for_ball = (block: Blockly.Block) => {
+      return `game.ball.caller = player;`;
     };
 
     javascriptGenerator.player = (block: Blockly.Block) => {
@@ -230,7 +234,7 @@ ${javascriptGenerator.statementToCode(block, 'DO')}
     };
 
     javascriptGenerator.ball = (block: Blockly.Block) => {
-      return `ball.coord`;
+      return `game.ball.coord`;
     };
 
     javascriptGenerator.myself = (block: Blockly.Block) => {
@@ -328,16 +332,16 @@ ${elseStatement}
     };
 
     javascriptGenerator.elapsed_time = (block: Blockly.Block) => {
-      return [`gameTime`, 0];
+      return [`game.gameTime`, 0];
     };
 
     javascriptGenerator.leading_team = (block: Blockly.Block) => {
       if (block.getFieldValue('TEAM') === 'TEAM_OWN') {
-        return [`ownScore > oppScore`, 0];
+        return [`game.ownScore > game.oppScore`, 0];
       } else if (block.getFieldValue('TEAM') === 'TEAM_OPP') {
-        return [`ownScore < oppScore`, 0];
+        return [`game.ownScore < game.oppScore`, 0];
       } else {
-        return [`ownScore == oppScore`, 0];
+        return [`game.ownScore == game.oppScore`, 0];
       }
     };
   }

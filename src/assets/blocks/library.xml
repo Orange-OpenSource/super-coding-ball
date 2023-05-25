@@ -1202,4 +1202,33 @@
       <block type="type_boolean" id="YNU2]v$U{q!:yzqXQ~fQ"></block>
     </value>
   </block>
+  <block type="factory_base" id="iwci8YoZ^G)+nsK;h9{," deletable="false" movable="false" x="10" y="10">
+    <mutation connections="TOP"></mutation>
+    <field name="NAME">call_for_ball</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">TOP</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="I6+|smK)Vk)Q02qTk3m8">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="($hQjv|TA(Ot@-:XobH1">
+            <field name="TEXT">demander le ballon</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="1(P+Mw~*|VQ1nuSjJ{R*" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="$%p?X/i?K%N!+`oNu7)#" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="R9T,VsW`v~Emf}MVu7Ug"></shadow>
+    </value>
+  </block>
 </xml>

@@ -37,6 +37,21 @@ export class Ball extends Sprite {
     return this._formerOwner;
   }
 
+  private _callers: Array<Player> = []
+
+  get caller(): Player | null {
+    let ownerTeammatesCallers = this._callers.filter(caller => caller.ownTeam == this.owner?.ownTeam)
+    this._callers = [];
+    // If some ball owner teammates have called for the ball, get one randomly
+    return ownerTeammatesCallers.length > 0 ? ownerTeammatesCallers[Math.floor(Math.random() * ownerTeammatesCallers.length)] : null;
+  }
+
+  set caller(player: Player | null) {
+    if (player) {
+      this._callers.push(player)
+    }
+  }
+
   constructor() {
     super(
       'ball',
