@@ -669,7 +669,7 @@ export class GameComponent implements OnInit, OnDestroy {
     if (closestTeammate.state == PlayerState.Falling) {
       return true;
     }
-    return this.computeDistance(player.coord, posRefCoord) < this.computeDistance(closestTeammate.coord, posRefCoord);
+    return this.computeDistance(player.coord, posRefCoord) <= this.computeDistance(closestTeammate.coord, posRefCoord);
   }
 
   private getDistance(targetA: SpriteCoord | Player, targetB: SpriteCoord | Player): number {
