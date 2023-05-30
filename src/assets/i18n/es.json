@@ -24,6 +24,7 @@
     "SHOOT_TO": "tirar hacia %1",
     "GO_TO": "correr hacia %1",
     "SPRINT_TO": "hacer sprint hacia %1",
+    "CALL_FOR_BALL": "pedir el balón",
     "PLAYER": "%1 %2 rol %3 lado %4 %5 %6 %7",
     "TEAMMATE": "compañero de equipo",
     "OPPONENT": "contrincante",
