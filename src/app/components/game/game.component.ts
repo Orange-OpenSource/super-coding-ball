@@ -668,12 +668,12 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private isClosest(player: Player, posRef: SpriteCoord | Player): boolean {
-    const posRefCoord = this.getSpritePosition(posRef);
-    const closestTeammate = this.getPlayer(player, true, null, null, true, posRefCoord);
+    const closestTeammate = this.getPlayer(player, true, null, null, true, posRef);
     // If all teammates are falling, I'm the closest
     if (closestTeammate.state == PlayerState.Falling) {
       return true;
     }
+    const posRefCoord = this.getSpritePosition(posRef);
     return this.computeDistance(player.coord, posRefCoord) <= this.computeDistance(closestTeammate.coord, posRefCoord);
   }
 
