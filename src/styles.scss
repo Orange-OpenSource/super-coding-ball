@@ -99,5 +99,31 @@ html, body {
   fill: lightgrey;
 }
 
-/* Importing Bootstrap SCSS file. */
+// Importing Bootstrap SCSS file.
+// I couldn't find a way to have bootstrap and bootstrap-rtl
+// used dynamically according to the user language.
+// So I only load bootstrap, fix some classes
+// and mostly avoid all ms-, me-, ps, and pe-
 @import 'bootstrap/scss/bootstrap';
+
+[dir="rtl"] .oriented-icon {
+  transform: scaleX(-1);
+}
+
+// Some category icons need flipping, not all
+[dir="rtl"] .customIconEvent, [dir="rtl"] .customIconAction {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .text-start {
+  text-align: right !important;
+}
+
+[dir="rtl"] .text-end {
+  text-align: left !important;
+}
+
+// Bootstrap computes margin for LTR
+.modal-header .btn-close {
+  margin: 0;
+}

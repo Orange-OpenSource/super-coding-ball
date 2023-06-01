@@ -16,7 +16,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0">
   <button class="btn btn-lg d-flex" type="button" ngbTooltip="{{'GLOBAL.BACK' | translate }}" routerLink="/home">
-    <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24" />
+    <img src="../../../assets/icons/chevron-left-solid.png" class="oriented-icon" height="24" width="24" />
   </button>
   <h4 class="m-0">{{"ONLINE.TITLE" | translate }}</h4>
   <div class="flex-grow-1 text-end">
@@ -24,7 +24,8 @@
       class="btn p-0 m-1 border border-dark rounded" type="button" ngbTooltip="{{'ONLINE.ACCOUNT' | translate }}"
       onclick="this.blur()" (click)="modalService.open(accountInfoContent)">
       {{onlineService.userDisplay.displayName}}
-      <img class="border border-dark rounded ms-1" height="40px"
+      <span class="ps-1"></span>
+      <img class="border border-dark rounded" height="40px"
         src="{{onlineService.userDisplay.pictureUrl | anonPicturePipe}}">
     </button>
   </div>
@@ -54,7 +55,7 @@
   </div>
 
   <div *ngIf="onlineService.connectionStatus === ConnectionStatus.Connected">
-    <img class="pixelated" style="width: 240px; margin-bottom: -2px;" src="../../../assets/howto/opponents.png">
+    <img class="pixelated oriented-icon" style="width: 240px; margin-bottom: -2px;" src="../../../assets/howto/opponents.png">
     <div class="col-sm-10 col-md-8 col-lg-6 border border-dark" style="margin: auto">
       <table class="table table-sm table-hover text-start">
         <thead class="table-dark">
@@ -71,8 +72,10 @@
         <tbody>
           <td colspan="5">
             <div class="input-group">
-              <input type="text" class="form-control bg-transparent" placeholder="..." [(ngModel)]="searchTerm">
-              <div class="input-group-text bg-transparent"><img src="assets/icons/search-solid.png" width="18px"></div>
+              <input type="text" class="form-control bg-transparent rounded" placeholder="..." [(ngModel)]="searchTerm">
+              <div class="m-1">
+                <img src="assets/icons/search-solid.png" width="18px">
+              </div>
             </div>
           </td>
           <tr *ngFor="let opponent of filteredOpponents" (click)="play(opponent.webcomId)"
@@ -126,7 +129,7 @@
     <div class="w-100 d-flex justify-content-between align-items-center">
       <p *ngIf="onlineService.userDisplay.pictureUrl === null" [innerHTML]="'ONLINE.DISCONNECT_GUEST' | translate"></p>
       <p *ngIf="onlineService.userDisplay.pictureUrl !== null" [innerHTML]="'ONLINE.DISCONNECT_OTHER' | translate"></p>
-      <button type="button" class="btn btn-primary ms-1" (click)="modal.close();onlineService.disconnect()">
+      <button type="button" class="btn btn-primary mx-1" (click)="modal.close();onlineService.disconnect()">
         {{"ONLINE.DISCONNECT_ACCOUNT" | translate }}
       </button>
     </div>
@@ -137,7 +140,7 @@
           value="{{onlineService.userDisplay.displayName}}">
         <label for="nickname">{{'ONLINE.NICKNAME_LIMIT' | translate}}</label>
       </form>
-      <button type="button" class="btn btn-warning ms-1"
+      <button type="button" class="btn btn-warning mx-1"
         (click)="modal.close();updateUserDisplayName(currentNickname.value)"
         [innerHTML]="'ONLINE.CHANGE_NICKNAME' | translate">
       </button>
@@ -145,13 +148,13 @@
     <hr>
     <span [innerHTML]="'ONLINE.SYNC_TEXT' | translate "></span>
     <div class="w-100 mt-2 d-flex justify-content-between align-items-center">
-      <p class="me-2">
+      <p class="mx-1">
         <span [innerHTML]="'ONLINE.UPLOAD_TEXT' | translate "></span>
         <button class="btn btn-sm" type="button" (click)="uploadBlocks()">
           <img src="../../../assets/icons/cloud-upload-alt-solid.png" height="24" />
         </button>
       </p>
-      <p class="ms-2">
+      <p class="mx-1">
         <span [innerHTML]="'ONLINE.DOWNLOAD_TEXT' | translate "></span>
         <button class="btn btn-sm" type="button" (click)="downloadBlocks()">
           <img src="../../../assets/icons/cloud-download-alt-solid.png" height="24" />

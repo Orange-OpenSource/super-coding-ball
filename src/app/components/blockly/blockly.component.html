@@ -17,7 +17,7 @@
         type="button"
         ngbTooltip="{{'GLOBAL.BACK' | translate }}"
         (click)="backToOpponentsList()">
-        <img src="../../../assets/icons/chevron-left-solid.png" height="24" width="24"/>
+        <img src="../../../assets/icons/chevron-left-solid.png" class="oriented-icon" height="24" width="24"/>
       </button>
       <button
         [disabled]="gameLaunched"
@@ -44,7 +44,7 @@
         ngbTooltip="{{'BLOCKLY.UNDO' | translate }}"
         onclick="this.blur()"
         (click)="undo()">
-        <img src="../../../assets/icons/undo-alt-solid.png" height="24" width="24"/>
+        <img src="../../../assets/icons/undo-alt-solid.png" class="oriented-icon" height="24" width="24"/>
       </button>
       <button
         [disabled]="gameLaunched"
@@ -53,7 +53,7 @@
         ngbTooltip="{{'BLOCKLY.REDO' | translate }}"
         onclick="this.blur()"
         (click)="redo()">
-        <img src="../../../assets/icons/redo-alt-solid.png" height="24" width="24"/>
+        <img src="../../../assets/icons/redo-alt-solid.png" class="oriented-icon" height="24" width="24"/>
       </button>
       <button
         *ngIf="debug"
