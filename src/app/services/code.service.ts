@@ -26,6 +26,8 @@ import * as Ru from 'blockly/msg/ru';
 import * as CustomRu from '../../assets/i18n/ru.json';
 import * as En from 'blockly/msg/en';
 import * as CustomEn from '../../assets/i18n/en.json';
+import * as He from 'blockly/msg/he';
+import * as CustomHe from '../../assets/i18n/he.json';
 import {TranslateService} from '@ngx-translate/core';
 import {OnlineService} from './online.service';
 import {LocalStorageService} from './local-storage.service';
@@ -75,6 +77,9 @@ export class CodeService {
     } else if (this.translate.currentLang === 'ru') {
       Blockly.setLocale(Ru);
       Blockly.setLocale((CustomRu as any).default.BLOCKS);
+    } else if (this.translate.currentLang === 'he') {
+      Blockly.setLocale(He);
+      Blockly.setLocale((CustomHe as any).default.BLOCKS);
     } else {
       Blockly.setLocale(En);
       Blockly.setLocale((CustomEn as any).default.BLOCKS);
@@ -108,6 +113,7 @@ export class CodeService {
     options.rendererOverrides = {};
     options.rendererOverrides[DUMMY_INPUT_MIN_HEIGHT] = 0;
     options.rendererOverrides[BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT] = 0;
+    options.rtl = document.dir === 'rtl';
 
     return Blockly.inject(blocklyDiv, options);
   }
