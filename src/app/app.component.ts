@@ -34,9 +34,13 @@ export class AppComponent implements OnInit, OnDestroy {
     localStorageService: LocalStorageService
   ) {
 
-    this.translate.addLangs(['fr', 'es', 'ru', 'en']);
-    if (this.translate.getBrowserLang()) {
-      this.translate.use(this.translate.getBrowserLang() ?? 'en');
+    this.translate.addLangs(['fr', 'es', 'ru', 'en', 'he']);
+    let browserLang = this.translate.getBrowserLang();
+    if (browserLang) {
+      this.translate.use(browserLang);
+      if (browserLang === 'he') {
+        document.dir = 'rtl';
+      }
     }
 
     const firebaseConfig = {

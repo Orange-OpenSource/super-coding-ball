@@ -1,0 +1,179 @@
+{
+   "BLOCKS": {
+     "EVENTS": "אירועים",
+     "CONDITIONS": "תנאים",
+     "ACTIONS": "פעולות",
+     "POSITIONS": "עמדות",
+     "VALUES": "ערכים",
+     "ADVANCED": "מתקדם",
+     "WHEN_HAVE_BALL": "כשיש לי את הכדור %1 %2",
+     "WHEN_TEAMMATE_HAS_BALL": "כאשר לחבר לקבוצה יש את הכדור %1 %2",
+     "WHEN_OPPONENT_HAS_BALL": "כאשר ליריב יש את הכדור %1 %2",
+     "WHEN_NOONE_HAS_BALL": "כאשר לאף אחד אין את הכדור %1 %2",
+     "CUSTOM_IF": "אם %1 אז %2 אחרת %3",
+     "I_AM_CLOSEST_TO": "אני הכי קרוב ל-%1",
+     "ROLE_AND_SIDE": "%1 הוא %2 בצד %3",
+     "ATTACKER": "תוקף",
+     "DEFENDER": "מגן",
+     "ALL": "הכל",
+     "RIGHT": "ימין",
+     "LEFT": "שמאל",
+     "PLACE_COL_LINE": "%1 נמצא בקול %2 ובשורה %3",
+     "ENERGY_OF": "האנרגיה של %1",
+     "DISTANCE_BETWEEN": "המרחק בין %1 ל-%2",
+     "SHOOT_TO": "בעט לעבר %1",
+     "GO_TO": "רוץ אל %1",
+     "SPRINT_TO": "ספרינט אל %1",
+     "CALL_FOR_BALL": "קרא לכדור",
+     "PLAYER": "%1 %2 תפקיד %3 צד %4 %5 %6 %7",
+     "TEAMMATE": "עמית",
+     "OPPONENT": "יריב",
+     "NEAR": "קרוב",
+     "FAR": "רחוק",
+     "MYSELF": "עצמי",
+     "BALL": "כדור",
+     "OPPONENTS_GOAL": "שער היריב",
+     "OUR_GOAL": "המטרה שלנו",
+     "MY_TARGET_POSITION": "היעד שלי",
+     "MIDDLE_BETWEEN": "האמצע בין %1 ל-%2",
+     "ELAPSED_TIME": "זמן שחלף",
+     "LEADING_TEAM": "%1 מובילים",
+     "LEADING_TEAM_OWN": "הקבוצה שלנו",
+     "LEADING_TEAM_OPP": "הקבוצה היריבה",
+     "LEADING_TEAM_NONE": "אף אחד"
+   },
+   "GLOBAL": {
+     "OK": "בסדר",
+     "CANCEL": "ביטול",
+     "BACK": "חזרה",
+     "WARNING": "אזהרה",
+     "SORRY": "סליחה..."
+   },
+   "UPDATE": {
+     "MESSAGE": "גרסה חדשה זמינה!<br><br>האם אתה רוצה לטעון אותה עכשיו?"
+   },
+   "HOME": {
+     "MOTTO": "חקור קידוד עם כדורגל!",
+     "BUTTON_PLAY_OFFLINE": "שחק מול מחשב",
+     "BUTTON_PLAY_ONLINE": "שחק באינטרנט!",
+     "BUTTON_HOW_TO": "איך משחקים?",
+     "BUTTON_ABOUT": "למידע נוסף",
+     "CONNECTION_WARNING": "עליך להיות מחובר לאינטרנט כדי לשחק באינטרנט!",
+     "STRONG_ENOUGH_WARNING": "תחילה עליך לנצח לפחות 3 קבוצות מחשבים לפני שתשחק באינטרנט!"
+   },
+   "HOW_TO": {
+     "TITLE": "איך משחקים?",
+     "GOAL": "SuperCodingBall הוא משחק כדורגל שבו כל השחקנים טיפשים וזה תלוי בך להגיד להם מה לעשות!",
+     "RULES": "חוקי המשחק פשוטים מאוד: <ul> <li> הכדור לא יכול לצאת מהמגרש </li><li> אין אופסייד </li> <li> האנרגיה של שחקן מתחילה ב-100 ויורדת בזמן ספרינט או דחיפה</li><li>שחקן ללא אנרגיה נופל ומאבד את הכדור! </li> </ul>",
+     "BLOCK": "כדי להגדיר את האסטרטגיה שלך, אתה תגיד לשחקנים שלך <strong> בכל עת </strong> איזו פעולה לנקוט.<br>לדוגמה, אם אתה רוצה שהשחקנים שלך ירו למטרה ברגע שהם יש את הכדור, עליך לבחור: <br>",
+     "PARAMETER": "אתה יכול לשנות את הפרמטרים של כמה חסימות.<br>לדוגמה, על ידי שינוי הבלוק הוורוד למעלה, אתה יכול להגיד לשחקנים שלך לעשות מסירה לחברם הקרוב ביותר לקבוצה, ברגע שיש להם את הכדור: < br>",
+     "CONDITION": "לבסוף אתה יכול גם להוסיף תנאים לשיפור האסטרטגיות שלך!<br>לדוגמה, אתה יכול לבחור אחת משתי הפעולות שלמעלה, בהתאם למרחק למטרה של היריב: <br>",
+     "DISCOVER": "זה תלוי בך לשחק עכשיו ולגלות את השאר!",
+     "DEMO": "תוכל גם לנתח אסטרטגיה מלאה על ידי לחיצה כאן"
+   },
+   "HOW_TO_DEMO": {
+     "TITLE": "דוגמה לאסטרטגיה",
+     "OPP_HAS_BALL": "כאשר ליריב יש את הכדור,\nכל השחקנים רצים אל הכדור\nכדי להשיג אותו",
+     "OWN_HAS_BALL": "כאשר לחבר לקבוצה יש את הכדור,\nשאר השחקנים חוזרים לעמדות שלהם\n(קדמי לתוקפים,\nאחורי למגנים)",
+     "NOONE_HAS_BALL": "כאשר לאף אחד אין את הכדור,\nלא רק השחקן הקרוב ביותר יקבל אותו.\nהאחרים נשארים בעמדות שלהם",
+     "CONDITION_NEAR": "לשם כך אנו משתמשים בתנאי זה",
+     "BALL_MINE": "כאשר לאחד השחקנים שלנו יש את הכדור,\nאנחנו רוצים לדעת אם הוא קרוב ליריב...",
+     "CONDITION_COMPARISON": "לשם כך אנו משתמשים בתנאי להשוואה...",
+     "PARAM_DISTANCE": "המרחק שלו מהיריב הקרוב...",
+     "PARAM_VALUE": "והערך 50",
+     "TEAMMATE": "במקרה של סכנה, אנו מבצעים מסירה\nלחבר לקבוצה הקרוב ביותר למטרה",
+     "RUN_TOWARDS_GOAL": "אחרת אנחנו רצים לעבר המטרה היריבה"
+   },
+   "ABOUT": {
+     "TITLE": "למידע נוסף",
+     "IDEA": "הרעיון של SuperCodingBall הוא להראות לך כמה מושגי קידוד (הוראות, פרמטרים, אירועים ותנאים) מבלי להתעסק\u00A0:)",
+     "SCRATCH": "אם אהבתם וברצונכם לגלות דברים נוספים בתכנות, עבור במהירות אל <a href=\"https://scratch.mit.edu\">Scratch</a>.<br>זהו אתר מדהים המאפשר לך ליצור סיפורים/משחקים משלך עם בלוקים של קוד!",
+     "BLOCKLY": "ב-SuperCodingBall, אתה יכול לתפעל בלוקים כמו ב-Scratch הודות ל<a href=\"https://developers.google.com/blockly\">Blockly</a>!",
+     "OPENSOURCE": "SuperCodingBall הוא פרויקט קוד פתוח, מצא <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">קוד המקור ב-GitHub</a>.",
+     "LEGAL": "קרא את <a href='/legal'>ההודעה המשפטית</a>, את <a href='/terms'>תנאי השימוש הכלליים</a> ואת ה<a href='/privacy '>הודעת פרטיות</a>.",
+     "CONTACT": "צור קשר:"
+   },
+   "LEGAL": {
+     "TITLE": "הודעה משפטית",
+     "OPENSOURCE_TITLE": "תוכנת צד שלישי",
+     "OPENSOURCE_CONTENT": "Player sprites by: David Conway Jr. (JaidynReiman), Nila122, Johannes Sjölund (wulax), Stephen Challener\n      (Redshrike),\n      Luke Mehl, bluecarrot16, Thane Brimhall (pennomi), laetissima, Michael Whitlock (bigbeargames), Matthew Krohn\n      (makrohn), Rhimlock, Benjamin K. Smith (BenCreating), Sander Frenken (castelonia), kheftel, Marcel van de Steeg\n      (MadMarcel), kirts, Mark Weyer, Lanea Zimmerman (Sharm), Manuel Riecke (MrBeast), Charles Sanchez\n      (CharlesGabriel), Zi Ye, William.Thompsonj, drjamgo@hotmail.com, dalonedrau, ElizaWy, Evert, Daniel Eddeland\n      (daneeklu), Carlo Enrico Victoria (Nemisys), Mandi Paugh, Joe White, Barbara Riviera, Tracy, DarkwallLKE,\n      thecilekli, Stafford McIntyre, PlatForge project, Shaun Williams, Tuomo Untinen (reemax), Pierre Vigier (pvigier),\n      Lori Angela Nagel (jastiv), tskaufma, gr3yh47, LordNeo, XOR, pswerlang, Inboxninja<br>\n      Sprites contributed as part of the Liberated Pixel Cup project from OpenGameArt.org:\n      http://opengameart.org/content/lpc-collection <br>\n      License: Creative Commons Attribution-ShareAlike 3.0 https://creativecommons.org/licenses/by-sa/3.0/<br>\n      Detailed credits:\n      https://github.com/sanderfrenken/Universal-LPC-Spritesheet-Character-Generator/blob/master/CREDITS.csv\n      <hr>\n      Original football pitch by Amon (http://amon.pro)<br>\n      License Creative Commons Attribution-ShareAlike 3.0: https://creativecommons.org/licenses/by-sa/3.0/\n      <hr>\n      Icons by Font Awesome Free<br>\n      License Creative Commons Attribution 4.0 International: https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt\n      <hr>\n      Angular - version 11.2.4 - https://github.com/angular/angular<br>\n      Copyright (c) 2010-2021 Google LLC.<br>\n      The MIT License - https://angular.io/license\n      <hr>\n      Blockly - version 6.20210701.0 - https://github.com/google/blockly<br>\n      Copyright (c) 2012-2021 Google, Inc.<br>\n      Apache License 2.0 - https://github.com/google/blockly/blob/master/LICENSE\n      <hr>\n      Bootstrap - version 4.5.0 - https://github.com/twbs/bootstrap<br>\n      Copyright (c) 2011–2021 - the Bootstrap Authors and Twitter, Inc.<br>\n      The MIT License - https://github.com/twbs/bootstrap/blob/main/LICENSE\n      <hr>\n      NG Bootstrap - version 9.1.0 - https://github.com/ng-bootstrap/ng-bootstrap<br>\n      Copyright (c) 2015-2018 - Angular ng-bootstrap team<br>\n      The MIT License - https://github.com/ng-bootstrap/ng-bootstrap/blob/master/LICENSE\n      <hr>\n      ngx-translate - version 13.0.0 - https://github.com/ngx-translate/core<br>\n      Copyright (c) 2018 Olivier Combe<br>\n      The MIT License - https://github.com/ngx-translate/core/blob/master/LICENSE\n      <hr>\n      Firebase Javascript SDK - version 8.6.3 - https://github.com/firebase/firebase-js-sdk<br>\n      Copyright (c) Google, Inc.<br>\n      Apache License Version 2.0 - https://github.com/firebase/firebase-js-sdk/blob/master/LICENSE\n      <hr>\n      RxJS - version 6.6.0 - https://github.com/ReactiveX/rxjs<br>\n      Copyright (c) 2015-2018 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors<br>\n      Apache License Version 2.0 - https://github.com/ReactiveX/rxjs/blob/master/LICENSE.txt\n      <hr>\n      tslib - version 2.0.0 - https://github.com/microsoft/tslib<br>\n      Copyright (c) Microsoft Corporation.<br>\n      BSD Zero Clause License - https://github.com/microsoft/tslib/blob/main/LICENSE.txt\n      <hr>\n      zone.js - version 0.11.3 - https://github.com/angular/zone.js<br>\n      Copyright (c) 2016-2018 Google, Inc.<br>\n      The MIT License - https://github.com/angular/zone.js/blob/master/LICENSE"
+   },
+   "PRIVACY": {
+     "TITLE": "הודעת פרטיות",
+     "DISABLE_TRACKING": "השבת מעקב אנונימי"
+   },
+   "TERMS": {
+     "TITLE": "תנאים כלליים לשימוש בשירות SuperCodingBall"
+   },
+   "OFFLINE": {
+     "TITLE": "שחק נגד מחשב",
+     "STRATEGY": "האסטרטגיה של היריב",
+     "WON": "ניצח?",
+     "STRATEGIES": {
+       "DO-NOTHING": "הם לא עושים כלום!",
+       "1PLAYER-ONLY": "רק שחקן אחד זז",
+       "ALL-DEFENDERS": "כל השחקנים בהגנה",
+       "DEFENDERS-PASS-TO-ATTACKERS": "מגנים מיירטים ושולחים לתוקפים",
+       "ONLY-PASSES": "הם רק עוברים ויורים",
+       "3ATTACKERS": "3 תוקפים",
+       "COLUMN": "כל השחקנים בעמודה המרכזית",
+       "SPRINTERS": "הם רצים כדי להשיג את הכדור"
+     }
+   },
+   "ONLINE": {
+     "TITLE": "שחק באינטרנט",
+     "CONNECT_GUEST": "התחבר כאורח",
+     "GUEST_WARNING": "אם אתה התחבר כאורח, תוכל לשחק כמו האחרים, אבל לא תהיה לך תמונת הפרופיל שלך.<br><br>לא תוכל למצוא את החשבון שלך במכשיר אחר, ואם תתנתק, הדירוג יאבד!",
+     "CONNECT_WITH_FACEBOOK": "התחבר לפייסבוק",
+     "CONNECT_WITH_GOOGLE": "התחבר עם Google",
+     "PERSONAL_RANK": "הדירוג הנוכחי שלך:",
+     "RANKING": "דירוג 15 הימים האחרונים",
+     "OPP_POINTS": "נקודות",
+     "RANKING_POPUP": {
+       "TITLE": "מידע על דירוג",
+       "CONTENT": "הדירוג מציג את השחקנים המחוברים ב-15 הימים האחרונים.<br><br>כל יום, אתה יכול לשחק מול כל יריב ולקלוע:<br>{{won}} 2 נקודות לניצחון,< br>{{תיקו}} נקודה אחת לתיקו,<br>{{lost}} 0 נקודות להפסד.<br><br>(תוכל לשחק משחקים חוזרים כדי לשפר את התוצאה שלך).<br><br> אם אתה מוותר על משחק בעיצומו, הוא נחשב אבוד!"
+     },
+     "REPLAY": {
+       "HEADER": "כבר שיחקת את המשחק הזה היום",
+       "LOST": "(הפסדת).",
+       "DRAW": "(צייר).",
+       "WON": "(ניצחת).",
+       "IMPROVE": "אתה מנסה לשפר את הציון שלך?",
+       "RISK": "אתה לוקח את הסיכון לשחק שוב?"
+     },
+     "ACCOUNT": "חשבון",
+     "DISCONNECT_GUEST": "אם תתנתק, תאבד את חשבון האורח שלך!",
+     "DISCONNECT_OTHER": "צא אם אתה רוצה להשתמש בחשבון אחר",
+     "NICKNAME_LIMIT": "20 תווים לכל היותר",
+     "CHANGE_NICKNAME": "שנה את הכינוי שלי",
+     "DISCONNECT_ACCOUNT": "יציאה",
+     "SYNC_TEXT": "הבלוקים שלך מיוצאים אוטומטית בכל פעם שאתה מתחיל משחק מקוון.",
+     "UPLOAD_TEXT": "אם אתה רוצה לייצא את הבלוקים שלך מבלי להתחיל משחק חדש, לחץ כאן:",
+     "DOWNLOAD_TEXT": "אם אתה רוצה לייבא את הבלוקים שלך (לדוגמה אם שינית את האסטרטגיה שלך במכשיר אחר), לחץ כאן:",
+     "DELETE_ACCOUNT": "מחק את החשבון שלי לצמיתות",
+     "DELETE_MODAL": "האם אתה בטוח שברצונך למחוק את חשבונך??"
+   },
+   "BLOCKLY": {
+     "FIELD_POPUP": {
+       "TOOLTIP": "סקירת שדה",
+       "TITLE": "סקירת שדה עם מיקום היעד של כל שחקן"
+     },
+     "DELETE": "מחק את כל החסימות שלי",
+     "DELETE_WARNING": "אתה באמת רוצה למחוק את כל הבלוקים שלך!?",
+     "UNDO": "ביטול",
+     "REDO": "עשה מחדש",
+     "VALIDATE_BLOCKS": "אמת את האסטרטגיה שלי"
+   },
+   "GAME": {
+     "STOP": "עצור את המשחק",
+     "STOP_MODAL": "האם אתה רוצה להפסיק את המשחק הזה?",
+     "GAME_ACCELERATED": "מואצת",
+     "KICK_OFF": "בוא נצא לדרך!",
+     "CLICK_ANYWHERE": "(לחץ בכל מקום)",
+     "HALF_TIME": "מחצית",
+     "GOAL": "גול!",
+     "YOU_WON": "ניצחת!!!",
+     "DRAW": "תיקו!",
+     "YOU_LOST": "הפסדת \u00A0:("
+   }
+}
