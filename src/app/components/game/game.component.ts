@@ -224,8 +224,8 @@ export class GameComponent implements OnInit, OnDestroy {
       player.coord = this.getGridPosition(false, 1, 3);
       player.state = PlayerState.Entering;
     }
-    this.ball.coord = this.getGridPosition(false, 3, 3);
     this.ball.owner = null;
+    this.ball.coord = this.getGridPosition(false, 3, 3);
   }
 
   positionPlayersAndBallBeforeKickOff(): void {
