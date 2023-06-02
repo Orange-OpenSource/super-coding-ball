@@ -62,9 +62,32 @@ export class Sprite {
   downAnim;
   leftAnim;
   rightAnim;
-  coord!: SpriteCoord;
-  angle = 0;
-  still!: boolean;
+  private _coord!: SpriteCoord;
+  public get coord(): SpriteCoord {
+    return this._coord;
+  }
+
+  public set coord(value: SpriteCoord) {
+    this._coord = value;
+  }
+
+  private _angle = 0;
+  public get angle() {
+    return this._angle;
+  }
+
+  public set angle(value) {
+    this._angle = value;
+  }
+
+  private _still!: boolean;
+  public get still(): boolean {
+    return this._still;
+  }
+
+  public set still(value: boolean) {
+    this._still = value;
+  }
 
   constructor(
     assetName: string | null,

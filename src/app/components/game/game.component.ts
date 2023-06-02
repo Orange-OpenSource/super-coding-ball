@@ -341,8 +341,14 @@ export class GameComponent implements OnInit, OnDestroy {
     for (const player of this.players) {
       player.still = true;
       if (player.state === PlayerState.Entering || player.state === PlayerState.Playing || player.state === PlayerState.Pushed) {
-        // Before anything, if a player has called for the ball, make the pass
+        // Before anything, if a player has called for the ball long enough...
         if (caller) {
+          // ...remove all callers
+          this.ball.resetCallers();
+          this.players.forEach(player => {
+            if (player.state == PlayerState.Calling) player.state = PlayerState.Playing;
+          })
+          // ...and make the pass
           this.shoot(player, caller)
         }
         this.executePlayerCode(player);
@@ -372,7 +378,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
   private handlePlayerCollisions(player: Player): void {
     for (const otherPlayer of this.players.filter(it => it !== player &&
-      (it.state === PlayerState.Playing || it.state === PlayerState.Pushed))) {
+      (it.state === PlayerState.Playing || it.state === PlayerState.Calling || it.state === PlayerState.Pushed))) {
       const isOpponent = player.ownTeam !== otherPlayer.ownTeam;
       const collisionDist = isOpponent ? opponentsCollisionDist : teammatesCollisionDist;
       if (this.computeDistance(player.coord, otherPlayer.coord) < collisionDist) {
@@ -399,7 +405,7 @@ export class GameComponent implements OnInit, OnDestroy {
     if (thief.still || Math.cos(angleFromThiefToOwner - thief.angle) < Math.cos(Math.PI / 4)) {
       return;
     }
-    if (owner.state !== PlayerState.Pushed) {
+    if (owner.state !== PlayerState.Pushed && owner.state !== PlayerState.Calling) {
       owner.state = PlayerState.Pushed;
     }
     // -1 if thief arrives from front, 1 if he arrives from behind
@@ -415,10 +421,6 @@ export class GameComponent implements OnInit, OnDestroy {
   private moveBall(): void {
     if (this.ball.owner) {
       this.ball.owningTime++;
-      // Clone position so that ball can be moved without the player
-      this.ball.coord = Object.assign({}, this.ball.owner.coord);
-      this.ball.angle = this.ball.owner.angle;
-      this.ball.still = this.ball.owner.still;
     } else {
       this.ball.computeMovement();
       this.checkIfBallIfOffLimits();
@@ -583,8 +585,8 @@ export class GameComponent implements OnInit, OnDestroy {
     if (player.energy === 0) {
       player.state = PlayerState.Falling;
       if (this.ball.owner === player) {
-        this.ball.coord.y = this.ball.coord.y - 2; // move ball up so that it is drawn before falling player
         this.ball.owner = null;
+        this.ball.coord.y = this.ball.coord.y - 7; // move ball up so that it is drawn before falling player
       }
     }
   }
@@ -787,5 +789,11 @@ export class GameComponent implements OnInit, OnDestroy {
 
   private getSpritePosition(input: SpriteCoord | Player): SpriteCoord {
     return input instanceof Player ? input.coord : input;
+  }
+
+  private callForBall(player: Player) {
+    player.angle = this.computeAngle(player.coord, this.ball.coord);
+    player.state = PlayerState.Calling;
+    this.ball.caller = player;
   }
 }

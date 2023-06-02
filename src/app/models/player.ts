@@ -15,6 +15,7 @@ export enum PlayerState {
   Entering,
   Greeting,
   Playing,
+  Calling,
   Pushed,
   Falling,
   Celebrating,
@@ -35,6 +36,10 @@ const greetingLeftAnim: SpriteAnim = {frames: [{row: 1, col: 5}, {row: 2, col: 5
 const greetingDownAnim: SpriteAnim = {frames: [{row: 2, col: 5}, {row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}], speed: 0.1};
 // tslint:disable-next-line:max-line-length
 const greetingRightAnim: SpriteAnim = {frames: [{row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}], speed: 0.1};
+const callingUpAnim: SpriteAnim = {frames: [{row: 12, col: 4}, {row: 12, col: 5}, {row: 12, col: 4}, {row: 12, col: 5}, {row: 12, col: 4}], speed: 0.2};
+const callingLeftAnim: SpriteAnim = {frames: [{row: 13, col: 4}, {row: 13, col: 5}, {row: 13, col: 4}, {row: 13, col: 5}, {row: 13, col: 4}], speed: 0.2};
+const callingDownAnim: SpriteAnim = {frames: [{row: 14, col: 4}, {row: 14, col: 5}, {row: 14, col: 4}, {row: 14, col: 5}, {row: 14, col: 4}], speed: 0.2};
+const callingRightAnim: SpriteAnim = {frames: [{row: 15, col: 4}, {row: 15, col: 5}, {row: 15, col: 4}, {row: 15, col: 5}, {row: 15, col: 4}], speed: 0.2};
 const pushedUpAnim: SpriteAnim = {frames: [{row: 0, col: 5}, {row: 0, col: 4}, {row: 0, col: 6}, {row: 0, col: 4}], speed: 0.2};
 const pushedLeftAnim: SpriteAnim = {frames: [{row: 1, col: 5}, {row: 1, col: 4}, {row: 1, col: 6}, {row: 1, col: 4}], speed: 0.2};
 const pushedDownAnim: SpriteAnim = {frames: [{row: 2, col: 5}, {row: 2, col: 4}, {row: 2, col: 6}, {row: 2, col: 4}], speed: 0.2};
@@ -110,6 +115,18 @@ export class Player extends Sprite {
             return greetingRightAnim;
         }
         break;
+      case PlayerState.Calling:
+        switch (Sprite.getDirection(this.angle)) {
+          case Dir.Up:
+            return callingUpAnim;
+          case Dir.Left:
+            return callingLeftAnim;
+          case Dir.Down:
+            return callingDownAnim;
+          case Dir.Right:
+            return callingRightAnim;
+        }
+        break;
       case PlayerState.Falling:
         return fallingAnim;
       case PlayerState.Pushed:
@@ -156,6 +173,12 @@ export class Player extends Sprite {
     if (this.state === PlayerState.Pushed && this.currentFrame === 0) {
       this.state = PlayerState.Playing;
     }
+
+    // When calling is done, go back to playing
+    if (this.state === PlayerState.Calling && this.currentFrame === 0) {
+      this.state = PlayerState.Playing;
+    }
+
     // When falling is done, go back to playing and recover full energy
     if (this.state === PlayerState.Falling && this.currentFrame === 0) {
       this.state = PlayerState.Playing;

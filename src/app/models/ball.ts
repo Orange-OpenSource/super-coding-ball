@@ -31,26 +31,62 @@ export class Ball extends Sprite {
     this._formerOwner = this._owner;
     this._owner = value;
     this.owningTime = 0;
+    if (!this._owner && this._formerOwner) {
+      // Clone former owner position so that ball can be moved independently
+      this.coord = Object.assign({}, this._formerOwner.coord);
+      this.angle = this._formerOwner.angle;
+      this.still = this._formerOwner.still;
+    }
   }
 
   get formerOwner(): Player | null {
     return this._formerOwner;
   }
 
-  private _callers: Array<Player> = []
+  get coord(): SpriteCoord {
+    return this.owner ? this.owner.coord : super.coord;
+  }
+
+  public set coord(value: SpriteCoord) {
+    super.coord = value;
+  }
+
+  get angle(): number {
+    return this.owner ? this.owner.angle : super.angle;
+  }
+
+  public set angle(value) {
+    super.angle = value;
+  }
+
+  get still(): boolean {
+    return this.owner ? this.owner.still : super.still;
+  }
+
+  public set still(value) {
+    super.still = value;
+  }
+
+  private _callers: Array<{ player: Player, callingTime: number }> = []
 
   get caller(): Player | null {
-    let ownerTeammatesCallers = this._callers.filter(caller => caller.ownTeam == this.owner?.ownTeam)
-    this._callers = [];
+    this._callers.forEach(caller => caller.callingTime++);
+    let ownerTeammatesCallers = this._callers
+      // callers have to wait before they can get the pass
+      .filter(caller => caller.callingTime == 20)
+      // the pass can only be made to a teammate of the ball owner
+      .filter(caller => caller.player.ownTeam == this.owner?.ownTeam)
     // If some ball owner teammates have called for the ball, get one randomly
-    return ownerTeammatesCallers.length > 0 ? ownerTeammatesCallers[Math.floor(Math.random() * ownerTeammatesCallers.length)] : null;
+    return ownerTeammatesCallers.length > 0 ? ownerTeammatesCallers[Math.floor(Math.random() * ownerTeammatesCallers.length)].player : null;
   }
 
   set caller(player: Player | null) {
-    if (player) {
-      this._callers.push(player)
+    if (player && !this._callers.find(caller => caller.player == player)) {
+      this._callers.push({player: player, callingTime: 0})
     }
   }
+
+  resetCallers() {this._callers = [];}
 
   constructor() {
     super(

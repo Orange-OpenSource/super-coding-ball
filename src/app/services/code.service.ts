@@ -209,7 +209,7 @@ ${javascriptGenerator.statementToCode(block, 'DO')}
     };
 
     javascriptGenerator.call_for_ball = (block: Blockly.Block) => {
-      return `game.ball.caller = player;`;
+      return `game.callForBall(player);`;
     };
 
     javascriptGenerator.player = (block: Blockly.Block) => {
