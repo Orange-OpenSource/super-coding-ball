@@ -341,14 +341,9 @@ export class GameComponent implements OnInit, OnDestroy {
     for (const player of this.players) {
       player.still = true;
       if (player.state === PlayerState.Entering || player.state === PlayerState.Playing || player.state === PlayerState.Pushed) {
-        // Before anything, if a player has called for the ball long enough...
-        if (caller) {
-          // ...remove all callers
-          this.ball.resetCallers();
-          this.players.forEach(player => {
-            if (player.state == PlayerState.Calling) player.state = PlayerState.Playing;
-          })
-          // ...and make the pass
+        // Before anything, if a teammate has called for the ball long enough...
+        if (caller && this.ball.owner?.ownTeam == caller.ownTeam) {
+          // ...make the pass
           this.shoot(player, caller)
         }
         this.executePlayerCode(player);
@@ -659,6 +654,12 @@ export class GameComponent implements OnInit, OnDestroy {
     // Add velocity error
     this.ball.velocity = velocity * (1 + shotVelocityErrorMargin * (2 * Math.random() - 1));
     this.ball.owner = null;
+
+    // Remove all callers
+    this.ball.resetCallers();
+    this.players.forEach(player => {
+      if (player.state == PlayerState.Calling) player.state = PlayerState.Playing;
+    })
   }
 
   private getPerfectVelocity(player: Player, targetCoord: SpriteCoord): number {

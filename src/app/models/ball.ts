@@ -71,13 +71,11 @@ export class Ball extends Sprite {
 
   get caller(): Player | null {
     this._callers.forEach(caller => caller.callingTime++);
-    let ownerTeammatesCallers = this._callers
-      // callers have to wait before they can get the pass
-      .filter(caller => caller.callingTime == 20)
-      // the pass can only be made to a teammate of the ball owner
-      .filter(caller => caller.player.ownTeam == this.owner?.ownTeam)
-    // If some ball owner teammates have called for the ball, get one randomly
-    return ownerTeammatesCallers.length > 0 ? ownerTeammatesCallers[Math.floor(Math.random() * ownerTeammatesCallers.length)].player : null;
+    // Callers have to wait 20 cycles before they can get the pass
+    let finishWaiting = this._callers.filter(caller => caller.callingTime == 20)
+    this._callers = this._callers.filter(caller => caller.callingTime < 20)
+    // Get randomly callers that have finished waiting
+    return finishWaiting.length > 0 ? finishWaiting[Math.floor(Math.random() * finishWaiting.length)].player : null;
   }
 
   set caller(player: Player | null) {
