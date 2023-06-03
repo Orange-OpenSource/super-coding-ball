@@ -433,11 +433,11 @@ export class GameComponent implements OnInit, OnDestroy {
     if (this.ball.coord.x > canvasWidth - widthMargin) {
       this.ball.coord.x = canvasWidth - widthMargin;
     }
-    if (this.ball.coord.y < heightMargin) {
-      this.ball.coord.y = heightMargin;
+    if (this.ball.coord.y < 0) {
+      this.ball.coord.y = 0;
     }
-    if (this.ball.coord.y > canvasHeight - heightMargin) {
-      this.ball.coord.y = canvasHeight - heightMargin;
+    if (this.ball.coord.y > canvasHeight) {
+      this.ball.coord.y = canvasHeight;
     }
   }
 
@@ -491,9 +491,6 @@ export class GameComponent implements OnInit, OnDestroy {
       }
     }
     this.gamePaused = true;
-    if (this.ball.owner === null) {
-      this.ball.velocity = 0;
-    }
     this.openKickOffPopup();
     this.ownTeamWillStart = !forOwnTeam;
   }
