@@ -99,6 +99,11 @@ html, body {
   fill: lightgrey;
 }
 
+// Remove white background that Bootstrap 5.3 adds on tables
+table {
+  --bs-table-bg: transparent !important;
+}
+
 // Importing Bootstrap SCSS file.
 // I couldn't find a way to have bootstrap and bootstrap-rtl
 // used dynamically according to the user language.
