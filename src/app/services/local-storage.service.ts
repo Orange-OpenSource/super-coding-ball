@@ -64,6 +64,10 @@ export class LocalStorageService {
     localStorage.setItem(opponentId, 'won');
   }
 
+  clearLocalStorage(): void {
+    localStorage.clear();
+  }
+
   getAcceleratedGameStatus(): boolean {
     return localStorage.getItem('accelerated') === 'true';
   }

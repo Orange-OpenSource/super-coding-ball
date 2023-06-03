@@ -9,15 +9,16 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {LocalStorageService} from '../../services/local-storage.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-privacy',
   templateUrl: './privacy.component.html',
   styleUrls: ['./privacy.component.scss']
 })
-export class PrivacyComponent implements OnInit {
+export class PrivacyComponent {
   get trackingDisabled(): boolean {
     return this.localStorageService.getTrackingDisabledStatus();
   }
@@ -26,10 +27,12 @@ export class PrivacyComponent implements OnInit {
     this.localStorageService.setTrackingDisabledStatus(disabled);
   }
 
-  constructor(private localStorageService: LocalStorageService) {
+  constructor(private localStorageService: LocalStorageService, private router: Router) {
   }
 
-  ngOnInit(): void {
+  removeDeviceData(): void {
+    this.localStorageService.clearLocalStorage();
+    this.router.navigate(['/']);
   }
 
 }

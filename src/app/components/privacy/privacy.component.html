@@ -22,6 +22,10 @@
 <div class="p-4" style="background-color: #ccffcc;">
   <div class="card card-body" [innerHTML]="'INTERNAL_PRIVACY.CONTENT' | translate"></div>
   <div class="card card-body mt-4">
+    <button type="button" class="btn btn-danger" (click)="removeDeviceData()">
+      {{"INTERNAL_PRIVACY.REMOVE_DEVICE_DATA" | translate }}</button>
+  </div>
+  <div class="card card-body mt-4">
     <div class="form-group">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="trackingDisabled"
