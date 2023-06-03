@@ -1,0 +1,33 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".write": "auth !== null && auth.uid === $uid",
+        ".read": "auth !== null"
+      }
+    },
+    "games": {
+      ".read": "auth !== null",
+      "$day": {
+        // the timestamp used is the beginning of local day at midnight, so it can be +/- 24h to EPOCH time
+        ".validate": "now <= parseInt($day) + 1000 * 60 * 60 * 24  && now >= parseInt($day) - 1000 * 60 * 60 * 24 && (parseInt($day) % (1000 * 60 * 60 * 24)) === 0",
+        // anyone can delete games older than 15 days
+        ".write": "auth !== null && parseInt($day) < now - 1000 * 60 * 60 * 24 * 15",
+        "$uid": {
+          ".write": "auth !== null && auth.uid === $uid",
+          "userDisplay": {
+            "displayName": {
+              ".validate": "newData.val().length <= 20"
+            }
+          },
+          "dailyGames": {
+            "$oppId": {
+              // scores are 0, 1, 2 and the opponent should exist
+              ".validate": "newData.val() >= 0 && newData.val() <= 2 && root.child('users').hasChild($oppId)"
+            }
+          }
+        }
+      }
+    }
+  }
+}

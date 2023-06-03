@@ -46,7 +46,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-
-# internal legal mentions
-/src/assets/legal-i18n
-/src/assets/webcom-rules.json
