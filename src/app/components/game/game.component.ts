@@ -50,6 +50,7 @@ const goalWidth = 112;
 const periodDuration = 45;
 const ownGoal: SpriteCoord = {x: widthMargin + fieldWidth / 2, y: canvasHeight - heightMargin};
 const oppGoal: SpriteCoord = {x: widthMargin + fieldWidth / 2, y: heightMargin};
+const goalDetectionMargin = 5;
 const opponentsCollisionDist = 40;
 const opponentsAvoidDist = opponentsCollisionDist * 1.5;
 const teammatesCollisionDist = 20;
@@ -368,7 +369,7 @@ export class GameComponent implements OnInit, OnDestroy {
       code = this.oppCode;
     }
     return Function('"use strict";return (function(game, player){ ' + code + ' })')()
-    (this, player);
+      (this, player);
   }
 
   private handlePlayerCollisions(player: Player): void {
@@ -439,6 +440,21 @@ export class GameComponent implements OnInit, OnDestroy {
     if (this.ball.coord.y > canvasHeight) {
       this.ball.coord.y = canvasHeight;
     }
+
+    // If a goal has been scored (thus game is paused)
+    if (this.gamePaused 
+      // and if the ball is behind the goal line
+      && (this.ball.coord.y < oppGoal.y + goalDetectionMargin || this.ball.coord.y > ownGoal.y - goalDetectionMargin)) {
+      const goalCenterX = ownGoal.x;
+      // Don't let the ball escape the goal
+      if (this.ball.coord.x < goalCenterX - goalWidth / 2) {
+        this.ball.coord.x = goalCenterX - goalWidth / 2;
+      }
+
+      if (this.ball.coord.x > goalCenterX + goalWidth / 2) {
+        this.ball.coord.x = goalCenterX + goalWidth / 2;
+      }
+    }
   }
 
   private checkIfBallHasBeenCaught(): void {
@@ -464,9 +480,9 @@ export class GameComponent implements OnInit, OnDestroy {
   private checkIfGoalScored(): void {
     const goalCenterX = ownGoal.x;
     if (this.ball.coord.x > goalCenterX - goalWidth / 2 && this.ball.coord.x < goalCenterX + goalWidth / 2) {
-      if (this.ball.coord.y < oppGoal.y + 5) {
+      if (this.ball.coord.y < oppGoal.y + goalDetectionMargin) {
         this.scoreGoal(true);
-      } else if (this.ball.coord.y > ownGoal.y - 5) {
+      } else if (this.ball.coord.y > ownGoal.y - goalDetectionMargin) {
         this.scoreGoal(false);
       }
     }
