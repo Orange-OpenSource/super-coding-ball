@@ -164,6 +164,7 @@
     "VALIDATE_BLOCKS": "Valider ma stratégie"
   },
   "GAME": {
+    "MIN": "min",
     "STOP": "Arrêter le match",
     "STOP_MODAL": "Est-ce que tu veux arrêter le match\u00A0?",
     "GAME_ACCELERATED": "Accéléré",
