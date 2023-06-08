@@ -148,7 +148,6 @@
     "CHANGE_NICKNAME": "Change my nickname",
     "DISCONNECT_ACCOUNT": "Logout",
     "SYNC_TEXT": "Your blocks are exported automatically every time you start an online game.",
-    "UPLOAD_TEXT": "If you want to export your blocks without starting a new game, click here:",
     "DOWNLOAD_TEXT": "If you want to import your blocks (for example if you have modified your strategy on another device), click here:",
     "DELETE_ACCOUNT": "Delete my account permanently",
     "DELETE_MODAL": "Are you sure you want to delete your account??"

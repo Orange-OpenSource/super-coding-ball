@@ -147,7 +147,6 @@
     "CHANGE_NICKNAME": "Cambiar mi nombre de usuario",
     "DISCONNECT_ACCOUNT": "Desconectarme",
     "SYNC_TEXT": "Tus bloques serán exportados automáticamenete cada vez que lances un partido en línea.",
-    "UPLOAD_TEXT": "Si quieres exportar tus bloques sin lanzar un partido, pulsa aquí:",
     "DOWNLOAD_TEXT": "Si quieres importar tus bloques (por ejemplo si has modificado tu estrategia en otro dispositivo) pulsa aquí:",
     "DELETE_ACCOUNT": "Suprimir mi cuenta definitivamente",
     "DELETE_MODAL": "¿Estás seguro de que quieres suprimir tu cuenta??"

@@ -200,11 +200,6 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
       .subscribe(() => this.loadData());
   }
 
-  uploadBlocks(): void {
-    this.onlineService.updateUserBlocks(this.codeService.loadOwnBlocksFromLocalStorage())
-      .subscribe(() => this.modalService.dismissAll());
-  }
-
   downloadBlocks(): void {
     this.codeService.loadOwnBlocksFromServer()
       .then(blocks => {
