@@ -442,7 +442,7 @@ export class GameComponent implements OnInit, OnDestroy {
     }
 
     // If a goal has been scored (thus game is paused)
-    if (this.gamePaused 
+    if (this.gamePaused
       // and if the ball is behind the goal line
       && (this.ball.coord.y < oppGoal.y + goalDetectionMargin || this.ball.coord.y > ownGoal.y - goalDetectionMargin)) {
       const goalCenterX = ownGoal.x;
@@ -519,6 +519,12 @@ export class GameComponent implements OnInit, OnDestroy {
     const sprites: Sprite[] = [];
     sprites.push(...this.players);
     sprites.push(this.ball);
+
+    // After entering and greeting, synchronize all players before beginning the waiting anim
+    let waitingPlayers = this.players.filter(player => player.state == PlayerState.Waiting);
+    let allAreWaiting = waitingPlayers.length == 8;
+    waitingPlayers.forEach(player => player.currentFrame = allAreWaiting ? player.currentFrame : 0);
+
     for (const sprite of sprites.sort((a, b) => a.offsetCoord.y - b.offsetCoord.y)) {
       sprite.animate();
       const currentFrame = Math.floor(sprite.currentFrame);
