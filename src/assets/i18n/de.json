@@ -1,0 +1,181 @@
+{
+  "BLOCKS": {
+    "EVENTS": "Ereignisse",
+    "CONDITIONS": "Bedingungen",
+    "ACTIONS": "Aktionen",
+    "POSITIONS": "Positionen",
+    "VALUES": "Werte",
+    "ADVANCED": "Fortgeschritten",
+    "WHEN_HAVE_BALL": "Wenn ich den Ball habe %1 %2",
+    "WHEN_TEAMMATE_HAS_BALL": "Wenn jemand aus deinem Team den Ball hat %1 %2",
+    "WHEN_OPPONENT_HAS_BALL": "Wenn jemand aus dem gegnerischen Team den Ball hat %1 %2",
+    "WHEN_NOONE_HAS_BALL": "Wenn niemand den Ball hat %1 %2",
+    "CUSTOM_IF": "Wenn %1 dann %2 sonst %3",
+    "I_AM_CLOSEST_TO": "Ich bin am nächsten zu %1",
+    "ROLE_AND_SIDE": "%1 ist %2 auf der %3 Seite",
+    "ATTACKER": "Angreifer*in",
+    "DEFENDER": "Verteidiger*in",
+    "ALL": "alle",
+    "RIGHT": "rechts",
+    "LEFT": "links",
+    "PLACE_COL_LINE": "%1 ist in Spalte %2 und Zeile %3",
+    "ENERGY_OF": "Energie von %1",
+    "DISTANCE_BETWEEN": "Entfernung zwischen %1 und %2",
+    "SHOOT_TO": "schieße in Richtung %1",
+    "GO_TO": "laufe zu %1",
+    "SPRINT_TO": "sprinte zu %1",
+    "CALL_FOR_BALL": "rufe nach dem Ball",
+    "PLAYER": "%1 %2 Funktion %3 Seite %4 %5 %6 %7",
+    "TEAMMATE": "Teamkolleg*in",
+    "OPPONENT": "Gegner*in",
+    "NEAR": "in der Nähe",
+    "FAR": "weit entfernt von",
+    "MYSELF": "mir selbst",
+    "BALL": "Ball",
+    "OPPONENTS_GOAL": "gegnerisches Tor",
+    "OUR_GOAL": "unser Tor",
+    "MY_TARGET_POSITION": "meine Zielposition",
+    "MIDDLE_BETWEEN": "mittig zwischen %1 und %2",
+    "ELAPSED_TIME": "verstrichene Zeit",
+    "LEADING_TEAM": "%1 führt",
+    "LEADING_TEAM_OWN": "unser Team",
+    "LEADING_TEAM_OPP": "das gegnerische Team",
+    "LEADING_TEAM_NONE": "niemand"
+  },
+  "GLOBAL": {
+    "OK": "OK",
+    "CANCEL": "Abbrechen",
+    "BACK": "Zurück",
+    "WARNING": "Warnung",
+    "SORRY": "Entschuldigung..."
+  },
+  "UPDATE": {
+    "MESSAGE": "Eine neue Version ist verfügbar!<br><br>Möchtest du diese herunterladen?"
+  },
+  "HOME": {
+    "MOTTO": "Spielend Programmieren lernen mit Fußball!",
+    "BUTTON_PLAY_OFFLINE": "Gegen den Computer spielen",
+    "BUTTON_PLAY_ONLINE": "Online spielen!",
+    "BUTTON_HOW_TO": "Wie spielen wir?",
+    "BUTTON_ABOUT": "Mehr erfahren",
+    "CONNECTION_WARNING": "Du musst mit dem Internet verbunden sein, um online zu spielen!",
+    "STRONG_ENOUGH_WARNING": "Du musst erst mindestens 3 Computer-Teams besiegen, bevor du online spielen kannst!"
+  },
+  "HOW_TO": {
+    "TITLE": "Wie spielen wir?",
+    "GOAL": "SuperCodingBall ist ein Fußballspiel, bei dem alle Spieler*innen erst einmal dumm sind und du ihnen genau sagen musst, was sie tun sollen!",
+    "RULES": "Die Regeln des Spiels sind sehr einfach: <ul> <li> Der Ball darf nicht aus dem Spielfeld gelangen </li><li> Es gibt kein Abseits </li> <li> Die Energie einer Spieler*in beginnt bei 100 und nimmt durch Sprinten oder Schubsen ab</li><li>Eine Spieler*in ohne Energie fällt um und verliert den Ball! </li> </ul>",
+    "BLOCK": "Um deine Strategie festzulegen, sagst du deinen Spieler*innen <strong> jederzeit </strong>, welche Aktion sie ausführen sollen.<br>Zum Beispiel, wenn du möchtest, dass deine Spieler*innen sofort auf das Tor schießen, sobald sie den Ball haben, musst du wählen: <br>",
+    "PARAMETER": "Du kannst die Parameter einiger Blöcke ändern.<br>Zum Beispiel kannst du durch Ändern des rosa Blocks oben deinen Spieler*innen sagen, dass sie den Ball sofort an die nächstgelegenen Teamkolleg*in abgeben sollen, sobald sie den Ball haben: <br>",
+    "CONDITION": "Du kannst auch Bedingungen hinzufügen, um deine Strategien zu verbessern!<br>Zum Beispiel kannst du eine der beiden oben genannten Aktionen auswählen, abhängig von der Entfernung zum gegnerischen Tor: <br>",
+    "DISCOVER": "Jetzt liegt es an dir zu spielen und den Rest zu entdecken!",
+    "DEMO": "Du kannst auch eine vollständige Strategie analysieren, indem du hier klickst"
+  },
+  "HOW_TO_DEMO": {
+    "TITLE": "Beispielstrategie",
+    "OPP_HAS_BALL": "Wenn eine Gegner*in den Ball hat,\nlaufen alle Spieler*innen zum Ball\num ihn zu bekommen",
+    "OWN_HAS_BALL": "Wenn eine Teamkolleg*in den Ball hat,\ngehen die anderen Spieler*innen zurück zu ihren Positionen\n(vorne für Angreifer*innen,\nhinten für Verteidiger*innen)",
+    "NOONE_HAS_BALL": "Wenn niemand den Ball hat,\nerhält nur die nächstgelegene Spieler*in den Ball.\nDie anderen bleiben an ihren Positionen",
+    "CONDITION_NEAR": "Dafür verwenden wir diese Bedingung",
+    "BALL_MINE": "Wenn eine unserer Spieler*in den Ball hat,\nmöchten wir wissen, ob er sich in der Nähe einer Gegner*in befindet...",
+    "CONDITION_COMPARISON": "Dafür verwenden wir eine Bedingung zum Vergleichen...",
+    "PARAM_DISTANCE": "Die Entfernung zur nächsten Gegner*in...",
+    "PARAM_VALUE": "Und der Wert 50",
+    "TEAMMATE": "Im Falle einer Gefahr spielen wir einen Pass\nder Teamkolleg*in zu, die dem Tor am nächsten ist",
+    "RUN_TOWARDS_GOAL": "Ansonsten laufen wir auf das gegnerische Tor zu"
+  },
+  "ABOUT": {
+    "TITLE": "Mehr erfahren",
+    "IDEA": "Die Idee von SuperCodingBall ist es, dir spielerisch einige Programmierkonzepte (Anweisungen, Parameter, Ereignisse und Bedingungen) nahezubringen :)",
+    "SCRATCH": "Wenn es dir gefallen hat und du mehr über Programmierung erfahren möchtest, besuche schnell <a href="
+    https: //scratch.mit.edu\">Scratch</a>.<br>Es ist eine unglaubliche Website, auf der du deine eigenen Geschichten/Spiele mit Codeblöcken erstellen kannst!",
+      "BLOCKLY": "In SuperCodingBall kannst du dank <a href="
+    https: //developers.google.com/blockly\">Blockly</a> Blöcke wie in Scratch manipulieren!",
+      "OPENSOURCE": "SuperCodingBall ist ein Open-Source-Projekt. Den <a href="
+    https: //github.com/Orange-OpenSource/super-coding-ball\">Quellcode findest du auf GitHub</a>.",
+      "LEGAL": "Lies das <a href='/legal'>Impressum</a>, die <a href='/terms'>allgemeinen Nutzungsbedingungen</a> und die <a href='/privacy'>Datenschutzerklärung</a>.",
+    "CONTACT": "Kontakt:"
+  },
+  "LEGAL": {
+    "TITLE": "Legal notice",
+    "OPENSOURCE_TITLE": "Third party software",
+    "OPENSOURCE_CONTENT": "Player sprites by: David Conway Jr. (JaidynReiman), Nila122, Johannes Sjölund (wulax), Stephen Challener\n      (Redshrike),\n      Luke Mehl, bluecarrot16, Thane Brimhall (pennomi), laetissima, Michael Whitlock (bigbeargames), Matthew Krohn\n      (makrohn), Rhimlock, Benjamin K. Smith (BenCreating), Sander Frenken (castelonia), kheftel, Marcel van de Steeg\n      (MadMarcel), kirts, Mark Weyer, Lanea Zimmerman (Sharm), Manuel Riecke (MrBeast), Charles Sanchez\n      (CharlesGabriel), Zi Ye, William.Thompsonj, drjamgo@hotmail.com, dalonedrau, ElizaWy, Evert, Daniel Eddeland\n      (daneeklu), Carlo Enrico Victoria (Nemisys), Mandi Paugh, Joe White, Barbara Riviera, Tracy, DarkwallLKE,\n      thecilekli, Stafford McIntyre, PlatForge project, Shaun Williams, Tuomo Untinen (reemax), Pierre Vigier (pvigier),\n      Lori Angela Nagel (jastiv), tskaufma, gr3yh47, LordNeo, XOR, pswerlang, Inboxninja<br>\n      Sprites contributed as part of the Liberated Pixel Cup project from OpenGameArt.org:\n      http://opengameart.org/content/lpc-collection <br>\n      License: Creative Commons Attribution-ShareAlike 3.0 https://creativecommons.org/licenses/by-sa/3.0/<br>\n      Detailed credits:\n      https://github.com/sanderfrenken/Universal-LPC-Spritesheet-Character-Generator/blob/master/CREDITS.csv\n      <hr>\n      Original football pitch by Amon (http://amon.pro)<br>\n      License Creative Commons Attribution-ShareAlike 3.0: https://creativecommons.org/licenses/by-sa/3.0/\n      <hr>\n      Icons by Font Awesome Free<br>\n      License Creative Commons Attribution 4.0 International: https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt\n      <hr>\n      Angular - version 11.2.4 - https://github.com/angular/angular<br>\n      Copyright (c) 2010-2021 Google LLC.<br>\n      The MIT License - https://angular.io/license\n      <hr>\n      Blockly - version 6.20210701.0 - https://github.com/google/blockly<br>\n      Copyright (c) 2012-2021 Google, Inc.<br>\n      Apache License 2.0 - https://github.com/google/blockly/blob/master/LICENSE\n      <hr>\n      Bootstrap - version 4.5.0 - https://github.com/twbs/bootstrap<br>\n      Copyright (c) 2011–2021 - the Bootstrap Authors and Twitter, Inc.<br>\n      The MIT License - https://github.com/twbs/bootstrap/blob/main/LICENSE\n      <hr>\n      NG Bootstrap - version 9.1.0 - https://github.com/ng-bootstrap/ng-bootstrap<br>\n      Copyright (c) 2015-2018 - Angular ng-bootstrap team<br>\n      The MIT License - https://github.com/ng-bootstrap/ng-bootstrap/blob/master/LICENSE\n      <hr>\n      ngx-translate - version 13.0.0 - https://github.com/ngx-translate/core<br>\n      Copyright (c) 2018 Olivier Combe<br>\n      The MIT License - https://github.com/ngx-translate/core/blob/master/LICENSE\n      <hr>\n      Firebase Javascript SDK - version 8.6.3 - https://github.com/firebase/firebase-js-sdk<br>\n      Copyright (c) Google, Inc.<br>\n      Apache License Version 2.0 - https://github.com/firebase/firebase-js-sdk/blob/master/LICENSE\n      <hr>\n      RxJS - version 6.6.0 - https://github.com/ReactiveX/rxjs<br>\n      Copyright (c) 2015-2018 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors<br>\n      Apache License Version 2.0 - https://github.com/ReactiveX/rxjs/blob/master/LICENSE.txt\n      <hr>\n      tslib - version 2.0.0 - https://github.com/microsoft/tslib<br>\n      Copyright (c) Microsoft Corporation.<br>\n      BSD Zero Clause License - https://github.com/microsoft/tslib/blob/main/LICENSE.txt\n      <hr>\n      zone.js - version 0.11.3 - https://github.com/angular/zone.js<br>\n      Copyright (c) 2016-2018 Google, Inc.<br>\n      The MIT License - https://github.com/angular/zone.js/blob/master/LICENSE"
+  },
+  "PRIVACY": {
+    "TITLE": "Datenschutzerklärung",
+    "DISABLE_TRACKING": "Anonymes Tracking deaktivieren"
+  },
+  "TERMS": {
+    "TITLE": "Allgemeine Nutzungsbedingungen des SuperCodingBall-Dienstes"
+  },
+  "OFFLINE": {
+    "TITLE": "Gegen den Computer spielen",
+    "STRATEGY": "Strategie des generischen Teams",
+    "WON": "Gewonnen?",
+    "STRATEGIES": {
+      "DO-NOTHING": "Sie tun nichts!",
+      "1PLAYER-ONLY": "Nur eine Spieler*in bewegt sich",
+      "ALL-DEFENDERS": "Alle Spieler*innen in der Verteidigung",
+      "DEFENDERS-PASS-TO-ATTACKERS": "Verteidiger*innen abfangen und an Angreifer*innen weiterleiten",
+      "ONLY-PASSES": "Sie spielen nur Pässe und schießen",
+      "3ATTACKERS": "3 Angreifer*innen",
+      "COLUMN": "Alle Spieler*innen in der mittleren Spalte",
+      "SPRINTERS": "Sie sprinten, um den Ball zu bekommen"
+    }
+  },
+  "ONLINE": {
+    "TITLE": "Online spielen",
+    "CONNECT_GUEST": "Als Gast verbinden",
+    "GUEST_WARNING": "Wenn du dich als Gast verbindest, kannst du wie die anderen spielen, aber du hast kein Profilbild.<br><br>Du kannst dein Konto nicht auf einem anderen Gerät finden, und wenn du dich ausloggst, geht dein Ranking verloren!",
+    "CONNECT_WITH_FACEBOOK": "Mit Facebook verbinden",
+    "CONNECT_WITH_GOOGLE": "Mit Google verbinden",
+    "PERSONAL_RANK": "Dein aktuelles Ranking:",
+    "RANKING": "Ranking der letzten 15 Tage",
+    "OPP_POINTS": "pkt",
+    "RANKING_POPUP": {
+      "TITLE": "Informationen zum Ranking",
+      "CONTENT": "Das Ranking zeigt die in den letzten 15 Tagen verbundenen Spieler*innen an.<br><br>Jeden Tag kannst du gegen jede Gegner*in spielen und folgende Punkte erzielen:<br>{{won}} 2 Punkte für einen Sieg,<br>{{draw}} 1 Punkt für ein Unentschieden,<br>{{lost}} 0 Punkte für eine Niederlage.<br><br>(Du kannst Spiele wiederholen, um deine Punktzahl zu verbessern)<br><br>Wenn du ein Spiel aufgibst wird es als verloren gewertet!"
+    },
+    "REPLAY": {
+      "HEADER": "Du hast dieses Spiel heute bereits gespielt ",
+      "LOST": "(du hast verloren).",
+      "DRAW": "(unentschieden).",
+      "WON": "(du hast gewonnen).",
+      "IMPROVE": "Möchtest du versuchen, deine Punktzahl zu verbessern?",
+      "RISK": "Nimmst du das Risiko in Kauf, noch einmal zu spielen?"
+    },
+    "ACCOUNT": "Konto",
+    "DISCONNECT_GUEST": "Wenn du dich ausloggst, verlierst du deinen Gastzugang!",
+    "DISCONNECT_OTHER": "Melde dich ab, wenn du ein anderes Konto verwenden möchtest.",
+    "NICKNAME_LIMIT": "maximal 20 Zeichen",
+    "CHANGE_NICKNAME": "Ändere meinen Benutzernamen",
+    "DISCONNECT_ACCOUNT": "Abmelden",
+    "SYNC_TEXT": "Deine Blöcke werden automatisch exportiert, sobald du ein Online-Spiel startest.",
+    "DOWNLOAD_TEXT": "Wenn du deine Blöcke importieren möchtest (z. B. wenn du deine Strategie auf einem anderen Gerät geändert hast), klicke hier:",
+    "DELETE_ACCOUNT": "Mein Konto dauerhaft löschen",
+    "DELETE_MODAL": "Bist du sicher, dass du dein Konto löschen möchtest?",
+    "BLOCKLY": {
+      "FIELD_POPUP": {
+        "TOOLTIP": "Spielfeldübersicht",
+        "TITLE": "Spielfeldübersicht mit Zielposition aller Spieler*in"
+      },
+      "DELETE": "Alle meine Blöcke löschen",
+      "DELETE_WARNING": "Möchtest du wirklich alle deine Blöcke löschen?",
+      "UNDO": "Rückgängig machen",
+      "REDO": "Wiederherstellen",
+      "VALIDATE_BLOCKS": "Meine Strategie validieren"
+    },
+    "GAME": {
+      "MIN": "min",
+      "STOP": "Spiel beenden",
+      "STOP_MODAL": "Möchtest du dieses Spiel beenden?",
+      "GAME_ACCELERATED": "Zeitraffer",
+      "KICK_OFF": "Los geht's!",
+      "CLICK_ANYWHERE": "(klicke irgendwo hin)",
+      "HALF_TIME": "Halbzeit",
+      "GOAL": "Tor!",
+      "YOU_WON": "Du hast gewonnen!",
+      "DRAW": "Unentschieden!",
+      "YOU_LOST": "Du hast verloren\u00A0:("
+    }
+  }
