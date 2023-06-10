@@ -28,6 +28,8 @@ import * as En from 'blockly/msg/en';
 import * as CustomEn from '../../assets/i18n/en.json';
 import * as He from 'blockly/msg/he';
 import * as CustomHe from '../../assets/i18n/he.json';
+import * as De from 'blockly/msg/de';
+import * as CustomDe from '../../assets/i18n/de.json';
 import {TranslateService} from '@ngx-translate/core';
 import {OnlineService} from './online.service';
 import {LocalStorageService} from './local-storage.service';
@@ -80,6 +82,9 @@ export class CodeService {
     } else if (this.translate.currentLang === 'he') {
       Blockly.setLocale(He);
       Blockly.setLocale((CustomHe as any).default.BLOCKS);
+    } else if (this.translate.currentLang === 'de') {
+      Blockly.setLocale(De);
+      Blockly.setLocale((CustomDe as any).default.BLOCKS);
     } else {
       Blockly.setLocale(En);
       Blockly.setLocale((CustomEn as any).default.BLOCKS);

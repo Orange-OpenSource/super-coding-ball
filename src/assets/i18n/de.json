@@ -10,7 +10,7 @@
     "WHEN_TEAMMATE_HAS_BALL": "Wenn jemand aus deinem Team den Ball hat %1 %2",
     "WHEN_OPPONENT_HAS_BALL": "Wenn jemand aus dem gegnerischen Team den Ball hat %1 %2",
     "WHEN_NOONE_HAS_BALL": "Wenn niemand den Ball hat %1 %2",
-    "CUSTOM_IF": "Wenn %1 dann %2 sonst %3",
+    "CUSTOM_IF": "wenn %1 dann %2 sonst %3",
     "I_AM_CLOSEST_TO": "Ich bin am nächsten zu %1",
     "ROLE_AND_SIDE": "%1 ist %2 auf der %3 Seite",
     "ATTACKER": "Angreifer*in",
@@ -87,13 +87,10 @@
   "ABOUT": {
     "TITLE": "Mehr erfahren",
     "IDEA": "Die Idee von SuperCodingBall ist es, dir spielerisch einige Programmierkonzepte (Anweisungen, Parameter, Ereignisse und Bedingungen) nahezubringen :)",
-    "SCRATCH": "Wenn es dir gefallen hat und du mehr über Programmierung erfahren möchtest, besuche schnell <a href="
-    https: //scratch.mit.edu\">Scratch</a>.<br>Es ist eine unglaubliche Website, auf der du deine eigenen Geschichten/Spiele mit Codeblöcken erstellen kannst!",
-      "BLOCKLY": "In SuperCodingBall kannst du dank <a href="
-    https: //developers.google.com/blockly\">Blockly</a> Blöcke wie in Scratch manipulieren!",
-      "OPENSOURCE": "SuperCodingBall ist ein Open-Source-Projekt. Den <a href="
-    https: //github.com/Orange-OpenSource/super-coding-ball\">Quellcode findest du auf GitHub</a>.",
-      "LEGAL": "Lies das <a href='/legal'>Impressum</a>, die <a href='/terms'>allgemeinen Nutzungsbedingungen</a> und die <a href='/privacy'>Datenschutzerklärung</a>.",
+    "SCRATCH": "Wenn es dir gefallen hat und du mehr über Programmierung erfahren möchtest, besuche schnell <a href=\"https://scratch.mit.edu\">Scratch</a>.<br>Es ist eine unglaubliche Website, auf der du deine eigenen Geschichten/Spiele mit Codeblöcken erstellen kannst!",
+    "BLOCKLY": "In SuperCodingBall kannst du dank <a href=\"https://developers.google.com/blockly\">Blockly</a> Blöcke wie in Scratch manipulieren!",
+    "OPENSOURCE": "SuperCodingBall ist ein Open-Source-Projekt. Den <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">Quellcode findest du auf GitHub</a>.",
+    "LEGAL": "Lies das <a href='/legal'>Impressum</a>, die <a href='/terms'>allgemeinen Nutzungsbedingungen</a> und die <a href='/privacy'>Datenschutzerklärung</a>.",
     "CONTACT": "Kontakt:"
   },
   "LEGAL": {
@@ -153,29 +150,30 @@
     "SYNC_TEXT": "Deine Blöcke werden automatisch exportiert, sobald du ein Online-Spiel startest.",
     "DOWNLOAD_TEXT": "Wenn du deine Blöcke importieren möchtest (z. B. wenn du deine Strategie auf einem anderen Gerät geändert hast), klicke hier:",
     "DELETE_ACCOUNT": "Mein Konto dauerhaft löschen",
-    "DELETE_MODAL": "Bist du sicher, dass du dein Konto löschen möchtest?",
-    "BLOCKLY": {
-      "FIELD_POPUP": {
-        "TOOLTIP": "Spielfeldübersicht",
-        "TITLE": "Spielfeldübersicht mit Zielposition aller Spieler*in"
-      },
-      "DELETE": "Alle meine Blöcke löschen",
-      "DELETE_WARNING": "Möchtest du wirklich alle deine Blöcke löschen?",
-      "UNDO": "Rückgängig machen",
-      "REDO": "Wiederherstellen",
-      "VALIDATE_BLOCKS": "Meine Strategie validieren"
+    "DELETE_MODAL": "Bist du sicher, dass du dein Konto löschen möchtest?"
+  },
+  "BLOCKLY": {
+    "FIELD_POPUP": {
+      "TOOLTIP": "Spielfeldübersicht",
+      "TITLE": "Spielfeldübersicht mit Zielposition aller Spieler*in"
     },
-    "GAME": {
-      "MIN": "min",
-      "STOP": "Spiel beenden",
-      "STOP_MODAL": "Möchtest du dieses Spiel beenden?",
-      "GAME_ACCELERATED": "Zeitraffer",
-      "KICK_OFF": "Los geht's!",
-      "CLICK_ANYWHERE": "(klicke irgendwo hin)",
-      "HALF_TIME": "Halbzeit",
-      "GOAL": "Tor!",
-      "YOU_WON": "Du hast gewonnen!",
-      "DRAW": "Unentschieden!",
-      "YOU_LOST": "Du hast verloren\u00A0:("
-    }
+    "DELETE": "Alle meine Blöcke löschen",
+    "DELETE_WARNING": "Möchtest du wirklich alle deine Blöcke löschen?",
+    "UNDO": "Rückgängig machen",
+    "REDO": "Wiederherstellen",
+    "VALIDATE_BLOCKS": "Meine Strategie validieren"
+  },
+  "GAME": {
+    "MIN": "min",
+    "STOP": "Spiel beenden",
+    "STOP_MODAL": "Möchtest du dieses Spiel beenden?",
+    "GAME_ACCELERATED": "Zeitraffer",
+    "KICK_OFF": "Los geht's!",
+    "CLICK_ANYWHERE": "(klicke irgendwo hin)",
+    "HALF_TIME": "Halbzeit",
+    "GOAL": "Tor!",
+    "YOU_WON": "Du hast gewonnen!",
+    "DRAW": "Unentschieden!",
+    "YOU_LOST": "Du hast verloren\u00A0:("
   }
+}

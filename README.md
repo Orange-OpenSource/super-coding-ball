@@ -61,7 +61,7 @@ All player sprites come from the "Open Game Art Liberated Pixel Cup" and were ge
 * Skeleton
 * Zombie
 
-## Translations (for now English, French, Spanish, Russian and Hebrew)
+## Translations (for now English, French, Spanish, Russian, Hebrew and German)
 
 All translations are in the [i18n folder](./src/assets/i18n).
 

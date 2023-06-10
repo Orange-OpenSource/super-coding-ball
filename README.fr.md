@@ -62,7 +62,7 @@ Tous les sprites des joueurs viennent "l'Open Game Art Liberated Pixel Cup" et o
 * Skeleton
 * Zombie
 
-## Traductions (pour le moment français, anglais, espagnol, russe et hébreu)
+## Traductions (pour le moment français, anglais, espagnol, russe, hébreu et allemand)
 
 Toutes les traductions sont dans le [dossier i18n](./src/assets/i18n).
 
