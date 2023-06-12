@@ -5,8 +5,8 @@
       {
         "type": "event_ball_none",
         "id": "BOB~/P8P7npFt#RxS7TA",
-        "x": -57,
-        "y": 96,
+        "x": 298,
+        "y": -274,
         "inputs": {
           "DO": {
             "block": {
@@ -33,23 +33,107 @@
                 },
                 "THEN": {
                   "block": {
-                    "type": "sprint",
-                    "id": "Hw2JySrsOf1!ScvjUyY!",
+                    "type": "custom_if",
+                    "id": "NhAyN81p-,$l.0KY!w|0",
                     "inputs": {
-                      "NAME": {
-                        "shadow": {
-                          "type": "goal",
-                          "id": "rCz:XTiT#Ct,$awwm-_#",
-                          "fields": {
-                            "GOAL_TYPE": "GOAL_OPP"
-                          }
-                        },
+                      "IF": {
                         "block": {
-                          "type": "grid",
-                          "id": "+%wmv@a%O1xxZqxe*h[J",
+                          "type": "custom_compare",
+                          "id": "?0W8k#:d2~e|hH9E](^B",
                           "fields": {
-                            "GRID_COL": "4",
-                            "GRID_ROW": "4"
+                            "INEQUALITY": "LOWER"
+                          },
+                          "inputs": {
+                            "LEFT": {
+                              "block": {
+                                "type": "distance",
+                                "id": "[W{-oX-{WX5_Gwz.|}Ku",
+                                "inputs": {
+                                  "FROM": {
+                                    "shadow": {
+                                      "type": "myself",
+                                      "id": "Ks*_!5he-CLGk#Vq}#;A"
+                                    }
+                                  },
+                                  "TO": {
+                                    "shadow": {
+                                      "type": "goal",
+                                      "id": "T~rN]A^Hf*4@%CZ=UbW/",
+                                      "fields": {
+                                        "GOAL_TYPE": "GOAL_OPP"
+                                      }
+                                    },
+                                    "block": {
+                                      "type": "grid",
+                                      "id": ";40YsE.)K9tD^@6;2#vu",
+                                      "fields": {
+                                        "GRID_COL": "4",
+                                        "GRID_ROW": "4"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "RIGHT": {
+                              "shadow": {
+                                "type": "math_number",
+                                "id": "?wwV/CMFE.`Ht+[_|l?]",
+                                "fields": {
+                                  "NUM": 50
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "THEN": {
+                        "block": {
+                          "type": "move",
+                          "id": "]u/HF5Zx/Urlns~i`|o.",
+                          "inputs": {
+                            "NAME": {
+                              "shadow": {
+                                "type": "goal",
+                                "id": "i$^l38CP[9}kZs~tIn$=",
+                                "fields": {
+                                  "GOAL_TYPE": "GOAL_OPP"
+                                }
+                              },
+                              "block": {
+                                "type": "grid",
+                                "id": "T^K$D(DLI/dkv{h98?yG",
+                                "fields": {
+                                  "GRID_COL": "4",
+                                  "GRID_ROW": "4"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "ELSE": {
+                        "block": {
+                          "type": "sprint",
+                          "id": "Hw2JySrsOf1!ScvjUyY!",
+                          "inputs": {
+                            "NAME": {
+                              "shadow": {
+                                "type": "goal",
+                                "id": "rCz:XTiT#Ct,$awwm-_#",
+                                "fields": {
+                                  "GOAL_TYPE": "GOAL_OPP"
+                                }
+                              },
+                              "block": {
+                                "type": "grid",
+                                "id": "+%wmv@a%O1xxZqxe*h[J",
+                                "fields": {
+                                  "GRID_COL": "4",
+                                  "GRID_ROW": "4"
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -81,23 +165,107 @@
                       },
                       "THEN": {
                         "block": {
-                          "type": "sprint",
-                          "id": "wE6m`}G.qy2$=dh+Ks-n",
+                          "type": "custom_if",
+                          "id": "k$vLoA1o2ke[-~xC9ZVb",
                           "inputs": {
-                            "NAME": {
-                              "shadow": {
-                                "type": "goal",
-                                "id": "kEwAqq,=W){!m?Rs9L=D",
-                                "fields": {
-                                  "GOAL_TYPE": "GOAL_OPP"
-                                }
-                              },
+                            "IF": {
                               "block": {
-                                "type": "grid",
-                                "id": "Z!,Vj;!6a!muf48`,D{#",
+                                "type": "custom_compare",
+                                "id": "_Ku[wAC8gY+aPHRec%sl",
                                 "fields": {
-                                  "GRID_COL": "4",
-                                  "GRID_ROW": "5"
+                                  "INEQUALITY": "LOWER"
+                                },
+                                "inputs": {
+                                  "LEFT": {
+                                    "block": {
+                                      "type": "distance",
+                                      "id": "qP(/TxEXjwfU%~-Z28gX",
+                                      "inputs": {
+                                        "FROM": {
+                                          "shadow": {
+                                            "type": "myself",
+                                            "id": "]Ob)`5Zbr}kGTz}B=I8s"
+                                          }
+                                        },
+                                        "TO": {
+                                          "shadow": {
+                                            "type": "goal",
+                                            "id": "T~rN]A^Hf*4@%CZ=UbW/",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          },
+                                          "block": {
+                                            "type": "grid",
+                                            "id": "L!_kWnvYe5Z/H66SqsWm",
+                                            "fields": {
+                                              "GRID_COL": "4",
+                                              "GRID_ROW": "5"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "RIGHT": {
+                                    "shadow": {
+                                      "type": "math_number",
+                                      "id": "yN}^aK15am}*$:0/Qk.Q",
+                                      "fields": {
+                                        "NUM": 50
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "THEN": {
+                              "block": {
+                                "type": "move",
+                                "id": "1q#rPi:#^;rNI(R7G:1#",
+                                "inputs": {
+                                  "NAME": {
+                                    "shadow": {
+                                      "type": "goal",
+                                      "id": "i$^l38CP[9}kZs~tIn$=",
+                                      "fields": {
+                                        "GOAL_TYPE": "GOAL_OPP"
+                                      }
+                                    },
+                                    "block": {
+                                      "type": "grid",
+                                      "id": "}0rz@~rV-N-STcg@LMe#",
+                                      "fields": {
+                                        "GRID_COL": "4",
+                                        "GRID_ROW": "5"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "ELSE": {
+                              "block": {
+                                "type": "sprint",
+                                "id": "NQj)W(*.i/ND]0tm+9QE",
+                                "inputs": {
+                                  "NAME": {
+                                    "shadow": {
+                                      "type": "goal",
+                                      "id": "rCz:XTiT#Ct,$awwm-_#",
+                                      "fields": {
+                                        "GOAL_TYPE": "GOAL_OPP"
+                                      }
+                                    },
+                                    "block": {
+                                      "type": "grid",
+                                      "id": "JLIi#w2@B17=g4])$pvm",
+                                      "fields": {
+                                        "GRID_COL": "4",
+                                        "GRID_ROW": "5"
+                                      }
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -129,23 +297,107 @@
                             },
                             "THEN": {
                               "block": {
-                                "type": "sprint",
-                                "id": "b]-fCQUx8SMnZMdV8Yrx",
+                                "type": "custom_if",
+                                "id": "Ob_bvyX,?qcw{!93{9[_",
                                 "inputs": {
-                                  "NAME": {
-                                    "shadow": {
-                                      "type": "goal",
-                                      "id": "x!6-L0%;,j`$gGWpGW6M",
-                                      "fields": {
-                                        "GOAL_TYPE": "GOAL_OPP"
-                                      }
-                                    },
+                                  "IF": {
                                     "block": {
-                                      "type": "grid",
-                                      "id": "oblI|D/Ga6O:DSoAHjK$",
+                                      "type": "custom_compare",
+                                      "id": "Ud_q]j?!``Y:bGBO*$(p",
                                       "fields": {
-                                        "GRID_COL": "2",
-                                        "GRID_ROW": "4"
+                                        "INEQUALITY": "LOWER"
+                                      },
+                                      "inputs": {
+                                        "LEFT": {
+                                          "block": {
+                                            "type": "distance",
+                                            "id": "E,uErki=ij+vW5)H,]eM",
+                                            "inputs": {
+                                              "FROM": {
+                                                "shadow": {
+                                                  "type": "myself",
+                                                  "id": "$t$1YOWrtZ2b(]8Cb@C."
+                                                }
+                                              },
+                                              "TO": {
+                                                "shadow": {
+                                                  "type": "goal",
+                                                  "id": "T~rN]A^Hf*4@%CZ=UbW/",
+                                                  "fields": {
+                                                    "GOAL_TYPE": "GOAL_OPP"
+                                                  }
+                                                },
+                                                "block": {
+                                                  "type": "grid",
+                                                  "id": "NzTWB]jW3[=x;8lys0.T",
+                                                  "fields": {
+                                                    "GRID_COL": "2",
+                                                    "GRID_ROW": "4"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "RIGHT": {
+                                          "shadow": {
+                                            "type": "math_number",
+                                            "id": "s:({cxodPc.p$$v#@NHi",
+                                            "fields": {
+                                              "NUM": 50
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "THEN": {
+                                    "block": {
+                                      "type": "move",
+                                      "id": "t1hsnR5`rgQQy#YCO?[s",
+                                      "inputs": {
+                                        "NAME": {
+                                          "shadow": {
+                                            "type": "goal",
+                                            "id": "i$^l38CP[9}kZs~tIn$=",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          },
+                                          "block": {
+                                            "type": "grid",
+                                            "id": "d*2Y*MriZ8abTM3ObUqL",
+                                            "fields": {
+                                              "GRID_COL": "2",
+                                              "GRID_ROW": "4"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "ELSE": {
+                                    "block": {
+                                      "type": "sprint",
+                                      "id": "yW#eEf8qCLn]D[RZxlt#",
+                                      "inputs": {
+                                        "NAME": {
+                                          "shadow": {
+                                            "type": "goal",
+                                            "id": "rCz:XTiT#Ct,$awwm-_#",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          },
+                                          "block": {
+                                            "type": "grid",
+                                            "id": "*GxiJ8|R+9bN;s1MVlu5",
+                                            "fields": {
+                                              "GRID_COL": "2",
+                                              "GRID_ROW": "4"
+                                            }
+                                          }
+                                        }
                                       }
                                     }
                                   }
@@ -154,23 +406,107 @@
                             },
                             "ELSE": {
                               "block": {
-                                "type": "sprint",
-                                "id": "`eX63}vH3^_rwdrYS8*i",
+                                "type": "custom_if",
+                                "id": "M)A+JUSVp7{^p$o4P`ui",
                                 "inputs": {
-                                  "NAME": {
-                                    "shadow": {
-                                      "type": "goal",
-                                      "id": "]zWUKF7I,ZK%fXrUn!uu",
-                                      "fields": {
-                                        "GOAL_TYPE": "GOAL_OPP"
-                                      }
-                                    },
+                                  "IF": {
                                     "block": {
-                                      "type": "grid",
-                                      "id": "1jCl5Y=V(GEyv._)/~Wa",
+                                      "type": "custom_compare",
+                                      "id": "pw%i{/W3;gxb#U*~19[=",
                                       "fields": {
-                                        "GRID_COL": "2",
-                                        "GRID_ROW": "5"
+                                        "INEQUALITY": "LOWER"
+                                      },
+                                      "inputs": {
+                                        "LEFT": {
+                                          "block": {
+                                            "type": "distance",
+                                            "id": "jjn}UpExjPua*:p7GL$_",
+                                            "inputs": {
+                                              "FROM": {
+                                                "shadow": {
+                                                  "type": "myself",
+                                                  "id": "7oU3Wz68#p`RT`p]`L8f"
+                                                }
+                                              },
+                                              "TO": {
+                                                "shadow": {
+                                                  "type": "goal",
+                                                  "id": "T~rN]A^Hf*4@%CZ=UbW/",
+                                                  "fields": {
+                                                    "GOAL_TYPE": "GOAL_OPP"
+                                                  }
+                                                },
+                                                "block": {
+                                                  "type": "grid",
+                                                  "id": "r]SkB/jt!Se{hf0dUOMi",
+                                                  "fields": {
+                                                    "GRID_COL": "2",
+                                                    "GRID_ROW": "5"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "RIGHT": {
+                                          "shadow": {
+                                            "type": "math_number",
+                                            "id": ")bc7v+6Z`^|9KqqVRo~V",
+                                            "fields": {
+                                              "NUM": 50
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "THEN": {
+                                    "block": {
+                                      "type": "move",
+                                      "id": "^p+hu}dGIh[A)iE17x)7",
+                                      "inputs": {
+                                        "NAME": {
+                                          "shadow": {
+                                            "type": "goal",
+                                            "id": "i$^l38CP[9}kZs~tIn$=",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          },
+                                          "block": {
+                                            "type": "grid",
+                                            "id": "FI-L8Y5n|rW9DP;eRXqE",
+                                            "fields": {
+                                              "GRID_COL": "2",
+                                              "GRID_ROW": "5"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "ELSE": {
+                                    "block": {
+                                      "type": "sprint",
+                                      "id": "sDZD|}O@j.2pU;vHpGyV",
+                                      "inputs": {
+                                        "NAME": {
+                                          "shadow": {
+                                            "type": "goal",
+                                            "id": "rCz:XTiT#Ct,$awwm-_#",
+                                            "fields": {
+                                              "GOAL_TYPE": "GOAL_OPP"
+                                            }
+                                          },
+                                          "block": {
+                                            "type": "grid",
+                                            "id": "^UStK2T{WJ^nuwaq:a+0",
+                                            "fields": {
+                                              "GRID_COL": "2",
+                                              "GRID_ROW": "5"
+                                            }
+                                          }
+                                        }
                                       }
                                     }
                                   }

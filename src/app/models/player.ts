@@ -29,13 +29,7 @@ const runningLeftAnim: SpriteAnim = {frames: [{row: 9, col: 8}].concat(buildFram
 const runningDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 10, 1, 8), speed: 1};
 const runningRightAnim: SpriteAnim = {frames: [{row: 11, col: 8}].concat(buildFrames(Dir.Right, 11, 1, 7)), speed: 1};
 // tslint:disable-next-line:max-line-length
-const greetingUpAnim: SpriteAnim = {frames: [{row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}, {row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}], speed: 0.1};
-// tslint:disable-next-line:max-line-length
-const greetingLeftAnim: SpriteAnim = {frames: [{row: 1, col: 5}, {row: 2, col: 5}, {row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}], speed: 0.1};
-// tslint:disable-next-line:max-line-length
-const greetingDownAnim: SpriteAnim = {frames: [{row: 2, col: 5}, {row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}], speed: 0.1};
-// tslint:disable-next-line:max-line-length
-const greetingRightAnim: SpriteAnim = {frames: [{row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}], speed: 0.1};
+const greetingAnim: SpriteAnim = {frames: [{row: 2, col: 0}, {row: 2, col: 3}, {row: 2, col: 4}, {row: 2, col: 5}, {row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}, {row: 2, col: 4}, {row: 2, col: 3}], speed: 0.2};
 const callingUpAnim: SpriteAnim = {frames: [{row: 12, col: 4}, {row: 12, col: 5}, {row: 12, col: 4}, {row: 12, col: 5}, {row: 12, col: 4}], speed: 0.2};
 const callingLeftAnim: SpriteAnim = {frames: [{row: 13, col: 4}, {row: 13, col: 5}, {row: 13, col: 4}, {row: 13, col: 5}, {row: 13, col: 4}], speed: 0.2};
 const callingDownAnim: SpriteAnim = {frames: [{row: 14, col: 4}, {row: 14, col: 5}, {row: 14, col: 4}, {row: 14, col: 5}, {row: 14, col: 4}], speed: 0.2};
@@ -104,17 +98,7 @@ export class Player extends Sprite {
   get animData(): SpriteAnim {
     switch (this.state) {
       case PlayerState.Greeting:
-        switch (Sprite.getDirection(this.angle)) {
-          case Dir.Up:
-            return greetingUpAnim;
-          case Dir.Left:
-            return greetingLeftAnim;
-          case Dir.Down:
-            return greetingDownAnim;
-          case Dir.Right:
-            return greetingRightAnim;
-        }
-        break;
+        return greetingAnim;
       case PlayerState.Calling:
         switch (Sprite.getDirection(this.angle)) {
           case Dir.Up:
@@ -165,7 +149,7 @@ export class Player extends Sprite {
 
   animate(): void {
     super.animate();
-    // When greeting is done, go back to waiting
+    // When greeting is done, go to waiting
     if (this.state === PlayerState.Greeting && this.currentFrame === 0) {
       this.state = PlayerState.Waiting;
     }

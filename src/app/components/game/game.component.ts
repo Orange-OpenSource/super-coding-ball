@@ -520,10 +520,12 @@ export class GameComponent implements OnInit, OnDestroy {
     sprites.push(...this.players);
     sprites.push(this.ball);
 
-    // After entering and greeting, synchronize all players before beginning the waiting anim
-    let waitingPlayers = this.players.filter(player => player.state == PlayerState.Waiting);
-    let allAreWaiting = waitingPlayers.length == 8;
-    waitingPlayers.forEach(player => player.currentFrame = allAreWaiting ? player.currentFrame : 0);
+    // If players are still entering, other players wait before beginning the greeting anim
+    let enteringPlayers = this.players.filter(player => player.state == PlayerState.Entering);
+    if (enteringPlayers.length > 0) {
+      let greetingPlayers = this.players.filter(player => player.state == PlayerState.Greeting);
+      greetingPlayers.forEach(player => player.currentFrame = 0);
+    }
 
     for (const sprite of sprites.sort((a, b) => a.offsetCoord.y - b.offsetCoord.y)) {
       sprite.animate();
