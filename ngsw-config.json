@@ -11,7 +11,7 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js",
-          "/assets/**/*.(png|json)",
+          "/assets/**/*.(png|json|cur)",
           "!/assets/howto/screenshot-fr.png",
           "!/assets/howto/screenshot.png",
           "!/assets/football-pitch.png"

@@ -115,6 +115,7 @@ export class CodeService {
       event_ball_none: 1
     };
     options.renderer = 'zelos';
+    options.media = 'assets/blockly-media'
     options.rendererOverrides = {};
     options.rendererOverrides[DUMMY_INPUT_MIN_HEIGHT] = 0;
     options.rendererOverrides[BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT] = 0;
