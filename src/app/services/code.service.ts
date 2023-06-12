@@ -60,6 +60,9 @@ export class CodeService {
     private localStorageService: LocalStorageService,
     private onlineService: OnlineService
   ) {
+    // Delete math_number block because it will be redefined with field slider
+    delete Blockly.Blocks['math_number'];
+
     // Initiated in the service because it can only be done once
     Blockly.defineBlocksWithJsonArray(blocksJson);
 
