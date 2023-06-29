@@ -12,7 +12,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {HowtoDemoComponent} from '../howto-demo/howto-demo.component';
-import * as Blockly from 'blockly';
+import Blockly from 'blockly';
 import {CodeService} from '../../services/code.service';
 import {WorkspaceSvg} from 'blockly';
 
@@ -41,7 +41,7 @@ export class HowtoComponent implements OnInit, OnDestroy {
   }
 
   getWorspaceForViewing(divId: string): WorkspaceSvg {
-    const blocklyDiv = document.getElementById(divId) as HTMLElement;
+    const blocklyDiv = document.getElementById(divId)!;
     return CodeService.getWorkspace(
       blocklyDiv,
       {

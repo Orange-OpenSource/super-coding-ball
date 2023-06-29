@@ -7,7 +7,7 @@
 // See https://blocklycodelabs.dev/codelabs/custom-toolbox/index.html
 // Adapted from https://github.com/google/blockly-samples/blob/master/examples/custom-toolbox-codelab/complete-code/custom_category_es6.js
 
-import * as Blockly from 'blockly';
+import Blockly from 'blockly';
 
 export class CustomCategory extends Blockly.ToolboxCategory {
   constructor(categoryDef: Blockly.utils.toolbox.CategoryInfo,
@@ -17,7 +17,7 @@ export class CustomCategory extends Blockly.ToolboxCategory {
   }
 
   addColourBorder_(colour: any): void {
-    (this.rowDiv_ as HTMLElement).style.backgroundColor = colour;
+    this.rowDiv_!.style.backgroundColor = colour;
   }
 
   setSelected(isSelected: boolean): void {

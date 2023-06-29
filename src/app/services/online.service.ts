@@ -10,7 +10,7 @@
  */
 
 import {Injectable, OnDestroy, EventEmitter} from '@angular/core';
-import * as Webcom from 'webcom/webcom-auth-sldblite.js';
+import Webcom from 'webcom/webcom-auth-sldblite.js';
 import {AllGames, ConnectionStatus, DayAndGames, User, UserDisplay} from '../models/webcom-models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {concatMap, filter, map, toArray} from 'rxjs/operators';

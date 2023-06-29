@@ -11,7 +11,7 @@
 
 import {Component, OnDestroy, OnInit} from '@angular/core';
 
-import * as Blockly from 'blockly';
+import Blockly from 'blockly';
 import '@blockly/field-slider';
 import {CodeService} from '../../services/code.service';
 import {TranslateService} from '@ngx-translate/core';
@@ -104,7 +104,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
 
   goToStep(stepNumber: number): void {
     this.stepBlock?.setCommentText(null);
-    this.stepBlock?.getCommentIcon()?.setVisible(false);
+    this.stepBlock?.getCommentIcon()?.setBubbleVisible(false);
     const blockId = this.steps[stepNumber].blockId;
     this.smoothCenterOnBlock(blockId)
       .pipe(
@@ -113,12 +113,12 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
       .subscribe(comment => {
         this.stepBlock = this.workspace.getBlockById(blockId);
         this.stepBlock?.setCommentText(comment);
-        this.stepBlock?.getCommentIcon()?.setVisible(true);
+        this.stepBlock?.getCommentIcon()?.setBubbleVisible(true);
       });
   }
 
   setWorspaceForViewing(): void {
-    const blocklyDiv = document.getElementById('blocklyDiv') as HTMLElement;
+    const blocklyDiv = document.getElementById('blocklyDiv')!;
     this.workspace = CodeService.getWorkspace(blocklyDiv,
       {
         readOnly: true,
@@ -145,7 +145,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
 
   // Adapted from https://github.com/google/blockly/blob/master/core/workspace_svg.js
   private smoothCenterOnBlock(id: string): Observable<any> {
-    const block = this.workspace.getBlockById(id) as Blockly.BlockSvg;
+    const block = this.workspace.getBlockById(id)!;
     const xy = block.getRelativeToSurfaceXY();
     const heightWidth = block.getHeightWidth();
     const blockCenterY = xy.y + heightWidth.height / 2;

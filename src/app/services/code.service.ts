@@ -10,7 +10,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import * as Blockly from 'blockly';
+import Blockly from 'blockly';
 import {BlocklyOptions} from 'blockly/core/blockly_options';
 import blockStyles from '../../assets/blocks/styles/blockStyles.json';
 import categoryStyles from '../../assets/blocks/styles/categoryStyles.json';
@@ -18,18 +18,18 @@ import componentStyles from '../../assets/blocks/styles/componentStyles.json';
 import componentDarkStyles from '../../assets/blocks/styles/componentDarkStyles.json';
 import blocksJson from '../../assets/blocks/blocks.json';
 import {javascriptGenerator} from 'blockly/javascript';
-import * as Fr from 'blockly/msg/fr';
-import * as CustomFr from '../../assets/i18n/fr.json';
-import * as Es from 'blockly/msg/es';
-import * as CustomEs from '../../assets/i18n/es.json';
-import * as Ru from 'blockly/msg/ru';
-import * as CustomRu from '../../assets/i18n/ru.json';
-import * as En from 'blockly/msg/en';
-import * as CustomEn from '../../assets/i18n/en.json';
-import * as He from 'blockly/msg/he';
-import * as CustomHe from '../../assets/i18n/he.json';
-import * as De from 'blockly/msg/de';
-import * as CustomDe from '../../assets/i18n/de.json';
+import Fr from 'blockly/msg/fr';
+import CustomFr from '../../assets/i18n/fr.json';
+import Es from 'blockly/msg/es';
+import CustomEs from '../../assets/i18n/es.json';
+import Ru from 'blockly/msg/ru';
+import CustomRu from '../../assets/i18n/ru.json';
+import En from 'blockly/msg/en';
+import CustomEn from '../../assets/i18n/en.json';
+import He from 'blockly/msg/he';
+import CustomHe from '../../assets/i18n/he.json';
+import De from 'blockly/msg/de';
+import CustomDe from '../../assets/i18n/de.json';
 import {TranslateService} from '@ngx-translate/core';
 import {OnlineService} from './online.service';
 import {LocalStorageService} from './local-storage.service';
@@ -75,22 +75,22 @@ export class CodeService {
 
     if (this.translate.currentLang === 'fr') {
       Blockly.setLocale(Fr);
-      Blockly.setLocale((CustomFr as any).default.BLOCKS);
+      Blockly.setLocale(CustomFr.BLOCKS);
     } else if (this.translate.currentLang === 'es') {
       Blockly.setLocale(Es);
-      Blockly.setLocale((CustomEs as any).default.BLOCKS);
+      Blockly.setLocale(CustomEs.BLOCKS);
     } else if (this.translate.currentLang === 'ru') {
       Blockly.setLocale(Ru);
-      Blockly.setLocale((CustomRu as any).default.BLOCKS);
+      Blockly.setLocale(CustomRu.BLOCKS);
     } else if (this.translate.currentLang === 'he') {
       Blockly.setLocale(He);
-      Blockly.setLocale((CustomHe as any).default.BLOCKS);
+      Blockly.setLocale(CustomHe.BLOCKS);
     } else if (this.translate.currentLang === 'de') {
       Blockly.setLocale(De);
-      Blockly.setLocale((CustomDe as any).default.BLOCKS);
+      Blockly.setLocale(CustomDe.BLOCKS);
     } else {
       Blockly.setLocale(En);
-      Blockly.setLocale((CustomEn as any).default.BLOCKS);
+      Blockly.setLocale(CustomEn.BLOCKS);
     }
 
     Blockly.registry.register(

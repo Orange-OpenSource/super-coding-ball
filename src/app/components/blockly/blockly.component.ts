@@ -11,7 +11,7 @@
 
 import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 
-import * as Blockly from 'blockly';
+import Blockly from 'blockly';
 import '@blockly/field-slider';
 import {CodeService} from '../../services/code.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -67,7 +67,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   }
 
   setWorkspaceForEdition(): void {
-    const blocklyDiv = document.getElementById('blocklyDiv') as HTMLElement;
+    const blocklyDiv = document.getElementById('blocklyDiv')!;
     this.workspace = CodeService.getWorkspace(blocklyDiv, {
       move: {
         scrollbars: true,
@@ -87,7 +87,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   }
 
   setWorspaceForViewing(): void {
-    const blocklyDiv = document.getElementById('blocklyDiv') as HTMLElement;
+    const blocklyDiv = document.getElementById('blocklyDiv')!;
     this.workspace = CodeService.getWorkspace(blocklyDiv, {
       readOnly: true,
       move: {
@@ -130,7 +130,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
           .subscribe();
       }
 
-      const gameDiv = document.getElementById('gameComponent') as HTMLElement;
+      const gameDiv = document.getElementById('gameComponent')!;
       const display = window.getComputedStyle(gameDiv).display;
       if (display === 'none') {
         this.router.navigate([`/play/${this.isOnline ? 'online' : 'offline'}/` + this.opponentId]);
