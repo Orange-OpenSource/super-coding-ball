@@ -1,13 +1,13 @@
 Player sprites by: David Conway Jr. (JaidynReiman), Nila122, Johannes Sjölund (wulax), Stephen Challener (Redshrike),
-Luke Mehl, bluecarrot16, Thane Brimhall (pennomi), laetissima, Michael Whitlock (bigbeargames), Matthew Krohn
-(makrohn), Rhimlock, Benjamin K. Smith (BenCreating), Sander Frenken (castelonia), kheftel, Marcel van de Steeg
-(MadMarcel), kirts, Mark Weyer, Lanea Zimmerman (Sharm), Manuel Riecke (MrBeast), Charles Sanchez
-(CharlesGabriel), Zi Ye, William.Thompsonj, drjamgo@hotmail.com, dalonedrau, ElizaWy, Evert, Daniel Eddeland
-(daneeklu), Carlo Enrico Victoria (Nemisys), Mandi Paugh, Joe White, Barbara Riviera, Tracy, DarkwallLKE,
-thecilekli, Stafford McIntyre, PlatForge project, Shaun Williams, Tuomo Untinen (reemax), Pierre Vigier (pvigier),
-Lori Angela Nagel (jastiv), tskaufma, gr3yh47, LordNeo, XOR, pswerlang, Inboxninja
+Luke Mehl, bluecarrot16, Thane Brimhall (pennomi), laetissima, Michael Whitlock (bigbeargames), Matthew Krohn (makrohn),
+Rhimlock, Benjamin K. Smith (BenCreating), Sander Frenken (castelonia), kheftel, Marcel van de Steeg (MadMarcel), kirts,
+Mark Weyer, Lanea Zimmerman (Sharm), Manuel Riecke (MrBeast), Charles Sanchez (CharlesGabriel), Zi Ye, William.Thompsonj,
+drjamgo@hotmail.com, dalonedrau, ElizaWy, Evert, Daniel Eddeland (daneeklu), Carlo Enrico Victoria (Nemisys), Mandi Paugh,
+Joe White, Barbara Riviera, Tracy, DarkwallLKE, thecilekli, Stafford McIntyre, PlatForge project, Shaun Williams,
+Tuomo Untinen (reemax), Pierre Vigier (pvigier), Lori Angela Nagel (jastiv), tskaufma, gr3yh47, LordNeo, XOR, pswerlang,
+Inboxninja
 Sprites contributed as part of the Liberated Pixel Cup project from OpenGameArt.org: http://opengameart.org/content/lpc-collection
-License Creative Commons Attribution-ShareAlike 3.0: https://creativecommons.org/licenses/by-sa/3.0/
+License Creative Commons Attribution-ShareAlike 3.0 https://creativecommons.org/licenses/by-sa/3.0/
 Detailed credits: https://github.com/sanderfrenken/Universal-LPC-Spritesheet-Character-Generator/blob/master/CREDITS.csv
 
 Original football pitch by Amon (http://amon.pro)
@@ -16,38 +16,38 @@ License Creative Commons Attribution-ShareAlike 3.0: https://creativecommons.org
 Icons by Font Awesome Free
 License Creative Commons Attribution 4.0 International: https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt
 
-Angular - version 11.2.4 - https://github.com/angular/angular
-Copyright (c) 2010-2021 Google LLC.
+Angular - version 15.2.9 - https://github.com/angular/angular
+Copyright (c) 2010-2023 Google LLC.
 The MIT License - https://angular.io/license
 
-Blockly - version 6.20210701.0 - https://github.com/google/blockly
-Copyright (c) 2012-2021 Google, Inc.
+Blockly - version 10.0.0 - https://github.com/google/blockly
+Copyright (c) 2012-2023 Google, Inc.
 Apache License 2.0 - https://github.com/google/blockly/blob/master/LICENSE
 
-Bootstrap - version 4.5.0 - https://github.com/twbs/bootstrap
-Copyright (c) 2011–2021 - the Bootstrap Authors and Twitter, Inc.
+Bootstrap - version 5.3.0 - https://github.com/twbs/bootstrap
+Copyright (c) 2011–2023 - the Bootstrap Authors and Twitter, Inc.
 The MIT License - https://github.com/twbs/bootstrap/blob/main/LICENSE
 
-NG Bootstrap - version 9.1.0 - https://github.com/ng-bootstrap/ng-bootstrap
-Copyright (c) 2015-2018 - Angular ng-bootstrap team
+NG Bootstrap - version 14.1.1 - https://github.com/ng-bootstrap/ng-bootstrap
+Copyright (c) 2015-2023 - Angular ng-bootstrap team
 The MIT License - https://github.com/ng-bootstrap/ng-bootstrap/blob/master/LICENSE
 
-ngx-translate - version 13.0.0 - https://github.com/ngx-translate/core
+ngx-translate - version 14.0.0 - https://github.com/ngx-translate/core
 Copyright (c) 2018 Olivier Combe
 The MIT License - https://github.com/ngx-translate/core/blob/master/LICENSE
 
-Firebase Javascript SDK - version 8.6.3 - https://github.com/firebase/firebase-js-sdk
+Firebase Javascript SDK - version 9.21.0 - https://github.com/firebase/firebase-js-sdk
 Copyright (c) Google, Inc.
 Apache License Version 2.0 - https://github.com/firebase/firebase-js-sdk/blob/master/LICENSE
 
-RxJS - version 6.6.0 - https://github.com/ReactiveX/rxjs
-Copyright (c) 2015-2018 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors
+RxJS - version 7.8.0 - https://github.com/ReactiveX/rxjs
+Copyright (c) 2015-2023 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors
 Apache License Version 2.0 - https://github.com/ReactiveX/rxjs/blob/master/LICENSE.txt
 
-tslib - version 2.0.0 - https://github.com/microsoft/tslib
+tslib - version 2.3.0 - https://github.com/microsoft/tslib
 Copyright (c) Microsoft Corporation.
 BSD Zero Clause License - https://github.com/microsoft/tslib/blob/main/LICENSE.txt
 
-zone.js - version 0.11.3 - https://github.com/angular/zone.js
-Copyright (c) 2016-2018 Google, Inc.
+zone.js - version 0.12.0 - https://github.com/angular/zone.js
+Copyright (c) 2016-2023 Google, Inc.
 The MIT License - https://github.com/angular/zone.js/blob/master/LICENSE

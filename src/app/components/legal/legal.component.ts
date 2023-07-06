@@ -9,12 +9,28 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-licenses',
   templateUrl: './legal.component.html',
   styleUrls: ['./legal.component.scss']
 })
-export class LegalComponent {
+export class LegalComponent implements OnInit {
+  thirdParty = '';
+
+  constructor(private http: HttpClient) {
+  }
+
+  ngOnInit(): void {
+    this.http.get('assets/THIRD-PARTY.txt', {responseType: "text"})
+      .subscribe(thirdParty => {
+        this.thirdParty = thirdParty
+          .replace(/\n\r\n/g, '<hr>')
+          .replace(/\n/g, '<br>')
+        ;
+      })
+  }
+
 }

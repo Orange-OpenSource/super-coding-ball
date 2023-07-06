@@ -28,7 +28,12 @@
             "aot": true,
             "assets": [
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              {
+                "glob": "THIRD-PARTY.txt",
+                "input": "",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "src/styles.scss"
