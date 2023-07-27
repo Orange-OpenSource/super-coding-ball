@@ -32,15 +32,15 @@ export class HowtoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.shootWorkspace = this.getWorspaceForViewing('blocklyShootDiv');
+    this.shootWorkspace = this.getWorkspaceForViewing('blocklyShootDiv');
     this.loadStrategy(this.shootWorkspace, 'howto-shoot');
-    this.passWorkspace = this.getWorspaceForViewing('blocklyPassDiv');
+    this.passWorkspace = this.getWorkspaceForViewing('blocklyPassDiv');
     this.loadStrategy(this.passWorkspace, 'howto-pass');
-    this.shootOrPassWorkspace = this.getWorspaceForViewing('blocklyShootOrPassDiv');
+    this.shootOrPassWorkspace = this.getWorkspaceForViewing('blocklyShootOrPassDiv');
     this.loadStrategy(this.shootOrPassWorkspace, 'howto-shoot-or-pass');
   }
 
-  getWorspaceForViewing(divId: string): WorkspaceSvg {
+  getWorkspaceForViewing(divId: string): WorkspaceSvg {
     const blocklyDiv = document.getElementById(divId)!;
     return CodeService.getWorkspace(
       blocklyDiv,

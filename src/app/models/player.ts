@@ -95,7 +95,7 @@ export class Player extends Sprite {
     this.isRightSide = isRightSide;
   }
 
-  get animData(): SpriteAnim {
+  override get animData(): SpriteAnim {
     switch (this.state) {
       case PlayerState.Greeting:
         return greetingAnim;
@@ -138,7 +138,7 @@ export class Player extends Sprite {
     }
   }
 
-  get shouldAnimate(): boolean {
+  override get shouldAnimate(): boolean {
     switch (this.state) {
       case PlayerState.Playing:
         return !this.still;
@@ -147,7 +147,7 @@ export class Player extends Sprite {
     }
   }
 
-  animate(): void {
+  override animate(): void {
     super.animate();
     // When greeting is done, go to waiting
     if (this.state === PlayerState.Greeting && this.currentFrame === 0) {

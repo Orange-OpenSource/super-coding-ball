@@ -40,7 +40,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     if (!this._gameLaunched) {
       this.setWorkspaceForEdition();
     } else {
-      this.setWorspaceForViewing();
+      this.setWorkspaceForViewing();
     }
     this.loadBlocksFromLocalStorage();
   }
@@ -86,7 +86,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     this.workspace.addChangeListener(Blockly.Events.disableOrphans);
   }
 
-  setWorspaceForViewing(): void {
+  setWorkspaceForViewing(): void {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
     this.workspace = CodeService.getWorkspace(blocklyDiv, {
       readOnly: true,

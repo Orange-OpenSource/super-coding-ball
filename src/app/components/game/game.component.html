@@ -18,7 +18,7 @@
     type="button"
     ngbTooltip="{{'GLOBAL.BACK' | translate }}"
     (click)="backToCodeEdition()">
-    <img src="../../../assets/icons/chevron-left-solid.png" class="oriented-icon" height="24" width="24"/>
+    <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24"/>
   </button>
   <button
     *ngIf="!isStandaloneScreen"
@@ -27,18 +27,18 @@
     type="button"
     ngbTooltip="{{'GAME.STOP' | translate }}"
     (click)="stopGame()">
-    <img src="../../../assets/icons/stop-circle-regular.png" height="24" width="24"/>
+    <img src="assets/icons/stop-circle-regular.png" class="icon24"/>
   </button>
   <div class="align-middle d-flex flex-grow-1">
     <div class="m-1 h6 bg-secondary rounded flex-grow-1 d-flex justify-content-between align-items-center">
       <div>
-        <img class="pixelated oriented-icon" src="../../../assets/icons/own.png" height="32" width="32">
+        <img class="pixelated oriented-icon" src="assets/icons/own.png" height="32" width="32">
         <span class="align-middle">{{ownScore}}</span>
       </div>
       <span class="align-middle">{{gameTimeDisplayed}} {{'GAME.MIN' | translate }}</span>
       <div>
         <span class="align-middle">{{oppScore}}</span>
-        <img class="pixelated oriented-icon" src="../../../assets/icons/opp.png" height="32" width="32">
+        <img class="pixelated oriented-icon" src="assets/icons/opp.png" height="32" width="32">
       </div>
     </div>
   </div>
@@ -49,8 +49,8 @@
     onclick="this.blur()"
     (click)="acceleratedGame = !acceleratedGame">
     <ng-container [ngSwitch]="acceleratedGame">
-      <img *ngSwitchCase="true" src="../../../assets/icons/forward-solid.png" class="oriented-icon"height="24"/>
-      <img *ngSwitchCase="false" src="../../../assets/icons/forward-solid-empty.png" class="oriented-icon"height="24"/>
+      <img *ngSwitchCase="true" src="assets/icons/forward-solid.png" class="oriented-icon" style="height: 24px"/>
+      <img *ngSwitchCase="false" src="assets/icons/forward-solid-empty.png" class="oriented-icon" style="height: 24px"/>
     </ng-container>
   </button>
 

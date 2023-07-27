@@ -630,7 +630,7 @@ export class GameComponent implements OnInit, OnDestroy {
     if (directAngle === closestOppAngle) {
       // If opponent is in front, choose right or left randomly
       return Math.random() > 0.5 ? directAngle + Math.PI / 2 : directAngle - Math.PI / 2;
-      // Else new angle at at 90° from opponent angle to avoid him
+      // Else new angle at 90° from opponent angle to avoid him
     } else if (Math.sin(directAngle - closestOppAngle) > 0) {
       return closestOppAngle + Math.PI / 2;
     } else {

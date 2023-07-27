@@ -16,7 +16,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0">
   <button class="btn btn-lg d-flex" type="button" ngbTooltip="{{'GLOBAL.BACK' | translate }}" routerLink="/home">
-    <img src="../../../assets/icons/chevron-left-solid.png" class="oriented-icon" height="24" width="24" />
+    <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24"/>
   </button>
   <h4 class="m-0">{{"ONLINE.TITLE" | translate }}</h4>
   <div class="flex-grow-1 text-end">
@@ -38,24 +38,24 @@
     <div class="col-sm-7 col-md-5 col-lg-3">
       <button class="btn btn-lg my-2 p-0 text-start bg-secondary w-100" type="button"
         (click)="modalService.open(guestInfoContent)">
-        <img class="p-1" src="assets/icons/user-solid.png" width="48px" height="48px">
+        <img class="p-1" src="assets/icons/user-solid.png" class="icon48">
         <span class="p-2 text-white h6">{{'ONLINE.CONNECT_GUEST' | translate }}</span>
       </button>
       <button style="background-color: #5890FF" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
         (click)="loading=true;onlineService.connectWithFacebook()">
-        <img src="assets/icons/f_logo_RGB-White.png" width="48px" height="48px">
+        <img src="assets/icons/f_logo_RGB-White.png" class="icon48">
         <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_FACEBOOK' | translate }}</span>
       </button>
       <button style="background-color: #4285F4" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
         (click)="loading=true;onlineService.connectWithGoogle()">
-        <img src="assets/icons/btn_google_dark_normal.png" width="48px" height="48px">
+        <img src="assets/icons/btn_google_dark_normal.png" class="icon48">
         <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_GOOGLE' | translate }}</span>
       </button>
     </div>
   </div>
 
   <div *ngIf="onlineService.connectionStatus === ConnectionStatus.Connected">
-    <img class="pixelated oriented-icon" style="width: 240px; margin-bottom: -2px;" src="../../../assets/howto/opponents.png">
+    <img class="pixelated oriented-icon" style="width: 240px; margin-bottom: -2px;" src="assets/howto/opponents.png">
     <div class="col-sm-10 col-md-8 col-lg-6 border border-dark" style="margin: auto">
       <table class="table table-sm table-hover text-start">
         <thead class="table-dark">
@@ -64,7 +64,7 @@
               {{"ONLINE.RANKING" | translate }}
               <button class="btn btn-sm pt-0" type="button" onclick="this.blur()"
                 (click)="modalService.open(rankingInfoContent)">
-                <img src="../../../assets/icons/info-circle-solid-white.png" height="20" width="20" />
+                <img src="assets/icons/info-circle-solid-white.png" style="height: 20px; width: 20px"/>
               </button>
             </th>
           </tr>
@@ -74,7 +74,7 @@
             <div class="input-group">
               <input type="text" class="form-control bg-transparent rounded" placeholder="..." [(ngModel)]="searchTerm">
               <div class="m-1">
-                <img src="assets/icons/search-solid.png" width="18px">
+                <img src="assets/icons/search-solid.png" style="width: 18px">
               </div>
             </div>
           </td>
@@ -104,12 +104,10 @@
             <td>
               <button *ngIf="opponent.webcomId !== onlineService.webcomId" class="btn px-0"
                 [ngSwitch]="opponent.lastResult">
-                <img *ngSwitchCase="GamePoint.WON" height="24px" width="24px" src="../../../assets/icons/trophy-solid-warning.png">
-                <img *ngSwitchCase="GamePoint.DRAW" height="24px" width="24px"
-                  src="../../../assets/icons/trophy-solid-secondary.png">
-                <img *ngSwitchCase="GamePoint.LOST" height="24px" width="24px" src="../../../assets/icons/trophy-solid-danger.png">
-                <img *ngSwitchDefault class="team-not-won" height="24px" width="24px"
-                  src="../../../assets/icons/trophy-solid-secondary.png">
+                <img *ngSwitchCase="GamePoint.WON" class="icon24" src="assets/icons/trophy-solid-warning.png">
+                <img *ngSwitchCase="GamePoint.DRAW" class="icon24" src="assets/icons/trophy-solid-secondary.png">
+                <img *ngSwitchCase="GamePoint.LOST" class="icon24" src="assets/icons/trophy-solid-danger.png">
+                <img *ngSwitchDefault class="team-not-won icon24" src="assets/icons/trophy-solid-secondary.png">
               </button>
             </td>
           </tr>
@@ -150,7 +148,7 @@
     <p>
       <span [innerHTML]="'ONLINE.DOWNLOAD_TEXT' | translate "></span>
       <button class="btn btn-sm" type="button" (click)="downloadBlocks()">
-        <img src="../../../assets/icons/cloud-download-alt-solid.png" height="24"/>
+        <img src="assets/icons/cloud-download-alt-solid.png" style="width: 24px"/>
       </button>
     </p>
     <hr>

@@ -94,7 +94,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.setWorspaceForViewing();
+    this.setWorkspaceForViewing();
     this.codeService.loadOppBlocks(false, 'demo')
       .then(blocks => {
         this.codeService.loadBlocksInWorkspace(blocks, this.workspace)
@@ -117,7 +117,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
       });
   }
 
-  setWorspaceForViewing(): void {
+  setWorkspaceForViewing(): void {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
     this.workspace = CodeService.getWorkspace(blocklyDiv,
       {

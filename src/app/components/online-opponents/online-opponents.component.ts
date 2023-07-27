@@ -44,9 +44,9 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
   personalRanking = 0;
   loading = false;
   modalParams = {
-    won: '<img src="../../../assets/icons/trophy-solid-warning.png" width="24" height="24" />',
-    draw: '<img src="../../../assets/icons/trophy-solid-secondary.png" width="24" height="24" />',
-    lost: '<img src="../../../assets/icons/trophy-solid-danger.png" width="24" height="24" />',
+    won: '<img src="assets/icons/trophy-solid-warning.png" class="icon24"/>',
+    draw: '<img src="assets/icons/trophy-solid-secondary.png" class="icon24"/>',
+    lost: '<img src="assets/icons/trophy-solid-danger.png" class="icon24"/>',
   };
 
   private _searchTerm = '';

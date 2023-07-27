@@ -43,27 +43,27 @@ export class Ball extends Sprite {
     return this._formerOwner;
   }
 
-  get coord(): SpriteCoord {
+  override get coord(): SpriteCoord {
     return this.owner ? this.owner.coord : super.coord;
   }
 
-  public set coord(value: SpriteCoord) {
+  override set coord(value: SpriteCoord) {
     super.coord = value;
   }
 
-  get angle(): number {
+  override get angle(): number {
     return this.owner ? this.owner.angle : super.angle;
   }
 
-  public set angle(value) {
+  override set angle(value) {
     super.angle = value;
   }
 
-  get still(): boolean {
+  override get still(): boolean {
     return this.owner ? this.owner.still : super.still;
   }
 
-  public set still(value) {
+  override set still(value) {
     super.still = value;
   }
 
@@ -100,7 +100,7 @@ export class Ball extends Sprite {
     );
   }
 
-  get offsetCoord(): SpriteCoord {
+  override get offsetCoord(): SpriteCoord {
     if (this.owner === null) {
       return {x: this.coord.x, y: this.coord.y + this.height / 3};
     } else {

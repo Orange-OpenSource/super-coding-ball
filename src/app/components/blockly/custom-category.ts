@@ -16,11 +16,11 @@ export class CustomCategory extends Blockly.ToolboxCategory {
     super(categoryDef, toolbox, optParent);
   }
 
-  addColourBorder_(colour: any): void {
+  override addColourBorder_(colour: any): void {
     this.rowDiv_!.style.backgroundColor = colour;
   }
 
-  setSelected(isSelected: boolean): void {
+  override setSelected(isSelected: boolean): void {
     super.setSelected(isSelected);
     this.refreshTheme();
   }

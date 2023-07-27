@@ -45,8 +45,7 @@ export class LocalStorageService {
   }
 
   loadBlocks(): string {
-    const ownTextBlocks = localStorage.getItem('savedBlocks') || '{}';
-    return ownTextBlocks;
+    return localStorage.getItem('savedBlocks') || '{}';
   }
 
   saveBlocks(savedBlocks: string): void {

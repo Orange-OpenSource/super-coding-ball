@@ -14,7 +14,7 @@ import Webcom from 'webcom/webcom-auth-sldblite.js';
 import {AllGames, ConnectionStatus, DayAndGames, User, UserDisplay} from '../models/webcom-models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {concatMap, filter, map, toArray} from 'rxjs/operators';
-import {firstValueFrom, Observable, of, from} from 'rxjs';
+import {firstValueFrom, Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -58,7 +58,7 @@ export class OnlineService implements OnDestroy {
             console.log('The email/password method is disabled in the application. It must be enabled in the Webcom developer console.');
             break;
           default:
-            console.log('An unexpected error occured, please retry and contact your administrator.', error);
+            console.log('An unexpected error occurred, please retry and contact your administrator.', error);
         }
       } else {
         if (authState?.state == 'some') {
