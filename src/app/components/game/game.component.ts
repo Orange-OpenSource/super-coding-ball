@@ -222,7 +222,7 @@ export class GameComponent implements OnInit, OnDestroy {
     for (const player of this.players) {
       player.angle = 0;
       player.energy = 100;
-      player.coord = this.getGridPosition(false, 1, 3);
+      player.coord = {x: 0, y: canvasHeight / 2};
       player.state = PlayerState.Entering;
     }
     this.ball.owner = null;
