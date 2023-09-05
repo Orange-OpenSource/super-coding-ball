@@ -61,6 +61,7 @@
           "type": "custom_compare",
           "inputs": {
             "LEFT": {
+              "!README!": "If we use distance as shadow here, we couln't modify it",
               "block": {
                 "type": "distance",
                 "inputs": {
