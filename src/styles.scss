@@ -101,9 +101,13 @@ html, body {
 
 // Disabled blocks are grey (first-of-type because the second element is the yellow focus)
 .blocklyDisabled > .blocklyPath:first-of-type {
-  fill-opacity: 1;
-  stroke-opacity: 1;
+  fill-opacity: 0.8;
   fill: lightgrey;
+}
+
+// Disabled blocks placeholders are darkgray (otherwise they would be hidden)
+.blocklyDisabled > .blocklyOutlinePath {
+  fill: darkgray !important;
 }
 
 // Remove white background that Bootstrap 5.3 adds on tables
