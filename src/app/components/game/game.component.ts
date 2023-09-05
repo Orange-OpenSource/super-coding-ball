@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Player, PlayerState} from '../../models/player';
 import {Ball} from '../../models/ball';
 import {Sprite, SpriteCoord} from '../../models/sprite';
@@ -69,7 +69,7 @@ const sprintingVelocityFactor = 2;
   styleUrls: ['./game.component.scss']
 })
 
-export class GameComponent implements OnInit, OnDestroy {
+export class GameComponent implements AfterViewInit, OnDestroy {
   @ViewChild('kickOffContent') private kickOffContent: any;
   @ViewChild('stopGameContent') private stopGameContent: any;
   @ViewChild('endGameContent') private endGameContent: any;
@@ -84,7 +84,6 @@ export class GameComponent implements OnInit, OnDestroy {
   gamePaused = true;
   gameStopped = false;
   periodType = PeriodType.BeforeFirstPeriod;
-  lastTimeout = 0;
 
   private _acceleratedGame = this.localStorageService.getAcceleratedGameStatus();
   get acceleratedGame(): boolean {
@@ -134,19 +133,6 @@ export class GameComponent implements OnInit, OnDestroy {
       .then(code => this.oppCode = code);
 
     this.isStandaloneScreen = this.router.url.includes('/play');
-    if (this.isStandaloneScreen) {
-      this.loadOwnCode();
-    }
-  }
-
-  public loadOwnCode(): void {
-    this.ownTeamWillStart = true;
-    this.ownCode = this.codeService.loadOwnCode();
-    if (!environment.production) {
-      console.log(this.ownCode);
-    }
-    this.positionPlayersAndBallBeforeKickOff();
-    this.openKickOffPopup();
   }
 
   computeGridPositions(): void {
@@ -164,7 +150,8 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit(): void {
+  // Don't use ngOnInit because ViewChild is not available
+  ngAfterViewInit(): void {
     this.ownerMark = new Image();
     this.ownerMark.src = 'assets/icons/owner-mark.png';
     this.positionPlayersAndBallBeforeEntry();
@@ -178,29 +165,29 @@ export class GameComponent implements OnInit, OnDestroy {
           this.drawingLoop();
         });
     };
+    if (this.isStandaloneScreen) {
+      this.loadOwnCode();
+    }
   }
 
   ngOnDestroy(): void {
     this.gameStopped = true;
-    if (this.lastTimeout !== 0) {
-      clearTimeout(this.lastTimeout);
-      this.lastTimeout = 0;
-    }
     this.modalService.dismissAll();
   }
 
-  openKickOffPopup(): void {
-    if (this.lastTimeout !== 0) {
-      clearTimeout(this.lastTimeout);
-      this.lastTimeout = 0;
+  public loadOwnCode(): void {
+    this.ownTeamWillStart = true;
+    this.ownCode = this.codeService.loadOwnCode();
+    if (!environment.production) {
+      console.log(this.ownCode);
     }
-    // If launched immediately, the popup is empty on mobile
-    this.lastTimeout = window.setTimeout(() => {
-      this.modalService.open(this.kickOffContent, {size: 'sm'}).result.then(
-        () => this.kickOff(),
-        () => this.kickOff());
-      this.lastTimeout = 0;
-    }, 1000);
+    this.openKickOffPopup();
+  }
+
+  openKickOffPopup(): void {
+    this.modalService.open(this.kickOffContent, {size: 'sm'}).result.then(
+      () => this.kickOff(),
+      () => this.kickOff());
   }
 
   kickOff(): void {
@@ -307,11 +294,6 @@ export class GameComponent implements OnInit, OnDestroy {
     this.modalService.open(this.stopGameContent, {size: 'sm'})
       .result.then((stopValidated: boolean) => {
         if (stopValidated) {
-          if (this.lastTimeout !== 0) {
-            clearTimeout(this.lastTimeout);
-            this.lastTimeout = 0;
-          }
-
           this.ownTeamWillStart = true;
           this.periodType = PeriodType.BeforeFirstPeriod;
           this.gamePaused = true;
