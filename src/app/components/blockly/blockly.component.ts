@@ -152,11 +152,11 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   openDeletePopup(content: TemplateRef<any>): void {
     this.modalService.open(content)
       .result.then((deletionValidated: boolean) => {
-      if (deletionValidated) {
-        this.workspace?.clear();
-        this.workspace?.setScale(1);
-      }
-    });
+        if (deletionValidated) {
+          this.workspace?.clear();
+          this.workspace?.setScale(1);
+        }
+      }, () => { });
   }
 
   loadBlocksFromLocalStorage(): void {

@@ -304,7 +304,6 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   stopGame(): void {
-    this.ownTeamWillStart = true;
     this.modalService.open(this.stopGameContent, {size: 'sm'})
       .result.then((stopValidated: boolean) => {
         if (stopValidated) {
@@ -313,6 +312,7 @@ export class GameComponent implements OnInit, OnDestroy {
             this.lastTimeout = 0;
           }
 
+          this.ownTeamWillStart = true;
           this.periodType = PeriodType.BeforeFirstPeriod;
           this.gamePaused = true;
           this.gameTime = 0;
@@ -322,11 +322,16 @@ export class GameComponent implements OnInit, OnDestroy {
           this.positionPlayersAndBallBeforeKickOff();
           this.gameLaunchedChange.emit(false);
         }
-      });
+      }, () => { });
   }
 
   backToCodeEdition(): void {
-    this.router.navigate([`/code/${this.isOnline ? 'online' : 'offline'}/` + this.opponentId]);
+    this.modalService.open(this.stopGameContent, {size: 'sm'})
+      .result.then((stopValidated: boolean) => {
+        if (stopValidated) {
+          this.router.navigate([`/code/${this.isOnline ? 'online' : 'offline'}/` + this.opponentId]);
+        }
+      }, () => { });
   }
 
   private backToOpponentsList(): void {

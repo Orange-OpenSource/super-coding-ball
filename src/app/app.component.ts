@@ -66,10 +66,10 @@ export class AppComponent implements OnInit, OnDestroy {
           console.log('available version is', event.latestVersion);
           this.modalService.open(this.content, {size: 'sm'})
             .result.then((updateValidated: boolean) => {
-            if (updateValidated) {
-              window.location.reload();
-            }
-          });
+              if (updateValidated) {
+                window.location.reload();
+              }
+            }, () => { });
         });
     }
   }

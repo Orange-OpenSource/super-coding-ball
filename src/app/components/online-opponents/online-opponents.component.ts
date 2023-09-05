@@ -188,7 +188,7 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
           if (replayValidated) {
             this.router.navigate([`/code/online/${opponentId}`]);
           }
-        });
+        }, () => { });
     } else {
       this.router.navigate([`/code/online/${opponentId}`]);
     }
@@ -216,6 +216,6 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
             .pipe(finalize(() => this.loading = false))
             .subscribe({next: () => null, error: () => null, complete: () => this.onlineService.disconnect()});
         }
-      });
+      }, () => { });
   }
 }
