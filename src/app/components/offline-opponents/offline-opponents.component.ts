@@ -15,8 +15,7 @@ import {LocalStorageService} from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-offline-opponents',
-  templateUrl: './offline-opponents.component.html',
-  styleUrls: ['./offline-opponents.component.scss']
+  templateUrl: './offline-opponents.component.html'
 })
 export class OfflineOpponentsComponent implements OnInit {
   strategies: { id: string, won: boolean }[] = [];

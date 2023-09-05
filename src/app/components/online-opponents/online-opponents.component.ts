@@ -28,8 +28,7 @@ export enum GamePoint {
 
 @Component({
   selector: 'app-online-opponents',
-  templateUrl: './online-opponents.component.html',
-  styleUrls: ['./online-opponents.component.scss']
+  templateUrl: './online-opponents.component.html'
 })
 
 export class OnlineOpponentsComponent implements OnInit, OnDestroy {

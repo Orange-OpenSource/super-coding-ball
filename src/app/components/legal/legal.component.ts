@@ -14,8 +14,7 @@ import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-licenses',
-  templateUrl: './legal.component.html',
-  styleUrls: ['./legal.component.scss']
+  templateUrl: './legal.component.html'
 })
 export class LegalComponent implements OnInit {
   thirdParty = '';

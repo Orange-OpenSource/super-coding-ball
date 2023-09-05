@@ -18,8 +18,7 @@ import {WorkspaceSvg} from 'blockly';
 
 @Component({
   selector: 'app-howto',
-  templateUrl: './howto.component.html',
-  styleUrls: ['./howto.component.scss']
+  templateUrl: './howto.component.html'
 })
 export class HowtoComponent implements OnInit, OnDestroy {
   private shootWorkspace!: Blockly.WorkspaceSvg;

@@ -26,8 +26,7 @@ interface Step {
 
 @Component({
   selector: 'app-howto-demo',
-  templateUrl: './howto-demo.component.html',
-  styleUrls: ['./howto-demo.component.scss']
+  templateUrl: './howto-demo.component.html'
 })
 
 export class HowtoDemoComponent implements OnInit, OnDestroy {

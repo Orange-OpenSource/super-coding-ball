@@ -15,8 +15,7 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-privacy',
-  templateUrl: './privacy.component.html',
-  styleUrls: ['./privacy.component.scss']
+  templateUrl: './privacy.component.html'
 })
 export class PrivacyComponent {
   get trackingDisabled(): boolean {
