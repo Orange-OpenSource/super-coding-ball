@@ -64,14 +64,24 @@
   </canvas>
 </div>
 
-<ng-template #kickOffContent let-modal>
+<ng-template #kickOffBeforeFirstPeriodContent let-modal>
   <div class="modal-header" [ngSwitch]="periodType">
-    <h6 *ngSwitchCase="PeriodType.BeforeFirstPeriod" class="modal-title">{{'GAME.KICK_OFF' | translate}}</h6>
-    <h6 *ngSwitchCase="PeriodType.HalfTime" class="modal-title">{{"GAME.HALF_TIME" | translate}}</h6>
-    <h6 *ngSwitchDefault class="modal-title">{{"GAME.GOAL" | translate}}</h6>
+    <h6 class="modal-title">{{'GAME.KICK_OFF' | translate}}</h6>
   </div>
-  <div *ngIf="periodType === 1" class="modal-body">
+  <div *ngIf="isStandaloneScreen" class="modal-body">
     {{'GAME.CLICK_ANYWHERE' | translate}}
+  </div>
+</ng-template>
+
+<ng-template #kickOffHalfTimeContent let-modal>
+  <div class="modal-header" [ngSwitch]="periodType">
+    <h6 class="modal-title">{{"GAME.HALF_TIME" | translate}}</h6>
+  </div>
+</ng-template>
+
+<ng-template #kickOffGoalContent let-modal>
+  <div class="modal-header" [ngSwitch]="periodType">
+    <h6 class="modal-title">{{"GAME.GOAL" | translate}}</h6>
   </div>
 </ng-template>
 
@@ -103,7 +113,7 @@
   <div class="modal-header">
     <h6 class="modal-title" *ngIf="ownScore > oppScore">{{'GAME.YOU_WON' | translate }}</h6>
     <h6 class="modal-title" *ngIf="ownScore === oppScore">{{'GAME.DRAW' | translate }}</h6>
-    <h6 class="modal-title" *ngIf="ownScore < oppScore">{{'GAME.YOU_LOST' | translate }}(</h6>
+    <h6 class="modal-title" *ngIf="ownScore < oppScore">{{'GAME.YOU_LOST' | translate }}</h6>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
 </ng-template>

@@ -70,7 +70,9 @@ const sprintingVelocityFactor = 2;
 })
 
 export class GameComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('kickOffContent') private kickOffContent: any;
+  @ViewChild('kickOffBeforeFirstPeriodContent') private kickOffBeforeFirstPeriodContent: any;
+  @ViewChild('kickOffHalfTimeContent') private kickOffHalfTimeContent: any;
+  @ViewChild('kickOffGoalContent') private kickOffGoalContent: any;
   @ViewChild('stopGameContent') private stopGameContent: any;
   @ViewChild('endGameContent') private endGameContent: any;
   @Input() gameLaunched = true;
@@ -185,7 +187,24 @@ export class GameComponent implements AfterViewInit, OnDestroy {
   }
 
   openKickOffPopup(): void {
-    this.modalService.open(this.kickOffContent, {size: 'sm'}).result.then(
+    let content
+    switch (this.periodType) {
+      case PeriodType.BeforeFirstPeriod:
+        content = this.kickOffBeforeFirstPeriodContent;
+        break;
+      case PeriodType.HalfTime:
+        content = this.kickOffHalfTimeContent;
+        break;
+      default:
+        content = this.kickOffGoalContent;
+        break;
+    }
+    let modal = this.modalService.open(content, {size: 'sm'});
+    // Keep modal open only for game start on mobile
+    if (!(this.periodType == PeriodType.BeforeFirstPeriod && this.isStandaloneScreen)) {
+      setTimeout(() => modal.close(), 3000);
+    }
+    modal.result.then(
       () => this.kickOff(),
       () => this.kickOff());
   }
