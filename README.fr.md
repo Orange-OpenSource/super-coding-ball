@@ -1,5 +1,4 @@
-# SuperCodingBall (https://www.supercodingball.com)
-![icon](./src/assets/app-icons/icon-192x192.png)
+# SuperCodingBall
 
 *Read in [English](README.md).*
 
