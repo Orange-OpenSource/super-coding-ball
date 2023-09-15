@@ -12,6 +12,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {LocalStorageService} from '../../services/local-storage.service';
+import {TouchDevicesService} from '../../services/touch-devices.service';
 
 @Component({
   selector: 'app-offline-opponents',
@@ -22,7 +23,8 @@ export class OfflineOpponentsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    public touchDevicesService: TouchDevicesService
   ) {
   }
 

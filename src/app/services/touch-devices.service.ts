@@ -9,15 +9,14 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component} from '@angular/core';
-import {TouchDevicesService} from '../../services/touch-devices.service';
+import {Injectable} from '@angular/core';
 
-@Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html'
+@Injectable({
+  providedIn: 'root'
 })
-export class AboutComponent {
-
-  constructor(public touchDevicesService: TouchDevicesService) {
+export class TouchDevicesService {
+  // See https://stackoverflow.com/a/4819886
+  isTouchDevice(): boolean {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   }
 }

@@ -20,6 +20,9 @@ import {GameComponent} from '../game/game.component';
 import {environment} from '../../../environments/environment';
 import {OnlineService} from '../../services/online.service';
 import {LocalStorageService} from '../../services/local-storage.service';
+import {Tooltip} from 'bootstrap';
+import {TranslateService} from '@ngx-translate/core';
+import {TouchDevicesService} from '../../services/touch-devices.service';
 
 @Component({
   selector: 'app-blockly',
@@ -51,11 +54,13 @@ export class BlocklyComponent implements OnInit, OnDestroy {
 
   constructor(
     private localStorageService: LocalStorageService,
+    private translate: TranslateService,
     public codeService: CodeService,
     private onlineService: OnlineService,
     private router: Router,
     private route: ActivatedRoute,
-    public modalService: NgbModal
+    public modalService: NgbModal,
+    public touchDevicesService: TouchDevicesService
   ) {
     this.debug = !environment.production;
     this.isOnline = this.router.url.includes('/online/');
@@ -64,6 +69,26 @@ export class BlocklyComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.gameLaunched = false;
+    if (!this.touchDevicesService.isTouchDevice()) {
+      this.setCategoryTooltip('customIconEvent','EVENTS');
+      this.setCategoryTooltip('customIconCondition','CONDITIONS');
+      this.setCategoryTooltip('customIconAction','ACTIONS');
+      this.setCategoryTooltip('customIconPosition','POSITIONS');
+      this.setCategoryTooltip('customIconValue','VALUES');
+      this.setCategoryTooltip('customIconAdvanced','ADVANCED');
+    }
+  }
+
+
+
+  private setCategoryTooltip(categoryStyle: string, categoryKey: string) {
+    this.translate.get(`BLOCKS.${categoryKey}`).subscribe(
+      wording => {
+        const categoryElement = document.getElementsByClassName(categoryStyle).item(0)!!.parentElement!!.parentElement!!
+        Tooltip.getOrCreateInstance(categoryElement, {title: wording, placement: 'auto' })
+
+      }
+    )
   }
 
   setWorkspaceForEdition(): void {

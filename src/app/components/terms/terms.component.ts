@@ -9,17 +9,15 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {TouchDevicesService} from '../../services/touch-devices.service';
 
 @Component({
   selector: 'app-terms',
   templateUrl: './terms.component.html'
 })
-export class TermsComponent implements OnInit {
+export class TermsComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(public touchDevicesService: TouchDevicesService) {
   }
-
 }

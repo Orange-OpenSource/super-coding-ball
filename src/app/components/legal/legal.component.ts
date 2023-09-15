@@ -11,6 +11,7 @@
 
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {TouchDevicesService} from '../../services/touch-devices.service';
 
 @Component({
   selector: 'app-licenses',
@@ -19,7 +20,7 @@ import {HttpClient} from '@angular/common/http';
 export class LegalComponent implements OnInit {
   thirdParty = '';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public touchDevicesService: TouchDevicesService) {
   }
 
   ngOnInit(): void {

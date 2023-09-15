@@ -17,6 +17,7 @@
     class="btn btn-lg d-flex"
     type="button"
     ngbTooltip="{{'GLOBAL.BACK' | translate }}"
+    [disableTooltip]="touchDevicesService.isTouchDevice()"
     (click)="backToCodeEdition()">
     <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24"/>
   </button>
@@ -26,6 +27,7 @@
     class="btn btn-lg d-flex"
     type="button"
     ngbTooltip="{{'GAME.STOP' | translate }}"
+    [disableTooltip]="touchDevicesService.isTouchDevice()"
     (click)="stopGame()">
     <img src="assets/icons/stop-circle-regular.png" class="icon24"/>
   </button>
@@ -46,6 +48,7 @@
     class="btn btn-lg d-flex"
     type="button"
     ngbTooltip="{{'GAME.GAME_ACCELERATED' | translate }}"
+    [disableTooltip]="touchDevicesService.isTouchDevice()"
     onclick="this.blur()"
     (click)="acceleratedGame = !acceleratedGame">
     <ng-container [ngSwitch]="acceleratedGame">

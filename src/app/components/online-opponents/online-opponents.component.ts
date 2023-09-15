@@ -19,6 +19,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
 import {concatMap, finalize} from 'rxjs/operators';
 import {LocalStorageService} from '../../services/local-storage.service';
+import {TouchDevicesService} from '../../services/touch-devices.service';
 
 export enum GamePoint {
   LOST = 0,
@@ -70,7 +71,8 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private codeService: CodeService,
     public onlineService: OnlineService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    public touchDevicesService: TouchDevicesService
   ) {
   }
 

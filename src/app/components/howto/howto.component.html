@@ -14,6 +14,7 @@
     class="btn btn-lg d-flex"
     type="button"
     ngbTooltip="{{'GLOBAL.BACK' | translate }}"
+    [disableTooltip]="touchDevicesService.isTouchDevice()"
     routerLink="/home">
     <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24"/>
   </button>

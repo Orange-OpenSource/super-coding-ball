@@ -20,6 +20,7 @@ import {LocalStorageService} from '../../services/local-storage.service';
 import {OnlineService} from '../../services/online.service';
 import {environment} from '../../../environments/environment';
 import {GamePoint} from '../online-opponents/online-opponents.component';
+import {TouchDevicesService} from '../../services/touch-devices.service';
 
 interface FieldDivision {
   start: number;
@@ -127,6 +128,7 @@ export class GameComponent implements AfterViewInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     public modalService: NgbModal,
+    public touchDevicesService: TouchDevicesService
   ) {
     this.computeGridPositions();
     this.isOnline = this.router.url.includes('/online/');

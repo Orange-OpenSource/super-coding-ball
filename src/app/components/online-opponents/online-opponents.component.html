@@ -15,13 +15,19 @@
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0">
-  <button class="btn btn-lg d-flex" type="button" ngbTooltip="{{'GLOBAL.BACK' | translate }}" routerLink="/home">
+  <button
+    class="btn btn-lg d-flex" type="button"
+    ngbTooltip="{{'GLOBAL.BACK' | translate }}"
+    [disableTooltip]="touchDevicesService.isTouchDevice()"
+    routerLink="/home">
     <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24"/>
   </button>
   <h4 class="m-0">{{"ONLINE.TITLE" | translate }}</h4>
   <div class="flex-grow-1 text-end">
     <button *ngIf="onlineService.connectionStatus === ConnectionStatus.Connected"
-      class="btn p-0 m-1 border border-dark rounded" type="button" ngbTooltip="{{'ONLINE.ACCOUNT' | translate }}"
+      class="btn p-0 m-1 border border-dark rounded" type="button"
+      ngbTooltip="{{'ONLINE.ACCOUNT' | translate }}"
+      [disableTooltip]="touchDevicesService.isTouchDevice()"
       onclick="this.blur()" (click)="modalService.open(accountInfoContent)">
       {{onlineService.userDisplay.displayName}}
       <span class="ps-1"></span>

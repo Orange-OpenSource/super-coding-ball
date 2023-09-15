@@ -15,6 +15,7 @@ import {HowtoDemoComponent} from '../howto-demo/howto-demo.component';
 import Blockly from 'blockly';
 import {CodeService} from '../../services/code.service';
 import {WorkspaceSvg} from 'blockly';
+import {TouchDevicesService} from '../../services/touch-devices.service';
 
 @Component({
   selector: 'app-howto',
@@ -27,7 +28,8 @@ export class HowtoComponent implements OnInit, OnDestroy {
 
   constructor(
     private modalService: NgbModal,
-    private codeService: CodeService) {
+    private codeService: CodeService,
+    public touchDevicesService: TouchDevicesService) {
   }
 
   ngOnInit(): void {
