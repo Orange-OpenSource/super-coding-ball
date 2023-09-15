@@ -103,7 +103,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
 
   goToStep(stepNumber: number): void {
     this.stepBlock?.setCommentText(null);
-    this.stepBlock?.getCommentIcon()?.setBubbleVisible(false);
+    this.stepBlock?.getIcon(Blockly.icons.IconType.COMMENT)?.setBubbleVisible(false);
     const blockId = this.steps[stepNumber].blockId;
     this.smoothCenterOnBlock(blockId)
       .pipe(
@@ -112,7 +112,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
       .subscribe(comment => {
         this.stepBlock = this.workspace.getBlockById(blockId);
         this.stepBlock?.setCommentText(comment);
-        this.stepBlock?.getCommentIcon()?.setBubbleVisible(true);
+        this.stepBlock?.getIcon(Blockly.icons.IconType.COMMENT)?.setBubbleVisible(true);
       });
   }
 
