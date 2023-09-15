@@ -178,24 +178,28 @@ export class CodeService {
     javascriptGenerator.forBlock['event_ball_mine'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
       return `if (game.ball.owner === player) {
 ${generator.statementToCode(block, 'DO')}
+  return;
 }`;
     };
 
     javascriptGenerator.forBlock['event_ball_teammate'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
       return `if (game.ball.owner !== null && game.ball.owner.ownTeam === player.ownTeam && game.ball.owner !== player) {
 ${generator.statementToCode(block, 'DO')}
+  return;
 }`;
     };
 
     javascriptGenerator.forBlock['event_ball_opponent'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
       return `if (game.ball.owner !== null && game.ball.owner.ownTeam !== player.ownTeam) {
 ${generator.statementToCode(block, 'DO')}
+  return;
 }`;
     };
 
     javascriptGenerator.forBlock['event_ball_none'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
       return `if (game.ball.owner === null) {
-  ${generator.statementToCode(block, 'DO')}
+${generator.statementToCode(block, 'DO')}
+  return;
 }`;
     };
 
