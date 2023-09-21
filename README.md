@@ -47,7 +47,7 @@ SuperCodingBall uses Google's excellent [Blockly](https://developers.google.com/
 
 To generate the personalized blocks, you can use the [Blockly Developer Tools](https://blockly-demo.appspot.com/static/demos/blockfactory/index.html), the source of the blocks being stored [here](./src/assets/blocks/library.xml).
 
-Once the [blocks.json file](./src/assets/blocks/blocks.json) has been generated, it must be modified to add styles and translations.
+Once the [blocks.json file](./src/assets/blocks/blocks.json) has been generated, it must be modified to add styles, extensions and translations.
 
 ## Sprites creation
 

@@ -396,7 +396,8 @@
     "output": "player",
     "style": "position_blocks",
     "tooltip": "",
-    "helpUrl": ""
+    "helpUrl": "",
+    "extensions": ["player_needs_a_reference_position_extension"]
   },
   {
     "type": "ball",

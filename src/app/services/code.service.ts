@@ -10,7 +10,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import Blockly from 'blockly';
+import Blockly, {BlockSvg, Events, Extensions} from 'blockly';
 import {BlocklyOptions} from 'blockly/core/blockly_options';
 import blockStyles from '../../assets/blocks/styles/blockStyles.json';
 import categoryStyles from '../../assets/blocks/styles/categoryStyles.json';
@@ -72,6 +72,25 @@ export class CodeService {
     Blockly.ContextMenuRegistry.registry.unregister('blockHelp');
 
     this.defineBlocksCodeGen();
+
+    // Hide the near/far field from 'player' block, when the player is already fully determined by its role and side
+    Extensions.register('player_needs_a_reference_position_extension', function (this: BlockSvg) {
+      this.setOnChange((event) => {
+        // Executed when the block created...
+        if (event instanceof Events.BlockCreate && event.ids?.includes(this.id) ||
+          // ...or when the block's role or side fields are modified
+          event instanceof Events.BlockChange
+          && event.blockId === this.id
+          && event.element === "field"
+          && (event.name === "PLAYER_ROLE" || event.name === "PLAYER_SIDE")) {
+          const playerNeedsAReferencePosition = this.getFieldValue("PLAYER_ROLE") === "PLAYER_ROLE_ALL" || this.getFieldValue("PLAYER_SIDE") === "PLAYER_SIDE_ALL";
+          // setVisible may change in the future, see: https://groups.google.com/g/blockly/c/hPNZbxeGLR4/m/d3P4K_UxCAAJ
+          this.getInput("PLAYER_POS_REF")?.setVisible(playerNeedsAReferencePosition);
+          // Re-render the block because its size may have changed
+          this.render();
+        }
+      });
+    });
 
     if (this.translate.currentLang === 'fr') {
       Blockly.setLocale(Fr);
