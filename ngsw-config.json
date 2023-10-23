@@ -11,21 +11,7 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js",
-          "/assets/**/*.(png|json|cur)",
-          "!/assets/howto/screenshot-fr.png",
-          "!/assets/howto/screenshot.png",
-          "!/assets/football-pitch.png"
-        ]
-      }
-    },
-    {
-      "name": "assets",
-      "installMode": "lazy",
-      "updateMode": "prefetch",
-      "resources": {
-        "files": [
-          "/assets/**",
-          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+          "/assets/**"
         ]
       }
     }

@@ -25,8 +25,21 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/assets",
               "src/manifest.webmanifest",
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "ignore": [
+                  "**/*.xcf",
+                  "**/*.xml",
+                  "**/*.blend",
+                  "**/*.svg",
+                  "football-pitch.png",
+                  "howto/screenshot.png",
+                  "howto/screenshot-fr.png"
+                ],
+                "output": "/assets/"
+              },
               {
                 "glob": "THIRD-PARTY.txt",
                 "input": "",
