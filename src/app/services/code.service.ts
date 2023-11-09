@@ -116,7 +116,8 @@ export class CodeService {
     options.rendererOverrides[DUMMY_INPUT_MIN_HEIGHT] = 0;
     options.rendererOverrides[BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT] = 0;
     options.rtl = document.dir === 'rtl';
-
+    Blockly.config.snapRadius = 48
+    Blockly.config.connectingSnapRadius = 68
     return Blockly.inject(blocklyDiv, options);
   }
 
