@@ -44,18 +44,20 @@
     <div class="col-sm-7 col-md-5 col-lg-3">
       <button class="btn btn-lg my-2 p-0 text-start bg-secondary w-100" type="button"
         (click)="modalService.open(guestInfoContent)">
-        <img class="p-1" src="assets/icons/user-solid.png" class="icon48">
+        <img src="assets/icons/user-solid.png" class="p-2 icon48">
         <span class="p-2 text-white h6">{{'ONLINE.CONNECT_GUEST' | translate }}</span>
       </button>
-      <button style="background-color: #5890FF" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
+      <!-- See: https://developers.facebook.com/docs/facebook-login/userexperience -->
+      <button style="background-color: #0866FF" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
         (click)="loading=true;onlineService.connectWithFacebook()">
-        <img src="assets/icons/f_logo_RGB-White.png" class="icon48">
+        <img src="assets/icons/login_facebook.png" class="icon48">
         <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_FACEBOOK' | translate }}</span>
       </button>
-      <button style="background-color: #4285F4" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
+      <!-- See: https://developers.google.com/identity/branding-guidelines -->
+      <button style="background-color: #F2F2F2" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
         (click)="loading=true;onlineService.connectWithGoogle()">
-        <img src="assets/icons/btn_google_dark_normal.png" class="icon48">
-        <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_GOOGLE' | translate }}</span>
+        <img src="assets/icons/login_google.png" class="icon48">
+        <span style="color: #1F1F1F" class="p-2 h6">{{'ONLINE.CONNECT_WITH_GOOGLE' | translate }}</span>
       </button>
     </div>
   </div>
