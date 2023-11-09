@@ -11,13 +11,20 @@
 
 import {Component} from '@angular/core';
 import {TouchDevicesService} from '../../services/touch-devices.service';
+import {TranslateService} from '@ngx-translate/core';
+import {SupportedLanguagesServices} from '../../services/supported_languages_service';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html'
 })
 export class AboutComponent {
-
-  constructor(public touchDevicesService: TouchDevicesService) {
+  constructor(public touchDevicesService: TouchDevicesService, supportedLanguagesServices: SupportedLanguagesServices, public translate: TranslateService) {
+    if (supportedLanguagesServices.getCurrentLang().default) {
+      this.contact = "Contact (or help with a new translation!):"
+    } else {
+      this.translate.get('ABOUT.CONTACT').subscribe(wording => this.contact = wording)
+    }
   }
+  contact = ""
 }
