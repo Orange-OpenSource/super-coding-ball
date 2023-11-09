@@ -18,23 +18,12 @@ import componentStyles from '../../assets/blocks/styles/componentStyles.json';
 import componentDarkStyles from '../../assets/blocks/styles/componentDarkStyles.json';
 import blocksJson from '../../assets/blocks/blocks.json';
 import {javascriptGenerator, Order} from 'blockly/javascript';
-import Fr from 'blockly/msg/fr';
-import CustomFr from '../../assets/i18n/fr.json';
-import Es from 'blockly/msg/es';
-import CustomEs from '../../assets/i18n/es.json';
-import Ru from 'blockly/msg/ru';
-import CustomRu from '../../assets/i18n/ru.json';
-import En from 'blockly/msg/en';
-import CustomEn from '../../assets/i18n/en.json';
-import He from 'blockly/msg/he';
-import CustomHe from '../../assets/i18n/he.json';
-import De from 'blockly/msg/de';
-import CustomDe from '../../assets/i18n/de.json';
 import {TranslateService} from '@ngx-translate/core';
 import {OnlineService} from './online.service';
 import {LocalStorageService} from './local-storage.service';
 import {CustomCategory} from '../components/blockly/custom-category';
 import toolboxJson from '../../assets/blocks/toolbox.json';
+import {SupportedLanguagesServices} from './supported_languages_service';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +46,7 @@ export class CodeService {
 
   constructor(
     public translate: TranslateService,
+    private supportedLanguagesService: SupportedLanguagesServices,
     private localStorageService: LocalStorageService,
     private onlineService: OnlineService
   ) {
@@ -92,25 +82,9 @@ export class CodeService {
       });
     });
 
-    if (this.translate.currentLang === 'fr') {
-      Blockly.setLocale(Fr);
-      Blockly.setLocale(CustomFr.BLOCKS);
-    } else if (this.translate.currentLang === 'es') {
-      Blockly.setLocale(Es);
-      Blockly.setLocale(CustomEs.BLOCKS);
-    } else if (this.translate.currentLang === 'ru') {
-      Blockly.setLocale(Ru);
-      Blockly.setLocale(CustomRu.BLOCKS);
-    } else if (this.translate.currentLang === 'he') {
-      Blockly.setLocale(He);
-      Blockly.setLocale(CustomHe.BLOCKS);
-    } else if (this.translate.currentLang === 'de') {
-      Blockly.setLocale(De);
-      Blockly.setLocale(CustomDe.BLOCKS);
-    } else {
-      Blockly.setLocale(En);
-      Blockly.setLocale(CustomEn.BLOCKS);
-    }
+    let lang = supportedLanguagesService.getCurrentLang().lang
+    Blockly.setLocale(lang.blocklyDefaultLocale);
+    Blockly.setLocale(lang.blocklyCustomLocale);
 
     Blockly.registry.register(
       Blockly.registry.Type.TOOLBOX_ITEM,

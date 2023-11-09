@@ -18,6 +18,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LocalStorageService} from './services/local-storage.service';
 import {filter} from 'rxjs/operators';
+import {supportedLanguages, SupportedLanguagesServices} from './services/supported_languages_service';
 
 @Component({
   selector: 'app-root',
@@ -29,17 +30,16 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private swUpdate: SwUpdate,
     public translate: TranslateService,
+    private supportedLanguagesServices: SupportedLanguagesServices,
     private modalService: NgbModal,
     localStorageService: LocalStorageService
   ) {
 
-    this.translate.addLangs(['fr', 'es', 'ru', 'en', 'he', 'de']);
-    let browserLang = this.translate.getBrowserLang();
-    if (browserLang) {
-      this.translate.use(browserLang);
-      if (browserLang === 'he') {
-        document.dir = 'rtl';
-      }
+    let currentLang = supportedLanguagesServices.getCurrentLang().lang
+    this.translate.addLangs(supportedLanguages.map(lang => lang.isoId));
+    this.translate.use(currentLang.isoId);
+    if (currentLang.rtl) {
+      document.dir = 'rtl';
     }
 
     const firebaseConfig = {
