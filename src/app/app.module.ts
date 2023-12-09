@@ -59,7 +59,8 @@ import {CustomTranslateLoader} from './services/custom-translate-loader';
         provide: TranslateLoader,
         useClass: CustomTranslateLoader,
         deps: [HttpClient]
-      }
+      },
+      defaultLanguage: 'en',
     }),
     AppRoutingModule,
     NgbModule,
