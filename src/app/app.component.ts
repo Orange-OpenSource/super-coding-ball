@@ -18,7 +18,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LocalStorageService} from './services/local-storage.service';
 import {filter} from 'rxjs/operators';
-import {supportedLanguages, SupportedLanguagesServices} from './services/supported_languages_service';
+import {SupportedLanguagesServices} from './services/supported-languages-service';
 
 @Component({
   selector: 'app-root',
@@ -36,8 +36,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
 
     let currentLang = supportedLanguagesServices.getCurrentLang().lang
-    this.translate.addLangs(supportedLanguages.map(lang => lang.isoId));
-    this.translate.use(currentLang.isoId);
     if (currentLang.rtl) {
       document.dir = 'rtl';
     }

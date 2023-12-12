@@ -23,7 +23,7 @@ import {OnlineService} from './online.service';
 import {LocalStorageService} from './local-storage.service';
 import {CustomCategory} from '../components/blockly/custom-category';
 import toolboxJson from '../../assets/blocks/toolbox.json';
-import {SupportedLanguagesServices} from './supported_languages_service';
+import {SupportedLanguagesServices} from './supported-languages-service';
 
 @Injectable({
   providedIn: 'root'

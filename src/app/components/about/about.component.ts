@@ -12,7 +12,7 @@
 import {Component} from '@angular/core';
 import {TouchDevicesService} from '../../services/touch-devices.service';
 import {TranslateService} from '@ngx-translate/core';
-import {SupportedLanguagesServices} from '../../services/supported_languages_service';
+import {SupportedLanguagesServices} from '../../services/supported-languages-service';
 
 @Component({
   selector: 'app-about',

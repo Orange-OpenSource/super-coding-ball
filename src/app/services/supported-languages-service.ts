@@ -43,7 +43,8 @@ export const supportedLanguages = Array.from([
   new SupportedLanguage('de', De, CustomDe.BLOCKS),
 ])
 // Default is English
-const defaultLang = supportedLanguages.find(lang => lang.isoId == 'en')!
+const defaultLangId = 'en'
+const defaultLang = supportedLanguages.find(lang => lang.isoId == defaultLangId)!
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,11 @@ const defaultLang = supportedLanguages.find(lang => lang.isoId == 'en')!
 
 export class SupportedLanguagesServices {
   constructor(public translate: TranslateService) {
+    let currentLang = this.getCurrentLang().lang
+    translate.addLangs(supportedLanguages.map(lang => lang.isoId));
+    // Default lang used for legal pages
+    translate.setDefaultLang(defaultLangId)
+    translate.use(currentLang.isoId);
   }
 
   public getCurrentLang(): { lang: SupportedLanguage, default: boolean } {
