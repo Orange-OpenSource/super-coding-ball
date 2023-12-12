@@ -99,16 +99,28 @@
     <div class="w-100 position-relative" style="max-width: 400px; margin: auto;">
       <img class="w-100 pixelated" src="assets/football-pitch-with-marks.png">
       <div class="position-absolute attacker left">
-        <img class="player_position pixelated" src="assets/howto/guy1.png">
+        <img class="player_position pixelated" src="assets/howto/guy1.png"
+        ngbTooltip="{{'BLOCKS.ATTACKER' | translate }} {{'BLOCKS.LEFT' | translate }}"
+        triggers="load"
+        [autoClose]=false>
       </div>
       <div class="position-absolute attacker right">
-        <img class="player_position pixelated" src="assets/howto/girl1.png">
+        <img class="player_position pixelated" src="assets/howto/girl1.png"
+        ngbTooltip="{{'BLOCKS.ATTACKER' | translate }} {{'BLOCKS.RIGHT' | translate }}"
+        triggers="load"
+        [autoClose]=false>
       </div>
       <div class="position-absolute defender left">
-        <img class="player_position pixelated" src="assets/howto/guy2.png">
+        <img class="player_position pixelated" src="assets/howto/guy2.png"
+        ngbTooltip="{{'BLOCKS.DEFENDER' | translate }} {{'BLOCKS.LEFT' | translate }}"
+        triggers="load"
+        [autoClose]=false>
       </div>
       <div class="position-absolute defender right">
-        <img class="player_position pixelated" src="assets/howto/girl2.png">
+        <img class="player_position pixelated" src="assets/howto/girl2.png"
+        ngbTooltip="{{'BLOCKS.DEFENDER' | translate }} {{'BLOCKS.RIGHT' | translate }}"
+        triggers="load"
+        [autoClose]=false>
       </div>
     </div>
   </div>
