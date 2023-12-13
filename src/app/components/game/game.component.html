@@ -10,10 +10,10 @@
 -->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-between p-0">
-  <div *ngIf="!isStandaloneScreen" class="position-absolute h-100 bg-dark ps-1"></div>
-  <div *ngIf="!isStandaloneScreen" class="pe-1"></div>
+  <div *ngIf="displayType === DisplayType.NextToCode" class="position-absolute h-100 bg-dark ps-1"></div>
+  <div *ngIf="displayType === DisplayType.NextToCode" class="pe-1"></div>
   <button
-    *ngIf="isStandaloneScreen"
+    *ngIf="displayType === DisplayType.Standalone"
     class="btn btn-lg d-flex"
     type="button"
     ngbTooltip="{{'GLOBAL.BACK' | translate }}"
@@ -22,7 +22,7 @@
     <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24"/>
   </button>
   <button
-    *ngIf="!isStandaloneScreen"
+    *ngIf="displayType === DisplayType.NextToCode"
     [disabled]="!gameLaunched"
     class="btn btn-lg d-flex"
     type="button"
@@ -61,7 +61,7 @@
 <div class="text-center">
   <canvas
     id="fieldCanvas" class="pixelated"
-    [class.fullscreen]="isStandaloneScreen"
+    [class.fullscreen]="displayType === DisplayType.Standalone"
     width="456" height="554"
     style="max-width: 400px;">
   </canvas>
@@ -71,7 +71,7 @@
   <div class="modal-header" [ngSwitch]="periodType">
     <h6 class="modal-title">{{'GAME.KICK_OFF' | translate}}</h6>
   </div>
-  <div *ngIf="isStandaloneScreen" class="modal-body">
+  <div *ngIf="displayType === DisplayType.Standalone" class="modal-body">
     {{'GAME.CLICK_ANYWHERE' | translate}}
   </div>
 </ng-template>

@@ -16,7 +16,7 @@ import '@blockly/field-slider';
 import {CodeService} from '../../services/code.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {GameComponent} from '../game/game.component';
+import {DisplayType, GameComponent} from '../game/game.component';
 import {environment} from '../../../environments/environment';
 import {OnlineService} from '../../services/online.service';
 import {LocalStorageService} from '../../services/local-storage.service';
@@ -155,9 +155,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
           .subscribe();
       }
 
-      const gameDiv = document.getElementById('gameComponent')!;
-      const display = window.getComputedStyle(gameDiv).display;
-      if (display === 'none') {
+      if (this.gameComponent?.displayType == DisplayType.Hidden) {
         this.router.navigate([`/play/${this.isOnline ? 'online' : 'offline'}/` + this.opponentId]);
       } else {
         this.gameComponent?.loadOwnCode();

@@ -35,6 +35,12 @@ export enum PeriodType {
   Finished
 }
 
+export enum DisplayType {
+  Standalone,
+  NextToCode,
+  Hidden
+}
+
 const canvasWidth = 456;
 const canvasHeight = 554;
 const widthMargin = 28;
@@ -70,7 +76,7 @@ const sprintingVelocityFactor = 2;
   styleUrls: ['./game.component.scss']
 })
 
-export class GameComponent implements AfterViewInit, OnDestroy {
+export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('kickOffBeforeFirstPeriodContent') private kickOffBeforeFirstPeriodContent: any;
   @ViewChild('kickOffHalfTimeContent') private kickOffHalfTimeContent: any;
   @ViewChild('kickOffGoalContent') private kickOffGoalContent: any;
@@ -80,13 +86,14 @@ export class GameComponent implements AfterViewInit, OnDestroy {
   @Output() gameLaunchedChange = new EventEmitter<boolean>();
 
   PeriodType = PeriodType;
-  isStandaloneScreen: boolean;
+  DisplayType = DisplayType;
   isOnline: boolean;
   opponentId = '';
   ownTeamWillStart = true;
   gamePaused = true;
   gameStopped = false;
   periodType = PeriodType.BeforeFirstPeriod;
+  displayType = DisplayType.Hidden
 
   private _acceleratedGame = this.localStorageService.getAcceleratedGameStatus();
   get acceleratedGame(): boolean {
@@ -133,10 +140,17 @@ export class GameComponent implements AfterViewInit, OnDestroy {
     this.computeGridPositions();
     this.isOnline = this.router.url.includes('/online/');
     this.opponentId = this.route.snapshot.paramMap.get('id') ?? '';
-    this.codeService.loadOppCode(this.isOnline, this.opponentId)
-      .then(code => this.oppCode = code);
+  }
 
-    this.isStandaloneScreen = this.router.url.includes('/play');
+  ngOnInit(): void {
+    const gameComponentInsideBlocklyComponent = document.getElementById('gameComponent')!;
+    if (!gameComponentInsideBlocklyComponent) {
+      this.displayType = DisplayType.Standalone
+    } else if (window.getComputedStyle(gameComponentInsideBlocklyComponent).display === 'none') {
+      this.displayType = DisplayType.Hidden
+    } else {
+      this.displayType = DisplayType.NextToCode
+    }
   }
 
   computeGridPositions(): void {
@@ -154,8 +168,13 @@ export class GameComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  // Don't use ngOnInit because ViewChild is not available
+  // Not in ngOnInit because ViewChild would not be available
   ngAfterViewInit(): void {
+    if (this.displayType === DisplayType.Hidden) {
+      return;
+    }
+    this.codeService.loadOppCode(this.isOnline, this.opponentId)
+      .then(code => this.oppCode = code);
     this.ownerMark = new Image();
     this.ownerMark.src = 'assets/icons/owner-mark.png';
     this.positionPlayersAndBallBeforeEntry();
@@ -169,7 +188,7 @@ export class GameComponent implements AfterViewInit, OnDestroy {
           this.drawingLoop();
         });
     };
-    if (this.isStandaloneScreen) {
+    if (this.displayType === DisplayType.Standalone) {
       this.loadOwnCode();
     }
   }
@@ -203,7 +222,7 @@ export class GameComponent implements AfterViewInit, OnDestroy {
     }
     let modal = this.modalService.open(content, {size: 'sm'});
     // Keep modal open only for game start on mobile
-    if (!(this.periodType == PeriodType.BeforeFirstPeriod && this.isStandaloneScreen)) {
+    if (!(this.periodType == PeriodType.BeforeFirstPeriod && this.displayType === DisplayType.Standalone)) {
       setTimeout(() => modal.close(), 3000);
     }
     modal.result.then(
@@ -298,10 +317,12 @@ export class GameComponent implements AfterViewInit, OnDestroy {
       this.openKickOffPopup();
     } else {
       if (this.isOnline) {
-        this.onlineService.setGameResult(
-          this.opponentId,
-          this.ownScore > this.oppScore ? GamePoint.WON : (this.ownScore === this.oppScore ? GamePoint.DRAW : GamePoint.LOST))
-          .subscribe();
+        const score = this.ownScore > this.oppScore ? GamePoint.WON : (this.ownScore === this.oppScore ? GamePoint.DRAW : GamePoint.LOST);
+        // LOST score has already been sent at game launch
+        if (score > GamePoint.LOST) {
+          this.onlineService.setGameResult(this.opponentId, score)
+            .subscribe();
+        }
       } else if (this.ownScore > this.oppScore) {
         this.localStorageService.setOfflineWonStatus(this.opponentId);
       }
