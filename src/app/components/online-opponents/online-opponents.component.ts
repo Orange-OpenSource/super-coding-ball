@@ -10,7 +10,7 @@
  */
 
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ConnectionStatus, DayAndGames, Opponent} from '../../models/webcom-models';
+import {AllGames, ConnectionStatus, Opponent} from '../../models/webcom-models';
 import {OnlineService} from '../../services/online.service';
 import {TranslateService} from '@ngx-translate/core';
 import {Subscription} from 'rxjs';
@@ -111,23 +111,23 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
       });
   }
 
-  private computeOpponentsScore(allGames: DayAndGames[]): void {
+  private computeOpponentsScore(allGames: AllGames): void {
     this.opponents = [];
     const today = OnlineService.getUtcTimestamp(Date.now());
-    const myGames = allGames.find(dayAndGames => +dayAndGames.dayTimestamp === today)
-      ?.games[this.onlineService.webcomId]
+    const myGames = allGames[today.toString()]
+      ?.[this.onlineService.webcomId]
       ?.dailyGames
       ?? {};
 
-    for (const dayAndGame of allGames) {
-      for (const userId of Object.keys(dayAndGame.games)) {
-        const userDailyRecap = dayAndGame.games[userId];
+    for (const [dayTimestamp, games] of Object.entries(allGames)) {
+      for (const userId of Object.keys(games)) {
+        const userDailyRecap = games[userId];
         let searchedUser = this.opponents.find(user => user.webcomId === userId);
         if (!searchedUser) {
-          searchedUser = new Opponent(userId, userDailyRecap.userDisplay, 0, 0, +dayAndGame.dayTimestamp);
+          searchedUser = new Opponent(userId, userDailyRecap.userDisplay, 0, 0, +dayTimestamp);
           this.opponents.push(searchedUser);
-        } else if (+dayAndGame.dayTimestamp > searchedUser.lastSeen) {
-          searchedUser.lastSeen = +dayAndGame.dayTimestamp;
+        } else if (+dayTimestamp > searchedUser.lastSeen) {
+          searchedUser.lastSeen = +dayTimestamp;
           searchedUser.userDisplay = userDailyRecap.userDisplay;
         }
         if (!userDailyRecap.dailyGames) {

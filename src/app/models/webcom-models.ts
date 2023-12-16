@@ -46,15 +46,9 @@ export class UserDisplay {
   }
 }
 
-export type AllGames = { [dayTimestamp: string]: DailyGames };
-export type DayAndGames = { dayTimestamp: string, games: DailyGames };
+export type AllGames = {[dayTimestamp: string]: {[userId: string]: UserDailyRecap}};
 
-export type DailyGames = { [userId: string]: UserDailyRecap };
-
-export interface UserDailyRecap {
-  userDisplay: UserDisplay;
-  dailyGames: { [opponentId: string]: number; };
-}
+type UserDailyRecap = {userDisplay: UserDisplay; dailyGames: {[opponentId: string]: number}}
 
 export enum ConnectionStatus {
   Unknown,
