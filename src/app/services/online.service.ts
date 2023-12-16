@@ -41,6 +41,8 @@ export class OnlineService implements OnDestroy {
   authHeadersOption = {headers: new HttpHeaders()};
   webcomDisplayName = '';
   userDisplay = new UserDisplay();
+  userSynced = false;
+  userDisplaySetInDailyGames: {[dayTimestamp: string]: boolean} = {};
   allGames?: AllGames = undefined
   webcomBaseUrl = 'https://io.datasync.orange.com/datasync/v2/super-coding-ball/data';
   webcomUsersUrl = `${this.webcomBaseUrl}/users`;
@@ -127,7 +129,13 @@ export class OnlineService implements OnDestroy {
   }
 
   public disconnect(): void {
+    this.resetUser();
     this.webcomAuth.signOut();
+  }
+
+  public resetUser(): void {
+    this.userSynced = false;
+    this.userDisplaySetInDailyGames = {};
   }
 
   public removeAccount(): Observable<any> {
@@ -140,26 +148,31 @@ export class OnlineService implements OnDestroy {
       );
   }
 
-  syncUserData(blocks: string): Observable<any> {
-    return this.getAndCreateUserIfNeeded(blocks)
-      .pipe(concatMap(() => this.refreshUserDisplayInDailyGames()));
+  syncUserAndSetInDailyGames(blocks: string): Observable<any> {
+    return this.syncUser(blocks)
+      .pipe(concatMap(() => this.setUserDisplayInDailyGames()));
   }
 
-  private getAndCreateUserIfNeeded(blocks: string): Observable<any> {
-    return this.http.get<User | null>(`${this.webcomUsersUrl}/${this.webcomId}`, this.authHeadersOption)
-      .pipe(
-        concatMap(currentUser => {
-          if (!!currentUser?.displayName) {
-            this.userDisplay.fullDisplayName = currentUser.displayName;
-          } else {
-            this.userDisplay.fullDisplayName = this.webcomDisplayName;
-          }
-          if (!currentUser?.blocks) {
-            return this.updateUserBlocks(blocks);
-          } else {
-            return of(true);
-          }
-        }));
+  private syncUser(blocks: string): Observable<any> {
+    if (!this.userSynced) {
+      return this.http.get<User | null>(`${this.webcomUsersUrl}/${this.webcomId}`, this.authHeadersOption)
+        .pipe(
+          concatMap(currentUser => {
+            if (!!currentUser?.displayName) {
+              this.userDisplay.fullDisplayName = currentUser.displayName;
+            } else {
+              this.userDisplay.fullDisplayName = this.webcomDisplayName;
+            }
+            if (!currentUser?.blocks) {
+              return this.updateUserBlocks(blocks);
+            } else {
+              return of(true);
+            }
+          }),
+          tap(() => this.userSynced = true));
+    } else {
+      return of(true);
+    }
   }
 
   updateUserDisplayName(displayName: string): Observable<any> {
@@ -170,10 +183,15 @@ export class OnlineService implements OnDestroy {
     return this.http.patch(`${this.webcomUsersUrl}/${this.webcomId}`, {blocks}, this.authHeadersOption);
   }
 
-  private refreshUserDisplayInDailyGames(): Observable<any> {
-    const dateString = OnlineService.getUtcTimestamp(Date.now());
-    return this.http.put<UserDisplay>(`${this.webcomGamesUrl}/${dateString}/${this.webcomId}/userDisplay`,
-      this.userDisplay, this.authHeadersOption);
+  private setUserDisplayInDailyGames(): Observable<any> {
+    const today = OnlineService.getUtcTimestamp(Date.now());
+    if (!this.userDisplaySetInDailyGames[today]) {
+      return this.http.put<UserDisplay>(`${this.webcomGamesUrl}/${today}/${this.webcomId}/userDisplay`,
+        this.userDisplay, this.authHeadersOption)
+        .pipe(tap(() => this.userDisplaySetInDailyGames[today] = true));
+    } else {
+      return of(true);
+    }
   }
 
   loadGamesAndRemoveOldOnes(): Observable<AllGames> {

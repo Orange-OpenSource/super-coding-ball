@@ -97,7 +97,7 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
 
   loadData(): void {
     this.loading = true;
-    this.onlineService.syncUserData(this.codeService.loadOwnBlocksFromLocalStorage())
+    this.onlineService.syncUserAndSetInDailyGames(this.codeService.loadOwnBlocksFromLocalStorage())
       .pipe(
         concatMap(() => this.onlineService.loadGamesAndRemoveOldOnes()),
         finalize(() => this.loading = false)
@@ -198,7 +198,7 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
 
   updateUserDisplayName(nickname: string): void {
     this.onlineService.updateUserDisplayName(nickname)
-      .subscribe(() => this.loadData());
+      .subscribe(() => this.onlineService.userDisplay.fullDisplayName = nickname);
   }
 
   downloadBlocks(): void {

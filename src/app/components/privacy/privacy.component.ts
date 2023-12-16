@@ -13,6 +13,7 @@ import {Component} from '@angular/core';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {Router} from '@angular/router';
 import {TouchDevicesService} from '../../services/touch-devices.service';
+import {OnlineService} from 'src/app/services/online.service';
 
 @Component({
   selector: 'app-privacy',
@@ -27,12 +28,17 @@ export class PrivacyComponent {
     this.localStorageService.setTrackingDisabledStatus(disabled);
   }
 
-  constructor(private localStorageService: LocalStorageService, private router: Router, public touchDevicesService: TouchDevicesService) {
+  constructor(
+    private onlineService: OnlineService,
+    private localStorageService: LocalStorageService,
+    private router: Router,
+    public touchDevicesService: TouchDevicesService
+  ) {
   }
 
   removeDeviceData(): void {
+    this.onlineService.resetUser();
     this.localStorageService.clearLocalStorage();
     this.router.navigate(['/']);
   }
-
 }
