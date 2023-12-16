@@ -46,7 +46,9 @@ export class UserDisplay {
   }
 }
 
-export type AllGames = {[dayTimestamp: string]: {[userId: string]: UserDailyRecap}};
+export type AllGames = {[dayTimestamp: string]: OneDayGames};
+
+export type OneDayGames = {[userId: string]: UserDailyRecap};
 
 type UserDailyRecap = {userDisplay: UserDisplay; dailyGames: {[opponentId: string]: number}}
 

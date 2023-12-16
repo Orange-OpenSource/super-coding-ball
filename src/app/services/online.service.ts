@@ -11,7 +11,7 @@
 
 import {Injectable, OnDestroy, EventEmitter} from '@angular/core';
 import Webcom from 'webcom/webcom-auth-sldblite.js';
-import {AllGames, ConnectionStatus, User, UserDisplay} from '../models/webcom-models';
+import {AllGames, ConnectionStatus, OneDayGames, User, UserDisplay} from '../models/webcom-models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {concatMap, filter, map, tap, toArray} from 'rxjs/operators';
 import {firstValueFrom, from, Observable, of} from 'rxjs';
@@ -41,6 +41,7 @@ export class OnlineService implements OnDestroy {
   authHeadersOption = {headers: new HttpHeaders()};
   webcomDisplayName = '';
   userDisplay = new UserDisplay();
+  allGames?: AllGames = undefined
   webcomBaseUrl = 'https://io.datasync.orange.com/datasync/v2/super-coding-ball/data';
   webcomUsersUrl = `${this.webcomBaseUrl}/users`;
   webcomGamesUrl = `${this.webcomBaseUrl}/games`;
@@ -176,7 +177,7 @@ export class OnlineService implements OnDestroy {
   }
 
   loadGamesAndRemoveOldOnes(): Observable<AllGames> {
-    return this.http.get<AllGames>(`${this.webcomGamesUrl}`, this.authHeadersOption)
+    return this.loadAllGamesOrRefreshTodayGames()
       .pipe(
         concatMap(allGames => {
           const allTimeStamps = Object.keys(allGames);
@@ -188,7 +189,25 @@ export class OnlineService implements OnDestroy {
               map(() => allGames)
             )
         }),
+        tap(allGames => this.allGames = allGames)
       );
+  }
+
+  // Only refresh games from the current date, which depends on the timezone of the player
+  // Thus, games being played by players whose date is yesterday or tomorrow will not be updated
+  // but it is an acceptable drawback compared to the network traffic improvement
+  private loadAllGamesOrRefreshTodayGames(): Observable<AllGames> {
+    const allGames = this.allGames;
+    if (!allGames) {
+      return this.http.get<AllGames>(this.webcomGamesUrl, this.authHeadersOption);
+    } else {
+      const today = OnlineService.getUtcTimestamp(Date.now());
+      return this.http.get<OneDayGames>(`${this.webcomGamesUrl}/${today}`, this.authHeadersOption)
+        .pipe(map(todayGames => {
+          allGames[today] = todayGames;
+          return allGames
+        }))
+    }
   }
 
   deleteDay(dayTimestamp: string): Observable<any> {
