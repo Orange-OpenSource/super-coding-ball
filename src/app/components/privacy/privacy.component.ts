@@ -37,7 +37,7 @@ export class PrivacyComponent {
   }
 
   removeDeviceData(): void {
-    this.onlineService.resetUser();
+    this.onlineService.disconnect();
     this.localStorageService.clearLocalStorage();
     this.router.navigate(['/']);
   }
