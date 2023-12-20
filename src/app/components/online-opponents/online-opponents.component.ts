@@ -198,7 +198,7 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
 
   updateUserDisplayName(nickname: string): void {
     this.onlineService.updateUserDisplayName(nickname)
-      .subscribe(() => this.onlineService.userDisplay.fullDisplayName = nickname);
+      .subscribe(() => {this.onlineService.resetUser(); this.loadData();});
   }
 
   downloadBlocks(): void {
