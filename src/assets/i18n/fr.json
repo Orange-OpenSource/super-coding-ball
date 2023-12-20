@@ -107,7 +107,6 @@
   "OFFLINE": {
     "TITLE": "Jouer contre l'ordi",
     "STRATEGY": "Stratégie adversaire",
-    "WON": "Gagné\u00A0?",
     "STRATEGIES": {
       "DO-NOTHING": "Ils ne font rien\u00A0!",
       "1PLAYER-ONLY": "Un seul joueur se bouge",

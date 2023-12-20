@@ -107,7 +107,6 @@
    "OFFLINE": {
      "TITLE": "שחק נגד מחשב",
      "STRATEGY": "האסטרטגיה של היריב",
-     "WON": "ניצח?",
      "STRATEGIES": {
        "DO-NOTHING": "הם לא עושים כלום!",
        "1PLAYER-ONLY": "רק שחקן אחד זז",

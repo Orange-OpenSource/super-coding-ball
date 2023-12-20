@@ -107,7 +107,6 @@
   "OFFLINE": {
     "TITLE": "Gegen den Computer spielen",
     "STRATEGY": "Strategie des generischen Teams",
-    "WON": "Gewonnen?",
     "STRATEGIES": {
       "DO-NOTHING": "Sie tun nichts!",
       "1PLAYER-ONLY": "Nur eine Spieler*in bewegt sich",

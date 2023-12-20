@@ -107,7 +107,6 @@
   "OFFLINE": {
     "TITLE": "Play against computer",
     "STRATEGY": "Opponent's strategy",
-    "WON": "Won?",
     "STRATEGIES": {
       "DO-NOTHING": "They do nothing!",
       "1PLAYER-ONLY": "Only one player moves",
