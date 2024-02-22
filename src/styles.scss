@@ -99,6 +99,10 @@ html, body {
   background-image: url("/assets/icons/flask-solid.png");
 }
 
+.customIconMyBlocks {
+  background-image: url("/assets/icons/circle-plus.png");
+}
+
 // Disabled blocks are grey (first-of-type because the second element is the yellow focus)
 .blocklyDisabled > .blocklyPath:first-of-type {
   fill-opacity: 0.8;

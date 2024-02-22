@@ -319,6 +319,14 @@
           }
         }
       ]
+    },
+    {
+      "kind": "category",
+      "categorystyle": "my_blocks_category",
+      "custom": "PROCEDURE",
+      "cssConfig": {
+        "icon": "customIcon customIconMyBlocks"
+      }
     }
   ]
 }

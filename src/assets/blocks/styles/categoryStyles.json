@@ -16,5 +16,8 @@
   },
   "advanced_category": {
     "colour": "#888888"
+  },
+  "my_blocks_category": {
+    "colour": "#000000"
   }
 }

@@ -40,12 +40,8 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   set gameLaunched(value: boolean) {
     this._gameLaunched = value;
     this.workspace?.dispose();
-    if (!this._gameLaunched) {
-      this.setWorkspaceForEdition();
-    } else {
-      this.setWorkspaceForViewing();
-    }
-    this.loadBlocksFromLocalStorage();
+    (this._gameLaunched ? this.setWorkspaceForViewing() : this.setWorkspaceForEdition())
+    .then(_ => this.loadBlocksFromLocalStorage())
   }
 
   readonly isOnline: boolean;
@@ -76,6 +72,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
       this.setCategoryTooltip('customIconPosition','POSITIONS');
       this.setCategoryTooltip('customIconValue','VALUES');
       this.setCategoryTooltip('customIconAdvanced','ADVANCED');
+      this.setCategoryTooltip('customIconMyBlocks','MY_BLOCKS');
     }
   }
 
@@ -91,9 +88,9 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     )
   }
 
-  setWorkspaceForEdition(): void {
+  async setWorkspaceForEdition(): Promise<void> {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
-    this.workspace = CodeService.getWorkspace(blocklyDiv, {
+    this.workspace = await this.codeService.getWorkspace(blocklyDiv, {
       move: {
         scrollbars: true,
         drag: true,
@@ -111,9 +108,9 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     this.workspace.addChangeListener(Blockly.Events.disableOrphans);
   }
 
-  setWorkspaceForViewing(): void {
+  async setWorkspaceForViewing(): Promise<void> {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
-    this.workspace = CodeService.getWorkspace(blocklyDiv, {
+    this.workspace = await this.codeService.getWorkspace(blocklyDiv, {
       readOnly: true,
       move: {
         scrollbars: true,
@@ -129,6 +126,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         minScale: 0.2
       }
     });
+    this.workspace.addChangeListener(Blockly.Events.disableOrphans);
   }
 
   ngOnDestroy(): void {

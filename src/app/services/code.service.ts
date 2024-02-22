@@ -11,6 +11,7 @@
 
 import {Injectable} from '@angular/core';
 import Blockly, {BlockSvg, Events, Extensions} from 'blockly';
+import {blocks as procedureBlocks} from '@blockly/block-shareable-procedures';
 import {BlocklyOptions} from 'blockly/core/blockly_options';
 import blockStyles from '../../assets/blocks/styles/blockStyles.json';
 import categoryStyles from '../../assets/blocks/styles/categoryStyles.json';
@@ -24,6 +25,7 @@ import {LocalStorageService} from './local-storage.service';
 import {CustomCategory} from '../components/blockly/custom-category';
 import toolboxJson from '../../assets/blocks/toolbox.json';
 import {SupportedLanguagesServices} from './supported-languages-service';
+import {firstValueFrom} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +57,27 @@ export class CodeService {
 
     // Initiated in the service because it can only be done once
     Blockly.defineBlocksWithJsonArray(blocksJson);
+
+    // TODO: Remaining blocking points for procedures integration:
+    // 1/ this could easily lead beginners to create infinite loops!
+    // 2/ maybe a bug with the plugin, but orphan procedure blocks get disabled, but still generate code
+    // 3/ maybe another bug, sometimes Blockly complains about NPE when fetching procedure models (seems random)
+    // 4/ in the end, procedures could be more confusing than useful for the target audience...
+    Blockly.common.defineBlocks(procedureBlocks)
+    delete Blockly.Blocks['procedures_defreturn'];
+    delete Blockly.Blocks['procedures_ifreturn'];
+    var proceduresDefInit = Blockly.Blocks['procedures_defnoreturn'].init;
+    Blockly.Blocks['procedures_defnoreturn'].init = function () {
+      proceduresDefInit.call(this);
+      this.setMutator(undefined)
+    };
+
+    var proceduresCallInit = Blockly.Blocks['procedures_callnoreturn'].init;
+    Blockly.Blocks['procedures_callnoreturn'].init = function () {
+      proceduresCallInit.call(this);
+      this.setNextStatement(false);
+    }
+
 
     // Disable contextual menu entry that enable/disable inlining (confusing for beginners)
     Blockly.ContextMenuRegistry.registry.unregister('blockInline');
@@ -93,7 +116,7 @@ export class CodeService {
       true);
   }
 
-  static getWorkspace(blocklyDiv: HTMLElement, options: BlocklyOptions): Blockly.WorkspaceSvg {
+  async getWorkspace(blocklyDiv: HTMLElement, options: BlocklyOptions): Promise<Blockly.WorkspaceSvg> {
     type ConstantProviderKey = keyof Blockly.blockRendering.ConstantProvider;
     const DUMMY_INPUT_MIN_HEIGHT: ConstantProviderKey = "DUMMY_INPUT_MIN_HEIGHT";
     const BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT: ConstantProviderKey = "BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT";
@@ -118,7 +141,25 @@ export class CodeService {
     options.rtl = document.dir === 'rtl';
     Blockly.config.snapRadius = 48
     Blockly.config.connectingSnapRadius = 68
-    return Blockly.inject(blocklyDiv, options);
+    const workspace = Blockly.inject(blocklyDiv, options);
+
+    const createABlockKey = 'BLOCKS.CREATE_A_BLOCK';
+    const useBlocksKey = 'BLOCKS.USE_MY_BLOCKS';
+    const wording = await firstValueFrom(this.translate.get([createABlockKey, useBlocksKey]));
+    const procedureCategoryCallback = workspace.getToolboxCategoryCallback('PROCEDURE')!
+    workspace.registerToolboxCategoryCallback('PROCEDURE', workspace => {
+      const procedureBlocks = procedureCategoryCallback(workspace) as Element[]
+      const createProcedureLabel: Element = document.createElement('label');
+      createProcedureLabel.setAttribute('text', wording[createABlockKey]);
+      if (procedureBlocks.length === 1) {
+        return [createProcedureLabel].concat(procedureBlocks)
+      } else {
+        const usePocedureLabel: Element = document.createElement('label');
+        usePocedureLabel.setAttribute('text', wording[useBlocksKey]);
+        return [createProcedureLabel].concat(procedureBlocks[0]).concat(usePocedureLabel).concat(procedureBlocks.slice(1))
+      }
+    })
+    return workspace;
   }
 
   computeCode(blocks: string): string {
