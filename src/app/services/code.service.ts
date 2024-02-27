@@ -10,8 +10,9 @@
  */
 
 import {Injectable} from '@angular/core';
-import Blockly, {BlockSvg, Events, Extensions} from 'blockly';
-import {blocks as procedureBlocks} from '@blockly/block-shareable-procedures';
+import Blockly, {Block, BlockSvg, Events, Extensions} from 'blockly';
+// Not used until https://github.com/google/blockly-samples/issues/2035 is fixed
+// import {blocks as procedureBlocks, unregisterProcedureBlocks} from '@blockly/block-shareable-procedures';
 import {BlocklyOptions} from 'blockly/core/blockly_options';
 import blockStyles from '../../assets/blocks/styles/blockStyles.json';
 import categoryStyles from '../../assets/blocks/styles/categoryStyles.json';
@@ -19,13 +20,31 @@ import componentStyles from '../../assets/blocks/styles/componentStyles.json';
 import componentDarkStyles from '../../assets/blocks/styles/componentDarkStyles.json';
 import blocksJson from '../../assets/blocks/blocks.json';
 import {javascriptGenerator, Order} from 'blockly/javascript';
-import {TranslateService} from '@ngx-translate/core';
 import {OnlineService} from './online.service';
 import {LocalStorageService} from './local-storage.service';
 import {CustomCategory} from '../components/blockly/custom-category';
 import toolboxJson from '../../assets/blocks/toolbox.json';
 import {SupportedLanguagesServices} from './supported-languages-service';
-import {firstValueFrom} from 'rxjs';
+
+export class RecursiveActionEvent extends Blockly.Events.Abstract {
+  override isBlank = false;
+  override recordUndo = false;
+  override type = "RecursiveAction";
+  recursiveActionName: string;
+  constructor(actionName: string) {
+    super();
+    this.recursiveActionName = actionName;
+  }
+}
+
+// Part of the JSON format of Blockly's serializer
+type BlockJson = {
+  type: string,
+  id: string,
+  extraState?: {name?: string},
+  fields?: {NAME?: string},
+  inputs?: {[input: string]: {block?: BlockJson}}
+};
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +66,6 @@ export class CodeService {
   });
 
   constructor(
-    public translate: TranslateService,
     private supportedLanguagesService: SupportedLanguagesServices,
     private localStorageService: LocalStorageService,
     private onlineService: OnlineService
@@ -55,41 +73,48 @@ export class CodeService {
     // Delete math_number block because it will be redefined with field slider
     delete Blockly.Blocks['math_number'];
 
-    // Initiated in the service because it can only be done once
     Blockly.defineBlocksWithJsonArray(blocksJson);
 
-    // TODO: Remaining blocking points for procedures integration:
-    // 1/ this could easily lead beginners to create infinite loops!
-    // 2/ maybe a bug with the plugin, but orphan procedure blocks get disabled, but still generate code
-    // 3/ maybe another bug, sometimes Blockly complains about NPE when fetching procedure models (seems random)
-    // 4/ in the end, procedures could be more confusing than useful for the target audience...
-    Blockly.common.defineBlocks(procedureBlocks)
+    // Procedure blocks from the plugin block-shareable-procedures have a bug 
+    // that reenable them when deserialized, or renamed: https://github.com/google/blockly-samples/issues/2035
+    // So for now, we use the core procedure blocks even if the documentation advises against it!
+    // unregisterProcedureBlocks();
+    // Blockly.common.defineBlocks(procedureBlocks)
+
+    // Procedures with return values are not used
     delete Blockly.Blocks['procedures_defreturn'];
     delete Blockly.Blocks['procedures_ifreturn'];
+
+    // Remove the mutator from the procedure definition block because we don't want inputs
     var proceduresDefInit = Blockly.Blocks['procedures_defnoreturn'].init;
     Blockly.Blocks['procedures_defnoreturn'].init = function () {
       proceduresDefInit.call(this);
-      this.setMutator(undefined)
+      this.setStyle('procedure_def_blocks');
+      this.setMutator(undefined);
     };
 
+    // As all actions, procedure call blocks can't have a next statement
     var proceduresCallInit = Blockly.Blocks['procedures_callnoreturn'].init;
     Blockly.Blocks['procedures_callnoreturn'].init = function () {
       proceduresCallInit.call(this);
       this.setNextStatement(false);
-    }
-
+    };
 
     // Disable contextual menu entry that enable/disable inlining (confusing for beginners)
     Blockly.ContextMenuRegistry.registry.unregister('blockInline');
+
     // Disable contextual menu entry with 'help' (otherwise enabled on standard blocks)
     Blockly.ContextMenuRegistry.registry.unregister('blockHelp');
+
+    // Those are the only two parameters available from the executed code (in executePlayerCode())
+    javascriptGenerator.addReservedWords(['game', 'player']);
 
     this.defineBlocksCodeGen();
 
     // Hide the near/far field from 'player' block, when the player is already fully determined by its role and side
     Extensions.register('player_needs_a_reference_position_extension', function (this: BlockSvg) {
       this.setOnChange((event) => {
-        // Executed when the block created...
+        // Executed when the block is created...
         if (event instanceof Events.BlockCreate && event.ids?.includes(this.id) ||
           // ...or when the block's role or side fields are modified
           event instanceof Events.BlockChange
@@ -116,7 +141,7 @@ export class CodeService {
       true);
   }
 
-  async getWorkspace(blocklyDiv: HTMLElement, options: BlocklyOptions): Promise<Blockly.WorkspaceSvg> {
+  getWorkspace(blocklyDiv: HTMLElement, options: BlocklyOptions): Blockly.WorkspaceSvg {
     type ConstantProviderKey = keyof Blockly.blockRendering.ConstantProvider;
     const DUMMY_INPUT_MIN_HEIGHT: ConstantProviderKey = "DUMMY_INPUT_MIN_HEIGHT";
     const BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT: ConstantProviderKey = "BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT";
@@ -139,38 +164,123 @@ export class CodeService {
     options.rendererOverrides[DUMMY_INPUT_MIN_HEIGHT] = 0;
     options.rendererOverrides[BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT] = 0;
     options.rtl = document.dir === 'rtl';
-    Blockly.config.snapRadius = 48
-    Blockly.config.connectingSnapRadius = 68
+    Blockly.config.snapRadius = 48;
+    Blockly.config.connectingSnapRadius = 68;
+
     const workspace = Blockly.inject(blocklyDiv, options);
 
-    const createABlockKey = 'BLOCKS.CREATE_A_BLOCK';
-    const useBlocksKey = 'BLOCKS.USE_MY_BLOCKS';
-    const wording = await firstValueFrom(this.translate.get([createABlockKey, useBlocksKey]));
-    const procedureCategoryCallback = workspace.getToolboxCategoryCallback('PROCEDURE')!
-    workspace.registerToolboxCategoryCallback('PROCEDURE', workspace => {
-      const procedureBlocks = procedureCategoryCallback(workspace) as Element[]
-      const createProcedureLabel: Element = document.createElement('label');
-      createProcedureLabel.setAttribute('text', wording[createABlockKey]);
-      if (procedureBlocks.length === 1) {
-        return [createProcedureLabel].concat(procedureBlocks)
-      } else {
-        const usePocedureLabel: Element = document.createElement('label');
-        usePocedureLabel.setAttribute('text', wording[useBlocksKey]);
-        return [createProcedureLabel].concat(procedureBlocks[0]).concat(usePocedureLabel).concat(procedureBlocks.slice(1))
-      }
-    })
+    workspace.addChangeListener(Blockly.Events.disableOrphans);
+
+    // The check for recursive actions could be with by Blockly's INFINITE_LOOP_TRAP,
+    // but then it would only be catched when launching a game.
+    // With this listener, the check is done while building the strategy:
+    // - it only checks for recursive functions and not loops, because there is no loop block!
+    // - every recursive function is forbidden because there is no variable, so no way to exit the recursion
+    workspace.addChangeListener(CodeService.RecursiveActionsDetector);
+
     return workspace;
   }
 
-  computeCode(blocks: string): string {
+  private static RecursiveActionsDetector(event: Blockly.Events.Abstract) {
+    // Only moves that connect blocks can lead to recursive actions
+    if (!(event instanceof Blockly.Events.BlockMove) || !event.reason?.includes('connect')) {
+      return;
+    }
+
+    if (!event.blockId) {
+      return;
+    }
+
+    const workspace = event.getEventWorkspace_();
+    const movedBlock = workspace?.getBlockById(event.blockId);
+    if (!movedBlock) {
+      return;
+    }
+
+    // The recursive action can be any descendant of the moved block
+    const movedActionBlocks: Block[] = CodeService.getBlockAndItsDescendants(movedBlock)
+      .filter(block => block.type == 'procedures_callnoreturn');
+    if (movedActionBlocks.length == 0) {
+      return;
+    }
+
+    // Get the serialization of the workspace once, needed to link def of call blocks to their action name
+    const blocksJsonHierarchy = Blockly.serialization.workspaces.save(workspace)['blocks'].blocks;
+    const actionNames = movedActionBlocks.map(block =>
+      CodeService.findJsonBlockByBlockIdOrProcedureName(block.id, true, blocksJsonHierarchy)[0]?.extraState?.name ?? ''
+    );
+
+    try {
+      CodeService.checkForRecursiveActions(movedActionBlocks, actionNames, workspace, blocksJsonHierarchy)
+    } catch (error) {
+      workspace.fireChangeListener(new RecursiveActionEvent(error as string))
+    }
+  }
+
+  private static getBlockAndItsDescendants(block: Block): Block[] {
+    return [block].concat(...block.getChildren(false)
+      .flatMap(child => CodeService.getBlockAndItsDescendants(child)))
+  }
+
+  // Check recursively from blocks to their ascendents, and throw and error if we find their own definition block
+  private static checkForRecursiveActions(blocksToParse: Block[], actionsEncountered: string[], workspace: Blockly.Workspace, blocksJsonHierarchy: BlockJson[]): void {
+    blocksToParse.map(block => {
+      // If we find a definition block
+      if (block.type == 'procedures_defnoreturn') {
+        const actionName = CodeService.findJsonBlockByBlockIdOrProcedureName(block.id, true, blocksJsonHierarchy)[0]?.fields?.NAME ?? '';
+        // If we've already seen the call block, this is a recursion, throw an error
+        if (actionsEncountered.includes(actionName)) {
+          throw (actionName);
+        // Otherwise, if it's the first time we see this action name
+        } else {
+          // Get the call blocks (if any) of this action
+          const actionCallBlocks = CodeService.findJsonBlockByBlockIdOrProcedureName(actionName, false, blocksJsonHierarchy)
+            .map(blockJson => workspace?.getBlockById(blockJson.id))
+            .filter((block): block is Block => !!block);
+          // And continue the check with these blocks and add the action name to the ones we're looking for
+          return CodeService.checkForRecursiveActions(actionCallBlocks, actionsEncountered.concat(actionName), workspace, blocksJsonHierarchy);
+        }
+      // If this is not a definition block, continue the check with its parent (if any)
+      } else {
+        const parent = block.getParent();
+        if (parent) {
+          return CodeService.checkForRecursiveActions([parent], actionsEncountered, workspace, blocksJsonHierarchy);
+        }
+      }
+    });
+  }
+
+  // Search recursively for a block by its blockId or procedure name
+  private static findJsonBlockByBlockIdOrProcedureName(identifier: string, isBlockId: boolean, blocksJsonHierarchy: BlockJson[]): BlockJson[] {
+    let found: BlockJson[] = [];
+    if (blocksJsonHierarchy.length == 0) {
+      return found;
+    }
+    // Search in the top level blocks
+    if (isBlockId) {
+      found.push(...blocksJsonHierarchy.filter(block => block.id == identifier));
+    } else {
+      found.push(...blocksJsonHierarchy.filter(block => block.type == 'procedures_callnoreturn' && block.extraState?.name == identifier));
+    }
+
+    // Then search in their input blocks
+    found.push(...this.findJsonBlockByBlockIdOrProcedureName(identifier, isBlockId,
+      blocksJsonHierarchy.map(block => block.inputs ?? {})
+        .flatMap(input => Object.values(input))
+        .map(inputBlock => inputBlock.block)
+        .filter((block): block is BlockJson => !!block)))
+    return found;
+  }
+
+  private static computeCode(blocks: string): string {
     const workspace = new Blockly.Workspace();
-    this.loadBlocksInWorkspace(blocks, workspace);
+    CodeService.loadBlocksInWorkspace(blocks, workspace);
     const code = javascriptGenerator.workspaceToCode(workspace);
     workspace.dispose();
     return code;
   }
 
-  loadBlocksInWorkspace(blocks: string, workspace: Blockly.Workspace) {
+  static loadBlocksInWorkspace(blocks: string, workspace: Blockly.Workspace) {
     if (blocks.startsWith('{')) {
       Blockly.serialization.workspaces.load(JSON.parse(blocks), workspace);
     } else {
@@ -178,13 +288,13 @@ export class CodeService {
     }
   }
 
-  getBlocksFromWorkspace(workspace: Blockly.Workspace): string {
+  static getBlocksFromWorkspace(workspace: Blockly.Workspace): string {
     return JSON.stringify(Blockly.serialization.workspaces.save(workspace));
   }
 
   loadOppCode(online: boolean, opponentId: string): Promise<string> {
     return this.loadOppBlocks(online, opponentId)
-      .then(blocks => this.computeCode(blocks));
+      .then(blocks => CodeService.computeCode(blocks));
   }
 
   loadOppBlocks(online: boolean, opponentId: string): Promise<string> {
@@ -198,7 +308,7 @@ export class CodeService {
   }
 
   loadOwnCode(): string {
-    return this.computeCode(this.loadOwnBlocksFromLocalStorage());
+    return CodeService.computeCode(this.loadOwnBlocksFromLocalStorage());
   }
 
   loadOwnBlocksFromLocalStorage(): string {

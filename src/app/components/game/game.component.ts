@@ -376,7 +376,11 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
           // ...make the pass
           this.shoot(player, caller)
         }
-        this.executePlayerCode(player);
+        try {
+          this.executePlayerCode(player);
+        } catch (e) {
+          console.log(e)
+        }
         this.handlePlayerCollisions(player);
       }
       if (player.state !== PlayerState.Falling && player.still) {

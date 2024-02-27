@@ -7,6 +7,7 @@
     "POSITIONS": "Объекты",
     "VALUES": "Значения",
     "ADVANCED": "Передовой",
+    "MY_ACTIONS": "Мои действия",
     "WHEN_HAVE_BALL": "когда мяч у меня %1 %2",
     "WHEN_TEAMMATE_HAS_BALL": "когда мяч у товарища по команде %1 %2",
     "WHEN_OPPONENT_HAS_BALL": "когда мяч у соперника %1 %2",
@@ -41,12 +42,16 @@
     "LEADING_TEAM": "%1 лидирует",
     "LEADING_TEAM_OWN": "наша команда",
     "LEADING_TEAM_OPP": "команда соперника",
-    "LEADING_TEAM_NONE": "никто не"
+    "LEADING_TEAM_NONE": "никто не",
+    "PROCEDURES_DEFNORETURN_TITLE": "Определять",
+    "PROCEDURES_DEFNORETURN_PROCEDURE": "новое действие",
+    "UNNAMED_KEY": "новое действие"
   },
   "GLOBAL": {
     "OK": "Ок",
     "CANCEL": "Отмена",
     "BACK": "Назад",
+    "ERROR": "Ошибка",
     "WARNING": "Внимание",
     "SORRY": "Извините..."
   },
@@ -160,7 +165,8 @@
     "DELETE_WARNING": "Вы действительно хотите удалить все свои блоки!?",
     "UNDO": "Отменить",
     "REDO": "Повторить",
-    "VALIDATE_BLOCKS": "Подтвердить мою стратегию"
+    "VALIDATE_BLOCKS": "Подтвердить мою стратегию",
+    "SELF_DEFINED_ACTION": "Вы не можете использовать <strong>{{value}}</strong> в отдельном определении!"
   },
   "GAME": {
     "MIN": "мин",

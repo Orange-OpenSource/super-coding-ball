@@ -322,10 +322,10 @@
     },
     {
       "kind": "category",
-      "categorystyle": "my_blocks_category",
+      "categorystyle": "my_actions_category",
       "custom": "PROCEDURE",
       "cssConfig": {
-        "icon": "customIcon customIconMyBlocks"
+        "icon": "customIcon customIconMyActions"
       }
     }
   ]

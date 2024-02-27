@@ -99,8 +99,8 @@ html, body {
   background-image: url("/assets/icons/flask-solid.png");
 }
 
-.customIconMyBlocks {
-  background-image: url("/assets/icons/circle-plus.png");
+.customIconMyActions {
+  background-image: url("/assets/icons/wand-sparkles.png");
 }
 
 // Disabled blocks are grey (first-of-type because the second element is the yellow focus)
@@ -131,7 +131,7 @@ table {
 }
 
 // Some category icons need flipping, not all
-[dir="rtl"] .customIconEvent, [dir="rtl"] .customIconAction {
+[dir="rtl"] .customIconEvent, [dir="rtl"] .customIconAction, [dir="rtl"] .customIconMyActions {
   transform: scaleX(-1);
 }
 

@@ -64,7 +64,7 @@ export class HowtoComponent implements OnInit, OnDestroy {
   loadStrategy(workspace: WorkspaceSvg, strategyId: string): void {
     this.codeService.loadOppBlocks(false, strategyId)
       .then(blocks => {
-        this.codeService.loadBlocksInWorkspace(blocks, workspace)
+        CodeService.loadBlocksInWorkspace(blocks, workspace)
         workspace.zoomToFit();
         workspace.scrollbar?.setContainerVisible(false);
       });

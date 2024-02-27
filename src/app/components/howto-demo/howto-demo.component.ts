@@ -96,7 +96,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
     this.setWorkspaceForViewing();
     this.codeService.loadOppBlocks(false, 'demo')
       .then(blocks => {
-        this.codeService.loadBlocksInWorkspace(blocks, this.workspace)
+        CodeService.loadBlocksInWorkspace(blocks, this.workspace)
         this.currentStep = 0;
       });
   }

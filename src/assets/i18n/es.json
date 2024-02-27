@@ -6,6 +6,7 @@
     "POSITIONS": "Posiciones",
     "VALUES": "Valores",
     "ADVANCED": "Avanzado",
+    "MY_ACTIONS": "Mis acciones",
     "WHEN_HAVE_BALL": "Cuando tengo el balón %1 %2",
     "WHEN_TEAMMATE_HAS_BALL": "Cuando un compañero tiene el balón %1 %2",
     "WHEN_OPPONENT_HAS_BALL": "Cuando un adversario tiene el balón %1 %2",
@@ -40,12 +41,16 @@
     "LEADING_TEAM": "%1 va ganando",
     "LEADING_TEAM_OWN": "nuestro equipo",
     "LEADING_TEAM_OPP": "el equipo adversario",
-    "LEADING_TEAM_NONE": "ningún equipo"
+    "LEADING_TEAM_NONE": "ningún equipo",
+    "PROCEDURES_DEFNORETURN_TITLE": "Definir",
+    "PROCEDURES_DEFNORETURN_PROCEDURE": "nueva acción",
+    "UNNAMED_KEY": "nueva acción"
   },
   "GLOBAL": {
     "OK": "Ok",
     "CANCEL": "Cancelar",
     "BACK": "Retorno",
+    "ERROR": "Error",
     "WARNING": "Atención",
     "SORRY": "Lo siento..."
   },
@@ -159,7 +164,8 @@
     "DELETE_WARNING": "¿Estás seguro de que quieres suprimir todos tus bloques!?",
     "UNDO": "Cancelar",
     "REDO": "Rehacer",
-    "VALIDATE_BLOCKS": "Validar mi estrategia"
+    "VALIDATE_BLOCKS": "Validar mi estrategia",
+    "SELF_DEFINED_ACTION": "¡No puedes poner <strong>{{value}}</strong> en su propia definición!"
   },
   "GAME": {
     "MIN": "min",

@@ -13,7 +13,7 @@ import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/cor
 
 import Blockly from 'blockly';
 import '@blockly/field-slider';
-import {CodeService} from '../../services/code.service';
+import {CodeService, RecursiveActionEvent} from '../../services/code.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DisplayType, GameComponent} from '../game/game.component';
@@ -31,6 +31,8 @@ import {TouchDevicesService} from '../../services/touch-devices.service';
 })
 export class BlocklyComponent implements OnInit, OnDestroy {
   @ViewChild('gameComponent') gameComponent?: GameComponent;
+  @ViewChild('recursiveActionContent') recursiveActionContent?: TemplateRef<any>;
+  recursiveActionName = {value: ''};
   private workspace?: Blockly.WorkspaceSvg;
   private _gameLaunched = false;
   get gameLaunched(): boolean {
@@ -40,8 +42,8 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   set gameLaunched(value: boolean) {
     this._gameLaunched = value;
     this.workspace?.dispose();
-    (this._gameLaunched ? this.setWorkspaceForViewing() : this.setWorkspaceForEdition())
-    .then(_ => this.loadBlocksFromLocalStorage())
+    this.workspace = (this._gameLaunched ? this.getWorkspaceForViewing() : this.getWorkspaceForEdition())
+    this.loadBlocksFromLocalStorage(this.workspace)
   }
 
   readonly isOnline: boolean;
@@ -65,32 +67,48 @@ export class BlocklyComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.gameLaunched = false;
+    this.customizeMyActionsCategory();
     if (!this.touchDevicesService.isTouchDevice()) {
-      this.setCategoryTooltip('customIconEvent','EVENTS');
-      this.setCategoryTooltip('customIconCondition','CONDITIONS');
-      this.setCategoryTooltip('customIconAction','ACTIONS');
-      this.setCategoryTooltip('customIconPosition','POSITIONS');
-      this.setCategoryTooltip('customIconValue','VALUES');
-      this.setCategoryTooltip('customIconAdvanced','ADVANCED');
-      this.setCategoryTooltip('customIconMyBlocks','MY_BLOCKS');
+      this.setCategoryTooltip('customIconEvent', 'EVENTS');
+      this.setCategoryTooltip('customIconCondition', 'CONDITIONS');
+      this.setCategoryTooltip('customIconAction', 'ACTIONS');
+      this.setCategoryTooltip('customIconPosition', 'POSITIONS');
+      this.setCategoryTooltip('customIconValue', 'VALUES');
+      this.setCategoryTooltip('customIconAdvanced', 'ADVANCED');
+      this.setCategoryTooltip('customIconMyActions', 'MY_ACTIONS');
     }
   }
-
-
 
   private setCategoryTooltip(categoryStyle: string, categoryKey: string) {
     this.translate.get(`BLOCKS.${categoryKey}`).subscribe(
       wording => {
         const categoryElement = document.getElementsByClassName(categoryStyle).item(0)!!.parentElement!!.parentElement!!
-        Tooltip.getOrCreateInstance(categoryElement, {title: wording, placement: 'auto' })
-
+        Tooltip.getOrCreateInstance(categoryElement, {title: wording, placement: 'auto'})
       }
     )
   }
 
-  async setWorkspaceForEdition(): Promise<void> {
+  private customizeMyActionsCategory() {
+    // The procedure category is created automatically by Blockly
+    // We just modify its definition callback to add the 'My Actions' label
+    // and a separator between definition and call blocks
+    this.translate.get('BLOCKS.MY_ACTIONS')
+      .subscribe(wording => {
+        const procedureCategoryCallback = this.workspace?.getToolboxCategoryCallback('PROCEDURE')!
+        this.workspace?.registerToolboxCategoryCallback('PROCEDURE', workspace => {
+          const procedureBlocks = procedureCategoryCallback(workspace) as Element[]
+          const createProcedureLabel: Element = document.createElement('label');
+          createProcedureLabel.setAttribute('text', wording);
+          const createProcedureSeparator: Element = document.createElement('sep');
+          createProcedureSeparator.setAttribute('gap', '40');
+          return [createProcedureLabel].concat(procedureBlocks[0]).concat(createProcedureSeparator).concat(procedureBlocks.slice(1))
+        });
+      });
+  }
+
+  getWorkspaceForEdition(): Blockly.WorkspaceSvg {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
-    this.workspace = await this.codeService.getWorkspace(blocklyDiv, {
+    return this.codeService.getWorkspace(blocklyDiv, {
       move: {
         scrollbars: true,
         drag: true,
@@ -105,12 +123,11 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         minScale: 0.2
       }
     });
-    this.workspace.addChangeListener(Blockly.Events.disableOrphans);
   }
 
-  async setWorkspaceForViewing(): Promise<void> {
+  getWorkspaceForViewing(): Blockly.WorkspaceSvg {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
-    this.workspace = await this.codeService.getWorkspace(blocklyDiv, {
+    return this.codeService.getWorkspace(blocklyDiv, {
       readOnly: true,
       move: {
         scrollbars: true,
@@ -126,7 +143,6 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         minScale: 0.2
       }
     });
-    this.workspace.addChangeListener(Blockly.Events.disableOrphans);
   }
 
   ngOnDestroy(): void {
@@ -137,7 +153,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     // If game is launched, blocks are readonly and should not be saved
     // They have been saved before game launch
     if (!this.gameLaunched) {
-      const ownBlocks = this.codeService.getBlocksFromWorkspace(this.workspace);
+      const ownBlocks = CodeService.getBlocksFromWorkspace(this.workspace);
       this.localStorageService.saveBlocks(ownBlocks);
     }
     this.workspace.dispose();
@@ -146,7 +162,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
 
   play(): void {
     if (this.workspace) {
-      const ownBlocks = this.codeService.getBlocksFromWorkspace(this.workspace);
+      const ownBlocks = CodeService.getBlocksFromWorkspace(this.workspace);
       this.localStorageService.saveBlocks(ownBlocks);
       if (this.isOnline) {
         this.onlineService.updateUserBlocks(ownBlocks)
@@ -180,12 +196,17 @@ export class BlocklyComponent implements OnInit, OnDestroy {
       }, () => { });
   }
 
-  loadBlocksFromLocalStorage(): void {
-    if (this.workspace) {
-      const blocks = this.codeService.loadOwnBlocksFromLocalStorage();
-      this.codeService.loadBlocksInWorkspace(blocks, this.workspace);
-      this.workspace.zoomToFit();
-    }
+  loadBlocksFromLocalStorage(workspace: Blockly.WorkspaceSvg): void {
+    const blocks = this.codeService.loadOwnBlocksFromLocalStorage();
+    CodeService.loadBlocksInWorkspace(blocks, workspace);
+    workspace.zoomToFit();
+    workspace.addChangeListener((event: Blockly.Events.Abstract) => {
+      if (event instanceof RecursiveActionEvent) {
+        this.recursiveActionName.value = event.recursiveActionName;
+        this.modalService.open(this.recursiveActionContent);
+        this.workspace?.undo(false)
+      }
+    });
   }
 
   undo(): void {
@@ -202,7 +223,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
       this.route.snapshot.paramMap.get('id') ?? '')
       .then(blocks => {
         if (this.workspace) {
-          this.codeService.loadBlocksInWorkspace(blocks, this.workspace)
+          CodeService.loadBlocksInWorkspace(blocks, this.workspace)
           this.workspace.zoomToFit();
         }
       });
