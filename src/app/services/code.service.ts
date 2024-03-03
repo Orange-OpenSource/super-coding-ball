@@ -89,7 +89,7 @@ export class CodeService {
     var proceduresDefInit = Blockly.Blocks['procedures_defnoreturn'].init;
     Blockly.Blocks['procedures_defnoreturn'].init = function () {
       proceduresDefInit.call(this);
-      this.setStyle('procedure_def_blocks');
+      this.hat = 'anything_other_than_cap';
       this.setMutator(undefined);
     };
 
@@ -163,6 +163,7 @@ export class CodeService {
     options.rendererOverrides = {};
     options.rendererOverrides[DUMMY_INPUT_MIN_HEIGHT] = 0;
     options.rendererOverrides[BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT] = 0;
+    
     options.rtl = document.dir === 'rtl';
     Blockly.config.snapRadius = 48;
     Blockly.config.connectingSnapRadius = 68;

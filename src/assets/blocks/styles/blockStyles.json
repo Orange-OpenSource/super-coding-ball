@@ -37,12 +37,6 @@
     "colourPrimary": "#888",
     "colourSecondary": "#888"
   },
-  "procedure_def_blocks": {
-    "colourPrimary": "#ccb2ff",
-    "colourSecondary": "#ccb2ff",
-    "colourTertiary": "#000000"
-
-  },
   "procedure_blocks": {
     "colourPrimary": "#9a66ff",
     "colourSecondary": "#9a66ff"
