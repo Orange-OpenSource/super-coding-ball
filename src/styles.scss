@@ -143,7 +143,14 @@ table {
   text-align: left !important;
 }
 
-// Bootstrap computes margin for LTR
+// Bootstrap computes margin for LTR so we need to set the margin to 0
+// otherwise it would be broken for RTL
 .modal-header .btn-close {
   margin: 0;
+}
+
+// But then we need space-between for the header items as Bootstrap no longer does it
+// Cf https://github.com/twbs/bootstrap/pull/39373
+.modal-header {
+  justify-content: space-between;
 }
