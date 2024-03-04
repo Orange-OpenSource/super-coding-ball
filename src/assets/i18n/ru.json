@@ -6,7 +6,7 @@
     "ACTIONS": "Действия",
     "POSITIONS": "Объекты",
     "VALUES": "Значения",
-    "ADVANCED": "Передовой",
+    "ADVANCED": "Дополнительно",
     "MY_ACTIONS": "Мои действия",
     "WHEN_HAVE_BALL": "когда мяч у меня %1 %2",
     "WHEN_TEAMMATE_HAS_BALL": "когда мяч у товарища по команде %1 %2",
@@ -176,7 +176,7 @@
     "UNDO": "Отменить",
     "REDO": "Повторить",
     "VALIDATE_BLOCKS": "Подтвердить мою стратегию",
-    "SELF_DEFINED_ACTION": "Вы не можете использовать <strong>{{value}}</strong> в отдельном определении!"
+    "SELF_DEFINED_ACTION": "Вы не можете вызывать <strong>{{value}}</strong> внутри его определения!"
   },
   "GAME": {
     "MIN": "мин",

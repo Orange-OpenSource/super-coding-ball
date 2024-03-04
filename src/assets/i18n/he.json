@@ -175,7 +175,7 @@
      "UNDO": "ביטול",
      "REDO": "עשה מחדש",
      "VALIDATE_BLOCKS": "אמת את האסטרטגיה שלי",
-     "SELF_DEFINED_ACTION": "אתה לא יכול לשים את <strong>{{value}}</strong> בהגדרה משלו!"
+     "SELF_DEFINED_ACTION": "אתה לא יכול לשים את <strong>{{value}}</strong> בהגדרה של עצמה!"
    },
    "GAME": {
      "MIN": "דקות",
