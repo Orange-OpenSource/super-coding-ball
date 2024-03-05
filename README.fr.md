@@ -1,4 +1,5 @@
 # SuperCodingBall
+![icon](./src/assets/app-icons/icon-192x192.png)
 
 *Read in [English](README.md).*
 
