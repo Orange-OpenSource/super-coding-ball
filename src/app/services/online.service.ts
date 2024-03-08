@@ -13,8 +13,7 @@ import {Injectable, OnDestroy, EventEmitter} from '@angular/core';
 import Webcom from 'webcom/webcom-auth-sldblite.js';
 import {AllGames, ConnectionStatus, OneDayGames, User, UserDisplay} from '../models/webcom-models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {concatMap, filter, map, tap, toArray} from 'rxjs/operators';
-import {firstValueFrom, from, Observable, of} from 'rxjs';
+import {firstValueFrom} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -138,106 +137,86 @@ export class OnlineService implements OnDestroy {
     this.userDisplaySetInDailyGames = {};
   }
 
-  public removeAccount(): Observable<any> {
-    return this.http.delete(`${this.webcomUsersUrl}/${this.webcomId}`, this.authHeadersOption)
-      .pipe(
-        concatMap(() => Array<number>(15).keys()),
-        map(pastDayCount => OnlineService.getUtcTimestamp(Date.now() - pastDayCount * 1000 * 60 * 60 * 24)),
-        concatMap(pastDayTimestamp =>
-          this.http.delete(`${this.webcomGamesUrl}/${pastDayTimestamp}/${this.webcomId}`, this.authHeadersOption))
-      );
-  }
-
-  syncUserAndSetInDailyGames(blocks: string): Observable<any> {
-    return this.syncUser(blocks)
-      .pipe(concatMap(() => this.setUserDisplayInDailyGames()));
-  }
-
-  private syncUser(blocks: string): Observable<any> {
-    if (!this.userSynced) {
-      return this.http.get<User | null>(`${this.webcomUsersUrl}/${this.webcomId}`, this.authHeadersOption)
-        .pipe(
-          concatMap(currentUser => {
-            if (!!currentUser?.displayName) {
-              this.userDisplay.fullDisplayName = currentUser.displayName;
-            } else {
-              this.userDisplay.fullDisplayName = this.webcomDisplayName;
-            }
-            if (!currentUser?.blocks) {
-              return this.updateUserBlocks(blocks);
-            } else {
-              return of(true);
-            }
-          }),
-          tap(() => this.userSynced = true));
-    } else {
-      return of(true);
+  public removeAccount(): void {
+    firstValueFrom(this.http.delete(`${this.webcomUsersUrl}/${this.webcomId}`, this.authHeadersOption))
+    for (let pastDayCount = 0; pastDayCount < 15; pastDayCount++) {
+      const pastDayTimestamp = OnlineService.getUtcTimestamp(Date.now() - pastDayCount * 1000 * 60 * 60 * 24);
+      firstValueFrom(this.http.delete(`${this.webcomGamesUrl}/${pastDayTimestamp}/${this.webcomId}`, this.authHeadersOption));
     }
   }
 
-  updateUserDisplayName(displayName: string): Observable<any> {
-    return this.http.patch(`${this.webcomUsersUrl}/${this.webcomId}`, {displayName}, this.authHeadersOption);
+  async syncUser(blocks: string): Promise<void> {
+    if (!this.userSynced) {
+      const currentUser = await firstValueFrom(this.http.get<User | null>(`${this.webcomUsersUrl}/${this.webcomId}`, this.authHeadersOption));
+      if (!!currentUser?.displayName) {
+        this.userDisplay.fullDisplayName = currentUser.displayName;
+      } else {
+        this.userDisplay.fullDisplayName = this.webcomDisplayName;
+      }
+      if (!currentUser?.blocks) {
+        await this.updateUserBlocks(blocks);
+      }
+
+      this.userSynced = true;
+    }
   }
 
-  updateUserBlocks(blocks: string): Observable<any> {
-    return this.http.patch(`${this.webcomUsersUrl}/${this.webcomId}`, {blocks}, this.authHeadersOption);
+  async updateUserDisplayName(displayName: string): Promise<void> {
+    await firstValueFrom(this.http.patch(`${this.webcomUsersUrl}/${this.webcomId}`, {displayName}, this.authHeadersOption));
   }
 
-  private setUserDisplayInDailyGames(): Observable<any> {
+  async updateUserBlocks(blocks: string): Promise<void> {
+    await firstValueFrom(this.http.patch(`${this.webcomUsersUrl}/${this.webcomId}`, {blocks}, this.authHeadersOption));
+  }
+
+  async setUserDisplayInDailyGames(): Promise<void> {
     const today = OnlineService.getUtcTimestamp(Date.now());
     if (!this.userDisplaySetInDailyGames[today]) {
-      return this.http.put<UserDisplay>(`${this.webcomGamesUrl}/${today}/${this.webcomId}/userDisplay`,
-        this.userDisplay, this.authHeadersOption)
-        .pipe(tap(() => this.userDisplaySetInDailyGames[today] = true));
-    } else {
-      return of(true);
+      await firstValueFrom(
+        this.http.put<UserDisplay>(`${this.webcomGamesUrl}/${today}/${this.webcomId}/userDisplay`, this.userDisplay, this.authHeadersOption)
+      );
+      this.userDisplaySetInDailyGames[today] = true
     }
   }
 
-  loadGamesAndRemoveOldOnes(): Observable<AllGames> {
-    return this.loadAllGamesOrRefreshTodayGames()
-      .pipe(
-        concatMap(allGames => {
-          const allTimeStamps = Object.keys(allGames);
-          return from(allTimeStamps)
-            .pipe(
-              filter(timestamp => +timestamp < Date.now() - 15 * 1000 * 60 * 60 * 24),
-              concatMap(oldTimestamp => this.deleteDay(oldTimestamp).pipe(tap(() => delete allGames[oldTimestamp]))),
-              toArray(),
-              map(() => allGames)
-            )
-        }),
-        tap(allGames => this.allGames = allGames)
-      );
+  async loadGamesAndRemoveOldOnes(): Promise<AllGames> {
+    const allGames = await this.loadAllGamesOrRefreshTodayGames();
+    const allTimeStamps = Object.keys(allGames);
+    for (const timestamp of allTimeStamps) {
+      if (+timestamp < Date.now() - 15 * 1000 * 60 * 60 * 24) {
+        this.deleteDay(timestamp);
+        delete allGames[timestamp];
+      }
+    }
+    this.allGames = allGames;
+    return allGames;
   }
 
   // Only refresh games from the current date, which depends on the timezone of the player
   // Thus, games being played by players whose date is yesterday or tomorrow will not be updated
   // but it is an acceptable drawback compared to the network traffic improvement
-  private loadAllGamesOrRefreshTodayGames(): Observable<AllGames> {
+  private async loadAllGamesOrRefreshTodayGames(): Promise<AllGames> {
     const allGames = this.allGames;
     if (!allGames) {
-      return this.http.get<AllGames>(this.webcomGamesUrl, this.authHeadersOption);
+      return await firstValueFrom(this.http.get<AllGames>(this.webcomGamesUrl, this.authHeadersOption));
     } else {
       const today = OnlineService.getUtcTimestamp(Date.now());
-      return this.http.get<OneDayGames>(`${this.webcomGamesUrl}/${today}`, this.authHeadersOption)
-        .pipe(map(todayGames => {
-          allGames[today] = todayGames;
-          return allGames
-        }))
+      const todayGames = await firstValueFrom(this.http.get<OneDayGames>(`${this.webcomGamesUrl}/${today}`, this.authHeadersOption))
+      allGames[today] = todayGames;
+      return allGames
     }
   }
 
-  deleteDay(dayTimestamp: string): Observable<any> {
-    return this.http.delete<any>(`${this.webcomGamesUrl}/${dayTimestamp}`, this.authHeadersOption);
+  async deleteDay(dayTimestamp: string): Promise<void> {
+    await firstValueFrom(this.http.delete<any>(`${this.webcomGamesUrl}/${dayTimestamp}`, this.authHeadersOption));
   }
 
-  loadUserBlocks(userId: string): Promise<string> {
-    return firstValueFrom(this.http.get<string>(`${this.webcomUsersUrl}/${userId}/blocks`, this.authHeadersOption));
+  async loadUserBlocks(userId: string): Promise<string> {
+    return await firstValueFrom(this.http.get<string>(`${this.webcomUsersUrl}/${userId}/blocks`, this.authHeadersOption));
   }
 
-  setGameResult(opponentId: string, points: number): Observable<any> {
+  async setGameResult(opponentId: string, points: number): Promise<void> {
     const today = OnlineService.getUtcTimestamp(Date.now());
-    return this.http.put(`${this.webcomGamesUrl}/${today}/${this.webcomId}/dailyGames/${opponentId}`, points, this.authHeadersOption);
+    await firstValueFrom(this.http.put(`${this.webcomGamesUrl}/${today}/${this.webcomId}/dailyGames/${opponentId}`, points, this.authHeadersOption));
   }
 }

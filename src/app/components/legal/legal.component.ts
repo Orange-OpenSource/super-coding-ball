@@ -12,6 +12,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {TouchDevicesService} from '../../services/touch-devices.service';
+import {firstValueFrom} from 'rxjs';
 
 @Component({
   selector: 'app-licenses',
@@ -23,14 +24,9 @@ export class LegalComponent implements OnInit {
   constructor(private http: HttpClient, public touchDevicesService: TouchDevicesService) {
   }
 
-  ngOnInit(): void {
-    this.http.get('assets/THIRD-PARTY.txt', {responseType: "text"})
-      .subscribe(thirdParty => {
-        this.thirdParty = thirdParty
-          .replace(/\n\r\n/g, '<hr>')
-          .replace(/\n/g, '<br>')
-        ;
-      })
+  async ngOnInit(): Promise<void> {
+    this.thirdParty = (await firstValueFrom(this.http.get('assets/THIRD-PARTY.txt', {responseType: "text"})))
+      .replace(/\n\r\n/g, '<hr>')
+      .replace(/\n/g, '<br>');
   }
-
 }

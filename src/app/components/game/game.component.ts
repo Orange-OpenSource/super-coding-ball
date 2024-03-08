@@ -169,24 +169,20 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   // Not in ngOnInit because ViewChild would not be available
-  ngAfterViewInit(): void {
+  async ngAfterViewInit(): Promise<void> {
     if (this.displayType === DisplayType.Hidden) {
       return;
     }
-    this.codeService.loadOppCode(this.isOnline, this.opponentId)
-      .then(code => this.oppCode = code);
+    this.oppCode = await this.codeService.loadOppCode(this.isOnline, this.opponentId);
     this.ownerMark = new Image();
     this.ownerMark.src = 'assets/icons/owner-mark.png';
     this.positionPlayersAndBallBeforeEntry();
     this.fieldContext = (document.getElementById('fieldCanvas') as HTMLCanvasElement).getContext('2d') as CanvasRenderingContext2D;
     this.field = new Image();
     this.field.src = 'assets/football-pitch-with-marks.png';
-    this.field.onload = () => {
-      this.codeService.loadOppCode(false, 'entering')
-        .then(code => {
-          this.enteringCode = code;
-          this.drawingLoop();
-        });
+    this.field.onload = async () => {
+      this.enteringCode = await this.codeService.loadOppCode(false, 'entering');
+      this.drawingLoop();
     };
     if (this.displayType === DisplayType.Standalone) {
       this.loadOwnCode();
@@ -235,8 +231,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.gamePaused = false;
     if (this.periodType === PeriodType.BeforeFirstPeriod) {
       if (this.isOnline) {
-        this.onlineService.setGameResult(this.opponentId, GamePoint.LOST)
-          .subscribe();
+        this.onlineService.setGameResult(this.opponentId, GamePoint.LOST);
       }
       this.periodType = PeriodType.FirstPeriod;
     } else if (this.periodType === PeriodType.HalfTime) {
@@ -320,8 +315,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
         const score = this.ownScore > this.oppScore ? GamePoint.WON : (this.ownScore === this.oppScore ? GamePoint.DRAW : GamePoint.LOST);
         // LOST score has already been sent at game launch
         if (score > GamePoint.LOST) {
-          this.onlineService.setGameResult(this.opponentId, score)
-            .subscribe();
+          this.onlineService.setGameResult(this.opponentId, score);
         }
       } else if (this.ownScore > this.oppScore) {
         this.localStorageService.setOfflineWonStatus(this.opponentId);

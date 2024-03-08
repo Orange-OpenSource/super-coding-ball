@@ -61,13 +61,11 @@ export class HowtoComponent implements OnInit, OnDestroy {
       });
   }
 
-  loadStrategy(workspace: WorkspaceSvg, strategyId: string): void {
-    this.codeService.loadOppBlocks(false, strategyId)
-      .then(blocks => {
-        CodeService.loadBlocksInWorkspace(blocks, workspace)
-        workspace.zoomToFit();
-        workspace.scrollbar?.setContainerVisible(false);
-      });
+  async loadStrategy(workspace: WorkspaceSvg, strategyId: string): Promise<void> {
+    const blocks = await this.codeService.loadOppBlocks(false, strategyId);
+    CodeService.loadBlocksInWorkspace(blocks, workspace)
+    workspace.zoomToFit();
+    workspace.scrollbar?.setContainerVisible(false);
   }
 
   openDemo(): void {

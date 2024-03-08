@@ -17,7 +17,6 @@ import {Subscription} from 'rxjs';
 import {CodeService} from '../../services/code.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
-import {concatMap, finalize} from 'rxjs/operators';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {TouchDevicesService} from '../../services/touch-devices.service';
 
@@ -95,20 +94,17 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
     this.modalService.dismissAll();
   }
 
-  loadData(): void {
+  async loadData(): Promise<void> {
     this.loading = true;
-    this.onlineService.syncUserAndSetInDailyGames(this.codeService.loadOwnBlocksFromLocalStorage())
-      .pipe(
-        concatMap(() => this.onlineService.loadGamesAndRemoveOldOnes()),
-        finalize(() => this.loading = false)
-      )
-      .subscribe(allGames => {
-        this.computeOpponentsScore(allGames);
-        // Opponents without userDisplay are opponents who have been challenged, but who didn't connect in the 15 days
-        this.opponents = this.opponents.filter(opponent => !!opponent.userDisplay);
-        this.computeRankings();
-        this.filteredOpponents = this.opponents;
-      });
+    await this.onlineService.syncUser(this.codeService.loadOwnBlocksFromLocalStorage());
+    await this.onlineService.setUserDisplayInDailyGames();
+    const allGames = await this.onlineService.loadGamesAndRemoveOldOnes();
+    this.loading = false;
+    this.computeOpponentsScore(allGames);
+    // Opponents without userDisplay are opponents who have been challenged, but who didn't connect in the 15 days
+    this.opponents = this.opponents.filter(opponent => !!opponent.userDisplay);
+    this.computeRankings();
+    this.filteredOpponents = this.opponents;
   }
 
   private computeOpponentsScore(allGames: AllGames): void {
@@ -196,27 +192,24 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateUserDisplayName(nickname: string): void {
-    this.onlineService.updateUserDisplayName(nickname)
-      .subscribe(() => {this.onlineService.resetUser(); this.loadData();});
+  async updateUserDisplayName(nickname: string): Promise<void> {
+    await this.onlineService.updateUserDisplayName(nickname)
+    this.onlineService.resetUser();
+    await this.loadData();
   }
 
-  downloadBlocks(): void {
-    this.codeService.loadOwnBlocksFromServer()
-      .then(blocks => {
-        this.localStorageService.saveBlocks(blocks);
-        this.modalService.dismissAll();
-      });
+  async downloadBlocks(): Promise<void> {
+    const blocks = await this.codeService.loadOwnBlocksFromServer();
+    this.localStorageService.saveBlocks(blocks);
+    this.modalService.dismissAll();
   }
 
   removeAccount(): void {
     this.modalService.open(this.deleteAccountContent, {size: 'sm'})
       .result.then((deleteValidated: boolean) => {
         if (deleteValidated) {
-          this.loading = true;
-          this.onlineService.removeAccount()
-            .pipe(finalize(() => this.loading = false))
-            .subscribe({next: () => null, error: () => null, complete: () => this.onlineService.disconnect()});
+          this.onlineService.removeAccount();
+          this.onlineService.disconnect();
         }
       }, () => { });
   }

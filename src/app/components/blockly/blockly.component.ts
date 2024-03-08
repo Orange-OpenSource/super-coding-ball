@@ -23,6 +23,7 @@ import {LocalStorageService} from '../../services/local-storage.service';
 import {Tooltip} from 'bootstrap';
 import {TranslateService} from '@ngx-translate/core';
 import {TouchDevicesService} from '../../services/touch-devices.service';
+import {firstValueFrom} from 'rxjs';
 
 @Component({
   selector: 'app-blockly',
@@ -79,31 +80,27 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     }
   }
 
-  private setCategoryTooltip(categoryStyle: string, categoryKey: string) {
-    this.translate.get(`BLOCKS.${categoryKey}`).subscribe(
-      wording => {
-        const categoryElement = document.getElementsByClassName(categoryStyle).item(0)!!.parentElement!!.parentElement!!
-        Tooltip.getOrCreateInstance(categoryElement, {title: wording, placement: 'auto'})
-      }
-    )
+  private async setCategoryTooltip(categoryStyle: string, categoryKey: string) {
+    const wording = await firstValueFrom(this.translate.get(`BLOCKS.${categoryKey}`));
+    const categoryElement = document.getElementsByClassName(categoryStyle).item(0)!!.parentElement!!.parentElement!!
+    Tooltip.getOrCreateInstance(categoryElement, {title: wording, placement: 'auto'})
+
   }
 
-  private customizeMyActionsCategory() {
+  private async customizeMyActionsCategory() {
     // The procedure category is created automatically by Blockly
     // We just modify its definition callback to add the 'My Actions' label
     // and a separator between definition and call blocks
-    this.translate.get('BLOCKS.MY_ACTIONS')
-      .subscribe(wording => {
-        const procedureCategoryCallback = this.workspace?.getToolboxCategoryCallback('PROCEDURE')!
-        this.workspace?.registerToolboxCategoryCallback('PROCEDURE', workspace => {
-          const procedureBlocks = procedureCategoryCallback(workspace) as Element[]
-          const createProcedureLabel: Element = document.createElement('label');
-          createProcedureLabel.setAttribute('text', wording);
-          const createProcedureSeparator: Element = document.createElement('sep');
-          createProcedureSeparator.setAttribute('gap', '40');
-          return [createProcedureLabel].concat(procedureBlocks[0]).concat(createProcedureSeparator).concat(procedureBlocks.slice(1))
-        });
-      });
+    const wording = await firstValueFrom(this.translate.get('BLOCKS.MY_ACTIONS'));
+    const procedureCategoryCallback = this.workspace?.getToolboxCategoryCallback('PROCEDURE')!
+    this.workspace?.registerToolboxCategoryCallback('PROCEDURE', workspace => {
+      const procedureBlocks = procedureCategoryCallback(workspace) as Element[]
+      const createProcedureLabel: Element = document.createElement('label');
+      createProcedureLabel.setAttribute('text', wording);
+      const createProcedureSeparator: Element = document.createElement('sep');
+      createProcedureSeparator.setAttribute('gap', '40');
+      return [createProcedureLabel].concat(procedureBlocks[0]).concat(createProcedureSeparator).concat(procedureBlocks.slice(1))
+    });
   }
 
   getWorkspaceForEdition(): Blockly.WorkspaceSvg {
@@ -165,8 +162,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
       const ownBlocks = CodeService.getBlocksFromWorkspace(this.workspace);
       this.localStorageService.saveBlocks(ownBlocks);
       if (this.isOnline) {
-        this.onlineService.updateUserBlocks(ownBlocks)
-          .subscribe();
+        this.onlineService.updateUserBlocks(ownBlocks);
       }
 
       if (this.gameComponent?.displayType == DisplayType.Hidden) {
@@ -217,15 +213,14 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     this.workspace?.undo(true);
   }
 
-  loadOpp(): void {
-    this.codeService.loadOppBlocks(
-      this.router.url.includes('/online/'),
-      this.route.snapshot.paramMap.get('id') ?? '')
-      .then(blocks => {
-        if (this.workspace) {
-          CodeService.loadBlocksInWorkspace(blocks, this.workspace)
-          this.workspace.zoomToFit();
-        }
-      });
+  async loadOpp(): Promise<void> {
+    if (this.workspace) {
+      const blocks = await this.codeService.loadOppBlocks(
+        this.router.url.includes('/online/'),
+        this.route.snapshot.paramMap.get('id') ?? ''
+      );
+      CodeService.loadBlocksInWorkspace(blocks, this.workspace)
+      this.workspace.zoomToFit();
+    }
   }
 }

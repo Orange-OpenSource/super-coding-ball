@@ -293,18 +293,18 @@ export class CodeService {
     return JSON.stringify(Blockly.serialization.workspaces.save(workspace));
   }
 
-  loadOppCode(online: boolean, opponentId: string): Promise<string> {
-    return this.loadOppBlocks(online, opponentId)
-      .then(blocks => CodeService.computeCode(blocks));
+  async loadOppCode(online: boolean, opponentId: string): Promise<string> {
+    const blocks = await this.loadOppBlocks(online, opponentId);
+    return CodeService.computeCode(blocks);
   }
 
-  loadOppBlocks(online: boolean, opponentId: string): Promise<string> {
+  async loadOppBlocks(online: boolean, opponentId: string): Promise<string> {
     if (online) {
-      return this.onlineService.loadUserBlocks(opponentId);
+      return await this.onlineService.loadUserBlocks(opponentId);
     } else {
       const oppJsonFile = 'assets/blocks/strategies/' + opponentId + '.json';
-      return fetch(oppJsonFile)
-        .then(response => response.text());
+      const response = await fetch(oppJsonFile);
+      return await response.text();
     }
   }
 
