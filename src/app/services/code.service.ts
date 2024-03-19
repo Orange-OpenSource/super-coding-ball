@@ -20,7 +20,6 @@ import componentStyles from '../../assets/blocks/styles/componentStyles.json';
 import componentDarkStyles from '../../assets/blocks/styles/componentDarkStyles.json';
 import blocksJson from '../../assets/blocks/blocks.json';
 import {javascriptGenerator, JavascriptGenerator, Order} from 'blockly/javascript';
-import {TranslateService} from '@ngx-translate/core';
 import {OnlineService} from './online.service';
 import {LocalStorageService} from './local-storage.service';
 import {CustomCategory} from '../components/blockly/custom-category';
@@ -108,7 +107,7 @@ export class CodeService {
     Blockly.ContextMenuRegistry.registry.unregister('blockHelp');
 
     // Those are the only two parameters available from the executed code (in executePlayerCode())
-    javascriptGenerator.addReservedWords(['game', 'player']);
+    javascriptGenerator.addReservedWords('game,player');
 
     this.defineBlocksCodeGen();
 
