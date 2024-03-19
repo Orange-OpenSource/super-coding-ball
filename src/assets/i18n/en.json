@@ -6,6 +6,7 @@
     "POSITIONS": "Positions",
     "VALUES": "Values",
     "ADVANCED": "Advanced",
+    "MY_ACTIONS": "My actions",
     "WHEN_HAVE_BALL": "When I have the ball %1 %2",
     "WHEN_TEAMMATE_HAS_BALL": "When a teammate has the ball %1 %2",
     "WHEN_OPPONENT_HAS_BALL": "When an opponent has the ball %1 %2",
@@ -40,12 +41,26 @@
     "LEADING_TEAM": "%1 is leading",
     "LEADING_TEAM_OWN": "our team",
     "LEADING_TEAM_OPP": "the opposing team",
-    "LEADING_TEAM_NONE": "nobody"
+    "LEADING_TEAM_NONE": "nobody",
+    "PROCEDURES_DEFNORETURN_TITLE": "Define",
+    "PROCEDURES_DEFNORETURN_PROCEDURE": "new action",
+    "UNNAMED_KEY": "new action",
+    "LOGIC_OPERATION_TOOLTIP_AND": "",
+    "LOGIC_OPERATION_TOOLTIP_OR": "",
+    "LOGIC_NEGATE_TOOLTIP": "",
+    "MATH_ARITHMETIC_TOOLTIP_ADD": "",
+  	"MATH_ARITHMETIC_TOOLTIP_MINUS": "",
+  	"MATH_ARITHMETIC_TOOLTIP_MULTIPLY": "",
+	  "MATH_ARITHMETIC_TOOLTIP_DIVIDE": "",
+  	"MATH_ARITHMETIC_TOOLTIP_POWER": "",	
+    "PROCEDURES_DEFNORETURN_TOOLTIP": "",
+    "PROCEDURES_CALLNORETURN_TOOLTIP": ""
   },
   "GLOBAL": {
     "OK": "Ok",
     "CANCEL": "Cancel",
     "BACK": "Back",
+    "ERROR": "Error",
     "WARNING": "Warning",
     "SORRY": "Sorry..."
   },
@@ -159,7 +174,8 @@
     "DELETE_WARNING": "You really want to delete all your blocks!?",
     "UNDO": "Cancel",
     "REDO": "Redo",
-    "VALIDATE_BLOCKS": "Validate my strategy"
+    "VALIDATE_BLOCKS": "Validate my strategy",
+    "SELF_DEFINED_ACTION": "You can't put <strong>{{value}}</strong> in its own definition!"
   },
   "GAME": {
     "MIN": "min",

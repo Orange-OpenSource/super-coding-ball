@@ -6,7 +6,8 @@
     "ACTIONS": "Действия",
     "POSITIONS": "Объекты",
     "VALUES": "Значения",
-    "ADVANCED": "Передовой",
+    "ADVANCED": "Дополнительно",
+    "MY_ACTIONS": "Мои действия",
     "WHEN_HAVE_BALL": "когда мяч у меня %1 %2",
     "WHEN_TEAMMATE_HAS_BALL": "когда мяч у товарища по команде %1 %2",
     "WHEN_OPPONENT_HAS_BALL": "когда мяч у соперника %1 %2",
@@ -41,12 +42,26 @@
     "LEADING_TEAM": "%1 лидирует",
     "LEADING_TEAM_OWN": "наша команда",
     "LEADING_TEAM_OPP": "команда соперника",
-    "LEADING_TEAM_NONE": "никто не"
+    "LEADING_TEAM_NONE": "никто не",
+    "PROCEDURES_DEFNORETURN_TITLE": "Определять",
+    "PROCEDURES_DEFNORETURN_PROCEDURE": "новое действие",
+    "UNNAMED_KEY": "новое действие",
+    "LOGIC_OPERATION_TOOLTIP_AND": "",
+    "LOGIC_OPERATION_TOOLTIP_OR": "",
+    "LOGIC_NEGATE_TOOLTIP": "",
+    "MATH_ARITHMETIC_TOOLTIP_ADD": "",
+  	"MATH_ARITHMETIC_TOOLTIP_MINUS": "",
+  	"MATH_ARITHMETIC_TOOLTIP_MULTIPLY": "",
+	  "MATH_ARITHMETIC_TOOLTIP_DIVIDE": "",
+  	"MATH_ARITHMETIC_TOOLTIP_POWER": "",	
+    "PROCEDURES_DEFNORETURN_TOOLTIP": "",
+    "PROCEDURES_CALLNORETURN_TOOLTIP": ""
   },
   "GLOBAL": {
     "OK": "Ок",
     "CANCEL": "Отмена",
     "BACK": "Назад",
+    "ERROR": "Ошибка",
     "WARNING": "Внимание",
     "SORRY": "Извините..."
   },
@@ -160,7 +175,8 @@
     "DELETE_WARNING": "Вы действительно хотите удалить все свои блоки!?",
     "UNDO": "Отменить",
     "REDO": "Повторить",
-    "VALIDATE_BLOCKS": "Подтвердить мою стратегию"
+    "VALIDATE_BLOCKS": "Подтвердить мою стратегию",
+    "SELF_DEFINED_ACTION": "Вы не можете вызывать <strong>{{value}}</strong> внутри его определения!"
   },
   "GAME": {
     "MIN": "мин",

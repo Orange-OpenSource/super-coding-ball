@@ -16,8 +16,7 @@ import '@blockly/field-slider';
 import {CodeService} from '../../services/code.service';
 import {TranslateService} from '@ngx-translate/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {interval, Observable} from 'rxjs';
-import {concatMap, take, tap, toArray} from 'rxjs/operators';
+import {firstValueFrom} from 'rxjs';
 
 interface Step {
   blockId: string;
@@ -79,8 +78,10 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
   }
 
   set currentStep(value: number) {
-    this._currentStep = Math.max(0, Math.min(this.steps.length - 1, value));
-    this.goToStep(this._currentStep);
+    if (value >= 0 && value <= this.steps.length - 1) {
+      this._currentStep = value;
+      this.goToStep(this._currentStep);
+    }
   }
 
   private stepBlock: Blockly.BlockSvg | null = null;
@@ -92,33 +93,27 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.setWorkspaceForViewing();
-    this.codeService.loadOppBlocks(false, 'demo')
-      .then(blocks => {
-        this.codeService.loadBlocksInWorkspace(blocks, this.workspace)
-        this.currentStep = 0;
-      });
+    const blocks = await this.codeService.loadOppBlocks(false, 'demo');
+    CodeService.loadBlocksInWorkspace(blocks, this.workspace)
+    this.currentStep = 0;
   }
 
-  goToStep(stepNumber: number): void {
+  async goToStep(stepNumber: number): Promise<void> {
     this.stepBlock?.setCommentText(null);
     this.stepBlock?.getIcon(Blockly.icons.IconType.COMMENT)?.setBubbleVisible(false);
     const blockId = this.steps[stepNumber].blockId;
-    this.smoothCenterOnBlock(blockId)
-      .pipe(
-        toArray(),
-        concatMap(() => this.translate.get('HOW_TO_DEMO.' + this.steps[stepNumber].commentId)))
-      .subscribe(comment => {
-        this.stepBlock = this.workspace.getBlockById(blockId);
-        this.stepBlock?.setCommentText(comment);
-        this.stepBlock?.getIcon(Blockly.icons.IconType.COMMENT)?.setBubbleVisible(true);
-      });
+    await this.smoothCenterOnBlock(blockId);
+    const comment = await firstValueFrom(this.translate.get('HOW_TO_DEMO.' + this.steps[stepNumber].commentId));
+    this.stepBlock = this.workspace.getBlockById(blockId);
+    this.stepBlock?.setCommentText(comment);
+    this.stepBlock?.getIcon(Blockly.icons.IconType.COMMENT)?.setBubbleVisible(true);
   }
 
-  setWorkspaceForViewing(): void {
+  async setWorkspaceForViewing(): Promise<void> {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
-    this.workspace = CodeService.getWorkspace(blocklyDiv,
+    this.workspace = await this.codeService.getWorkspace(blocklyDiv,
       {
         readOnly: true,
         move: {
@@ -143,7 +138,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
   }
 
   // Adapted from https://github.com/google/blockly/blob/master/core/workspace_svg.js
-  private smoothCenterOnBlock(id: string): Observable<any> {
+  private async smoothCenterOnBlock(id: string): Promise<void> {
     const block = this.workspace.getBlockById(id)!;
     const xy = block.getRelativeToSurfaceXY();
     const heightWidth = block.getHeightWidth();
@@ -161,15 +156,12 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
     const targetY = -scrollToCenterY;
     const originalX = this.workspace.scrollX;
     const originalY = this.workspace.scrollY;
-    return interval(10)
-      .pipe(
-        take(10),
-        tap(step => {
-          this.workspace.scroll(
-            originalX + (targetX - originalX) / 10 * step,
-            originalY + (targetY - originalY) / 10 * step
-          );
-        })
+    for (let step = 0; step < 10; step++) {
+      this.workspace.scroll(
+        originalX + (targetX - originalX) / 10 * step,
+        originalY + (targetY - originalY) / 10 * step
       );
+      await new Promise(resolve => setTimeout(resolve, 10));
+    }
   }
 }

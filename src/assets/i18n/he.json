@@ -6,6 +6,7 @@
      "POSITIONS": "עמדות",
      "VALUES": "ערכים",
      "ADVANCED": "מתקדם",
+     "MY_ACTIONS": "הפעולות שלי",
      "WHEN_HAVE_BALL": "כשיש לי את הכדור %1 %2",
      "WHEN_TEAMMATE_HAS_BALL": "כאשר לחבר לקבוצה יש את הכדור %1 %2",
      "WHEN_OPPONENT_HAS_BALL": "כאשר ליריב יש את הכדור %1 %2",
@@ -40,12 +41,26 @@
      "LEADING_TEAM": "%1 מובילים",
      "LEADING_TEAM_OWN": "הקבוצה שלנו",
      "LEADING_TEAM_OPP": "הקבוצה היריבה",
-     "LEADING_TEAM_NONE": "אף אחד"
-   },
+     "LEADING_TEAM_NONE": "אף אחד",
+     "PROCEDURES_DEFNORETURN_TITLE": "הגדר",
+     "PROCEDURES_DEFNORETURN_PROCEDURE": "פעולה חדשה",
+     "UNNAMED_KEY": "פעולה חדשה",
+     "LOGIC_OPERATION_TOOLTIP_AND": "",
+     "LOGIC_OPERATION_TOOLTIP_OR": "",
+     "LOGIC_NEGATE_TOOLTIP": "",
+     "MATH_ARITHMETIC_TOOLTIP_ADD": "",
+     "MATH_ARITHMETIC_TOOLTIP_MINUS": "",
+     "MATH_ARITHMETIC_TOOLTIP_MULTIPLY": "",
+     "MATH_ARITHMETIC_TOOLTIP_DIVIDE": "",
+     "MATH_ARITHMETIC_TOOLTIP_POWER": "",	
+     "PROCEDURES_DEFNORETURN_TOOLTIP": "",
+     "PROCEDURES_CALLNORETURN_TOOLTIP": ""
+   }, 
    "GLOBAL": {
      "OK": "בסדר",
      "CANCEL": "ביטול",
      "BACK": "חזרה",
+     "ERROR": "שגיאה",
      "WARNING": "אזהרה",
      "SORRY": "סליחה..."
    },
@@ -159,7 +174,8 @@
      "DELETE_WARNING": "אתה באמת רוצה למחוק את כל הבלוקים שלך!?",
      "UNDO": "ביטול",
      "REDO": "עשה מחדש",
-     "VALIDATE_BLOCKS": "אמת את האסטרטגיה שלי"
+     "VALIDATE_BLOCKS": "אמת את האסטרטגיה שלי",
+     "SELF_DEFINED_ACTION": "אתה לא יכול לשים את <strong>{{value}}</strong> בהגדרה של עצמה!"
    },
    "GAME": {
      "MIN": "דקות",

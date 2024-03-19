@@ -149,3 +149,13 @@
     </button>
   </div>
 </ng-template>
+
+<ng-template #recursiveActionContent let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title">{{"GLOBAL.ERROR" | translate }}</h6>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <p [innerHTML]="'BLOCKLY.SELF_DEFINED_ACTION' | translate:recursiveActionName"></p>
+  </div>
+</ng-template>

@@ -16,5 +16,8 @@
   },
   "advanced_category": {
     "colour": "#888888"
+  },
+  "my_actions_category": {
+    "colour": "#9a66ff"
   }
 }

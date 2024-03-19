@@ -32,18 +32,18 @@ export class HowtoComponent implements OnInit, OnDestroy {
     public touchDevicesService: TouchDevicesService) {
   }
 
-  ngOnInit(): void {
-    this.shootWorkspace = this.getWorkspaceForViewing('blocklyShootDiv');
+  async ngOnInit(): Promise<void> {
+    this.shootWorkspace = await this.getWorkspaceForViewing('blocklyShootDiv');
     this.loadStrategy(this.shootWorkspace, 'howto-shoot');
-    this.passWorkspace = this.getWorkspaceForViewing('blocklyPassDiv');
+    this.passWorkspace = await this.getWorkspaceForViewing('blocklyPassDiv');
     this.loadStrategy(this.passWorkspace, 'howto-pass');
-    this.shootOrPassWorkspace = this.getWorkspaceForViewing('blocklyShootOrPassDiv');
+    this.shootOrPassWorkspace = await this.getWorkspaceForViewing('blocklyShootOrPassDiv');
     this.loadStrategy(this.shootOrPassWorkspace, 'howto-shoot-or-pass');
   }
 
-  getWorkspaceForViewing(divId: string): WorkspaceSvg {
+  async getWorkspaceForViewing(divId: string): Promise<WorkspaceSvg> {
     const blocklyDiv = document.getElementById(divId)!;
-    return CodeService.getWorkspace(
+    return this.codeService.getWorkspace(
       blocklyDiv,
       {
         readOnly: true,
@@ -61,13 +61,11 @@ export class HowtoComponent implements OnInit, OnDestroy {
       });
   }
 
-  loadStrategy(workspace: WorkspaceSvg, strategyId: string): void {
-    this.codeService.loadOppBlocks(false, strategyId)
-      .then(blocks => {
-        this.codeService.loadBlocksInWorkspace(blocks, workspace)
-        workspace.zoomToFit();
-        workspace.scrollbar?.setContainerVisible(false);
-      });
+  async loadStrategy(workspace: WorkspaceSvg, strategyId: string): Promise<void> {
+    const blocks = await this.codeService.loadOppBlocks(false, strategyId);
+    CodeService.loadBlocksInWorkspace(blocks, workspace)
+    workspace.zoomToFit();
+    workspace.scrollbar?.setContainerVisible(false);
   }
 
   openDemo(): void {

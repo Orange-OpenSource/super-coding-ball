@@ -50,7 +50,7 @@ export class LocalStorageService {
 
   saveBlocks(savedBlocks: string): void {
     if (!environment.production) {
-      console.log(savedBlocks);
+      console.log(JSON.stringify(JSON.parse(savedBlocks), null, " "));
     }
     localStorage.setItem('savedBlocks', savedBlocks);
   }
