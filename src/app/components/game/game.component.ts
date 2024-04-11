@@ -105,6 +105,10 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.localStorageService.setAcceleratedGameStatus(accelerated);
   }
 
+  get maxFramesPerSecond(): number {
+    return this.acceleratedGame ? 60 : 15;
+  }
+
   gameTime = 0;
   gameTimeDisplayed = '00';
   ownScore = 0;
@@ -123,7 +127,6 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     new Player('rept', false, false, false)
   ];
   private ball = new Ball();
-  private framesCount = 0;
   private enteringCode = '';
   private ownCode = '';
   private oppCode = '';
@@ -271,19 +274,19 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  private drawingLoop(): void {
+  private async drawingLoop(lastFrameTimestamp?: number): Promise<void> {
     if (this.gameStopped) {
       return;
     }
-    this.framesCount++;
-    if (!this.acceleratedGame && this.framesCount < 4) {
-      window.requestAnimationFrame(() => this.drawingLoop());
-      return;
-    }
-    this.framesCount = 0;
+
     this.tickClock();
     this.handleSprites();
-    window.requestAnimationFrame(() => this.drawingLoop());
+
+    if (lastFrameTimestamp) {
+      await new Promise(resolve => setTimeout(resolve, lastFrameTimestamp + 1000/this.maxFramesPerSecond - performance.now()));
+    }
+
+    window.requestAnimationFrame(lastFrameTimestamp => this.drawingLoop(lastFrameTimestamp));
   }
 
   private tickClock(): void {
