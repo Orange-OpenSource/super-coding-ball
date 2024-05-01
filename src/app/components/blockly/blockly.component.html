@@ -12,13 +12,8 @@
 <div class="d-flex flex-row h-100">
   <div style="flex: 1" class="d-flex flex-column">
     <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0">
-      <button
-        class="btn btn-lg d-flex"
-        type="button"
-        ngbTooltip="{{'GLOBAL.BACK' | translate }}"
-        [disableTooltip]="touchDevicesService.isTouchDevice()"
-        (click)="backToOpponentsList()">
-        <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24"/>
+      <button class="btn btn-lg d-flex" type="button" (click)="backToOpponentsList()">
+        <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24" />
       </button>
       <button
         [disabled]="gameLaunched"

@@ -12,14 +12,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-between p-0">
   <div *ngIf="displayType === DisplayType.NextToCode" class="position-absolute h-100 bg-dark ps-1"></div>
   <div *ngIf="displayType === DisplayType.NextToCode" class="pe-1"></div>
-  <button
-    *ngIf="displayType === DisplayType.Standalone"
-    class="btn btn-lg d-flex"
-    type="button"
-    ngbTooltip="{{'GLOBAL.BACK' | translate }}"
-    [disableTooltip]="touchDevicesService.isTouchDevice()"
+  <button *ngIf="displayType === DisplayType.Standalone" class="btn btn-lg d-flex" type="button"
     (click)="backToCodeEdition()">
-    <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24"/>
+    <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24" />
   </button>
   <button
     *ngIf="displayType === DisplayType.NextToCode"
