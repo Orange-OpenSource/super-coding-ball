@@ -109,6 +109,8 @@ export class CodeService {
     // Those are the only two parameters available from the executed code (in executePlayerCode())
     javascriptGenerator.addReservedWords(['game', 'player']);
 
+    javascriptGenerator.STATEMENT_PREFIX = 'game.useBlock(player, %1);\n';
+
     this.defineBlocksCodeGen();
 
     // Hide the near/far field from 'player' block, when the player is already fully determined by its role and side

@@ -24,6 +24,8 @@ import {Tooltip} from 'bootstrap';
 import {TranslateService} from '@ngx-translate/core';
 import {TouchDevicesService} from '../../services/touch-devices.service';
 import {firstValueFrom} from 'rxjs';
+import {Girl1Icon, Girl2Icon, Guy1Icon, Guy2Icon, IDebugIcon} from './debug-icons';
+const actionBlockTypes = ['shoot', 'move', 'sprint', 'call_for_ball'];
 
 @Component({
   selector: 'app-blockly',
@@ -47,6 +49,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     this.loadBlocksFromLocalStorage(this.workspace);
   }
 
+  private lastBlockIds = ['', '', '', ''];
   readonly isOnline: boolean;
   private readonly opponentId: string;
   debug: boolean;
@@ -85,8 +88,8 @@ export class BlocklyComponent implements OnInit, OnDestroy {
 
   private async setCategoryTooltip(categoryStyle: string, categoryKey: string) {
     const wording = await firstValueFrom(this.translate.get(`BLOCKS.${categoryKey}`));
-    const categoryElement = document.getElementsByClassName(categoryStyle).item(0)!!.parentElement!!.parentElement!!
-    Tooltip.getOrCreateInstance(categoryElement, {title: wording, placement: 'auto'})
+    const categoryElement = document.getElementsByClassName(categoryStyle).item(0)!!.parentElement!!.parentElement!!;
+    Tooltip.getOrCreateInstance(categoryElement, {title: wording, placement: 'auto'});
 
   }
 
@@ -226,6 +229,27 @@ export class BlocklyComponent implements OnInit, OnDestroy {
       );
       CodeService.loadBlocksInWorkspace(blocks, this.workspace)
       this.workspace.zoomToFit();
+    }
+  }
+
+  highlightBlocks(blockIds: string[]) {
+    this.highlightBlock(blockIds, 0, Girl1Icon, 'Girl1Icon');
+    this.highlightBlock(blockIds, 1, Guy1Icon, 'Guy1Icon');
+    this.highlightBlock(blockIds, 2, Girl2Icon, 'Girl2Icon');
+    this.highlightBlock(blockIds, 3, Guy2Icon, 'Guy2Icon');
+  }
+
+  highlightBlock(blockIds: string[], playerNumber: number, playerIcon: IDebugIcon, playerIconType: string) {
+    if (this.lastBlockIds[playerNumber] != blockIds[playerNumber]) {
+      const oldBlock = this.workspace?.getBlockById(this.lastBlockIds[playerNumber]);
+      if (oldBlock) {
+        oldBlock.removeIcon(new Blockly.icons.IconType(playerIconType));
+      }
+      this.lastBlockIds[playerNumber] = blockIds[playerNumber];
+      const newBlock = this.workspace?.getBlockById(this.lastBlockIds[playerNumber]);
+      if (newBlock && actionBlockTypes.includes(newBlock.type)) {
+        newBlock.addIcon(new playerIcon(newBlock));
+      }
     }
   }
 }
