@@ -12,24 +12,18 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-between p-0">
   <div *ngIf="displayType === DisplayType.NextToCode" class="position-absolute h-100 bg-dark ps-1"></div>
   <div *ngIf="displayType === DisplayType.NextToCode" class="pe-1"></div>
-  <button
-    *ngIf="displayType === DisplayType.Standalone"
-    class="btn btn-lg d-flex"
-    type="button"
-    ngbTooltip="{{'GLOBAL.BACK' | translate }}"
-    [disableTooltip]="touchDevicesService.isTouchDevice()"
+  <button *ngIf="displayType === DisplayType.Standalone" class="btn btn-lg d-flex" type="button"
     (click)="backToCodeEdition()">
-    <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24"/>
+    <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24" />
   </button>
-  <button
-    *ngIf="displayType === DisplayType.NextToCode"
-    [disabled]="!gameLaunched"
-    class="btn btn-lg d-flex"
-    type="button"
-    ngbTooltip="{{'GAME.STOP' | translate }}"
-    [disableTooltip]="touchDevicesService.isTouchDevice()"
-    (click)="stopGame()">
-    <img src="assets/icons/stop-circle-regular.png" class="icon24"/>
+  <button *ngIf="displayType === DisplayType.NextToCode" [disabled]="!gameLaunched" class="btn btn-lg d-flex"
+    type="button" (click)="gamePaused = !gamePaused">
+    <ng-container [ngSwitch]="gamePaused">
+      <img *ngSwitchCase="true" src="assets/icons/play.png" width="24" height="24" class="oriented-icon"
+        style="height: 24px" />
+      <img *ngSwitchCase="false" src="assets/icons/pause.png" width="24" height="24" class="oriented-icon"
+        style="height: 24px" />
+    </ng-container>
   </button>
   <div class="align-middle d-flex flex-grow-1">
     <div class="m-1 h6 bg-secondary rounded flex-grow-1 d-flex justify-content-between align-items-center">
@@ -44,26 +38,21 @@
       </div>
     </div>
   </div>
-  <button
-    class="btn btn-lg d-flex"
-    type="button"
-    ngbTooltip="{{'GAME.GAME_ACCELERATED' | translate }}"
-    [disableTooltip]="touchDevicesService.isTouchDevice()"
-    onclick="this.blur()"
-    (click)="acceleratedGame = !acceleratedGame">
+  <button class="btn btn-lg d-flex" type="button" [disabled]="!gameLaunched || gamePaused"
+    ngbTooltip="{{'GAME.GAME_ACCELERATED' | translate }}" [disableTooltip]="touchDevicesService.isTouchDevice()"
+    onclick="this.blur()" (click)="acceleratedGame = !acceleratedGame">
     <ng-container [ngSwitch]="acceleratedGame">
-      <img *ngSwitchCase="true" src="assets/icons/forward-solid.png" class="oriented-icon" style="height: 24px"/>
-      <img *ngSwitchCase="false" src="assets/icons/forward-solid-empty.png" class="oriented-icon" style="height: 24px"/>
+      <img *ngSwitchCase="true" src="assets/icons/forward-solid.png" width="26" height="24" class="oriented-icon"
+        style="height: 24px" />
+      <img *ngSwitchCase="false" src="assets/icons/forward-solid-empty.png" width="26" height="24" class="oriented-icon"
+        style="height: 24px" />
     </ng-container>
   </button>
 
 </nav>
 <div class="text-center">
-  <canvas
-    id="fieldCanvas" class="pixelated"
-    [class.fullscreen]="displayType === DisplayType.Standalone"
-    width="456" height="554"
-    style="max-width: 400px;">
+  <canvas id="fieldCanvas" class="pixelated" [class.fullscreen]="displayType === DisplayType.Standalone" width="456"
+    height="554" style="max-width: 400px;">
   </canvas>
 </div>
 
@@ -85,30 +74,6 @@
 <ng-template #kickOffGoalContent let-modal>
   <div class="modal-header" [ngSwitch]="periodType">
     <h6 class="modal-title">{{"GAME.GOAL" | translate}}</h6>
-  </div>
-</ng-template>
-
-<ng-template #stopGameContent let-modal>
-  <div class="modal-header">
-    <h6 class="modal-title">{{"GLOBAL.WARNING" | translate }}</h6>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
-  </div>
-  <div class="modal-body">
-    <p [innerHTML]="'GAME.STOP_MODAL' | translate"></p>
-  </div>
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="modal.close(false)">
-      {{"GLOBAL.CANCEL" | translate }}
-    </button>
-    <button
-      type="button"
-      class="btn btn-danger"
-      (click)="modal.close(true)">
-      {{"GLOBAL.OK" | translate }}
-    </button>
   </div>
 </ng-template>
 

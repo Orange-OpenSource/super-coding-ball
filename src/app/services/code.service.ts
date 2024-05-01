@@ -66,7 +66,7 @@ export class CodeService {
   });
 
   constructor(
-    private supportedLanguagesService: SupportedLanguagesServices,
+    supportedLanguagesService: SupportedLanguagesServices,
     private localStorageService: LocalStorageService,
     private onlineService: OnlineService
   ) {
@@ -108,6 +108,8 @@ export class CodeService {
 
     // Those are the only two parameters available from the executed code (in executePlayerCode())
     javascriptGenerator.addReservedWords('game,player');
+
+    javascriptGenerator.STATEMENT_PREFIX = 'game.useBlock(player, %1);\n';
 
     this.defineBlocksCodeGen();
 
@@ -172,8 +174,8 @@ export class CodeService {
 
     workspace.addChangeListener(Blockly.Events.disableOrphans);
 
-    // The check for recursive actions could be with by Blockly's INFINITE_LOOP_TRAP,
-    // but then it would only be catched when launching a game.
+    // The check for recursive actions could be done with by Blockly's INFINITE_LOOP_TRAP,
+    // but then it would only be caught when launching a game.
     // With this listener, the check is done while building the strategy:
     // - it only checks for recursive functions and not loops, because there is no loop block!
     // - every recursive function is forbidden because there is no variable, so no way to exit the recursion

@@ -59,7 +59,6 @@
   "GLOBAL": {
     "OK": "Ok",
     "CANCEL": "Cancelar",
-    "BACK": "Retorno",
     "ERROR": "Error",
     "WARNING": "Atención",
     "SORRY": "Lo siento..."
@@ -179,8 +178,6 @@
   },
   "GAME": {
     "MIN": "min",
-    "STOP": "Parar el partido",
-    "STOP_MODAL": "¿Quieres parar el partido?",
     "GAME_ACCELERATED": "Acelerado",
     "KICK_OFF": "¡Vamos!",
     "CLICK_ANYWHERE": "(pulsa en cualquier lugar)",

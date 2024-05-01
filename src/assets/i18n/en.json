@@ -59,7 +59,6 @@
   "GLOBAL": {
     "OK": "Ok",
     "CANCEL": "Cancel",
-    "BACK": "Back",
     "ERROR": "Error",
     "WARNING": "Warning",
     "SORRY": "Sorry..."
@@ -179,8 +178,6 @@
   },
   "GAME": {
     "MIN": "min",
-    "STOP": "Stop game",
-    "STOP_MODAL": "Do you want to stop this game?",
     "GAME_ACCELERATED": "Accelerated",
     "KICK_OFF": "Let's go!",
     "CLICK_ANYWHERE": "(click anywhere)",

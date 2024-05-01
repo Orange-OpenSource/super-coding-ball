@@ -12,82 +12,46 @@
 <div class="d-flex flex-row h-100">
   <div style="flex: 1" class="d-flex flex-column">
     <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0">
-      <button
-        class="btn btn-lg d-flex"
-        type="button"
-        ngbTooltip="{{'GLOBAL.BACK' | translate }}"
-        [disableTooltip]="touchDevicesService.isTouchDevice()"
-        (click)="backToOpponentsList()">
-        <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24"/>
+      <button class="btn btn-lg d-flex" type="button" (click)="backToOpponentsList()">
+        <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24" />
       </button>
-      <button
-        [disabled]="gameLaunched"
-        class="btn d-flex"
-        type="button"
+      <button [disabled]="gameLaunched" class="btn d-flex" type="button"
         ngbTooltip="{{'BLOCKLY.FIELD_POPUP.TOOLTIP' | translate }}"
-        [disableTooltip]="touchDevicesService.isTouchDevice()"
-        onclick="this.blur()"
+        [disableTooltip]="touchDevicesService.isTouchDevice()" onclick="this.blur()"
         (click)="modalService.open(fieldContent)">
-        <img src="assets/icons/info-circle-solid.png" class="icon24"/>
+        <img src="assets/icons/info-circle-solid.png" class="icon24" />
       </button>
-      <button
-        [disabled]="gameLaunched"
-        class="btn d-flex"
-        type="button"
-        ngbTooltip="{{'BLOCKLY.DELETE' | translate }}"
-        [disableTooltip]="touchDevicesService.isTouchDevice()"
-        onclick="this.blur()"
+      <button [disabled]="gameLaunched" class="btn d-flex" type="button" ngbTooltip="{{'BLOCKLY.DELETE' | translate }}"
+        [disableTooltip]="touchDevicesService.isTouchDevice()" onclick="this.blur()"
         (click)="openDeletePopup(deleteContent)">
-        <img src="assets/icons/trash-solid.png" class="icon24"/>
+        <img src="assets/icons/trash-solid.png" class="icon24" />
       </button>
-      <button
-        [disabled]="gameLaunched"
-        class="btn d-flex"
-        type="button"
-        ngbTooltip="{{'BLOCKLY.UNDO' | translate }}"
-        [disableTooltip]="touchDevicesService.isTouchDevice()"
-        onclick="this.blur()"
-        (click)="undo()">
-        <img src="assets/icons/undo-alt-solid.png" class="oriented-icon icon24"/>
+      <button [disabled]="gameLaunched" class="btn d-flex" type="button" ngbTooltip="{{'BLOCKLY.UNDO' | translate }}"
+        [disableTooltip]="touchDevicesService.isTouchDevice()" onclick="this.blur()" (click)="undo()">
+        <img src="assets/icons/undo-alt-solid.png" class="oriented-icon icon24" />
       </button>
-      <button
-        [disabled]="gameLaunched"
-        class="btn d-flex"
-        type="button"
-        ngbTooltip="{{'BLOCKLY.REDO' | translate }}"
-        [disableTooltip]="touchDevicesService.isTouchDevice()"
-        onclick="this.blur()"
-        (click)="redo()">
-        <img src="assets/icons/redo-alt-solid.png" class="oriented-icon icon24"/>
+      <button [disabled]="gameLaunched" class="btn d-flex" type="button" ngbTooltip="{{'BLOCKLY.REDO' | translate }}"
+        [disableTooltip]="touchDevicesService.isTouchDevice()" onclick="this.blur()" (click)="redo()">
+        <img src="assets/icons/redo-alt-solid.png" class="oriented-icon icon24" />
       </button>
-      <button
-        *ngIf="debug"
-        class="btn d-flex"
-        type="button"
-        [disabled]="gameLaunched"
-        ngbTooltip="Copy opponent's strategy"
-        [disableTooltip]="touchDevicesService.isTouchDevice()"
-        onclick="this.blur()"
-        (click)="loadOpp()">
-        <img src="assets/icons/bug-solid.png" class="icon24"/>
+      <button *ngIf="debug" class="btn d-flex" type="button" [disabled]="gameLaunched"
+        ngbTooltip="Copy opponent's strategy" [disableTooltip]="touchDevicesService.isTouchDevice()"
+        onclick="this.blur()" (click)="loadOpp()">
+        <img src="assets/icons/bug-solid.png" class="icon24" />
       </button>
       <div style="flex-grow: 1; text-align: right"></div>
-      <button
-        [disabled]="gameLaunched"
-        class="btn d-flex"
-        type="button"
-        ngbTooltip="{{'BLOCKLY.VALIDATE_BLOCKS' | translate }}"
-        [disableTooltip]="touchDevicesService.isTouchDevice()"
-        onclick="this.blur()"
-        (click)="play()">
-        <img src="assets/icons/check-solid.png" class="icon24"/>
+      <button [disabled]="gameLaunched" class="btn d-flex" type="button"
+        ngbTooltip="{{'BLOCKLY.VALIDATE_BLOCKS' | translate }}" [disableTooltip]="touchDevicesService.isTouchDevice()"
+        onclick="this.blur()" (click)="play()">
+        <img src="assets/icons/check-solid.png" class="icon24" />
       </button>
     </nav>
     <div id="blocklyDiv" class="h-100"></div>
   </div>
   <app-game #gameComponent id="gameComponent" class="d-none d-md-block"
-            [ngStyle]="{'background-color': gameLaunched ? '#ccffcc' : '#ccc'}"
-            [(gameLaunched)]="gameLaunched"></app-game>
+    [ngStyle]="{'background-color': gameLaunched ? '#ccffcc' : '#ccc'}" [gameLaunched]="gameLaunched"
+    (lastBlockIds)="highlightBlocks($event)">
+  </app-game>
 </div>
 
 <ng-template #fieldContent let-modal>
@@ -100,27 +64,23 @@
       <img class="w-100 pixelated" src="assets/football-pitch-with-marks.png">
       <div class="position-absolute attacker left">
         <img class="player_position pixelated" src="assets/howto/guy1.png"
-        ngbTooltip="{{'BLOCKS.ATTACKER' | translate }} {{'BLOCKS.LEFT' | translate }}"
-        triggers="load"
-        [autoClose]=false>
+          ngbTooltip="{{'BLOCKS.ATTACKER' | translate }} {{'BLOCKS.LEFT' | translate }}" triggers="load"
+          [autoClose]=false>
       </div>
       <div class="position-absolute attacker right">
         <img class="player_position pixelated" src="assets/howto/girl1.png"
-        ngbTooltip="{{'BLOCKS.ATTACKER' | translate }} {{'BLOCKS.RIGHT' | translate }}"
-        triggers="load"
-        [autoClose]=false>
+          ngbTooltip="{{'BLOCKS.ATTACKER' | translate }} {{'BLOCKS.RIGHT' | translate }}" triggers="load"
+          [autoClose]=false>
       </div>
       <div class="position-absolute defender left">
         <img class="player_position pixelated" src="assets/howto/guy2.png"
-        ngbTooltip="{{'BLOCKS.DEFENDER' | translate }} {{'BLOCKS.LEFT' | translate }}"
-        triggers="load"
-        [autoClose]=false>
+          ngbTooltip="{{'BLOCKS.DEFENDER' | translate }} {{'BLOCKS.LEFT' | translate }}" triggers="load"
+          [autoClose]=false>
       </div>
       <div class="position-absolute defender right">
         <img class="player_position pixelated" src="assets/howto/girl2.png"
-        ngbTooltip="{{'BLOCKS.DEFENDER' | translate }} {{'BLOCKS.RIGHT' | translate }}"
-        triggers="load"
-        [autoClose]=false>
+          ngbTooltip="{{'BLOCKS.DEFENDER' | translate }} {{'BLOCKS.RIGHT' | translate }}" triggers="load"
+          [autoClose]=false>
       </div>
     </div>
   </div>
@@ -135,16 +95,10 @@
     <p>{{"BLOCKLY.DELETE_WARNING" | translate }}</p>
   </div>
   <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="modal.close(false)">
+    <button type="button" class="btn btn-secondary" (click)="modal.close(false)">
       {{"GLOBAL.CANCEL" | translate }}
     </button>
-    <button
-      type="button"
-      class="btn btn-danger"
-      (click)="modal.close(true)">
+    <button type="button" class="btn btn-danger" (click)="modal.close(true)">
       {{"GLOBAL.OK" | translate }}
     </button>
   </div>

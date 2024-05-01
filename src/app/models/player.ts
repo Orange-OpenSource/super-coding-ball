@@ -73,6 +73,8 @@ export class Player extends Sprite {
     this.currentFrame = 0;
   }
 
+  lastBlockId = '';
+
   constructor(
     assetName: string | null,
     ownTeam: boolean,

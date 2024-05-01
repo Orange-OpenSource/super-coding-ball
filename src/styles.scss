@@ -114,6 +114,11 @@ html, body {
   fill: darkgray !important;
 }
 
+// Debug icons are fully opaque
+.blocklyIconGroup {
+  opacity: 1 !important;
+}
+
 // Remove white background that Bootstrap 5.3 adds on tables
 table {
   --bs-table-bg: transparent !important;

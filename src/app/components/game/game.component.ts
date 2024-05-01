@@ -83,15 +83,16 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('stopGameContent') private stopGameContent: any;
   @ViewChild('endGameContent') private endGameContent: any;
   @Input() gameLaunched = true;
-  @Output() gameLaunchedChange = new EventEmitter<boolean>();
+  @Output() lastBlockIds = new EventEmitter<string[]>();
 
   PeriodType = PeriodType;
   DisplayType = DisplayType;
   isOnline: boolean;
   opponentId = '';
   ownTeamWillStart = true;
-  gamePaused = true;
+  gameHalted = true;
   gameStopped = false;
+  gamePaused = false;
   periodType = PeriodType.BeforeFirstPeriod;
   displayType = DisplayType.Hidden
 
@@ -103,6 +104,10 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   set acceleratedGame(accelerated: boolean) {
     this._acceleratedGame = accelerated;
     this.localStorageService.setAcceleratedGameStatus(accelerated);
+  }
+
+  get maxFramesPerSecond(): number {
+    return this.acceleratedGame ? 60 : 15;
   }
 
   gameTime = 0;
@@ -123,7 +128,6 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     new Player('rept', false, false, false)
   ];
   private ball = new Ball();
-  private framesCount = 0;
   private enteringCode = '';
   private ownCode = '';
   private oppCode = '';
@@ -228,7 +232,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
 
   kickOff(): void {
     this.positionPlayersAndBallBeforeKickOff();
-    this.gamePaused = false;
+    this.gameHalted = false;
     if (this.periodType === PeriodType.BeforeFirstPeriod) {
       if (this.isOnline) {
         this.onlineService.setGameResult(this.opponentId, GamePoint.LOST);
@@ -271,23 +275,25 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  private drawingLoop(): void {
+  private async drawingLoop(lastFrameTimestamp?: number): Promise<void> {
     if (this.gameStopped) {
       return;
     }
-    this.framesCount++;
-    if (!this.acceleratedGame && this.framesCount < 4) {
-      window.requestAnimationFrame(() => this.drawingLoop());
-      return;
+
+    if (!this.gamePaused) {
+      this.tickClock();
+      this.handleSprites();
     }
-    this.framesCount = 0;
-    this.tickClock();
-    this.handleSprites();
-    window.requestAnimationFrame(() => this.drawingLoop());
+
+    if (lastFrameTimestamp) {
+      await new Promise(resolve => setTimeout(resolve, lastFrameTimestamp + 1000/this.maxFramesPerSecond - performance.now()));
+    }
+
+    window.requestAnimationFrame(lastFrameTimestamp => this.drawingLoop(lastFrameTimestamp));
   }
 
   private tickClock(): void {
-    if (!this.gamePaused) {
+    if (!this.gameHalted) {
       this.gameTime = Math.round((this.gameTime + 0.05) * 100) / 100;
       this.gameTimeDisplayed = String(Math.round(this.gameTime)).padStart(2, '0');
       if (this.gameTime === periodDuration) {
@@ -299,7 +305,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private periodFinished(startSecondPeriod: boolean): void {
-    this.gamePaused = true;
+    this.gameHalted = true;
     this.ownTeamWillStart = false;
     for (const player of this.players) {
       player.state = PlayerState.Waiting;
@@ -326,30 +332,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  stopGame(): void {
-    this.modalService.open(this.stopGameContent, {size: 'sm'})
-      .result.then((stopValidated: boolean) => {
-        if (stopValidated) {
-          this.ownTeamWillStart = true;
-          this.periodType = PeriodType.BeforeFirstPeriod;
-          this.gamePaused = true;
-          this.gameTime = 0;
-          this.gameTimeDisplayed = '00';
-          this.oppScore = 0;
-          this.ownScore = 0;
-          this.positionPlayersAndBallBeforeKickOff();
-          this.gameLaunchedChange.emit(false);
-        }
-      }, () => { });
-  }
-
   backToCodeEdition(): void {
-    this.modalService.open(this.stopGameContent, {size: 'sm'})
-      .result.then((stopValidated: boolean) => {
-        if (stopValidated) {
-          this.router.navigate([`/code/${this.isOnline ? 'online' : 'offline'}/` + this.opponentId]);
-        }
-      }, () => { });
+    this.router.navigate([`/code/${this.isOnline ? 'online' : 'offline'}/` + this.opponentId]);
   }
 
   private backToOpponentsList(): void {
@@ -361,8 +345,14 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private handleSprites(): void {
+    // Ball moves first so that players debug icons seem more accurate when game is paused
+    this.moveBall();
     let caller = this.ball.caller;
     for (const player of this.players) {
+      // Calling players show the 'call' block until calling is done
+      if (player.state !== PlayerState.Calling) {
+        player.lastBlockId = '';
+      }
       player.still = true;
       if (player.state === PlayerState.Entering || player.state === PlayerState.Playing || player.state === PlayerState.Pushed) {
         // Before anything, if a teammate has called for the ball long enough...
@@ -380,8 +370,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
       if (player.state !== PlayerState.Falling && player.still) {
         player.energy = player.energy + 2 * Math.random();
       }
+      this.lastBlockIds.emit(this.players.slice(0, 4).map(player => player.lastBlockId));
     }
-    this.moveBall();
     this.drawSprites();
   }
 
@@ -449,7 +439,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
       this.checkIfBallIfOffLimits();
       this.checkIfBallHasBeenCaught();
     }
-    if (!this.gamePaused) {
+    if (!this.gameHalted) {
       this.checkIfGoalScored();
     }
   }
@@ -468,8 +458,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
       this.ball.coord.y = canvasHeight;
     }
 
-    // If a goal has been scored (thus game is paused)
-    if (this.gamePaused
+    // If a goal has been scored (thus game is halted)
+    if (this.gameHalted
       // and if the ball is behind the goal line
       && (this.ball.coord.y < oppGoal.y + goalDetectionMargin || this.ball.coord.y > ownGoal.y - goalDetectionMargin)) {
       const goalCenterX = ownGoal.x;
@@ -533,7 +523,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
         player.state = PlayerState.Crying;
       }
     }
-    this.gamePaused = true;
+    this.gameHalted = true;
     this.openKickOffPopup();
     this.ownTeamWillStart = !forOwnTeam;
   }
@@ -565,7 +555,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
         Math.round(sprite.offsetCoord.x) - sprite.widthBaseOffset,
         Math.round(sprite.offsetCoord.y) - sprite.heightBaseOffset,
         sprite.width, sprite.height);
-      if (sprite instanceof Player && !this.gamePaused) {
+      if (sprite instanceof Player && !this.gameHalted) {
         this.drawEnergyBar(sprite);
       }
     }
@@ -844,5 +834,9 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     player.angle = this.computeAngle(player.coord, this.ball.coord);
     player.state = PlayerState.Calling;
     this.ball.caller = player;
+  }
+
+  private useBlock(player: Player, blockId: string) {
+    player.lastBlockId = blockId;
   }
 }
