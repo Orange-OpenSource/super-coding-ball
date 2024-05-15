@@ -9,7 +9,8 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import Blockly from 'blockly';
+import * as Blockly from 'blockly';
+import {Block} from 'blockly';
 
 // From https://developers.google.com/blockly/guides/create-custom-blocks/icons/creating-custom-icons/basic-implementation
 export abstract class DebugIcon extends Blockly.icons.Icon {
@@ -17,7 +18,7 @@ export abstract class DebugIcon extends Blockly.icons.Icon {
     abstract imageAsset: string;
     abstract weight: number;
 
-    constructor(sourceBlock: Blockly.Block) {
+    constructor(sourceBlock: Block) {
         super(sourceBlock);
     }
 
@@ -50,7 +51,7 @@ export abstract class DebugIcon extends Blockly.icons.Icon {
 }
 
 export interface IDebugIcon {
-    new(block: Blockly.Block): DebugIcon;
+    new(block: Block): DebugIcon;
 }
 
 export class Girl1Icon extends DebugIcon {

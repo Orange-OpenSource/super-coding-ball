@@ -7,12 +7,13 @@
 // See https://blocklycodelabs.dev/codelabs/custom-toolbox/index.html
 // Adapted from https://github.com/google/blockly-samples/blob/master/examples/custom-toolbox-codelab/complete-code/custom_category_es6.js
 
-import Blockly from 'blockly';
+import * as Blockly from 'blockly';
+import {ICollapsibleToolboxItem, IToolbox, ToolboxCategory} from 'blockly';
 
-export class CustomCategory extends Blockly.ToolboxCategory {
+export class CustomCategory extends ToolboxCategory {
   constructor(categoryDef: Blockly.utils.toolbox.CategoryInfo,
-              toolbox: Blockly.IToolbox,
-              optParent: Blockly.ICollapsibleToolboxItem | undefined) {
+              toolbox: IToolbox,
+              optParent: ICollapsibleToolboxItem | undefined) {
     super(categoryDef, toolbox, optParent);
   }
 

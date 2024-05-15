@@ -11,7 +11,8 @@
 
 import {Component, OnDestroy, OnInit} from '@angular/core';
 
-import Blockly from 'blockly';
+import * as Blockly from 'blockly';
+import {BlockSvg, WorkspaceSvg} from 'blockly';
 import '@blockly/field-slider';
 import {CodeService} from '../../services/code.service';
 import {TranslateService} from '@ngx-translate/core';
@@ -29,7 +30,7 @@ interface Step {
 })
 
 export class HowtoDemoComponent implements OnInit, OnDestroy {
-  private workspace!: Blockly.WorkspaceSvg;
+  private workspace!: WorkspaceSvg;
   steps: Step[] = [
     {
       blockId: '!)[W-:(e8^GFG^DIE!~B',
@@ -84,7 +85,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
     }
   }
 
-  private stepBlock: Blockly.BlockSvg | null = null;
+  private stepBlock: BlockSvg | null = null;
 
   constructor(
     public translate: TranslateService,
