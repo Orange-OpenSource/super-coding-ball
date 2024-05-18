@@ -31,16 +31,16 @@ export class HowtoComponent implements OnInit, OnDestroy {
     public touchDevicesService: TouchDevicesService) {
   }
 
-  async ngOnInit(): Promise<void> {
-    this.shootWorkspace = await this.getWorkspaceForViewing('blocklyShootDiv');
+  ngOnInit(): void {
+    this.shootWorkspace = this.getHowToWorkspace('blocklyShootDiv');
     this.loadStrategy(this.shootWorkspace, 'howto-shoot');
-    this.passWorkspace = await this.getWorkspaceForViewing('blocklyPassDiv');
+    this.passWorkspace = this.getHowToWorkspace('blocklyPassDiv');
     this.loadStrategy(this.passWorkspace, 'howto-pass');
-    this.shootOrPassWorkspace = await this.getWorkspaceForViewing('blocklyShootOrPassDiv');
+    this.shootOrPassWorkspace = this.getHowToWorkspace('blocklyShootOrPassDiv');
     this.loadStrategy(this.shootOrPassWorkspace, 'howto-shoot-or-pass');
   }
 
-  async getWorkspaceForViewing(divId: string): Promise<WorkspaceSvg> {
+  getHowToWorkspace(divId: string): WorkspaceSvg {
     const blocklyDiv = document.getElementById(divId)!;
     return this.codeService.getWorkspace(
       blocklyDiv,
@@ -51,7 +51,7 @@ export class HowtoComponent implements OnInit, OnDestroy {
           drag: false,
           wheel: false
         },
-        theme: this.codeService.customDarkTheme,
+        theme: this.codeService.customHowToTheme,
         zoom: {
           controls: false,
           wheel: false,

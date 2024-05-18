@@ -95,7 +95,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
-    this.setWorkspaceForViewing();
+    this.setWorkspace();
     const blocks = await this.codeService.loadOppBlocks(false, 'demo');
     CodeService.loadBlocksInWorkspace(blocks, this.workspace)
     this.currentStep = 0;
@@ -112,9 +112,9 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
     this.stepBlock?.getIcon(Blockly.icons.IconType.COMMENT)?.setBubbleVisible(true);
   }
 
-  async setWorkspaceForViewing(): Promise<void> {
+  setWorkspace(): void {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
-    this.workspace = await this.codeService.getWorkspace(blocklyDiv,
+    this.workspace = this.codeService.getWorkspace(blocklyDiv,
       {
         readOnly: true,
         move: {
@@ -122,7 +122,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
           drag: true,
           wheel: false
         },
-        theme: this.codeService.customTheme,
+        theme: this.codeService.customEditingTheme,
         zoom: {
           startScale: 0.6,
           controls: false,

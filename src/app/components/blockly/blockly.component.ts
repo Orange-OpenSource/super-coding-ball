@@ -36,6 +36,7 @@ const actionBlockTypes = ['shoot', 'move', 'sprint', 'call_for_ball'];
 export class BlocklyComponent implements OnInit, OnDestroy {
   @ViewChild('gameComponent') gameComponent?: GameComponent;
   @ViewChild('recursiveActionContent') recursiveActionContent?: TemplateRef<any>;
+  @ViewChild('stopGameContent') private stopGameContent: any;
   recursiveActionName = {value: ''};
   private workspace?: WorkspaceSvg;
   private _gameLaunched = false;
@@ -46,8 +47,8 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   set gameLaunched(value: boolean) {
     this._gameLaunched = value;
     this.workspace?.dispose();
-    this.workspace = (this._gameLaunched ? this.getWorkspaceForViewing() : this.getWorkspaceForEdition())
-    this.loadBlocksFromLocalStorage(this.workspace)
+    this.workspace = (this._gameLaunched ? this.getViewingWorkspace() : this.getEditingWorkspace());
+    this.loadBlocksFromLocalStorage(this.workspace);
   }
 
   private lastBlockIds = ['', '', '', ''];
@@ -73,6 +74,9 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.gameLaunched = false;
     this.customizeMyActionsCategory();
+  }
+
+  setCategoryTooltips(): void {
     if (!this.touchDevicesService.isTouchDevice()) {
       this.setCategoryTooltip('customIconEvent', 'EVENTS');
       this.setCategoryTooltip('customIconCondition', 'CONDITIONS');
@@ -107,15 +111,15 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     });
   }
 
-  getWorkspaceForEdition(): WorkspaceSvg {
+  getEditingWorkspace(): Blockly.WorkspaceSvg {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
-    return this.codeService.getWorkspace(blocklyDiv, {
+    const workspace = this.codeService.getWorkspace(blocklyDiv, {
       move: {
         scrollbars: true,
         drag: true,
         wheel: false
       },
-      theme: this.codeService.customTheme,
+      theme: this.codeService.customEditingTheme,
       zoom: {
         controls: false,
         wheel: true,
@@ -124,9 +128,11 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         minScale: 0.2
       }
     });
+    this.setCategoryTooltips();
+    return workspace;
   }
 
-  getWorkspaceForViewing(): WorkspaceSvg {
+  getViewingWorkspace(): Blockly.WorkspaceSvg {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
     return this.codeService.getWorkspace(blocklyDiv, {
       readOnly: true,
@@ -135,7 +141,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         drag: true,
         wheel: false
       },
-      theme: this.codeService.customDarkTheme,
+      theme: this.codeService.customViewingTheme,
       zoom: {
         controls: false,
         wheel: true,
@@ -247,5 +253,15 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         newBlock.addIcon(new playerIcon(newBlock));
       }
     }
+  }
+
+  stopGame(): void {
+    this.modalService.open(this.stopGameContent, {size: 'sm'})
+      .result.then((stopValidated: boolean) => {
+        if (stopValidated) {
+          this.gameLaunched = false;
+          this.gameComponent?.stopGame();
+        }
+      }, () => { });
   }
 }
