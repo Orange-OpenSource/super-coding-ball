@@ -80,7 +80,6 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('kickOffBeforeFirstPeriodContent') private kickOffBeforeFirstPeriodContent: any;
   @ViewChild('kickOffHalfTimeContent') private kickOffHalfTimeContent: any;
   @ViewChild('kickOffGoalContent') private kickOffGoalContent: any;
-  @ViewChild('stopGameContent') private stopGameContent: any;
   @ViewChild('endGameContent') private endGameContent: any;
   @Input() gameLaunched = true;
   @Output() lastBlockIds = new EventEmitter<string[]>();
@@ -330,6 +329,17 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
         () => this.backToOpponentsList(),
         () => this.backToOpponentsList());
     }
+  }
+
+  public stopGame(): void {
+    this.ownTeamWillStart = true;
+    this.periodType = PeriodType.BeforeFirstPeriod;
+    this.gameTime = 0;
+    this.gameTimeDisplayed = '00';
+    this.oppScore = 0;
+    this.ownScore = 0;
+    this.positionPlayersAndBallBeforeKickOff();
+    this.gamePaused = false;
   }
 
   backToCodeEdition(): void {

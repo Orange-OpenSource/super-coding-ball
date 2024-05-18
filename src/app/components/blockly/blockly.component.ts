@@ -35,6 +35,7 @@ const actionBlockTypes = ['shoot', 'move', 'sprint', 'call_for_ball'];
 export class BlocklyComponent implements OnInit, OnDestroy {
   @ViewChild('gameComponent') gameComponent?: GameComponent;
   @ViewChild('recursiveActionContent') recursiveActionContent?: TemplateRef<any>;
+  @ViewChild('stopGameContent') private stopGameContent: any;
   recursiveActionName = {value: ''};
   private workspace?: Blockly.WorkspaceSvg;
   private _gameLaunched = false;
@@ -246,5 +247,15 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         newBlock.addIcon(new playerIcon(newBlock));
       }
     }
+  }
+
+  stopGame(): void {
+    this.modalService.open(this.stopGameContent, {size: 'sm'})
+      .result.then((stopValidated: boolean) => {
+        if (stopValidated) {
+          this.gameLaunched = false;
+          this.gameComponent?.stopGame();
+        }
+      }, () => { });
   }
 }

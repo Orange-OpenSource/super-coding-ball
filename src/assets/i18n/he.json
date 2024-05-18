@@ -178,6 +178,7 @@
    },
    "GAME": {
      "MIN": "דקות",
+     "STOP_MODAL": "האם אתה רוצה להפסיק את המשחק הזה?",
      "GAME_ACCELERATED": "מואצת",
      "KICK_OFF": "בוא נצא לדרך!",
      "CLICK_ANYWHERE": "(לחץ בכל מקום)",
