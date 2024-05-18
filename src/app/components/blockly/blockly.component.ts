@@ -46,8 +46,8 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   set gameLaunched(value: boolean) {
     this._gameLaunched = value;
     this.workspace?.dispose();
-    this.workspace = (this._gameLaunched ? this.getWorkspaceForViewing() : this.getWorkspaceForEdition())
-    this.loadBlocksFromLocalStorage(this.workspace)
+    this.workspace = (this._gameLaunched ? this.getWorkspaceForViewing() : this.getWorkspaceForEdition());
+    this.loadBlocksFromLocalStorage(this.workspace);
   }
 
   private lastBlockIds = ['', '', '', ''];
@@ -73,6 +73,9 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.gameLaunched = false;
     this.customizeMyActionsCategory();
+  }
+
+  setCategoryTooltips(): void {
     if (!this.touchDevicesService.isTouchDevice()) {
       this.setCategoryTooltip('customIconEvent', 'EVENTS');
       this.setCategoryTooltip('customIconCondition', 'CONDITIONS');
@@ -109,7 +112,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
 
   getWorkspaceForEdition(): Blockly.WorkspaceSvg {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
-    return this.codeService.getWorkspace(blocklyDiv, {
+    const workspace = this.codeService.getWorkspace(blocklyDiv, {
       move: {
         scrollbars: true,
         drag: true,
@@ -124,6 +127,8 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         minScale: 0.2
       }
     });
+    this.setCategoryTooltips();
+    return workspace;
   }
 
   getWorkspaceForViewing(): Blockly.WorkspaceSvg {
