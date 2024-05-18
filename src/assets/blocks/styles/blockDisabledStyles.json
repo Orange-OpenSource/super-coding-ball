@@ -1,0 +1,44 @@
+{
+  "event_blocks": {
+    "colourPrimary": "#E7AD00",
+    "colourSecondary": "#E7AD00"
+
+  },
+  "condition_blocks": {
+    "colourPrimary": "#50AE50",
+    "colourSecondary": "#50AE50"
+
+  },
+  "action_blocks": {
+    "colourPrimary": "#4488E7",
+    "colourSecondary": "#4488E7"
+
+  },
+  "position_blocks": {
+    "colourPrimary": "#E75C73",
+    "colourSecondary": "#E75C73"
+  },
+  "value_blocks": {
+    "colourPrimary": "#E77E16",
+    "colourSecondary": "#E77E16"
+
+  },
+  "advanced_blocks": {
+    "colourPrimary": "#7B7B7B",
+    "colourSecondary": "#7B7B7B"
+
+  },
+  "logic_blocks": {
+    "colourPrimary": "#7B7B7B",
+    "colourSecondary": "#7B7B7B"
+
+  },
+  "math_blocks": {
+    "colourPrimary": "#7B7B7B",
+    "colourSecondary": "#7B7B7B"
+  },
+  "procedure_blocks": {
+    "colourPrimary": "#8B5CE7",
+    "colourSecondary": "#8B5CE7"
+  }
+}

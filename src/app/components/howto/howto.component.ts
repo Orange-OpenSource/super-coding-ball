@@ -33,15 +33,15 @@ export class HowtoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.shootWorkspace = this.getWorkspaceForViewing('blocklyShootDiv');
+    this.shootWorkspace = this.getHowToWorkspace('blocklyShootDiv');
     this.loadStrategy(this.shootWorkspace, 'howto-shoot');
-    this.passWorkspace = this.getWorkspaceForViewing('blocklyPassDiv');
+    this.passWorkspace = this.getHowToWorkspace('blocklyPassDiv');
     this.loadStrategy(this.passWorkspace, 'howto-pass');
-    this.shootOrPassWorkspace = this.getWorkspaceForViewing('blocklyShootOrPassDiv');
+    this.shootOrPassWorkspace = this.getHowToWorkspace('blocklyShootOrPassDiv');
     this.loadStrategy(this.shootOrPassWorkspace, 'howto-shoot-or-pass');
   }
 
-  getWorkspaceForViewing(divId: string): WorkspaceSvg {
+  getHowToWorkspace(divId: string): WorkspaceSvg {
     const blocklyDiv = document.getElementById(divId)!;
     return this.codeService.getWorkspace(
       blocklyDiv,
@@ -52,7 +52,7 @@ export class HowtoComponent implements OnInit, OnDestroy {
           drag: false,
           wheel: false
         },
-        theme: this.codeService.customDarkTheme,
+        theme: this.codeService.customHowToTheme,
         zoom: {
           controls: false,
           wheel: false,

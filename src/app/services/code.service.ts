@@ -15,6 +15,7 @@ import Blockly, {Block, BlockSvg, Events, Extensions} from 'blockly';
 // import {blocks as procedureBlocks, unregisterProcedureBlocks} from '@blockly/block-shareable-procedures';
 import {BlocklyOptions} from 'blockly/core/blockly_options';
 import blockStyles from '../../assets/blocks/styles/blockStyles.json';
+import blockDisabledStyles from '../../assets/blocks/styles/blockDisabledStyles.json';
 import categoryStyles from '../../assets/blocks/styles/categoryStyles.json';
 import componentStyles from '../../assets/blocks/styles/componentStyles.json';
 import componentDarkStyles from '../../assets/blocks/styles/componentDarkStyles.json';
@@ -50,15 +51,22 @@ type BlockJson = {
   providedIn: 'root'
 })
 export class CodeService {
-  customTheme = Blockly.Theme.defineTheme('customTheme', {
-    name: 'lightTheme',
+  customEditingTheme = Blockly.Theme.defineTheme('customEditingTheme', {
+    name: 'editingTheme',
     blockStyles,
     categoryStyles,
     componentStyles,
     startHats: true
   });
-  customDarkTheme = Blockly.Theme.defineTheme('customDarkTheme', {
-    name: 'darkTheme',
+  customViewingTheme = Blockly.Theme.defineTheme('customViewingTheme', {
+    name: 'viewingTheme',
+    blockStyles: blockDisabledStyles,
+    categoryStyles,
+    componentStyles: componentDarkStyles,
+    startHats: true
+  });
+  customHowToTheme = Blockly.Theme.defineTheme('customHowToTheme', {
+    name: 'howToTheme',
     blockStyles,
     categoryStyles,
     componentStyles: componentDarkStyles,

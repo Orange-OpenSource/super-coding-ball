@@ -46,7 +46,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   set gameLaunched(value: boolean) {
     this._gameLaunched = value;
     this.workspace?.dispose();
-    this.workspace = (this._gameLaunched ? this.getWorkspaceForViewing() : this.getWorkspaceForEdition());
+    this.workspace = (this._gameLaunched ? this.getViewingWorkspace() : this.getEditingWorkspace());
     this.loadBlocksFromLocalStorage(this.workspace);
   }
 
@@ -110,7 +110,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     });
   }
 
-  getWorkspaceForEdition(): Blockly.WorkspaceSvg {
+  getEditingWorkspace(): Blockly.WorkspaceSvg {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
     const workspace = this.codeService.getWorkspace(blocklyDiv, {
       move: {
@@ -118,7 +118,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         drag: true,
         wheel: false
       },
-      theme: this.codeService.customTheme,
+      theme: this.codeService.customEditingTheme,
       zoom: {
         controls: false,
         wheel: true,
@@ -131,7 +131,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     return workspace;
   }
 
-  getWorkspaceForViewing(): Blockly.WorkspaceSvg {
+  getViewingWorkspace(): Blockly.WorkspaceSvg {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
     return this.codeService.getWorkspace(blocklyDiv, {
       readOnly: true,
@@ -140,7 +140,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         drag: true,
         wheel: false
       },
-      theme: this.codeService.customDarkTheme,
+      theme: this.codeService.customViewingTheme,
       zoom: {
         controls: false,
         wheel: true,
