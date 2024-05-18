@@ -32,16 +32,16 @@ export class HowtoComponent implements OnInit, OnDestroy {
     public touchDevicesService: TouchDevicesService) {
   }
 
-  async ngOnInit(): Promise<void> {
-    this.shootWorkspace = await this.getWorkspaceForViewing('blocklyShootDiv');
+  ngOnInit(): void {
+    this.shootWorkspace = this.getWorkspaceForViewing('blocklyShootDiv');
     this.loadStrategy(this.shootWorkspace, 'howto-shoot');
-    this.passWorkspace = await this.getWorkspaceForViewing('blocklyPassDiv');
+    this.passWorkspace = this.getWorkspaceForViewing('blocklyPassDiv');
     this.loadStrategy(this.passWorkspace, 'howto-pass');
-    this.shootOrPassWorkspace = await this.getWorkspaceForViewing('blocklyShootOrPassDiv');
+    this.shootOrPassWorkspace = this.getWorkspaceForViewing('blocklyShootOrPassDiv');
     this.loadStrategy(this.shootOrPassWorkspace, 'howto-shoot-or-pass');
   }
 
-  async getWorkspaceForViewing(divId: string): Promise<WorkspaceSvg> {
+  getWorkspaceForViewing(divId: string): WorkspaceSvg {
     const blocklyDiv = document.getElementById(divId)!;
     return this.codeService.getWorkspace(
       blocklyDiv,

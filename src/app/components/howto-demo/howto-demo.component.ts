@@ -111,9 +111,9 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
     this.stepBlock?.getIcon(Blockly.icons.IconType.COMMENT)?.setBubbleVisible(true);
   }
 
-  async setWorkspaceForViewing(): Promise<void> {
+  setWorkspaceForViewing(): void {
     const blocklyDiv = document.getElementById('blocklyDiv')!;
-    this.workspace = await this.codeService.getWorkspace(blocklyDiv,
+    this.workspace = this.codeService.getWorkspace(blocklyDiv,
       {
         readOnly: true,
         move: {
