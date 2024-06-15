@@ -11,7 +11,8 @@
 
 import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 
-import Blockly from 'blockly';
+import * as Blockly from 'blockly';
+import {Events, WorkspaceSvg} from 'blockly';
 import '@blockly/field-slider';
 import {CodeService, RecursiveActionEvent} from '../../services/code.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -37,7 +38,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
   @ViewChild('recursiveActionContent') recursiveActionContent?: TemplateRef<any>;
   @ViewChild('stopGameContent') private stopGameContent: any;
   recursiveActionName = {value: ''};
-  private workspace?: Blockly.WorkspaceSvg;
+  private workspace?: WorkspaceSvg;
   private _gameLaunched = false;
   get gameLaunched(): boolean {
     return this._gameLaunched;
@@ -201,11 +202,11 @@ export class BlocklyComponent implements OnInit, OnDestroy {
       }, () => { });
   }
 
-  loadBlocksFromLocalStorage(workspace: Blockly.WorkspaceSvg): void {
+  loadBlocksFromLocalStorage(workspace: WorkspaceSvg): void {
     const blocks = this.codeService.loadOwnBlocksFromLocalStorage();
     CodeService.loadBlocksInWorkspace(blocks, workspace);
     workspace.zoomToFit();
-    workspace.addChangeListener((event: Blockly.Events.Abstract) => {
+    workspace.addChangeListener((event: Events.Abstract) => {
       if (event instanceof RecursiveActionEvent) {
         this.recursiveActionName.value = event.recursiveActionName;
         this.modalService.open(this.recursiveActionContent);

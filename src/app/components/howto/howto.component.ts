@@ -12,7 +12,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {HowtoDemoComponent} from '../howto-demo/howto-demo.component';
-import Blockly from 'blockly';
 import {CodeService} from '../../services/code.service';
 import {WorkspaceSvg} from 'blockly';
 import {TouchDevicesService} from '../../services/touch-devices.service';
@@ -22,9 +21,9 @@ import {TouchDevicesService} from '../../services/touch-devices.service';
   templateUrl: './howto.component.html'
 })
 export class HowtoComponent implements OnInit, OnDestroy {
-  private shootWorkspace!: Blockly.WorkspaceSvg;
-  private passWorkspace!: Blockly.WorkspaceSvg;
-  private shootOrPassWorkspace!: Blockly.WorkspaceSvg;
+  private shootWorkspace!: WorkspaceSvg;
+  private passWorkspace!: WorkspaceSvg;
+  private shootOrPassWorkspace!: WorkspaceSvg;
 
   constructor(
     private modalService: NgbModal,

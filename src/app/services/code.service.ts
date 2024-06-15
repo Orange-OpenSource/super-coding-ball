@@ -10,24 +10,24 @@
  */
 
 import {Injectable} from '@angular/core';
-import Blockly, {Block, BlockSvg, Events, Extensions} from 'blockly';
+import * as Blockly from 'blockly';
+import {Block, BlocklyOptions, Blocks, BlockSvg, ContextMenuRegistry, Events, Extensions, Theme, ToolboxCategory, Workspace, WorkspaceSvg, Xml} from 'blockly';
 // Not used until https://github.com/google/blockly-samples/issues/2035 is fixed
 // import {blocks as procedureBlocks, unregisterProcedureBlocks} from '@blockly/block-shareable-procedures';
-import {BlocklyOptions} from 'blockly/core/blockly_options';
 import blockStyles from '../../assets/blocks/styles/blockStyles.json';
 import blockDisabledStyles from '../../assets/blocks/styles/blockDisabledStyles.json';
 import categoryStyles from '../../assets/blocks/styles/categoryStyles.json';
 import componentStyles from '../../assets/blocks/styles/componentStyles.json';
 import componentDarkStyles from '../../assets/blocks/styles/componentDarkStyles.json';
 import blocksJson from '../../assets/blocks/blocks.json';
-import {javascriptGenerator, Order} from 'blockly/javascript';
+import {javascriptGenerator, JavascriptGenerator, Order} from 'blockly/javascript';
 import {OnlineService} from './online.service';
 import {LocalStorageService} from './local-storage.service';
 import {CustomCategory} from '../components/blockly/custom-category';
 import toolboxJson from '../../assets/blocks/toolbox.json';
 import {SupportedLanguagesServices} from './supported-languages-service';
 
-export class RecursiveActionEvent extends Blockly.Events.Abstract {
+export class RecursiveActionEvent extends Events.Abstract {
   override isBlank = false;
   override recordUndo = false;
   override type = "RecursiveAction";
@@ -79,43 +79,43 @@ export class CodeService {
     private onlineService: OnlineService
   ) {
     // Delete math_number block because it will be redefined with field slider
-    delete Blockly.Blocks['math_number'];
+    delete Blocks['math_number'];
 
     Blockly.defineBlocksWithJsonArray(blocksJson);
 
-    // Procedure blocks from the plugin block-shareable-procedures have a bug 
+    // Procedure blocks from the plugin block-shareable-procedures have a bug
     // that reenable them when deserialized, or renamed: https://github.com/google/blockly-samples/issues/2035
     // So for now, we use the core procedure blocks even if the documentation advises against it!
     // unregisterProcedureBlocks();
     // Blockly.common.defineBlocks(procedureBlocks)
 
     // Procedures with return values are not used
-    delete Blockly.Blocks['procedures_defreturn'];
-    delete Blockly.Blocks['procedures_ifreturn'];
+    delete Blocks['procedures_defreturn'];
+    delete Blocks['procedures_ifreturn'];
 
     // Remove the mutator from the procedure definition block because we don't want inputs
-    var proceduresDefInit = Blockly.Blocks['procedures_defnoreturn'].init;
-    Blockly.Blocks['procedures_defnoreturn'].init = function () {
+    var proceduresDefInit = Blocks['procedures_defnoreturn'].init;
+    Blocks['procedures_defnoreturn'].init = function () {
       proceduresDefInit.call(this);
       this.hat = 'anything_other_than_cap';
       this.setMutator(undefined);
     };
 
     // As all actions, procedure call blocks can't have a next statement
-    var proceduresCallInit = Blockly.Blocks['procedures_callnoreturn'].init;
-    Blockly.Blocks['procedures_callnoreturn'].init = function () {
+    var proceduresCallInit = Blocks['procedures_callnoreturn'].init;
+    Blocks['procedures_callnoreturn'].init = function () {
       proceduresCallInit.call(this);
       this.setNextStatement(false);
     };
 
     // Disable contextual menu entry that enable/disable inlining (confusing for beginners)
-    Blockly.ContextMenuRegistry.registry.unregister('blockInline');
+    ContextMenuRegistry.registry.unregister('blockInline');
 
     // Disable contextual menu entry with 'help' (otherwise enabled on standard blocks)
-    Blockly.ContextMenuRegistry.registry.unregister('blockHelp');
+    ContextMenuRegistry.registry.unregister('blockHelp');
 
     // Those are the only two parameters available from the executed code (in executePlayerCode())
-    javascriptGenerator.addReservedWords(['game', 'player']);
+    javascriptGenerator.addReservedWords('game,player');
 
     javascriptGenerator.STATEMENT_PREFIX = 'game.useBlock(player, %1);\n';
 
@@ -146,12 +146,12 @@ export class CodeService {
 
     Blockly.registry.register(
       Blockly.registry.Type.TOOLBOX_ITEM,
-      Blockly.ToolboxCategory.registrationName,
+      ToolboxCategory.registrationName,
       CustomCategory,
       true);
   }
 
-  getWorkspace(blocklyDiv: HTMLElement, options: BlocklyOptions): Blockly.WorkspaceSvg {
+  getWorkspace(blocklyDiv: HTMLElement, options: BlocklyOptions): WorkspaceSvg {
     type ConstantProviderKey = keyof Blockly.blockRendering.ConstantProvider;
     const DUMMY_INPUT_MIN_HEIGHT: ConstantProviderKey = "DUMMY_INPUT_MIN_HEIGHT";
     const BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT: ConstantProviderKey = "BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT";
@@ -173,14 +173,14 @@ export class CodeService {
     options.rendererOverrides = {};
     options.rendererOverrides[DUMMY_INPUT_MIN_HEIGHT] = 0;
     options.rendererOverrides[BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT] = 0;
-    
+
     options.rtl = document.dir === 'rtl';
     Blockly.config.snapRadius = 48;
     Blockly.config.connectingSnapRadius = 68;
 
     const workspace = Blockly.inject(blocklyDiv, options);
 
-    workspace.addChangeListener(Blockly.Events.disableOrphans);
+    workspace.addChangeListener(Events.disableOrphans);
 
     // The check for recursive actions could be done with by Blockly's INFINITE_LOOP_TRAP,
     // but then it would only be caught when launching a game.
@@ -192,9 +192,9 @@ export class CodeService {
     return workspace;
   }
 
-  private static RecursiveActionsDetector(event: Blockly.Events.Abstract) {
+  private static RecursiveActionsDetector(event: Events.Abstract) {
     // Only moves that connect blocks can lead to recursive actions
-    if (!(event instanceof Blockly.Events.BlockMove) || !event.reason?.includes('connect')) {
+    if (!(event instanceof Events.BlockMove) || !event.reason?.includes('connect')) {
       return;
     }
 
@@ -234,7 +234,7 @@ export class CodeService {
   }
 
   // Check recursively from blocks to their ascendents, and throw and error if we find their own definition block
-  private static checkForRecursiveActions(blocksToParse: Block[], actionsEncountered: string[], workspace: Blockly.Workspace, blocksJsonHierarchy: BlockJson[]): void {
+  private static checkForRecursiveActions(blocksToParse: Block[], actionsEncountered: string[], workspace: Workspace, blocksJsonHierarchy: BlockJson[]): void {
     blocksToParse.map(block => {
       // If we find a definition block
       if (block.type == 'procedures_defnoreturn') {
@@ -284,22 +284,22 @@ export class CodeService {
   }
 
   private static computeCode(blocks: string): string {
-    const workspace = new Blockly.Workspace();
+    const workspace = new Workspace();
     CodeService.loadBlocksInWorkspace(blocks, workspace);
     const code = javascriptGenerator.workspaceToCode(workspace);
     workspace.dispose();
     return code;
   }
 
-  static loadBlocksInWorkspace(blocks: string, workspace: Blockly.Workspace) {
+  static loadBlocksInWorkspace(blocks: string, workspace: Workspace) {
     if (blocks.startsWith('{')) {
       Blockly.serialization.workspaces.load(JSON.parse(blocks), workspace);
     } else {
-      Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(blocks), workspace);
+      Xml.domToWorkspace(Blockly.utils.xml.textToDom(blocks), workspace);
     }
   }
 
-  static getBlocksFromWorkspace(workspace: Blockly.Workspace): string {
+  static getBlocksFromWorkspace(workspace: Workspace): string {
     return JSON.stringify(Blockly.serialization.workspaces.save(workspace));
   }
 
@@ -331,57 +331,57 @@ export class CodeService {
   }
 
   private defineBlocksCodeGen(): void {
-    javascriptGenerator.forBlock['event_ball_mine'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['event_ball_mine'] = (block: Block, generator: JavascriptGenerator) => {
       return `if (game.ball.owner === player) {
 ${generator.statementToCode(block, 'DO')}
   return;
 }`;
     };
 
-    javascriptGenerator.forBlock['event_ball_teammate'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['event_ball_teammate'] = (block: Block, generator: JavascriptGenerator) => {
       return `if (game.ball.owner !== null && game.ball.owner.ownTeam === player.ownTeam && game.ball.owner !== player) {
 ${generator.statementToCode(block, 'DO')}
   return;
 }`;
     };
 
-    javascriptGenerator.forBlock['event_ball_opponent'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['event_ball_opponent'] = (block: Block, generator: JavascriptGenerator) => {
       return `if (game.ball.owner !== null && game.ball.owner.ownTeam !== player.ownTeam) {
 ${generator.statementToCode(block, 'DO')}
   return;
 }`;
     };
 
-    javascriptGenerator.forBlock['event_ball_none'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['event_ball_none'] = (block: Block, generator: JavascriptGenerator) => {
       return `if (game.ball.owner === null) {
 ${generator.statementToCode(block, 'DO')}
   return;
 }`;
     };
 
-    javascriptGenerator.forBlock['move'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['move'] = (block: Block, generator: JavascriptGenerator) => {
       // target can't be empty because of shadow block
       const target = generator.valueToCode(block, 'NAME', Order.NONE);
       return `game.move(player, ${target}, false);`;
     };
 
-    javascriptGenerator.forBlock['sprint'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['sprint'] = (block: Block, generator: JavascriptGenerator) => {
       // target can't be empty because of shadow block
       const target = generator.valueToCode(block, 'NAME', Order.NONE);
       return `game.move(player, ${target}, true);`;
     };
 
-    javascriptGenerator.forBlock['shoot'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['shoot'] = (block: Block, generator: JavascriptGenerator) => {
       // target can't be empty because of shadow block
       const target = generator.valueToCode(block, 'NAME', Order.NONE);
       return `game.shoot(player, ${target});`;
     };
 
-    javascriptGenerator.forBlock['call_for_ball'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['call_for_ball'] = (block: Block, generator: JavascriptGenerator) => {
       return `game.callForBall(player);`;
     };
 
-    javascriptGenerator.forBlock['player'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['player'] = (block: Block, generator: JavascriptGenerator) => {
       // ref can't be empty because of shadow blocks
       const ref = generator.valueToCode(block, 'PLAYER_POS_REF', Order.NONE);
       const isOwnTeam = block.getFieldValue('PLAYER_TEAM') === 'PLAYER_TEAM_OWN';
@@ -401,29 +401,29 @@ ${generator.statementToCode(block, 'DO')}
       return [`game.getPlayer(player, ${isOwnTeam}, ${isAtkRole}, ${isRightSide}, ${isNear}, ${ref})`, Order.FUNCTION_CALL];
     };
 
-    javascriptGenerator.forBlock['goal'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['goal'] = (block: Block, generator: JavascriptGenerator) => {
       return [`game.getGoal(player, ${block.getFieldValue('GOAL_TYPE') === 'GOAL_OWN'})`, Order.FUNCTION_CALL];
     };
 
-    javascriptGenerator.forBlock['grid'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['grid'] = (block: Block, generator: JavascriptGenerator) => {
       let col = +block.getFieldValue('GRID_COL');
       let row = +block.getFieldValue('GRID_ROW');
       return [`game.getGridPosition(!player.ownTeam, ${col}, ${row})`, Order.FUNCTION_CALL];
     };
 
-    javascriptGenerator.forBlock['ball'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['ball'] = (block: Block, generator: JavascriptGenerator) => {
       return [`game.ball.coord`, Order.MEMBER];
     };
 
-    javascriptGenerator.forBlock['myself'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['myself'] = (block: Block, generator: JavascriptGenerator) => {
       return [`player`, Order.ATOMIC];
     };
 
-    javascriptGenerator.forBlock['position'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['position'] = (block: Block, generator: JavascriptGenerator) => {
       return [`game.getTargetPosition(player)`, Order.FUNCTION_CALL];
     };
 
-    javascriptGenerator.forBlock['middle'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['middle'] = (block: Block, generator: JavascriptGenerator) => {
       // pos1 can't be empty because of shadow blocks
       const pos1 = generator.valueToCode(block, 'POS1', Order.NONE);
       // pos2 can't be empty because of shadow blocks
@@ -431,13 +431,13 @@ ${generator.statementToCode(block, 'DO')}
       return [`game.getMiddle(${pos1}, ${pos2})`, Order.FUNCTION_CALL];
     };
 
-    javascriptGenerator.forBlock['closest'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['closest'] = (block: Block, generator: JavascriptGenerator) => {
       // ref can't be empty because of shadow block
       const ref = generator.valueToCode(block, 'NAME', Order.NONE);
       return [`game.isClosest(player, ${ref})`, Order.FUNCTION_CALL];
     };
 
-    javascriptGenerator.forBlock['distance'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['distance'] = (block: Block, generator: JavascriptGenerator) => {
       // from can't be empty because of shadow blocks
       const from = generator.valueToCode(block, 'FROM', Order.NONE);
       // to can't be empty because of shadow blocks
@@ -445,7 +445,7 @@ ${generator.statementToCode(block, 'DO')}
       return [`game.getDistance(${from}, ${to})`, Order.FUNCTION_CALL];
     };
 
-    javascriptGenerator.forBlock['role_and_side'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['role_and_side'] = (block: Block, generator: JavascriptGenerator) => {
       // player can't be empty because of shadow blocks
       const player = generator.valueToCode(block, 'PLAYER', Order.NONE);
       let isAtkRole: boolean | null = null;
@@ -463,7 +463,7 @@ ${generator.statementToCode(block, 'DO')}
       return [`game.playerIsRoleAndSide(${player}, ${isAtkRole}, ${isRightSide})`, Order.FUNCTION_CALL];
     };
 
-    javascriptGenerator.forBlock['place'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['place'] = (block: Block, generator: JavascriptGenerator) => {
       // item can't be empty because of shadow block
       const item = generator.valueToCode(block, 'ITEM', Order.NONE);
       let col = +block.getFieldValue('POS_COL');
@@ -471,7 +471,7 @@ ${generator.statementToCode(block, 'DO')}
       return [`game.itemInGrid(!player.ownTeam, ${item}, ${col}, ${row})`, Order.FUNCTION_CALL];
     };
 
-    javascriptGenerator.forBlock['energy'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['energy'] = (block: Block, generator: JavascriptGenerator) => {
       // player can't be empty because of shadow block
       const player = generator.valueToCode(block, 'NAME', Order.MEMBER);
       return [`${player}.energy`, Order.MEMBER];
@@ -479,7 +479,7 @@ ${generator.statementToCode(block, 'DO')}
 
     // We can't use standard 'controls_ifelse' because
     // we don't want anything else stacked below
-    javascriptGenerator.forBlock['custom_if'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['custom_if'] = (block: Block, generator: JavascriptGenerator) => {
       // No shadow block on if statement
       let ifStatement = generator.valueToCode(block, 'IF', Order.NONE) || 'false';
       const thenStatement = generator.statementToCode(block, 'THEN');
@@ -493,7 +493,7 @@ ${elseStatement}
     };
 
     // We don't use standard 'logic_compare' because we only want < and >
-    javascriptGenerator.forBlock['custom_compare'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['custom_compare'] = (block: Block, generator: JavascriptGenerator) => {
       // No shadow block on left statement
       let left = generator.valueToCode(block, 'LEFT', Order.RELATIONAL) || '0';
       // right can't be empty because of shadow block
@@ -505,11 +505,11 @@ ${elseStatement}
       }
     };
 
-    javascriptGenerator.forBlock['elapsed_time'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['elapsed_time'] = (block: Block, generator: JavascriptGenerator) => {
       return [`game.gameTime`, Order.MEMBER];
     };
 
-    javascriptGenerator.forBlock['leading_team'] = (block: Blockly.Block, generator: Blockly.CodeGenerator) => {
+    javascriptGenerator.forBlock['leading_team'] = (block: Block, generator: JavascriptGenerator) => {
       if (block.getFieldValue('TEAM') === 'TEAM_OWN') {
         return [`game.ownScore > game.oppScore`, Order.RELATIONAL];
       } else if (block.getFieldValue('TEAM') === 'TEAM_OPP') {

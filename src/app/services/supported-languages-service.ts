@@ -12,17 +12,17 @@
 import {TranslateService} from '@ngx-translate/core';
 import {Injectable} from '@angular/core';
 
-import Fr from 'blockly/msg/fr';
+import * as Fr from 'blockly/msg/fr';
 import CustomFr from '../../assets/i18n/fr.json';
-import Es from 'blockly/msg/es';
+import * as Es from 'blockly/msg/es';
 import CustomEs from '../../assets/i18n/es.json';
-import Ru from 'blockly/msg/ru';
+import * as Ru from 'blockly/msg/ru';
 import CustomRu from '../../assets/i18n/ru.json';
-import En from 'blockly/msg/en';
+import * as En from 'blockly/msg/en';
 import CustomEn from '../../assets/i18n/en.json';
-import He from 'blockly/msg/he';
+import * as He from 'blockly/msg/he';
 import CustomHe from '../../assets/i18n/he.json';
-import De from 'blockly/msg/de';
+import * as De from 'blockly/msg/de';
 import CustomDe from '../../assets/i18n/de.json';
 
 class SupportedLanguage {
