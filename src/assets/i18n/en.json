@@ -153,7 +153,6 @@
       "IMPROVE": "You try to improve your score?",
       "RISK": "You take the risk of playing again?"
     },
-    "ACCOUNT": "Account",
     "DISCONNECT_GUEST": "If you logout, you will lose your guest account!",
     "DISCONNECT_OTHER": "Logout if you want to use another account",
     "NICKNAME_LIMIT": "20 characters max",
@@ -166,20 +165,14 @@
   },
   "BLOCKLY": {
     "FIELD_POPUP": {
-      "TOOLTIP": "Field overview",
       "TITLE": "Field overview with target position of each player"
     },
-    "DELETE": "Delete all my blocks",
     "DELETE_WARNING": "You really want to delete all your blocks!?",
-    "UNDO": "Cancel",
-    "REDO": "Redo",
-    "VALIDATE_BLOCKS": "Validate my strategy",
     "SELF_DEFINED_ACTION": "You can't put <strong>{{value}}</strong> in its own definition!"
   },
   "GAME": {
     "MIN": "min",
     "STOP_MODAL": "Do you want to stop this game?",
-    "GAME_ACCELERATED": "Accelerated",
     "KICK_OFF": "Let's go!",
     "CLICK_ANYWHERE": "(click anywhere)",
     "HALF_TIME": "Half-time",

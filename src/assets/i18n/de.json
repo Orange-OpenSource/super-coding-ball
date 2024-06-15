@@ -153,7 +153,6 @@
       "IMPROVE": "Möchtest du versuchen, deine Punktzahl zu verbessern?",
       "RISK": "Nimmst du das Risiko in Kauf, noch einmal zu spielen?"
     },
-    "ACCOUNT": "Konto",
     "DISCONNECT_GUEST": "Wenn du dich ausloggst, verlierst du deinen Gastzugang!",
     "DISCONNECT_OTHER": "Melde dich ab, wenn du ein anderes Konto verwenden möchtest.",
     "NICKNAME_LIMIT": "maximal 20 Zeichen",
@@ -166,20 +165,14 @@
   },
   "BLOCKLY": {
     "FIELD_POPUP": {
-      "TOOLTIP": "Spielfeldübersicht",
       "TITLE": "Spielfeldübersicht mit Zielposition aller Spieler*in"
     },
-    "DELETE": "Alle meine Blöcke löschen",
     "DELETE_WARNING": "Möchtest du wirklich alle deine Blöcke löschen?",
-    "UNDO": "Rückgängig machen",
-    "REDO": "Wiederherstellen",
-    "VALIDATE_BLOCKS": "Meine Strategie validieren",
     "SELF_DEFINED_ACTION": "Du kannst <strong>{{value}}</strong> nicht in eine eigene Definition einfügen!"
   },
   "GAME": {
     "MIN": "min",
     "STOP_MODAL": "Möchtest du dieses Spiel beenden?",
-    "GAME_ACCELERATED": "Zeitraffer",
     "KICK_OFF": "Los geht's!",
     "CLICK_ANYWHERE": "(klicke irgendwo hin)",
     "HALF_TIME": "Halbzeit",

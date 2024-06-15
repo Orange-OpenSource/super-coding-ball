@@ -153,7 +153,6 @@
       "IMPROVE": "Tu tentes d'améliorer ton score\u00A0?",
       "RISK": "Tu prends le risque de le rejouer\u00A0?"
     },
-    "ACCOUNT": "Compte",
     "DISCONNECT_GUEST": "Si tu te déconnectes, tu perdras ton compte invité\u00A0!",
     "DISCONNECT_OTHER": "Déconnecte-toi si tu veux utiliser un autre compte",
     "NICKNAME_LIMIT": "20 caractères max",
@@ -166,20 +165,14 @@
   },
   "BLOCKLY": {
     "FIELD_POPUP": {
-      "TOOLTIP": "Aperçu du terrain",
       "TITLE": "Aperçu du terrain avec poste cible de chaque joueur"
     },
-    "DELETE": "Effacer tous mes blocs",
     "DELETE_WARNING": "Tu veux vraiment effacer tous tes blocs\u00A0!?",
-    "UNDO": "Annuler",
-    "REDO": "Refaire",
-    "VALIDATE_BLOCKS": "Valider ma stratégie",
     "SELF_DEFINED_ACTION": "Tu ne peux pas mettre <strong>{{value}}</strong> dans sa propre définition !"
   },
   "GAME": {
     "MIN": "min",
     "STOP_MODAL": "Est-ce que tu veux arrêter le match\u00A0?",
-    "GAME_ACCELERATED": "Accéléré",
     "KICK_OFF": "C'est parti\u00A0!",
     "CLICK_ANYWHERE": "(clique n'importe où)",
     "HALF_TIME": "Mi-temps",
