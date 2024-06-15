@@ -341,6 +341,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.positionPlayersAndBallBeforeKickOff();
     this.ball.owner = null;
     this.ball.coord = this.getGridPosition(false, 3, 3);
+    this.ball.velocity = 0;
     this.gamePaused = false;
     this.gameHalted = true;
   }
