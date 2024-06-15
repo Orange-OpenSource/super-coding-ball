@@ -363,16 +363,16 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.moveBall();
     let caller = this.ball.caller;
     for (const player of this.players) {
-      // Calling players show the 'call' block until calling is done
-      if (player.state !== PlayerState.Calling) {
+      // Calling and shooting players show this action until it is done
+      if (player.state !== PlayerState.Calling && player.state !== PlayerState.Shooting) {
         player.lastBlockId = '';
       }
       player.still = true;
-      if (player.state === PlayerState.Entering || player.state === PlayerState.Playing || player.state === PlayerState.Pushed) {
+      if (player.canExecuteCode) {
         // Before anything, if a teammate has called for the ball long enough...
         if (caller && this.ball.owner?.ownTeam == caller.ownTeam) {
           // ...make the pass
-          this.shoot(player, caller)
+          this.shoot(player, caller, true);
         }
         try {
           this.executePlayerCode(player);
@@ -404,8 +404,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private handlePlayerCollisions(player: Player): void {
-    for (const otherPlayer of this.players.filter(it => it !== player &&
-      (it.state === PlayerState.Playing || it.state === PlayerState.Calling || it.state === PlayerState.Pushed))) {
+    for (const otherPlayer of this.players.filter(it => it !== player && it.canHaveCollisions)) {
       const isOpponent = player.ownTeam !== otherPlayer.ownTeam;
       const collisionDist = isOpponent ? opponentsCollisionDist : teammatesCollisionDist;
       if (this.computeDistance(player.coord, otherPlayer.coord) < collisionDist) {
@@ -432,7 +431,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     if (thief.still || Math.cos(angleFromThiefToOwner - thief.angle) < Math.cos(Math.PI / 4)) {
       return;
     }
-    if (owner.state !== PlayerState.Pushed && owner.state !== PlayerState.Calling) {
+    if (owner.canBePushed) {
       owner.state = PlayerState.Pushed;
     }
     // -1 if thief arrives from front, 1 if he arrives from behind
@@ -669,7 +668,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  private shoot(player: Player, target: SpriteCoord | Player): void {
+  private shoot(player: Player, target: SpriteCoord | Player, passingToCaller = false): void {
     if (this.ball.owner !== player) {
       return;
     }
@@ -712,6 +711,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.players.forEach(player => {
       if (player.state == PlayerState.Calling) player.state = PlayerState.Playing;
     })
+
+    player.state = passingToCaller ? PlayerState.PassingToCaller : PlayerState.Shooting;
   }
 
   private getPerfectVelocity(player: Player, targetCoord: SpriteCoord): number {

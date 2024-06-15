@@ -15,6 +15,8 @@ export enum PlayerState {
   Entering,
   Greeting,
   Playing,
+  Shooting,
+  PassingToCaller,
   Calling,
   Pushed,
   Falling,
@@ -30,6 +32,10 @@ const runningDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 10, 1, 8), s
 const runningRightAnim: SpriteAnim = {frames: [{row: 11, col: 8}].concat(buildFrames(Dir.Right, 11, 1, 7)), speed: 1};
 // tslint:disable-next-line:max-line-length
 const greetingAnim: SpriteAnim = {frames: [{row: 2, col: 0}, {row: 2, col: 3}, {row: 2, col: 4}, {row: 2, col: 5}, {row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}, {row: 2, col: 4}, {row: 2, col: 3}], speed: 0.2};
+const shootingUpAnim: SpriteAnim = {frames: [{row: 8, col: 3}, {row: 8, col: 4}, {row: 8, col: 4}, {row: 8, col: 4}], speed: 0.5};
+const shootingLeftAnim: SpriteAnim = {frames: [{row: 9, col: 3}, {row: 9, col: 4}, {row: 9, col: 4}, {row: 9, col: 4}], speed: 0.5};
+const shootingDownAnim: SpriteAnim = {frames: [{row: 10, col: 3}, {row: 10, col: 4}, {row: 10, col: 4}, {row: 10, col: 4}], speed: 0.5};
+const shootingRightAnim: SpriteAnim = {frames: [{row: 11, col: 3}, {row: 11, col: 4}, {row: 11, col: 4}, {row: 11, col: 4}], speed: 0.5};
 const callingUpAnim: SpriteAnim = {frames: [{row: 12, col: 4}, {row: 12, col: 5}, {row: 12, col: 4}, {row: 12, col: 5}, {row: 12, col: 4}], speed: 0.2};
 const callingLeftAnim: SpriteAnim = {frames: [{row: 13, col: 4}, {row: 13, col: 5}, {row: 13, col: 4}, {row: 13, col: 5}, {row: 13, col: 4}], speed: 0.2};
 const callingDownAnim: SpriteAnim = {frames: [{row: 14, col: 4}, {row: 14, col: 5}, {row: 14, col: 4}, {row: 14, col: 5}, {row: 14, col: 4}], speed: 0.2};
@@ -73,6 +79,35 @@ export class Player extends Sprite {
     this.currentFrame = 0;
   }
 
+  get canExecuteCode(): boolean {
+    return this.state === PlayerState.Entering
+    || this.state === PlayerState.Playing
+    || this.state === PlayerState.Pushed;
+  }
+
+  get canHaveCollisions(): boolean {
+    return this.state === PlayerState.Playing
+    || this.state === PlayerState.Shooting
+    || this.state === PlayerState.PassingToCaller
+    || this.state === PlayerState.Calling
+    || this.state === PlayerState.Pushed
+  }
+
+  get canBePushed(): boolean {
+    return this.state !== PlayerState.Pushed
+    && this.state !== PlayerState.Shooting
+    && this.state !== PlayerState.PassingToCaller
+    && this.state !== PlayerState.Calling
+  }
+
+  get willPlayWhenActionFinished(): boolean {
+    return this.state === PlayerState.Pushed
+    || this.state === PlayerState.Falling 
+    || this.state === PlayerState.Shooting 
+    || this.state === PlayerState.PassingToCaller 
+    || this.state === PlayerState.Calling;
+  }
+
   lastBlockId = '';
 
   constructor(
@@ -101,6 +136,18 @@ export class Player extends Sprite {
     switch (this.state) {
       case PlayerState.Greeting:
         return greetingAnim;
+      case PlayerState.Shooting:
+      case PlayerState.PassingToCaller:
+            switch (Sprite.getDirection(this.angle)) {
+          case Dir.Up:
+            return shootingUpAnim;
+          case Dir.Left:
+            return shootingLeftAnim;
+          case Dir.Down:
+            return shootingDownAnim;
+          case Dir.Right:
+            return shootingRightAnim;
+        }
       case PlayerState.Calling:
         switch (Sprite.getDirection(this.angle)) {
           case Dir.Up:
@@ -112,7 +159,6 @@ export class Player extends Sprite {
           case Dir.Right:
             return callingRightAnim;
         }
-        break;
       case PlayerState.Falling:
         return fallingAnim;
       case PlayerState.Pushed:
@@ -155,20 +201,12 @@ export class Player extends Sprite {
     if (this.state === PlayerState.Greeting && this.currentFrame === 0) {
       this.state = PlayerState.Waiting;
     }
-    // When pushed is done, go back to playing
-    if (this.state === PlayerState.Pushed && this.currentFrame === 0) {
+    if (this.willPlayWhenActionFinished && this.currentFrame === 0) {
+      // When falling is done, recover full energy
+      if (this.state === PlayerState.Falling) {
+        this.energy = 100;
+      }
       this.state = PlayerState.Playing;
-    }
-
-    // When calling is done, go back to playing
-    if (this.state === PlayerState.Calling && this.currentFrame === 0) {
-      this.state = PlayerState.Playing;
-    }
-
-    // When falling is done, go back to playing and recover full energy
-    if (this.state === PlayerState.Falling && this.currentFrame === 0) {
-      this.state = PlayerState.Playing;
-      this.energy = 100;
     }
     // If playing and still, reset frame so that the player looks still
     if (this.state === PlayerState.Playing && this.still) {
