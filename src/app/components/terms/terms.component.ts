@@ -10,14 +10,10 @@
  */
 
 import {Component} from '@angular/core';
-import {TouchDevicesService} from '../../services/touch-devices.service';
 
 @Component({
   selector: 'app-terms',
   templateUrl: './terms.component.html'
 })
 export class TermsComponent {
-
-  constructor(public touchDevicesService: TouchDevicesService) {
-  }
 }

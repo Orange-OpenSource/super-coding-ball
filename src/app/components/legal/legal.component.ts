@@ -11,7 +11,6 @@
 
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {TouchDevicesService} from '../../services/touch-devices.service';
 import {firstValueFrom} from 'rxjs';
 
 @Component({
@@ -21,7 +20,7 @@ import {firstValueFrom} from 'rxjs';
 export class LegalComponent implements OnInit {
   thirdParty = '';
 
-  constructor(private http: HttpClient, public touchDevicesService: TouchDevicesService) {
+  constructor(private http: HttpClient) {
   }
 
   async ngOnInit(): Promise<void> {

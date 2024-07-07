@@ -12,7 +12,6 @@
 import {Component} from '@angular/core';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {Router} from '@angular/router';
-import {TouchDevicesService} from '../../services/touch-devices.service';
 import {OnlineService} from 'src/app/services/online.service';
 
 @Component({
@@ -31,8 +30,7 @@ export class PrivacyComponent {
   constructor(
     private onlineService: OnlineService,
     private localStorageService: LocalStorageService,
-    private router: Router,
-    public touchDevicesService: TouchDevicesService
+    private router: Router
   ) {
   }
 

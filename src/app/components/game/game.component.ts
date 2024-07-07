@@ -20,7 +20,6 @@ import {LocalStorageService} from '../../services/local-storage.service';
 import {OnlineService} from '../../services/online.service';
 import {environment} from '../../../environments/environment';
 import {GamePoint} from '../online-opponents/online-opponents.component';
-import {TouchDevicesService} from '../../services/touch-devices.service';
 
 interface FieldDivision {
   start: number;
@@ -137,8 +136,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     private localStorageService: LocalStorageService,
     private router: Router,
     private route: ActivatedRoute,
-    public modalService: NgbModal,
-    public touchDevicesService: TouchDevicesService
+    public modalService: NgbModal
   ) {
     this.computeGridPositions();
     this.isOnline = this.router.url.includes('/online/');
@@ -288,7 +286,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
       await new Promise(resolve => setTimeout(resolve, lastFrameTimestamp + 1000/this.maxFramesPerSecond - performance.now()));
     }
 
-    window.requestAnimationFrame(lastFrameTimestamp => this.drawingLoop(lastFrameTimestamp));
+    window.requestAnimationFrame(timeStamp => this.drawingLoop(timeStamp));
   }
 
   private tickClock(): void {
