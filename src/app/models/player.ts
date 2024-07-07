@@ -30,12 +30,16 @@ const runningUpAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 8, 1, 8), spee
 const runningLeftAnim: SpriteAnim = {frames: [{row: 9, col: 8}].concat(buildFrames(Dir.Right, 9, 1, 7)), speed: 1};
 const runningDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 10, 1, 8), speed: 1};
 const runningRightAnim: SpriteAnim = {frames: [{row: 11, col: 8}].concat(buildFrames(Dir.Right, 11, 1, 7)), speed: 1};
+const sprintingUpAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 34, 0, 8), speed: 1};
+const sprintingLeftAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 35, 0, 8), speed: 1};
+const sprintingDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 36, 0, 8), speed: 1};
+const sprintingRightAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 37, 0, 8), speed: 1};
 // tslint:disable-next-line:max-line-length
 const greetingAnim: SpriteAnim = {frames: [{row: 2, col: 0}, {row: 2, col: 3}, {row: 2, col: 4}, {row: 2, col: 5}, {row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}, {row: 2, col: 4}, {row: 2, col: 3}], speed: 0.2};
-const shootingUpAnim: SpriteAnim = {frames: [{row: 8, col: 3}, {row: 8, col: 4}, {row: 8, col: 4}, {row: 8, col: 4}], speed: 0.5};
-const shootingLeftAnim: SpriteAnim = {frames: [{row: 9, col: 3}, {row: 9, col: 4}, {row: 9, col: 4}, {row: 9, col: 4}], speed: 0.5};
-const shootingDownAnim: SpriteAnim = {frames: [{row: 10, col: 3}, {row: 10, col: 4}, {row: 10, col: 4}, {row: 10, col: 4}], speed: 0.5};
-const shootingRightAnim: SpriteAnim = {frames: [{row: 11, col: 3}, {row: 11, col: 4}, {row: 11, col: 4}, {row: 11, col: 4}], speed: 0.5};
+const shootingUpAnim: SpriteAnim = {frames: [{row: 34, col: 3}, {row: 34, col: 5}, {row: 34, col: 7}, {row: 34, col: 7}], speed: 0.5};
+const shootingLeftAnim: SpriteAnim = {frames: [{row: 35, col: 5}, {row: 35, col: 6}, {row: 35, col: 7}, {row: 35, col: 7}], speed: 0.5};
+const shootingDownAnim: SpriteAnim = {frames: [{row: 36, col: 4}, {row: 36, col: 2}, {row: 36, col: 0}, {row: 36, col: 0}], speed: 0.5};
+const shootingRightAnim: SpriteAnim = {frames: [{row: 37, col: 1}, {row: 37, col: 2}, {row: 37, col: 3}, {row: 37, col: 3}], speed: 0.5};
 const callingUpAnim: SpriteAnim = {frames: [{row: 12, col: 4}, {row: 12, col: 5}, {row: 12, col: 4}, {row: 12, col: 5}, {row: 12, col: 4}], speed: 0.2};
 const callingLeftAnim: SpriteAnim = {frames: [{row: 13, col: 4}, {row: 13, col: 5}, {row: 13, col: 4}, {row: 13, col: 5}, {row: 13, col: 4}], speed: 0.2};
 const callingDownAnim: SpriteAnim = {frames: [{row: 14, col: 4}, {row: 14, col: 5}, {row: 14, col: 4}, {row: 14, col: 5}, {row: 14, col: 4}], speed: 0.2};
@@ -60,6 +64,7 @@ export class Player extends Sprite {
   ownTeam: boolean;
   isAtkRole: boolean;
   isRightSide: boolean;
+  isSprinting: boolean;
   private _energy = 100;
   get energy(): number {
     return this._energy;
@@ -117,7 +122,7 @@ export class Player extends Sprite {
     isRightSide: boolean
   ) {
     super(
-      assetName,
+      'new-anims',
       64,
       64,
       32,
@@ -130,6 +135,7 @@ export class Player extends Sprite {
     this.ownTeam = ownTeam;
     this.isAtkRole = isAtkRole;
     this.isRightSide = isRightSide;
+    this.isSprinting = false;
   }
 
   override get animData(): SpriteAnim {
@@ -182,7 +188,16 @@ export class Player extends Sprite {
       case PlayerState.Waiting:
         return waitingAnim;
       default:
-        return super.animData;
+        switch (Sprite.getDirection(this.angle)) {
+          case Dir.Up:
+            return this.isSprinting ? sprintingUpAnim : runningUpAnim;
+          case Dir.Left:
+            return this.isSprinting ? sprintingLeftAnim : runningLeftAnim;
+          case Dir.Down:
+            return this.isSprinting ? sprintingDownAnim : runningDownAnim;
+          case Dir.Right:
+            return this.isSprinting ? sprintingRightAnim : runningRightAnim;
+        }
     }
   }
 

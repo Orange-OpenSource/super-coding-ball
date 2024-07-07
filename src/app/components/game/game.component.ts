@@ -366,6 +366,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
         player.lastBlockId = '';
       }
       player.still = true;
+      player.isSprinting = false;
       if (player.canExecuteCode) {
         // Before anything, if a teammate has called for the ball long enough...
         if (caller && this.ball.owner?.ownTeam == caller.ownTeam) {
@@ -625,6 +626,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     player.still = false;
     if (isSprinting && player.state !== PlayerState.Entering) {
       player.energy = player.energy - 2 * Math.random();
+      player.isSprinting = true;
     }
     if (player.energy === 0) {
       player.state = PlayerState.Falling;
