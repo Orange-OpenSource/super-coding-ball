@@ -159,3 +159,8 @@ table {
 .modal-header {
   justify-content: space-between;
 }
+
+// Don't show the header bottom border when it's not followed by a content (otherwise shows a glitch)
+.modal-header:only-child {
+  border-bottom: none;
+}
