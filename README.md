@@ -9,9 +9,7 @@ The goal is to discover programming with a football game! (it is a great way for
 
 The programming is done visually, like in [Scratch](https://scratch.mit.edu), but with fewer blocks (there is for example no "loops").
 
-The player will train a team of 4 footballers ![screenshot](./src/assets/howto/players.png)
-
-who will face 4 monsters ![screenshot](./src/assets/howto/opponents.png).
+The player will train a team of 4 footballers who will face 4 monsters.
 
 The team's strategy is built with blocks, then the game takes place automatically following the strategies of the two teams.
 
@@ -19,7 +17,7 @@ The team's strategy is built with blocks, then the game takes place automaticall
 
 # Mobile
 
-SuperCodingBall can be played on a mobile, tablet or a computer (in this case, the blocks are displayed next to the football field).
+SuperCodingBall can be played on mobile, tablet or computer (in this case, the blocks are displayed next to the football field).
 
 On an Android or iOS device, one can install the application as [PWA](https://web.dev/progressive-web-apps) (it allows to play even without connection).
 

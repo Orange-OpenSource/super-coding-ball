@@ -9,9 +9,7 @@ Le but est de découvrir la programmation avec un jeu de foot ! (c'est un excell
 
 La programmation est faite de façon visuelle, comme dans [Scratch](https://scratch.mit.edu/), mais avec moins de blocs (il n'y a par exemple pas de "boucles").
 
-Le joueur va entraîner une équipe de 4 footballeurs ![screenshot](./src/assets/howto/players.png)
-
-qui vont affronter 4 monstres ![screenshot](./src/assets/howto/opponents.png).
+Le joueur va entraîner une équipe de 4 footballeurs qui vont affronter 4 monstres.
 
 La stratégie de l'équipe est construite avec des blocs, ensuite le match se déroule automatiquement en suivant les stratégies des deux équipes.
 

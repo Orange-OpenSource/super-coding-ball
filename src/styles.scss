@@ -8,6 +8,74 @@ html, body {
   image-rendering: pixelated;
 }
 
+$spritesheet-width: 832px;
+$spritesheet-height: 1344px;
+
+$spritesheet-stop-pose-offset-x: 328px;
+$spritesheet-stop-pose-offset-y: 136px;
+
+$spritesheet-stop-pose-width: 48px;
+$spritesheet-stop-pose-height: 54px;
+
+.player-crop {
+  object-fit: none;
+  object-position: calc(-1 * $spritesheet-stop-pose-offset-x) calc(-1 * $spritesheet-stop-pose-offset-y);
+  width: $spritesheet-stop-pose-width;
+  height: $spritesheet-stop-pose-height;
+}
+
+.player-crop + .tooltip {
+  margin-bottom: 8px !important;
+}
+
+$reduction: 0.8;
+
+.debug-icon {
+  width: calc($spritesheet-width * $reduction);
+  height: calc($spritesheet-height * $reduction);
+  clip-path: inset(calc($spritesheet-stop-pose-offset-y * $reduction) calc(($spritesheet-width - $spritesheet-stop-pose-offset-x - $spritesheet-stop-pose-width) * $reduction) calc(($spritesheet-height - $spritesheet-stop-pose-offset-y - $spritesheet-stop-pose-height) * $reduction) calc($spritesheet-stop-pose-offset-x * $reduction));
+  transform: translate(calc(-1 * $spritesheet-stop-pose-offset-x * $reduction), calc(-1 * $spritesheet-stop-pose-offset-y * $reduction - 4px));
+}
+
+$spritesheet-dance-pose-width: 52px;
+$spritesheet-dance-pose-height: 48px;
+$spritesheet-dance-pose-offset-y: 911px;
+
+.dance-crop {
+  object-fit: none;
+  width: $spritesheet-dance-pose-width;
+  height: $spritesheet-dance-pose-height;
+  scale: 1.5;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 7px;
+}
+
+$spritesheet-dance1-pose-offset-x: 134px;
+.dance1-crop {
+  @extend .dance-crop;
+  object-position: calc(-1 * $spritesheet-dance1-pose-offset-x) calc(-1 * $spritesheet-dance-pose-offset-y);
+
+}
+
+$spritesheet-dance2-pose-offset-x: 198px;
+.dance2-crop {
+  @extend .dance-crop;
+  object-position: calc(-1 * $spritesheet-dance2-pose-offset-x) calc(-1 * $spritesheet-dance-pose-offset-y);
+}
+
+$spritesheet-dance3-pose-offset-x: 262px;
+.dance3-crop {
+  @extend .dance-crop;
+  object-position: calc(-1 * $spritesheet-dance3-pose-offset-x) calc(-1 * $spritesheet-dance-pose-offset-y);
+}
+
+$spritesheet-dance4-pose-offset-x: 326px;
+.dance4-crop {
+  @extend .dance-crop;
+  object-position: calc(-1 * $spritesheet-dance4-pose-offset-x) calc(-1 * $spritesheet-dance-pose-offset-y);
+}
+
 .icon24 {
   width: 24px;
   height: 24px;
