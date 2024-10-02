@@ -34,6 +34,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {AnonPicturePipe} from './services/anon-picture.pipe';
 import {CustomTranslateLoader} from './services/custom-translate-loader';
+import {DancingMonstersComponent} from './components/dancing-monster/dancing-monsters.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {CustomTranslateLoader} from './services/custom-translate-loader';
     PrivacyComponent,
     TermsComponent,
     LegalComponent,
+    DancingMonstersComponent,
     OfflineOpponentsComponent,
     OnlineOpponentsComponent,
     BlocklyComponent,

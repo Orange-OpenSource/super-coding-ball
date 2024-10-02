@@ -10,7 +10,6 @@
  */
 
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {LocalStorageService} from '../../services/local-storage.service';
 
 @Component({
@@ -21,7 +20,6 @@ export class OfflineOpponentsComponent implements OnInit {
   strategies: { id: string, won: boolean }[] = [];
 
   constructor(
-    private router: Router,
     private localStorageService: LocalStorageService
   ) {
   }
