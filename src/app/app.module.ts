@@ -34,7 +34,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {AnonPicturePipe} from './services/anon-picture.pipe';
 import {CustomTranslateLoader} from './services/custom-translate-loader';
-import {DancingMonstersComponent} from './components/dancing-monster/dancing-monsters.component';
+import {DancingMonstersComponent} from './components/dancing-monsters/dancing-monsters.component';
 
 @NgModule({
   declarations: [

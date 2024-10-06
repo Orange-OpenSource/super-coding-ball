@@ -584,9 +584,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   private drawEnergyBar(player: Player): void {
     const x0 = Math.round(player.offsetCoord.x) - 15;
     const y0 = Math.round(player.offsetCoord.y) - 52;
-    const x1 = x0 + energyBarWidth;
-    const y1 = y0 + energyBarHeight;
-    const gradient = this.fieldContext.createLinearGradient(x0, y0, x1, y1);
+    // Create a huge gradient, centered on the energy position, so that the energy bar color appears uniform
+    const gradient = this.fieldContext.createLinearGradient(x0 - 1000 * player.energy, y0, x0 + 1000 * (100 - player.energy), y0);
     gradient.addColorStop(0, 'red');
     gradient.addColorStop(0.3, 'orange');
     gradient.addColorStop(1, 'lime');

@@ -34,7 +34,7 @@ export abstract class DebugIcon extends Blockly.icons.Icon {
             Blockly.utils.Svg.IMAGE,
             {
                 'href': this.imageAsset,
-                'class': 'debug-icon',
+                'class': 'debug-icon pixelated',
             },
             this.svgRoot
         );
