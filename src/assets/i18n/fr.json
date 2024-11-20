@@ -159,7 +159,7 @@
     "CHANGE_NICKNAME": "Changer mon pseudo",
     "DISCONNECT_ACCOUNT": "Me déconnecter",
     "SYNC_TEXT": "Tes blocs sont exportés automatiquement à chaque fois que tu démarres un match en ligne.",
-    "DOWNLOAD_TEXT": "Si tu veux importer tes blocs (par exemple si tu as modifié ta stratégie sur un autre appareil), clique ici \u00A0:",
+    "DOWNLOAD_TEXT": "Si tu veux importer tes blocs (par exemple si tu as modifié ta stratégie sur un autre appareil), clique ici\u00A0:",
     "DELETE_ACCOUNT": "Supprimer définitivement mon compte",
     "DELETE_MODAL": "Tu es sûr de supprimer ton compte\u00A0??"
   },
