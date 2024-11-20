@@ -21,11 +21,11 @@
   <h4 class="m-0">{{"ONLINE.TITLE" | translate }}</h4>
   <div class="flex-grow-1 text-end">
     <button *ngIf="onlineService.connectionStatus === ConnectionStatus.Connected"
-      class="btn p-0 m-1 border border-dark border-3" type="button"
+      class="btn p-0 m-1 bg-black text-white border border-black border-3" type="button"
       onclick="this.blur()" (click)="modalService.open(accountInfoContent)">
       {{onlineService.userDisplay.displayName}}
       <span class="ps-1"></span>
-      <img class="border border-dark" height="40px"
+      <img class="rounded bg-white" height="40px"
         src="{{onlineService.userDisplay.pictureUrl | anonPicturePipe}}">
     </button>
   </div>
