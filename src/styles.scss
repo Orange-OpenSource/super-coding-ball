@@ -148,7 +148,7 @@ $spritesheet-dance4-pose-offset-x: 326px;
 }
 
 .customIconCondition {
-  background-image: url("/assets/icons/futbol-regular-question-mark.png");
+  background-image: url("/assets/icons/arrows-split-up-and-left-solid.png");
 }
 
 .customIconAction {
@@ -160,7 +160,7 @@ $spritesheet-dance4-pose-offset-x: 326px;
 }
 
 .customIconValue {
-  background-image: url("/assets/icons/hashtag-solid.png");
+  background-image: url("/assets/icons/arrows-left-right-to-line-solid.png");
 }
 
 .customIconAdvanced {
@@ -203,8 +203,7 @@ table {
   transform: scaleX(-1);
 }
 
-// Some category icons need flipping, not all
-[dir="rtl"] .customIconEvent, [dir="rtl"] .customIconAction, [dir="rtl"] .customIconMyActions {
+[dir="rtl"] .customIcon {
   transform: scaleX(-1);
 }
 
