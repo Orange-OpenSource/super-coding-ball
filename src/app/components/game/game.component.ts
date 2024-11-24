@@ -307,9 +307,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     for (const player of this.players) {
       player.state = PlayerState.Waiting;
     }
-    this.ball.owner = null;
     this.ball.velocity = 0;
-    this.ball.coord = this.getGridPosition(false, 3, 3);
     this.periodType = startSecondPeriod ? PeriodType.HalfTime : PeriodType.Finished;
     if (startSecondPeriod) {
       this.openKickOffPopup();
@@ -628,6 +626,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     if (player.energy === 0) {
       player.state = PlayerState.Falling;
       if (this.ball.owner === player) {
+        this.ball.velocity = 0;
         this.ball.owner = null;
         this.ball.coord.y = this.ball.coord.y - 7; // move ball up so that it is drawn before falling player
       }
