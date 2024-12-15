@@ -14,6 +14,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {HowtoDemoComponent} from '../howto-demo/howto-demo.component';
 import {CodeService} from '../../services/code.service';
 import {WorkspaceSvg} from 'blockly';
+import {interval, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-howto',
@@ -23,6 +24,8 @@ export class HowtoComponent implements OnInit, OnDestroy {
   private shootWorkspace!: WorkspaceSvg;
   private passWorkspace!: WorkspaceSvg;
   private shootOrPassWorkspace!: WorkspaceSvg;
+  askingSubscription?: Subscription;
+  askingStep = 1;
 
   constructor(
     private modalService: NgbModal,
@@ -36,8 +39,9 @@ export class HowtoComponent implements OnInit, OnDestroy {
     this.loadStrategy(this.passWorkspace, 'howto-pass');
     this.shootOrPassWorkspace = this.getHowToWorkspace('blocklyShootOrPassDiv');
     this.loadStrategy(this.shootOrPassWorkspace, 'howto-shoot-or-pass');
+    this.askingSubscription = interval(300).subscribe(count => this.askingStep = 1 + count % 2);
   }
-
+  
   getHowToWorkspace(divId: string): WorkspaceSvg {
     const blocklyDiv = document.getElementById(divId)!;
     return this.codeService.getWorkspace(
@@ -74,5 +78,6 @@ export class HowtoComponent implements OnInit, OnDestroy {
     this.shootWorkspace.dispose();
     this.passWorkspace.dispose();
     this.shootOrPassWorkspace.dispose();
+    this.askingSubscription?.unsubscribe();
   }
 }

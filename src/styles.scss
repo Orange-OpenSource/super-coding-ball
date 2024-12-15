@@ -76,6 +76,31 @@ $spritesheet-dance4-pose-offset-x: 326px;
   object-position: calc(-1 * $spritesheet-dance4-pose-offset-x) calc(-1 * $spritesheet-dance-pose-offset-y);
 }
 
+$spritesheet-asking-pose-width: 40px;
+$spritesheet-asking-pose-height: 54px;
+$spritesheet-asking-pose-offset-y: 969px;
+
+.asking-crop {
+  object-fit: none;
+  width: $spritesheet-asking-pose-width;
+  height: $spritesheet-asking-pose-height;
+  scale: 1.5;
+  margin: 10px;
+}
+
+$spritesheet-asking1-pose-offset-x: 273px;
+.asking1-crop {
+  @extend .asking-crop;
+  object-position: calc(-1 * $spritesheet-asking1-pose-offset-x) calc(-1 * $spritesheet-asking-pose-offset-y);
+
+}
+
+$spritesheet-asking2-pose-offset-x: 337px;
+.asking2-crop {
+  @extend .asking-crop;
+  object-position: calc(-1 * $spritesheet-asking2-pose-offset-x) calc(-1 * $spritesheet-asking-pose-offset-y);
+}
+
 .icon24 {
   width: 24px;
   height: 24px;
