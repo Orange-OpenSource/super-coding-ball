@@ -101,6 +101,13 @@ $spritesheet-asking2-pose-offset-x: 337px;
   object-position: calc(-1 * $spritesheet-asking2-pose-offset-x) calc(-1 * $spritesheet-asking-pose-offset-y);
 }
 
+.info-icon {
+  width: 24px;
+  height: 24px;
+  transform-origin: 12px 12px;
+  scale: 2;
+}
+
 .icon24 {
   width: 24px;
   height: 24px;
