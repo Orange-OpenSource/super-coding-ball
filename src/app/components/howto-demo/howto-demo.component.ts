@@ -143,8 +143,9 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
     const block = this.workspace.getBlockById(id)!;
     const xy = block.getRelativeToSurfaceXY();
     const heightWidth = block.getHeightWidth();
-    const blockCenterY = xy.y + heightWidth.height / 2;
-    const blockCenterX = xy.x + (heightWidth.width / 2);
+    const direction = document.dir === 'rtl' ? -1 : 1;
+    const blockCenterY = xy.y + direction * heightWidth.height / 2;
+    const blockCenterX = xy.x + direction * heightWidth.width / 2;
     const scale = this.workspace.scale;
     const pixelX = blockCenterX * scale;
     const pixelY = blockCenterY * scale;
