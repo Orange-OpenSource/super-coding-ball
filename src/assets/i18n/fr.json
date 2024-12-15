@@ -143,7 +143,7 @@
     "OPP_POINTS": "pts",
     "RANKING_POPUP": {
       "TITLE": "Infos sur le classement",
-      "CONTENT": "Le classement montre les joueurs connectés pendant les 15 derniers jours.<br><br>Tous les jours, tu peux jouer contre chaque adversaire et marquer\u00A0:<br>{{won}} 2 points pour une victoire,<br>{{draw}} 1 point pour un nul,<br>{{lost}} 0 point pour une défaite.<br><br>(tu peux rejouer les matches pour améliorer ton score)<br><br>Si tu abandonnes un match en cours, il est considéré perdu\u00A0!"
+      "CONTENT": "Le classement montre les joueurs connectés pendant les 15 derniers jours.<br><br>Tous les jours, tu peux jouer contre chaque adversaire et marquer\u00A0:<br>{{won}} 2 points pour une victoire,<br>{{draw}} 1 point pour un nul,<br>{{lost}} 0 point pour une défaite.<br><br>(tu peux rejouer les matchs pour améliorer ton score)<br><br>Si tu abandonnes un match en cours, il est considéré perdu\u00A0!"
     },
     "REPLAY": {
       "HEADER": "Tu as déjà joué ce match aujourd'hui ",
@@ -168,7 +168,7 @@
       "TITLE": "Aperçu du terrain avec poste cible de chaque joueur"
     },
     "DELETE_WARNING": "Tu veux vraiment effacer tous tes blocs\u00A0!?",
-    "SELF_DEFINED_ACTION": "Tu ne peux pas mettre <strong>{{value}}</strong> dans sa propre définition !"
+    "SELF_DEFINED_ACTION": "Tu ne peux pas mettre <strong>{{value}}</strong> dans sa propre définition\u00A0!"
   },
   "GAME": {
     "MIN": "min",
