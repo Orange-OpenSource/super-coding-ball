@@ -24,6 +24,8 @@ import * as He from 'blockly/msg/he';
 import CustomHe from '../../assets/i18n/he.json';
 import * as De from 'blockly/msg/de';
 import CustomDe from '../../assets/i18n/de.json';
+import * as Ar from 'blockly/msg/ar';
+import CustomAr from '../../assets/i18n/ar.json';
 
 class SupportedLanguage {
 
@@ -52,6 +54,7 @@ export const supportedLanguages = Array.from([
   new SupportedLanguage('ru', Ru, CustomRu.BLOCKS),
   new SupportedLanguage('he', He, CustomHe.BLOCKS, true),
   new SupportedLanguage('de', De, CustomDe.BLOCKS),
+  new SupportedLanguage('ar', Ar, CustomAr.BLOCKS, true),
 ])
 // Default is English
 const defaultLangId = 'en'
