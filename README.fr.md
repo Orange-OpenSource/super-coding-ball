@@ -49,7 +49,7 @@ Une fois le fichier [blocks.json](./src/assets/blocks/blocks.json) généré, il
 
 ## Création des sprites
 
-Tous les sprites des joueurs viennent "l'Open Game Art Liberated Pixel Cup" et ont été générés par [cet outil](https://github.com/sanderfrenken/Universal-LPC-Spritesheet-Character-Generator) :
+Tous les sprites des joueurs viennent "l'Open Game Art Liberated Pixel Cup" et ont été générés par [cet outil](https://github.com/LiberatedPixelCup/Universal-LPC-Spritesheet-Character-Generator) :
 
 * Guy 1
 * Guy 2
