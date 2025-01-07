@@ -259,6 +259,12 @@ table {
   justify-content: space-between;
 }
 
+// Pagination in Bootstrap is computed for LTR, so we make it RTL compatible by removing the border radius and adjusting margins
+.page-link {
+  border-radius: 0 !important;
+  margin-left: $pagination-margin-start;
+}
+
 // Don't show the header bottom border when it's not followed by a content (otherwise shows a glitch)
 .modal-header:only-child {
   border-bottom: none;

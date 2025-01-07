@@ -17,7 +17,7 @@
   <ul class="pagination pagination-sm justify-content-center m-0 w-100">
     <li class="page-item">
       <button class="page-link" (click)="currentStep = currentStep - 1">
-        <span><<</span>
+        <span>&laquo;</span>
       </button>
     </li>
     <li *ngFor="let step of steps; let index = index" class="page-item" [class.active]="currentStep === index">
@@ -25,7 +25,7 @@
     </li>
     <li class="page-item">
       <button class="page-link" (click)="currentStep = currentStep + 1">
-        <span>>></span>
+        <span>&raquo;</span>
       </button>
     </li>
   </ul>
