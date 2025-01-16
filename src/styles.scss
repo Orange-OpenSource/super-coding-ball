@@ -127,11 +127,6 @@ $spritesheet-asking2-pose-offset-x: 337px;
   opacity: 0.2;
 }
 
-// https://github.com/google/blockly/issues/865#issuecomment-275351345
-.blocklyMainBackground {
-  // Ugly hack to fix black safari background
-  opacity: 0 !important;
-}
 
 .blocklyFlyoutLabelText {
   font-weight: bolder !important;
@@ -139,22 +134,15 @@ $spritesheet-asking2-pose-offset-x: 337px;
 }
 
 /* Adds padding around the group of categories and separators. */
-.blocklyToolboxContents {
+.blocklyToolboxCategoryGroup {
   padding: .5em;
 }
 
 .blocklyToolboxCategory {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Adds space between the categories, rounds the corners and adds space around the label. */
-.blocklyTreeRow {
+  height: auto;
   padding: 4px !important;
   margin-bottom: .5em;
   border-radius: 4px;
-  height: 38px;
 }
 
 /* Stacks the icon on top of the label. */
@@ -162,10 +150,6 @@ $spritesheet-asking2-pose-offset-x: 337px;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.blocklyTreeRow {
-  height: initial;
 }
 
 .customIcon {
@@ -203,14 +187,14 @@ $spritesheet-asking2-pose-offset-x: 337px;
   background-image: url("/assets/icons/wand-sparkles.png");
 }
 
-// Disabled blocks are grey (first-of-type because the second element is the yellow focus)
-.blocklyDisabled > .blocklyPath:first-of-type {
+// Disabled blocks are grey
+.blocklyDisabledPattern > .blocklyPath {
   fill-opacity: 0.8;
   fill: lightgrey;
 }
 
-// Disabled blocks placeholders are darkgray (otherwise they would be hidden)
-.blocklyDisabled > .blocklyOutlinePath {
+// Disabled blocks placeholders are darkgray
+.blocklyDisabledPattern > .blocklyOutlinePath {
   fill: darkgray !important;
 }
 

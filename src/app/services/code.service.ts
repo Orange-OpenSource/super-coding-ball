@@ -11,9 +11,7 @@
 
 import {Injectable} from '@angular/core';
 import * as Blockly from 'blockly';
-import {Block, BlocklyOptions, Blocks, BlockSvg, ContextMenuRegistry, Events, Extensions, Theme, ToolboxCategory, Workspace, WorkspaceSvg, Xml} from 'blockly';
-// Not used until https://github.com/google/blockly-samples/issues/2035 is fixed
-// import {blocks as procedureBlocks, unregisterProcedureBlocks} from '@blockly/block-shareable-procedures';
+import {Block, BlocklyOptions, Blocks, BlockSvg, ContextMenuRegistry, Events, Extensions, ToolboxCategory, Workspace, WorkspaceSvg, Xml} from 'blockly';
 import blockStyles from '../../assets/blocks/styles/blockStyles.json';
 import blockDisabledStyles from '../../assets/blocks/styles/blockDisabledStyles.json';
 import categoryStyles from '../../assets/blocks/styles/categoryStyles.json';
@@ -126,11 +124,8 @@ export class CodeService {
 
     Blockly.defineBlocksWithJsonArray(blocksJson);
 
-    // Procedure blocks from the plugin block-shareable-procedures have a bug
-    // that reenable them when deserialized, or renamed: https://github.com/google/blockly-samples/issues/2035
-    // So for now, we use the core procedure blocks even if the documentation advises against it!
-    // unregisterProcedureBlocks();
-    // Blockly.common.defineBlocks(procedureBlocks)
+    // We use the core procedure blocks instead of the ones from the plugin block-shareable-procedures
+    // because they are simpler to use, even if the documentation advises against it!
 
     // Procedures with return values are not used
     delete Blocks['procedures_defreturn'];
@@ -276,7 +271,7 @@ export class CodeService {
       .flatMap(child => CodeService.getBlockAndItsDescendants(child)))
   }
 
-  // Check recursively from blocks to their ascendents, and throw and error if we find their own definition block
+  // Check recursively from blocks to their ascendants, and throw and error if we find their own definition block
   private static checkForRecursiveActions(blocksToParse: Block[], actionsEncountered: string[], workspace: Workspace, blocksJsonHierarchy: BlockJson[]): void {
     blocksToParse.map(block => {
       // If we find a definition block

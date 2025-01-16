@@ -103,12 +103,19 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     const wording = await firstValueFrom(this.translate.get('BLOCKS.MY_ACTIONS'));
     const procedureCategoryCallback = this.workspace?.getToolboxCategoryCallback('PROCEDURE')!
     this.workspace?.registerToolboxCategoryCallback('PROCEDURE', workspace => {
-      const procedureBlocks = procedureCategoryCallback(workspace) as Element[]
-      const createProcedureLabel: Element = document.createElement('label');
-      createProcedureLabel.setAttribute('text', wording);
-      const createProcedureSeparator: Element = document.createElement('sep');
-      createProcedureSeparator.setAttribute('gap', '40');
-      return [createProcedureLabel].concat(procedureBlocks[0]).concat(createProcedureSeparator).concat(procedureBlocks.slice(1))
+      const procedureBlocks = procedureCategoryCallback(workspace) as Blockly.utils.toolbox.BlockInfo[];
+      const procedureLabel: Blockly.utils.toolbox.LabelInfo = {
+        kind: 'label',
+        text: wording,
+        id: undefined,
+      }
+      const procedureSeparator: Blockly.utils.toolbox.SeparatorInfo = {
+        kind: 'sep',
+        gap: 40,
+        id: undefined,
+        cssconfig: undefined,
+      }
+      return [procedureLabel, procedureBlocks[0], procedureSeparator].concat(procedureBlocks.slice(1))
     });
   }
 
