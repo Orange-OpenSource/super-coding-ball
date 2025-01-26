@@ -52,7 +52,7 @@ const columnsCount = 5;
 const rowsCount = 5;
 const columns: FieldDivision[] = [];
 const rows: FieldDivision[] = [];
-const goalWidth = 112;
+const goalWidth = 114;
 const periodDuration = 45;
 const ownGoal: SpriteCoord = {x: widthMargin + fieldWidth / 2, y: canvasHeight - heightMargin};
 const oppGoal: SpriteCoord = {x: widthMargin + fieldWidth / 2, y: heightMargin};
@@ -180,7 +180,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.positionPlayersAndBallBeforeEntry();
     this.fieldContext = (document.getElementById('fieldCanvas') as HTMLCanvasElement).getContext('2d') as CanvasRenderingContext2D;
     this.field = new Image();
-    this.field.src = 'assets/football-pitch-with-marks.png';
+    this.field.src = 'assets/football-pitch.png';
     this.field.onload = async () => {
       this.enteringCode = await this.codeService.loadOppCode(false, 'entering');
       this.drawingLoop();
