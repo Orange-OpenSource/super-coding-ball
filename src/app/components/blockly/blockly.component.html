@@ -31,20 +31,26 @@
         onclick="this.blur()" (click)="redo()">
         <img src="assets/icons/redo-alt-solid.png" class="oriented-icon icon24" />
       </button>
-      <button *ngIf="debug" class="btn d-flex" type="button" [disabled]="gameLaunched"
-      ngbTooltip="Copy opponent's strategy" [disableTooltip]="touchDevicesService.isTouchDevice()"
-      onclick="this.blur()" (click)="loadOpp()">
-        <img src="assets/icons/bug-solid.png" class="icon24" />
-      </button>
+      @if (debug) {
+        <button class="btn d-flex" type="button" [disabled]="gameLaunched"
+          ngbTooltip="Copy opponent's strategy" [disableTooltip]="touchDevicesService.isTouchDevice()"
+          onclick="this.blur()" (click)="loadOpp()">
+          <img src="assets/icons/bug-solid.png" class="icon24"/>
+        </button>
+      }
       <div style="flex-grow: 1; text-align: right"></div>
-      <ng-container [ngSwitch]="gameLaunched">
-        <button *ngSwitchCase="false" class="btn d-flex" type="button" (click)="play()">
-          <img src="assets/icons/check-solid.png" class="icon24" />
-        </button>
-        <button *ngSwitchCase="true" class="btn d-flex" type="button" (click)="stopGame()">
-          <img src="assets/icons/stop-circle-regular.png" class="icon24" />
-        </button>
-      </ng-container>
+      @switch (gameLaunched) {
+        @case(false) {
+          <button class="btn d-flex" type="button" (click)="play()">
+            <img src="assets/icons/check-solid.png" class="icon24" />
+          </button>
+        }
+        @case(true) {
+          <button class="btn d-flex" type="button" (click)="stopGame()">
+            <img src="assets/icons/stop-circle-regular.png" class="icon24" />
+          </button>
+        }
+      }
     </nav>
     <div id="blocklyDiv" class="h-100"></div>
   </div>

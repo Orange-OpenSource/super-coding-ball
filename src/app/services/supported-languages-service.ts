@@ -48,13 +48,13 @@ class SupportedLanguage {
 }
 
 export const supportedLanguages = Array.from([
-  new SupportedLanguage('en', En, CustomEn.BLOCKS),
-  new SupportedLanguage('fr', Fr, CustomFr.BLOCKS),
-  new SupportedLanguage('es', Es, CustomEs.BLOCKS),
-  new SupportedLanguage('ru', Ru, CustomRu.BLOCKS),
-  new SupportedLanguage('he', He, CustomHe.BLOCKS, true),
-  new SupportedLanguage('de', De, CustomDe.BLOCKS),
-  new SupportedLanguage('ar', Ar, CustomAr.BLOCKS, true),
+  new SupportedLanguage('en', En as unknown as { [key: string]: string }, CustomEn.BLOCKS),
+  new SupportedLanguage('fr', Fr as unknown as { [key: string]: string }, CustomFr.BLOCKS),
+  new SupportedLanguage('es', Es as unknown as { [key: string]: string }, CustomEs.BLOCKS),
+  new SupportedLanguage('ru', Ru as unknown as { [key: string]: string }, CustomRu.BLOCKS),
+  new SupportedLanguage('he', He as unknown as { [key: string]: string }, CustomHe.BLOCKS, true),
+  new SupportedLanguage('de', De as unknown as { [key: string]: string }, CustomDe.BLOCKS),
+  new SupportedLanguage('ar', Ar as unknown as { [key: string]: string }, CustomAr.BLOCKS, true),
 ])
 // Default is English
 const defaultLangId = 'en'

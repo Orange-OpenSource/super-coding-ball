@@ -16,8 +16,8 @@ License Creative Commons Attribution-ShareAlike 3.0: https://creativecommons.org
 Icons by Font Awesome Free
 License Creative Commons Attribution 4.0 International: https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt
 
-Angular - version 16.2.12 - https://github.com/angular/angular
-Copyright (c) 2010-2023 Google LLC.
+Angular - version 19.1.0 - https://github.com/angular/angular
+Copyright (c) 2010-2025 Google LLC.
 The MIT License - https://angular.io/license
 
 Blockly - version 11.2.0 - https://github.com/google/blockly
@@ -28,15 +28,15 @@ Bootstrap - version 5.3.3 - https://github.com/twbs/bootstrap
 Copyright (c) 2011–2024 - the Bootstrap Authors and Twitter, Inc.
 The MIT License - https://github.com/twbs/bootstrap/blob/main/LICENSE
 
-NG Bootstrap - version 15.1.2 - https://github.com/ng-bootstrap/ng-bootstrap
-Copyright (c) 2015-2023 - Angular ng-bootstrap team
+NG Bootstrap - version 18.0.0 - https://github.com/ng-bootstrap/ng-bootstrap
+Copyright (c) 2015-2025 - Angular ng-bootstrap team
 The MIT License - https://github.com/ng-bootstrap/ng-bootstrap/blob/master/LICENSE
 
-ngx-translate - version 15.0.0 - https://github.com/ngx-translate/core
+ngx-translate - version 16.0.4 - https://github.com/ngx-translate/core
 Copyright (c) 2018 Olivier Combe
 The MIT License - https://github.com/ngx-translate/core/blob/master/LICENSE
 
-Firebase Javascript SDK - version 10.14.1 - https://github.com/firebase/firebase-js-sdk
+Firebase Javascript SDK - version 11.2.0 - https://github.com/firebase/firebase-js-sdk
 Copyright (c) Google, Inc.
 Apache License Version 2.0 - https://github.com/firebase/firebase-js-sdk/blob/master/LICENSE
 
@@ -48,6 +48,6 @@ tslib - version 2.8.1 - https://github.com/microsoft/tslib
 Copyright (c) Microsoft Corporation.
 BSD Zero Clause License - https://github.com/microsoft/tslib/blob/main/LICENSE.txt
 
-zone.js - version 0.13.3 - https://github.com/angular/zone.js
-Copyright (c) 2016-2023 Google, Inc.
+zone.js - version 0.15.0 - https://github.com/angular/zone.js
+Copyright (c) 2016-2025 Google, Inc.
 The MIT License - https://github.com/angular/zone.js/blob/master/LICENSE

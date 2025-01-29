@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, isDevMode, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Player, PlayerState} from '../../models/player';
 import {Ball} from '../../models/ball';
 import {Sprite, SpriteCoord} from '../../models/sprite';
@@ -18,8 +18,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {OnlineService} from '../../services/online.service';
-import {environment} from '../../../environments/environment';
 import {GamePoint} from '../online-opponents/online-opponents.component';
+import {TranslatePipe} from '@ngx-translate/core';
+import {CommonModule} from '@angular/common';
 
 interface FieldDivision {
   start: number;
@@ -71,6 +72,7 @@ const sprintingVelocityFactor = 2;
 
 @Component({
   selector: 'app-game',
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
@@ -94,13 +96,11 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   periodType = PeriodType.BeforeFirstPeriod;
   displayType = DisplayType.Hidden
 
-  private _acceleratedGame = this.localStorageService.getAcceleratedGameStatus();
   get acceleratedGame(): boolean {
-    return this._acceleratedGame;
+    return this.localStorageService.getAcceleratedGameStatus();
   }
 
   set acceleratedGame(accelerated: boolean) {
-    this._acceleratedGame = accelerated;
     this.localStorageService.setAcceleratedGameStatus(accelerated);
   }
 
@@ -198,7 +198,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   public loadOwnCode(): void {
     this.ownTeamWillStart = true;
     this.ownCode = this.codeService.loadOwnCode();
-    if (!environment.production) {
+    if (isDevMode()) {
       console.log(this.ownCode);
     }
     this.openKickOffPopup();

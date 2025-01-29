@@ -15,9 +15,13 @@ import {HowtoDemoComponent} from '../howto-demo/howto-demo.component';
 import {CodeService} from '../../services/code.service';
 import {WorkspaceSvg} from 'blockly';
 import {interval, Subscription} from 'rxjs';
+import {CommonModule} from '@angular/common';
+import {TranslateModule} from '@ngx-translate/core';
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-howto',
+  imports: [CommonModule, RouterLink, TranslateModule],
   templateUrl: './howto.component.html'
 })
 export class HowtoComponent implements OnInit, OnDestroy {
@@ -41,7 +45,7 @@ export class HowtoComponent implements OnInit, OnDestroy {
     this.loadStrategy(this.shootOrPassWorkspace, 'howto-shoot-or-pass');
     this.askingSubscription = interval(300).subscribe(count => this.askingStep = 1 + count % 2);
   }
-  
+
   getHowToWorkspace(divId: string): WorkspaceSvg {
     const blocklyDiv = document.getElementById(divId)!;
     return this.codeService.getWorkspace(

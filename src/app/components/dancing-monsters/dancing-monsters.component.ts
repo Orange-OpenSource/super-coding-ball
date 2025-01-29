@@ -9,11 +9,13 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
+import {CommonModule} from '@angular/common';
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {interval, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-dancing-monsters',
+  imports: [CommonModule],
   templateUrl: './dancing-monsters.component.html'
 })
 export class DancingMonstersComponent implements OnInit, OnDestroy {

@@ -10,19 +10,19 @@
  */
 
 import {Component, OnDestroy, ViewChild} from '@angular/core';
-import {environment} from '../../../environments/environment';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
+  imports: [RouterLink, TranslateModule],
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnDestroy {
   @ViewChild('online_info') private onlineInfoModal: any;
   @ViewChild('offline_info') private offlineInfoModal: any;
-  public appName = environment.APP_NAME;
 
   constructor(
     private router: Router,

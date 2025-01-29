@@ -27,24 +27,26 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let strategy of strategies; let index = index" routerLink="/code/offline/{{strategy.id}}">
-          <td>
-            <button class="btn text-start">
-              {{getLetter(index)}}
-            </button>
-          </td>
-          <td>
-            <button class="btn text-start">
-              {{"OFFLINE.STRATEGIES." + (strategy.id).toUpperCase() | translate }}
-            </button>
-          </td>
-          <td>
-            <button class="btn text-start">
-              <img *ngIf="strategy.won" class="icon24" src="assets/icons/trophy-solid-warning.png">
-              <img *ngIf="!strategy.won" class="team-not-won icon24" src="assets/icons/trophy-solid-secondary.png">
-            </button>
-          </td>
-        </tr>
+        @for (strategy of strategies; track strategy.id; let index = $index) {
+          <tr routerLink="/code/offline/{{strategy.id}}">
+            <td>
+              <button class="btn text-start">
+                {{getLetter(index)}}
+              </button>
+            </td>
+            <td>
+              <button class="btn text-start">
+                {{"OFFLINE.STRATEGIES." + (strategy.id).toUpperCase() | translate }}
+              </button>
+            </td>
+            <td>
+              <button class="btn text-start">
+                @if(strategy.won) {<img class="icon24" src="assets/icons/trophy-solid-warning.png">}
+                @else {<img class="team-not-won icon24" src="assets/icons/trophy-solid-secondary.png">}
+              </button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>

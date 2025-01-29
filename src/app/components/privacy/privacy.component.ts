@@ -11,11 +11,14 @@
 
 import {Component} from '@angular/core';
 import {LocalStorageService} from '../../services/local-storage.service';
-import {Router} from '@angular/router';
-import {OnlineService} from 'src/app/services/online.service';
+import {Router, RouterLink} from '@angular/router';
+import {OnlineService} from '../../services/online.service';
+import {TranslatePipe} from '@ngx-translate/core';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-privacy',
+  imports: [FormsModule, RouterLink, TranslatePipe],
   templateUrl: './privacy.component.html'
 })
 export class PrivacyComponent {
