@@ -1,5 +1,5 @@
 # SuperCodingBall
-![icon](./src/assets/app-icons/icon-192x192.png)
+![icon](./src/assets/app-icons/SuperCodingBallAppIcon.svg)
 
 *Lire en [français](README.fr.md).*
 

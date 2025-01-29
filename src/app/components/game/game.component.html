@@ -45,8 +45,8 @@
   <button class="btn btn-lg d-flex" type="button" [disabled]="!gameLaunched || gamePaused"
     onclick="this.blur()" (click)="acceleratedGame = !acceleratedGame">
     @switch (acceleratedGame) {
-      @case (true) {<img src="assets/icons/forward-solid.png" width="26" height="24" class="oriented-icon" style="height: 24px" />}
-      @case (false) {<img src="assets/icons/forward-solid-empty.png" width="26" height="24" class="oriented-icon" style="height: 24px" />}
+      @case (true) {<img src="assets/icons/forward-solid.png" width="24" height="24" class="oriented-icon" style="height: 24px" />}
+      @case (false) {<img src="assets/icons/forward-solid-empty.png" width="24" height="24" class="oriented-icon" style="height: 24px" />}
     }
   </button>
 
