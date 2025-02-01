@@ -15,7 +15,7 @@ import * as Blockly from 'blockly';
 import {BlockSvg, WorkspaceSvg} from 'blockly';
 import '@blockly/field-slider';
 import {CodeService} from '../../services/code.service';
-import {TranslateService} from '@ngx-translate/core';
+import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {firstValueFrom} from 'rxjs';
 import {InfoWarningIcon} from './info-warning-icon';
@@ -27,6 +27,7 @@ interface Step {
 
 @Component({
   selector: 'app-howto-demo',
+  imports: [TranslateModule],
   templateUrl: './howto-demo.component.html'
 })
 

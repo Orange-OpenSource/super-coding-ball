@@ -10,11 +10,13 @@
  */
 
 import {Component} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {SupportedLanguagesServices} from '../../services/supported-languages-service';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-about',
+  imports: [RouterLink, TranslatePipe],
   templateUrl: './about.component.html'
 })
 export class AboutComponent {

@@ -9,27 +9,28 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, isDevMode, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 
 import * as Blockly from 'blockly';
 import {Events, WorkspaceSvg} from 'blockly';
 import '@blockly/field-slider';
 import {CodeService, RecursiveActionEvent} from '../../services/code.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {DisplayType, GameComponent} from '../game/game.component';
-import {environment} from '../../../environments/environment';
 import {OnlineService} from '../../services/online.service';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {Tooltip} from 'bootstrap';
-import {TranslateService} from '@ngx-translate/core';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {TouchDevicesService} from '../../services/touch-devices.service';
 import {firstValueFrom} from 'rxjs';
 import {Girl1Icon, Girl2Icon, Guy1Icon, Guy2Icon, IDebugIcon} from './debug-icons';
+import {CommonModule} from '@angular/common';
 const actionBlockTypes = ['shoot', 'move', 'sprint', 'call_for_ball'];
 
 @Component({
   selector: 'app-blockly',
+  imports: [CommonModule, TranslatePipe, NgbTooltip, GameComponent],
   templateUrl: './blockly.component.html',
   styleUrls: ['./blockly.component.scss']
 })
@@ -66,7 +67,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     public modalService: NgbModal,
     public touchDevicesService: TouchDevicesService
   ) {
-    this.debug = !environment.production;
+    this.debug = isDevMode();
     this.isOnline = this.router.url.includes('/online/');
     this.opponentId = this.route.snapshot.paramMap.get('id') ?? '';
   }

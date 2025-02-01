@@ -21,9 +21,11 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "src/manifest.webmanifest",
               {
@@ -34,7 +36,16 @@
                   "**/*.xml",
                   "**/*.blend",
                   "**/*.svg",
-                  "football-pitch.png",
+                  "webcom-rules.json",
+                  "app-icons/icon-blockly-website.png",
+                  "sprites/girl1-original.png",
+                  "sprites/girl2-original.png",
+                  "sprites/guy1-original.png",
+                  "sprites/guy2-original.png",
+                  "sprites/orc-original.png",
+                  "sprites/rept-original.png",
+                  "sprites/skel-original.png",
+                  "sprites/zomb-original.png",
                   "howto/screenshot.png",
                   "howto/screenshot-fr.png"
                 ],
@@ -50,32 +61,19 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json",
             "allowedCommonJsDependencies": [
               "blockly",
-              "blockly/javascript",
-              "blockly/msg/en",
-              "blockly/msg/es",
-              "blockly/msg/fr",
-              "blockly/msg/ru",
               "@blockly/field-slider",
-              "webcom/webcom-auth-sldblite.js"
+              "webcom/webcom-auth-sldbLite.js"
             ]
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1mb",
-                  "maximumError": "2mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -83,15 +81,19 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            },
+            "analyze-bundle": {
+              "sourceMap": true,
+              "outputHashing": "none",
+              "namedChunks": true
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -100,24 +102,18 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "super-coding-ball:build:production"
+              "buildTarget": "super-coding-ball:build:production"
             },
             "development": {
-              "browserTarget": "super-coding-ball:build:development"
+              "buildTarget": "super-coding-ball:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "super-coding-ball:build"
-          }
+          "builder": "@angular-devkit/build-angular:extract-i18n"
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }

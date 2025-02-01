@@ -1,1 +1,42 @@
-<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trophy" class="svg-inline--fa fa-trophy fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M552 64H448V24c0-13.3-10.7-24-24-24H152c-13.3 0-24 10.7-24 24v40H24C10.7 64 0 74.7 0 88v56c0 35.7 22.5 72.4 61.9 100.7 31.5 22.7 69.8 37.1 110 41.7C203.3 338.5 240 360 240 360v72h-48c-35.3 0-64 20.7-64 56v12c0 6.6 5.4 12 12 12h296c6.6 0 12-5.4 12-12v-12c0-35.3-28.7-56-64-56h-48v-72s36.7-21.5 68.1-73.6c40.3-4.6 78.6-19 110-41.7 39.3-28.3 61.9-65 61.9-100.7V88c0-13.3-10.7-24-24-24zM99.3 192.8C74.9 175.2 64 155.6 64 144v-16h64.2c1 32.6 5.8 61.2 12.8 86.2-15.1-5.2-29.2-12.4-41.7-21.4zM512 144c0 16.1-17.7 36.1-35.3 48.8-12.5 9-26.7 16.2-41.8 21.4 7-25 11.8-53.6 12.8-86.2H512v16z"></path></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 576 576"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="trophy-solid.svg"
+   width="576"
+   height="576"
+   inkscape:export-filename="trophy-solid-warning.png"
+   inkscape:export-xdpi="16"
+   inkscape:export-ydpi="16"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.19905162"
+     inkscape:cx="261.23877"
+     inkscape:cy="462.19166"
+     inkscape:window-width="1440"
+     inkscape:window-height="751"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+  <path
+     d="M 400,32 H 176 c -26.5,0 -48.1,21.8 -47.1,48.2 0.2,5.3 0.4,10.6 0.7,15.8 H 24 c -13.3,0 -24,10.7 -24,24 0,92.6 33.5,157 78.5,200.7 44.3,43.1 98.3,64.8 138.1,75.8 23.4,6.5 39.4,26 39.4,45.6 0,20.9 -17,37.9 -37.9,37.9 H 192 c -17.7,0 -32,14.3 -32,32 0,17.7 14.3,32 32,32 h 192 c 17.7,0 32,-14.3 32,-32 0,-17.7 -14.3,-32 -32,-32 H 357.9 C 337,480 320,463 320,442.1 c 0,-19.6 15.9,-39.2 39.4,-45.6 39.9,-11 93.9,-32.7 138.2,-75.8 C 542.5,277 576,212.6 576,120 576,106.7 565.3,96 552,96 H 446.4 c 0.3,-5.2 0.5,-10.4 0.7,-15.8 C 448.1,53.8 426.5,32 400,32 Z M 48.9,144 h 84.4 c 9.1,90.1 29.2,150.3 51.9,190.6 C 160.3,323.6 134.4,308.1 112,286.3 80,255.2 54,210.3 49,144 Z m 415.2,142.3 c -22.4,21.8 -48.3,37.3 -73.2,48.3 22.7,-40.3 42.8,-100.5 51.9,-190.6 h 84.4 c -5.1,66.3 -31.1,111.2 -63,142.3 z"
+     id="path1"
+     style="fill:#ffc108;fill-opacity:1" />
+</svg>

@@ -1,1 +1,40 @@
-<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="info-circle-solid.svg"
+   inkscape:export-filename="info-circle-solid-white.png"
+   inkscape:export-xdpi="18"
+   inkscape:export-ydpi="18"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.61885653"
+     inkscape:cx="309.44167"
+     inkscape:cy="315.09726"
+     inkscape:window-width="1440"
+     inkscape:window-height="755"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+  <path
+     d="M 256,502 A 245.98432,246 0 1 0 256,10.000001 245.98432,246 0 1 0 256,502 Z M 217.56495,332.875 h 23.06102 v -61.5 h -23.06102 c -12.77966,0 -23.06103,-10.28203 -23.06103,-23.0625 0,-12.78047 10.28137,-23.0625 23.06103,-23.0625 h 46.12206 c 12.77967,0 23.06104,10.28203 23.06104,23.0625 v 84.5625 h 7.68701 c 12.77965,0 23.06102,10.28203 23.06102,23.06249 0,12.78047 -10.28137,23.06251 -23.06102,23.06251 h -76.87011 c -12.77966,0 -23.06103,-10.28204 -23.06103,-23.06251 0,-12.78046 10.28137,-23.06249 23.06103,-23.06249 z M 256,133.00001 a 30.74804,30.75 0 1 1 0,61.49999 30.74804,30.75 0 1 1 0,-61.49999 z"
+     id="path1"
+     style="fill:#ffffff;fill-opacity:1;stroke-width:0.960905" />
+</svg>
