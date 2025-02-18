@@ -74,10 +74,13 @@ export class CodeService {
   });
 
   constructor(
-    supportedLanguagesService: SupportedLanguagesServices,
+    private supportedLanguagesService: SupportedLanguagesServices,
     private localStorageService: LocalStorageService,
     private onlineService: OnlineService
   ) {
+  }
+
+  async init() {
     // Delete math_number block because it will be redefined with field slider
     delete Blocks['math_number'];
 
@@ -140,9 +143,9 @@ export class CodeService {
       });
     });
 
-    let lang = supportedLanguagesService.getCurrentLang().lang
-    Blockly.setLocale(lang.blocklyDefaultLocale);
-    Blockly.setLocale(lang.blocklyCustomLocale);
+    const currentLang = await this.supportedLanguagesService.getCurrentLangFiles();
+    Blockly.setLocale(currentLang.blocklyDefaultLocale as unknown as { [key: string]: string });
+    Blockly.setLocale(currentLang.blocklyCustomLocale as { [key: string]: string });
 
     Blockly.registry.register(
       Blockly.registry.Type.TOOLBOX_ITEM,

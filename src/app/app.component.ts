@@ -35,9 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private modalService: NgbModal,
     localStorageService: LocalStorageService
   ) {
-
-    let currentLang = supportedLanguagesServices.getCurrentLang().lang
-    if (currentLang.rtl) {
+    if (supportedLanguagesServices.getCurrentLangInfo().rtl) {
       document.dir = 'rtl';
     }
 

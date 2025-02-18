@@ -11,6 +11,7 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js",
+          "!/[0-9][0-9][0-9].*.js",
           "/assets/**",
           "!/assets/i18n/**"
         ]
@@ -22,6 +23,7 @@
       "updateMode": "prefetch",
       "resources": {
         "files": [
+          "/[0-9][0-9][0-9].*.js",
           "/assets/i18n/**"
         ]
       }

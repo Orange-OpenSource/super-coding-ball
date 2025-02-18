@@ -21,7 +21,7 @@ import {RouterLink} from '@angular/router';
 })
 export class AboutComponent {
   constructor(supportedLanguagesServices: SupportedLanguagesServices, public translate: TranslateService) {
-    if (supportedLanguagesServices.getCurrentLang().default) {
+    if (supportedLanguagesServices.getCurrentLangInfo().default) {
       this.contact = "Contact (or help with a new translation!):"
     } else {
       this.translate.get('ABOUT.CONTACT').subscribe(wording => this.contact = wording)
