@@ -38,6 +38,46 @@ export class RecursiveActionEvent extends Events.Abstract {
   }
 }
 
+const all_block_types = [
+  // events
+  "event_ball_mine",
+  "event_ball_teammate",
+  "event_ball_opponent",
+  "event_ball_none",
+  // conditions
+  "custom_if",
+  "closest",
+  "custom_compare",
+  "role_and_side",
+  "place",
+  "leading_team",
+  // actions
+  "move",
+  "sprint",
+  "shoot",
+  "call_for_ball",
+  // positions
+  "player",
+  "myself",
+  "ball",
+  "goal",
+  "grid",
+  "position",
+  "middle",
+  // values
+  "math_number",
+  "distance",
+  "energy",
+  "elapsed_time",
+  // advanced
+  "logic_operation",
+  "logic_negate",
+  "math_arithmetic",
+  // my actions
+  "procedures_defnoreturn",
+  "procedures_callnoreturn"
+]
+
 // Part of the JSON format of Blockly's serializer
 type BlockJson = {
   type: string,
@@ -289,7 +329,22 @@ export class CodeService {
   private static computeCode(blocks: string): string {
     const workspace = new Workspace();
     CodeService.loadBlocksInWorkspace(blocks, workspace);
-    const code = javascriptGenerator.workspaceToCode(workspace);
+    let code;
+    if (workspace.getAllBlocks().some(block => !all_block_types.includes(block.type))) {
+      // Cheater!
+      code = `if (game.playerIsRoleAndSide(player, true, true)) {
+  game.move(player, game.getGridPosition(!player.ownTeam, 5, 1), false);
+} else if (game.playerIsRoleAndSide(player, true, false)) {
+  game.move(player, game.getGridPosition(!player.ownTeam, 1, 1), false);
+} else if (game.playerIsRoleAndSide(player, false, true)) {
+  game.move(player, game.getGridPosition(!player.ownTeam, 5, 5), false);
+} else {
+  game.move(player, game.getGridPosition(!player.ownTeam, 1, 5), false)
+};`;
+    } else {
+      code = javascriptGenerator.workspaceToCode(workspace);
+    }
+
     workspace.dispose();
     return code;
   }
