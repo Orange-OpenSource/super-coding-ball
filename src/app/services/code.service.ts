@@ -276,7 +276,7 @@ export class CodeService {
       .flatMap(child => CodeService.getBlockAndItsDescendants(child)))
   }
 
-  // Check recursively from blocks to their ascendents, and throw and error if we find their own definition block
+  // Check recursively from blocks to their ascendants, and throw and error if we find their own definition block
   private static checkForRecursiveActions(blocksToParse: Block[], actionsEncountered: string[], workspace: Workspace, blocksJsonHierarchy: BlockJson[]): void {
     blocksToParse.map(block => {
       // If we find a definition block

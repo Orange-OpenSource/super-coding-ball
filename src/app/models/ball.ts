@@ -31,6 +31,10 @@ export class Ball extends Sprite {
     this._formerOwner = this._owner;
     this._owner = value;
     this.owningTime = 0;
+    // When the ball has a new owner, reset its own velocity
+    if (this._owner) {
+      this.velocity = 0;
+    }
     if (!this._owner && this._formerOwner) {
       // Clone former owner position so that ball can be moved independently
       this.coord = Object.assign({}, this._formerOwner.coord);
