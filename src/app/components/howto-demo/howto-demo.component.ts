@@ -15,9 +15,10 @@ import * as Blockly from 'blockly';
 import {BlockSvg, WorkspaceSvg} from 'blockly';
 import '@blockly/field-slider';
 import {CodeService} from '../../services/code.service';
-import {TranslateService} from '@ngx-translate/core';
+import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {firstValueFrom} from 'rxjs';
+import {InfoWarningIcon} from './info-warning-icon';
 
 interface Step {
   blockId: string;
@@ -26,6 +27,7 @@ interface Step {
 
 @Component({
   selector: 'app-howto-demo',
+  imports: [TranslateModule],
   templateUrl: './howto-demo.component.html'
 })
 
@@ -102,14 +104,19 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
   }
 
   async goToStep(stepNumber: number): Promise<void> {
-    this.stepBlock?.setCommentText(null);
-    this.stepBlock?.getIcon(Blockly.icons.IconType.COMMENT)?.setBubbleVisible(false);
+    // We don't use CommentIcon here because since Blockly 11.2, it uses TextInputBubble even for non editable comments
+    // and TextInputBubble has a default size that doesn't take the text length into account
+    // See https://github.com/google/blockly/pull/8632/commits/51fcea20bb04be1d91c721ca4b7e6d0790ee701c
+    // Thus we use a WarningIcon (which uses TextBubble whose size fit the text), subclassed as InfoWarningIcon to modify its icon
+    this.stepBlock?.removeIcon(new Blockly.icons.IconType('info'));
     const blockId = this.steps[stepNumber].blockId;
-    await this.smoothCenterOnBlock(blockId);
-    const comment = await firstValueFrom(this.translate.get('HOW_TO_DEMO.' + this.steps[stepNumber].commentId));
     this.stepBlock = this.workspace.getBlockById(blockId);
-    this.stepBlock?.setCommentText(comment);
-    this.stepBlock?.getIcon(Blockly.icons.IconType.COMMENT)?.setBubbleVisible(true);
+    await this.smoothCenterOnBlock(this.stepBlock!);
+    this.stepBlock?.addIcon(new InfoWarningIcon(this.stepBlock));
+    const infoIcon = this.stepBlock?.getIcon(new Blockly.icons.IconType('info')) as InfoWarningIcon;
+    const comment = await firstValueFrom(this.translate.get('HOW_TO_DEMO.' + this.steps[stepNumber].commentId));
+    infoIcon.addMessage(comment, 'some_id');
+    infoIcon.setBubbleVisible(true);
   }
 
   setWorkspace(): void {
@@ -139,12 +146,12 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
   }
 
   // Adapted from https://github.com/google/blockly/blob/master/core/workspace_svg.js
-  private async smoothCenterOnBlock(id: string): Promise<void> {
-    const block = this.workspace.getBlockById(id)!;
+  private async smoothCenterOnBlock(block: BlockSvg): Promise<void> {
     const xy = block.getRelativeToSurfaceXY();
     const heightWidth = block.getHeightWidth();
-    const blockCenterY = xy.y + heightWidth.height / 2;
-    const blockCenterX = xy.x + (heightWidth.width / 2);
+    const direction = document.dir === 'rtl' ? -1 : 1;
+    const blockCenterY = xy.y + direction * heightWidth.height / 2;
+    const blockCenterX = xy.x + direction * heightWidth.width / 2;
     const scale = this.workspace.scale;
     const pixelX = blockCenterX * scale;
     const pixelY = blockCenterY * scale;

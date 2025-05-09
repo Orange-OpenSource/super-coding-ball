@@ -10,18 +10,20 @@
  */
 
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {LocalStorageService} from '../../services/local-storage.service';
+import {TranslatePipe} from '@ngx-translate/core';
+import {DancingMonstersComponent} from '../dancing-monsters/dancing-monsters.component';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-offline-opponents',
+  imports: [TranslatePipe, RouterLink, DancingMonstersComponent],
   templateUrl: './offline-opponents.component.html'
 })
 export class OfflineOpponentsComponent implements OnInit {
   strategies: { id: string, won: boolean }[] = [];
 
   constructor(
-    private router: Router,
     private localStorageService: LocalStorageService
   ) {
   }

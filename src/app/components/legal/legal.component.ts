@@ -12,9 +12,12 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {firstValueFrom} from 'rxjs';
+import {TranslateModule} from '@ngx-translate/core';
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-licenses',
+  imports: [RouterLink, TranslateModule],
   templateUrl: './legal.component.html'
 })
 export class LegalComponent implements OnInit {

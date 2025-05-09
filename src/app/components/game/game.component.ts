@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, isDevMode, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Player, PlayerState} from '../../models/player';
 import {Ball} from '../../models/ball';
 import {Sprite, SpriteCoord} from '../../models/sprite';
@@ -18,8 +18,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {OnlineService} from '../../services/online.service';
-import {environment} from '../../../environments/environment';
 import {GamePoint} from '../online-opponents/online-opponents.component';
+import {TranslatePipe} from '@ngx-translate/core';
+import {CommonModule} from '@angular/common';
 
 interface FieldDivision {
   start: number;
@@ -52,7 +53,7 @@ const columnsCount = 5;
 const rowsCount = 5;
 const columns: FieldDivision[] = [];
 const rows: FieldDivision[] = [];
-const goalWidth = 112;
+const goalWidth = 114;
 const periodDuration = 45;
 const ownGoal: SpriteCoord = {x: widthMargin + fieldWidth / 2, y: canvasHeight - heightMargin};
 const oppGoal: SpriteCoord = {x: widthMargin + fieldWidth / 2, y: heightMargin};
@@ -71,6 +72,7 @@ const sprintingVelocityFactor = 2;
 
 @Component({
   selector: 'app-game',
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
@@ -94,13 +96,11 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   periodType = PeriodType.BeforeFirstPeriod;
   displayType = DisplayType.Hidden
 
-  private _acceleratedGame = this.localStorageService.getAcceleratedGameStatus();
   get acceleratedGame(): boolean {
-    return this._acceleratedGame;
+    return this.localStorageService.getAcceleratedGameStatus();
   }
 
   set acceleratedGame(accelerated: boolean) {
-    this._acceleratedGame = accelerated;
     this.localStorageService.setAcceleratedGameStatus(accelerated);
   }
 
@@ -180,7 +180,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.positionPlayersAndBallBeforeEntry();
     this.fieldContext = (document.getElementById('fieldCanvas') as HTMLCanvasElement).getContext('2d') as CanvasRenderingContext2D;
     this.field = new Image();
-    this.field.src = 'assets/football-pitch-with-marks.png';
+    this.field.src = 'assets/football-pitch.png';
     this.field.onload = async () => {
       this.enteringCode = await this.codeService.loadOppCode(false, 'entering');
       this.drawingLoop();
@@ -198,7 +198,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   public loadOwnCode(): void {
     this.ownTeamWillStart = true;
     this.ownCode = this.codeService.loadOwnCode();
-    if (!environment.production) {
+    if (isDevMode()) {
       console.log(this.ownCode);
     }
     this.openKickOffPopup();
@@ -307,9 +307,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     for (const player of this.players) {
       player.state = PlayerState.Waiting;
     }
-    this.ball.owner = null;
     this.ball.velocity = 0;
-    this.ball.coord = this.getGridPosition(false, 3, 3);
     this.periodType = startSecondPeriod ? PeriodType.HalfTime : PeriodType.Finished;
     if (startSecondPeriod) {
       this.openKickOffPopup();
@@ -585,9 +583,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   private drawEnergyBar(player: Player): void {
     const x0 = Math.round(player.offsetCoord.x) - 15;
     const y0 = Math.round(player.offsetCoord.y) - 52;
-    const x1 = x0 + energyBarWidth;
-    const y1 = y0 + energyBarHeight;
-    const gradient = this.fieldContext.createLinearGradient(x0, y0, x1, y1);
+    // Create a huge gradient, centered on the energy position, so that the energy bar color appears uniform
+    const gradient = this.fieldContext.createLinearGradient(x0 - 1000 * player.energy, y0, x0 + 1000 * (100 - player.energy), y0);
     gradient.addColorStop(0, 'red');
     gradient.addColorStop(0.3, 'orange');
     gradient.addColorStop(1, 'lime');

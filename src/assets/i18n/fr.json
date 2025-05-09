@@ -143,7 +143,7 @@
     "OPP_POINTS": "pts",
     "RANKING_POPUP": {
       "TITLE": "Infos sur le classement",
-      "CONTENT": "Le classement montre les joueurs connectés pendant les 15 derniers jours.<br><br>Tous les jours, tu peux jouer contre chaque adversaire et marquer\u00A0:<br>{{won}} 2 points pour une victoire,<br>{{draw}} 1 point pour un nul,<br>{{lost}} 0 point pour une défaite.<br><br>(tu peux rejouer les matches pour améliorer ton score)<br><br>Si tu abandonnes un match en cours, il est considéré perdu\u00A0!"
+      "CONTENT": "Le classement montre les joueurs connectés pendant les 15 derniers jours.<br><br>Tous les jours, tu peux jouer contre chaque adversaire et marquer\u00A0:<br>{{won}} 2 points pour une victoire,<br>{{draw}} 1 point pour un nul,<br>{{lost}} 0 point pour une défaite.<br><br>(tu peux rejouer les matchs pour améliorer ton score)<br><br>Si tu abandonnes un match en cours, il est considéré perdu\u00A0!"
     },
     "REPLAY": {
       "HEADER": "Tu as déjà joué ce match aujourd'hui ",
@@ -159,7 +159,7 @@
     "CHANGE_NICKNAME": "Changer mon pseudo",
     "DISCONNECT_ACCOUNT": "Me déconnecter",
     "SYNC_TEXT": "Tes blocs sont exportés automatiquement à chaque fois que tu démarres un match en ligne.",
-    "DOWNLOAD_TEXT": "Si tu veux importer tes blocs (par exemple si tu as modifié ta stratégie sur un autre appareil), clique ici \u00A0:",
+    "DOWNLOAD_TEXT": "Si tu veux importer tes blocs (par exemple si tu as modifié ta stratégie sur un autre appareil), clique ici\u00A0:",
     "DELETE_ACCOUNT": "Supprimer définitivement mon compte",
     "DELETE_MODAL": "Tu es sûr de supprimer ton compte\u00A0??"
   },
@@ -168,7 +168,7 @@
       "TITLE": "Aperçu du terrain avec poste cible de chaque joueur"
     },
     "DELETE_WARNING": "Tu veux vraiment effacer tous tes blocs\u00A0!?",
-    "SELF_DEFINED_ACTION": "Tu ne peux pas mettre <strong>{{value}}</strong> dans sa propre définition !"
+    "SELF_DEFINED_ACTION": "Tu ne peux pas mettre <strong>{{value}}</strong> dans sa propre définition\u00A0!"
   },
   "GAME": {
     "MIN": "min",

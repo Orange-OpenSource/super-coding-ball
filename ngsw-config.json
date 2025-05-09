@@ -11,7 +11,20 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js",
-          "/assets/**"
+          "!/[0-9][0-9][0-9].*.js",
+          "/assets/**",
+          "!/assets/i18n/**"
+        ]
+      }
+    },
+    {
+      "name": "translations",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/[0-9][0-9][0-9].*.js",
+          "/assets/i18n/**"
         ]
       }
     }

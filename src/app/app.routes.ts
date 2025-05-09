@@ -1,7 +1,7 @@
 /*
  * Software Name : SuperCodingBall
  * Version: 1.0.0
- * SPDX-FileCopyrightText: Copyright (c) 2021 Orange
+ * SPDX-FileCopyrightText: Copyright (c) 2025 Orange
  * SPDX-License-Identifier: BSD-3-Clause
  *
  * This software is distributed under the BSD 3-Clause "New" or "Revised" License,
@@ -9,21 +9,20 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from './components/home/home.component';
-import {HowtoComponent} from './components/howto/howto.component';
-import {AboutComponent} from './components/about/about.component';
-import {PrivacyComponent} from './components/privacy/privacy.component';
-import {TermsComponent} from './components/terms/terms.component';
-import {LegalComponent} from './components/legal/legal.component';
-import {OfflineOpponentsComponent} from './components/offline-opponents/offline-opponents.component';
-import {OnlineOpponentsComponent} from './components/online-opponents/online-opponents.component';
-import {BlocklyComponent} from './components/blockly/blockly.component';
-import {GameComponent} from './components/game/game.component';
-import {isStrongGuard} from './services/is-strong-guard';
+import { Routes } from '@angular/router';
+import { AboutComponent } from './components/about/about.component';
+import { BlocklyComponent } from './components/blockly/blockly.component';
+import { GameComponent } from './components/game/game.component';
+import { HomeComponent } from './components/home/home.component';
+import { HowtoComponent } from './components/howto/howto.component';
+import { LegalComponent } from './components/legal/legal.component';
+import { OfflineOpponentsComponent } from './components/offline-opponents/offline-opponents.component';
+import { OnlineOpponentsComponent } from './components/online-opponents/online-opponents.component';
+import { PrivacyComponent } from './components/privacy/privacy.component';
+import { TermsComponent } from './components/terms/terms.component';
+import { isStrongGuard } from './services/is-strong-guard';
 
-const routes: Routes = [
+export const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'howto', component: HowtoComponent},
   {path: 'about', component: AboutComponent},
@@ -38,10 +37,3 @@ const routes: Routes = [
   {path: 'play/online/:id', component: GameComponent, canActivate: [isStrongGuard]},
   {path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {
-}

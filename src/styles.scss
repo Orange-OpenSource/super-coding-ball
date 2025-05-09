@@ -8,6 +8,106 @@ html, body {
   image-rendering: pixelated;
 }
 
+$spritesheet-width: 832px;
+$spritesheet-height: 1344px;
+
+$spritesheet-stop-pose-offset-x: 328px;
+$spritesheet-stop-pose-offset-y: 136px;
+
+$spritesheet-stop-pose-width: 48px;
+$spritesheet-stop-pose-height: 54px;
+
+.player-crop {
+  object-fit: none;
+  object-position: calc(-1 * $spritesheet-stop-pose-offset-x) calc(-1 * $spritesheet-stop-pose-offset-y);
+  width: $spritesheet-stop-pose-width;
+  height: $spritesheet-stop-pose-height;
+}
+
+.player-crop + .tooltip {
+  margin-bottom: 8px !important;
+}
+
+$reduction: 0.8;
+
+.debug-icon {
+  width: calc($spritesheet-width * $reduction);
+  height: calc($spritesheet-height * $reduction);
+  clip-path: inset(calc($spritesheet-stop-pose-offset-y * $reduction) calc(($spritesheet-width - $spritesheet-stop-pose-offset-x - $spritesheet-stop-pose-width) * $reduction) calc(($spritesheet-height - $spritesheet-stop-pose-offset-y - $spritesheet-stop-pose-height) * $reduction) calc($spritesheet-stop-pose-offset-x * $reduction));
+  transform: translate(calc(-1 * $spritesheet-stop-pose-offset-x * $reduction), calc(-1 * $spritesheet-stop-pose-offset-y * $reduction - 4px));
+}
+
+$spritesheet-dance-pose-width: 52px;
+$spritesheet-dance-pose-height: 48px;
+$spritesheet-dance-pose-offset-y: 911px;
+
+.dance-crop {
+  object-fit: none;
+  width: $spritesheet-dance-pose-width;
+  height: $spritesheet-dance-pose-height;
+  scale: 1.5;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 7px;
+}
+
+$spritesheet-dance1-pose-offset-x: 134px;
+.dance1-crop {
+  @extend .dance-crop;
+  object-position: calc(-1 * $spritesheet-dance1-pose-offset-x) calc(-1 * $spritesheet-dance-pose-offset-y);
+
+}
+
+$spritesheet-dance2-pose-offset-x: 198px;
+.dance2-crop {
+  @extend .dance-crop;
+  object-position: calc(-1 * $spritesheet-dance2-pose-offset-x) calc(-1 * $spritesheet-dance-pose-offset-y);
+}
+
+$spritesheet-dance3-pose-offset-x: 262px;
+.dance3-crop {
+  @extend .dance-crop;
+  object-position: calc(-1 * $spritesheet-dance3-pose-offset-x) calc(-1 * $spritesheet-dance-pose-offset-y);
+}
+
+$spritesheet-dance4-pose-offset-x: 326px;
+.dance4-crop {
+  @extend .dance-crop;
+  object-position: calc(-1 * $spritesheet-dance4-pose-offset-x) calc(-1 * $spritesheet-dance-pose-offset-y);
+}
+
+$spritesheet-asking-pose-width: 40px;
+$spritesheet-asking-pose-height: 54px;
+$spritesheet-asking-pose-offset-y: 969px;
+
+.asking-crop {
+  object-fit: none;
+  width: $spritesheet-asking-pose-width;
+  height: $spritesheet-asking-pose-height;
+  scale: 1.5;
+  margin: 10px;
+}
+
+$spritesheet-asking1-pose-offset-x: 273px;
+.asking1-crop {
+  @extend .asking-crop;
+  object-position: calc(-1 * $spritesheet-asking1-pose-offset-x) calc(-1 * $spritesheet-asking-pose-offset-y);
+
+}
+
+$spritesheet-asking2-pose-offset-x: 337px;
+.asking2-crop {
+  @extend .asking-crop;
+  object-position: calc(-1 * $spritesheet-asking2-pose-offset-x) calc(-1 * $spritesheet-asking-pose-offset-y);
+}
+
+.info-icon {
+  width: 24px;
+  height: 24px;
+  transform-origin: 12px 12px;
+  scale: 2;
+}
+
 .icon24 {
   width: 24px;
   height: 24px;
@@ -80,7 +180,7 @@ html, body {
 }
 
 .customIconCondition {
-  background-image: url("/assets/icons/futbol-regular-question-mark.png");
+  background-image: url("/assets/icons/arrows-split-up-and-left-solid.png");
 }
 
 .customIconAction {
@@ -92,7 +192,7 @@ html, body {
 }
 
 .customIconValue {
-  background-image: url("/assets/icons/hashtag-solid.png");
+  background-image: url("/assets/icons/arrows-left-right-to-line-solid.png");
 }
 
 .customIconAdvanced {
@@ -135,8 +235,7 @@ table {
   transform: scaleX(-1);
 }
 
-// Some category icons need flipping, not all
-[dir="rtl"] .customIconEvent, [dir="rtl"] .customIconAction, [dir="rtl"] .customIconMyActions {
+[dir="rtl"] .customIcon {
   transform: scaleX(-1);
 }
 
@@ -158,4 +257,15 @@ table {
 // Cf https://github.com/twbs/bootstrap/pull/39373
 .modal-header {
   justify-content: space-between;
+}
+
+// Pagination in Bootstrap is computed for LTR, so we make it RTL compatible by removing the border radius and adjusting margins
+.page-link {
+  border-radius: 0 !important;
+  margin-left: $pagination-margin-start;
+}
+
+// Don't show the header bottom border when it's not followed by a content (otherwise shows a glitch)
+.modal-header:only-child {
+  border-bottom: none;
 }

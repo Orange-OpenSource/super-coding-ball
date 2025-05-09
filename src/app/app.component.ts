@@ -9,19 +9,20 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, isDevMode, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {initializeApp} from 'firebase/app';
 import {getAnalytics} from 'firebase/analytics';
-import {environment} from '../environments/environment';
 import {SwUpdate, VersionReadyEvent} from '@angular/service-worker';
-import {TranslateService} from '@ngx-translate/core';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LocalStorageService} from './services/local-storage.service';
 import {filter} from 'rxjs/operators';
 import {SupportedLanguagesServices} from './services/supported-languages-service';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  imports: [RouterOutlet, TranslatePipe],
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, OnDestroy {
@@ -30,13 +31,11 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private swUpdate: SwUpdate,
     public translate: TranslateService,
-    private supportedLanguagesServices: SupportedLanguagesServices,
+    supportedLanguagesServices: SupportedLanguagesServices,
     private modalService: NgbModal,
     localStorageService: LocalStorageService
   ) {
-
-    let currentLang = supportedLanguagesServices.getCurrentLang().lang
-    if (currentLang.rtl) {
+    if (supportedLanguagesServices.getCurrentLangInfo().rtl) {
       document.dir = 'rtl';
     }
 
@@ -50,7 +49,7 @@ export class AppComponent implements OnInit, OnDestroy {
       measurementId: 'G-N0RFS9M9XJ'
     };
     const app = initializeApp(firebaseConfig);
-    if (environment.production && !localStorageService.getTrackingDisabledStatus()) {
+    if (!isDevMode() && !localStorageService.getTrackingDisabledStatus()) {
       getAnalytics(app);
     }
   }

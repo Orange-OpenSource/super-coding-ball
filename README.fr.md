@@ -1,5 +1,5 @@
 # SuperCodingBall
-![icon](./src/assets/app-icons/icon-192x192.png)
+![icon](./src/assets/app-icons/SuperCodingBallAppIcon.svg)
 
 *Read in [English](README.md).*
 
@@ -9,9 +9,7 @@ Le but est de découvrir la programmation avec un jeu de foot ! (c'est un excell
 
 La programmation est faite de façon visuelle, comme dans [Scratch](https://scratch.mit.edu/), mais avec moins de blocs (il n'y a par exemple pas de "boucles").
 
-Le joueur va entraîner une équipe de 4 footballeurs ![screenshot](./src/assets/howto/players.png)
-
-qui vont affronter 4 monstres ![screenshot](./src/assets/howto/opponents.png).
+Le joueur va entraîner une équipe de 4 footballeurs qui vont affronter 4 monstres.
 
 La stratégie de l'équipe est construite avec des blocs, ensuite le match se déroule automatiquement en suivant les stratégies des deux équipes.
 
@@ -51,7 +49,7 @@ Une fois le fichier [blocks.json](./src/assets/blocks/blocks.json) généré, il
 
 ## Création des sprites
 
-Tous les sprites des joueurs viennent "l'Open Game Art Liberated Pixel Cup" et ont été générés par [cet outil](https://github.com/sanderfrenken/Universal-LPC-Spritesheet-Character-Generator) :
+Tous les sprites des joueurs viennent "l'Open Game Art Liberated Pixel Cup" et ont été générés par [cet outil](https://github.com/LiberatedPixelCup/Universal-LPC-Spritesheet-Character-Generator) :
 
 * Guy 1
 * Guy 2
@@ -62,7 +60,7 @@ Tous les sprites des joueurs viennent "l'Open Game Art Liberated Pixel Cup" et o
 * Skeleton
 * Zombie
 
-## Traductions (pour le moment français, anglais, espagnol, russe, hébreu et allemand)
+## Traductions (pour le moment français, anglais, espagnol, russe, hébreu, allemand et arabe)
 
 Toutes les traductions sont dans le [dossier i18n](./src/assets/i18n).
 

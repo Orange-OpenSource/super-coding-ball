@@ -10,21 +10,25 @@
 -->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-between p-0">
-  <div *ngIf="displayType === DisplayType.NextToCode" class="position-absolute h-100 bg-dark ps-1"></div>
-  <div *ngIf="displayType === DisplayType.NextToCode" class="pe-1"></div>
-  <button *ngIf="displayType === DisplayType.Standalone" class="btn btn-lg d-flex" type="button"
-    (click)="backToCodeEdition()">
-    <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24" />
-  </button>
-  <button *ngIf="displayType === DisplayType.NextToCode" [disabled]="!gameLaunched" class="btn btn-lg d-flex"
-    type="button" (click)="gamePaused = !gamePaused">
-    <ng-container [ngSwitch]="gamePaused">
-      <img *ngSwitchCase="true" src="assets/icons/play.png" width="24" height="24" class="oriented-icon"
-        style="height: 24px" />
-      <img *ngSwitchCase="false" src="assets/icons/pause.png" width="24" height="24" class="oriented-icon"
-        style="height: 24px" />
-    </ng-container>
-  </button>
+  @if(displayType === DisplayType.NextToCode) {
+    <div class="position-absolute h-100 bg-dark ps-1"></div>
+    <div class="pe-1"></div>
+  }
+  @if(displayType === DisplayType.Standalone) {
+    <button class="btn btn-lg d-flex" type="button"
+      (click)="backToCodeEdition()">
+      <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24" />
+    </button>
+  }
+  @if(displayType === DisplayType.NextToCode) {
+    <button [disabled]="!gameLaunched" class="btn btn-lg d-flex"
+      type="button" (click)="gamePaused = !gamePaused">
+      @switch (gamePaused) {
+        @case (true) {<img src="assets/icons/play.png" width="24" height="24" class="oriented-icon" style="height: 24px" />}
+        @case (false) {<img src="assets/icons/pause.png" width="24" height="24" class="oriented-icon" style="height: 24px" />}
+      }
+    </button>
+  }
   <div class="align-middle d-flex flex-grow-1">
     <div class="m-1 h6 bg-secondary rounded flex-grow-1 d-flex justify-content-between align-items-center">
       <div>
@@ -40,12 +44,10 @@
   </div>
   <button class="btn btn-lg d-flex" type="button" [disabled]="!gameLaunched || gamePaused"
     onclick="this.blur()" (click)="acceleratedGame = !acceleratedGame">
-    <ng-container [ngSwitch]="acceleratedGame">
-      <img *ngSwitchCase="true" src="assets/icons/forward-solid.png" width="26" height="24" class="oriented-icon"
-        style="height: 24px" />
-      <img *ngSwitchCase="false" src="assets/icons/forward-solid-empty.png" width="26" height="24" class="oriented-icon"
-        style="height: 24px" />
-    </ng-container>
+    @switch (acceleratedGame) {
+      @case (true) {<img src="assets/icons/forward-solid.png" width="24" height="24" class="oriented-icon" style="height: 24px" />}
+      @case (false) {<img src="assets/icons/forward-solid-empty.png" width="24" height="24" class="oriented-icon" style="height: 24px" />}
+    }
   </button>
 
 </nav>
@@ -56,31 +58,33 @@
 </div>
 
 <ng-template #kickOffBeforeFirstPeriodContent let-modal>
-  <div class="modal-header" [ngSwitch]="periodType">
+  <div class="modal-header">
     <h6 class="modal-title">{{'GAME.KICK_OFF' | translate}}</h6>
   </div>
-  <div *ngIf="displayType === DisplayType.Standalone" class="modal-body">
-    {{'GAME.CLICK_ANYWHERE' | translate}}
-  </div>
+  @if(displayType === DisplayType.Standalone) {
+    <div class="modal-body">
+      {{'GAME.CLICK_ANYWHERE' | translate}}
+    </div>
+  }
 </ng-template>
 
 <ng-template #kickOffHalfTimeContent let-modal>
-  <div class="modal-header" [ngSwitch]="periodType">
+  <div class="modal-header">
     <h6 class="modal-title">{{"GAME.HALF_TIME" | translate}}</h6>
   </div>
 </ng-template>
 
 <ng-template #kickOffGoalContent let-modal>
-  <div class="modal-header" [ngSwitch]="periodType">
+  <div class="modal-header">
     <h6 class="modal-title">{{"GAME.GOAL" | translate}}</h6>
   </div>
 </ng-template>
 
 <ng-template #endGameContent let-modal>
   <div class="modal-header">
-    <h6 class="modal-title" *ngIf="ownScore > oppScore">{{'GAME.YOU_WON' | translate }}</h6>
-    <h6 class="modal-title" *ngIf="ownScore === oppScore">{{'GAME.DRAW' | translate }}</h6>
-    <h6 class="modal-title" *ngIf="ownScore < oppScore">{{'GAME.YOU_LOST' | translate }}</h6>
+    @if(ownScore > oppScore) {<h6 class="modal-title">{{'GAME.YOU_WON' | translate }}</h6>}
+    @if(ownScore === oppScore) {<h6 class="modal-title">{{'GAME.DRAW' | translate }}</h6>}
+    @if(ownScore < oppScore) {<h6 class="modal-title">{{'GAME.YOU_LOST' | translate }}</h6>}
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
 </ng-template>

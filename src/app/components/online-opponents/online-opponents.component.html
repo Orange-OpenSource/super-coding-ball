@@ -9,10 +9,12 @@
 * or see the "LICENSE.txt" file for more details.
 -->
 
-<div *ngIf="loading" class="fixed-top h-100 d-flex justify-content-center align-items-center">
-  <div class="spinner-border text-primary">
+@if(loading) {
+  <div class="fixed-top h-100 d-flex justify-content-center align-items-center">
+    <div class="spinner-border text-primary">
+    </div>
   </div>
-</div>
+}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-warning justify-content-start p-0">
   <button class="btn btn-lg d-flex" type="button" routerLink="/home">
@@ -20,102 +22,113 @@
   </button>
   <h4 class="m-0">{{"ONLINE.TITLE" | translate }}</h4>
   <div class="flex-grow-1 text-end">
-    <button *ngIf="onlineService.connectionStatus === ConnectionStatus.Connected"
-      class="btn p-0 m-1 border border-dark border-3" type="button"
-      onclick="this.blur()" (click)="modalService.open(accountInfoContent)">
-      {{onlineService.userDisplay.displayName}}
-      <span class="ps-1"></span>
-      <img class="border border-dark" height="40px"
-        src="{{onlineService.userDisplay.pictureUrl | anonPicturePipe}}">
-    </button>
+    @if(onlineService.connectionStatus === ConnectionStatus.Connected) {
+      <button
+        class="btn p-0 m-1 bg-black text-white border border-black border-3" type="button"
+        onclick="this.blur()" (click)="modalService.open(accountInfoContent)">
+        {{onlineService.userDisplay.displayName}}
+        <span class="ps-1"></span>
+        <img class="rounded bg-white" height="40px"
+          src="{{onlineService.userDisplay.pictureUrl | anonPicturePipe}}">
+      </button>
+    }
   </div>
 </nav>
 
 <div class="p-4 text-center" style="background-color: #ccffcc;">
-  <div *ngIf="onlineService.connectionStatus === ConnectionStatus.Disconnected"
-    class="d-flex flex-column align-items-center">
-    <div class="col-sm-7 col-md-5 col-lg-3">
-      <button class="btn btn-lg my-2 p-0 text-start bg-secondary w-100" type="button"
-        (click)="modalService.open(guestInfoContent)">
-        <img src="assets/icons/user-solid.png" class="p-2 icon48">
-        <span class="p-2 text-white h6">{{'ONLINE.CONNECT_GUEST' | translate }}</span>
-      </button>
-      <!-- See: https://developers.facebook.com/docs/facebook-login/userexperience -->
-      <button style="background-color: #0866FF" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
-        (click)="loading=true;onlineService.connectWithFacebook()">
-        <img src="assets/icons/login_facebook.png" class="icon48">
-        <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_FACEBOOK' | translate }}</span>
-      </button>
-      <!-- See: https://developers.google.com/identity/branding-guidelines -->
-      <button style="background-color: #F2F2F2" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
-        (click)="loading=true;onlineService.connectWithGoogle()">
-        <img src="assets/icons/login_google.png" class="icon48">
-        <span style="color: #1F1F1F" class="p-2 h6">{{'ONLINE.CONNECT_WITH_GOOGLE' | translate }}</span>
-      </button>
+  @if(onlineService.connectionStatus === ConnectionStatus.Disconnected) {
+    <div class="d-flex flex-column align-items-center">
+      <div class="col-sm-7 col-md-5 col-lg-3">
+        <button class="btn btn-lg my-2 p-0 text-start bg-secondary w-100" type="button"
+          (click)="modalService.open(guestInfoContent)">
+          <img src="assets/icons/user-solid.png" class="p-2 icon48">
+          <span class="p-2 text-white h6">{{'ONLINE.CONNECT_GUEST' | translate }}</span>
+        </button>
+        <!-- See: https://developers.facebook.com/docs/facebook-login/userexperience -->
+        <button style="background-color: #0866FF" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
+          (click)="loading=true;onlineService.connectWithFacebook()">
+          <img src="assets/icons/login_facebook.png" class="icon48">
+          <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_FACEBOOK' | translate }}</span>
+        </button>
+        <!-- See: https://developers.google.com/identity/branding-guidelines -->
+        <button style="background-color: #F2F2F2" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
+          (click)="loading=true;onlineService.connectWithGoogle()">
+          <img src="assets/icons/login_google.png" class="icon48">
+          <span style="color: #1F1F1F" class="p-2 h6">{{'ONLINE.CONNECT_WITH_GOOGLE' | translate }}</span>
+        </button>
+      </div>
     </div>
-  </div>
-
-  <div *ngIf="onlineService.connectionStatus === ConnectionStatus.Connected">
-    <img class="pixelated oriented-icon" style="width: 240px; margin-bottom: -3px;" src="assets/howto/opponents.png">
-    <div class="col-sm-10 col-md-8 col-lg-6 border border-dark" style="margin: auto">
-      <table class="table table-sm table-hover text-start">
-        <thead class="table-dark">
-          <tr>
-            <th class="text-center" scope="col" colspan="5">
-              {{"ONLINE.RANKING" | translate }}
-              <button class="btn btn-sm pt-0" type="button" onclick="this.blur()"
-                (click)="modalService.open(rankingInfoContent)">
-                <img src="assets/icons/info-circle-solid-white.png" style="height: 20px; width: 20px"/>
-              </button>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <td colspan="5">
-            <div class="input-group">
-              <input type="text" class="form-control bg-transparent rounded" placeholder="..." [(ngModel)]="searchTerm">
-              <div class="m-1">
-                <img src="assets/icons/search-solid.png" style="width: 18px">
+  }
+  @else if (onlineService.connectionStatus === ConnectionStatus.Connected) {
+    <div>
+      <app-dancing-monsters />
+      <div class="col-sm-10 col-md-8 col-lg-6 border border-dark" style="margin: auto">
+        <table class="table table-sm table-hover text-start">
+          <thead class="table-dark">
+            <tr>
+              <th class="text-center" scope="col" colspan="5">
+                {{"ONLINE.RANKING" | translate }}
+                <button class="btn btn-sm pt-0" type="button" onclick="this.blur()"
+                  (click)="modalService.open(rankingInfoContent)">
+                  <img src="assets/icons/info-circle-solid-white.png" style="height: 20px; width: 20px"/>
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <td colspan="5">
+              <div class="input-group">
+                <input type="text" class="form-control bg-transparent rounded" placeholder="..." [(ngModel)]="searchTerm">
+                <div class="m-1">
+                  <img src="assets/icons/search-solid.png" style="width: 18px">
+                </div>
               </div>
-            </div>
-          </td>
-          <tr *ngFor="let opponent of filteredOpponents" (click)="play(opponent.webcomId)"
-            [class.bg-secondary]="opponent.webcomId === onlineService.webcomId">
-            <td>
-              <button class="btn text-start px-0">
-                {{opponent.ranking}}
-              </button>
             </td>
-            <td *ngIf="opponent.userDisplay" class="p-0">
-              <button class="btn text-start px-0">
-                <img class="rounded border border-dark" height="40px"
-                  src="{{opponent.userDisplay.pictureUrl | anonPicturePipe}}">
-              </button>
-            </td>
-            <td>
-              <button class="btn text-start text-break px-0">
-                {{opponent.userDisplay?.displayName}}
-              </button>
-            </td>
-            <td>
-              <button class="btn text-start px-0">
-                {{opponent.points}}{{"ONLINE.OPP_POINTS" | translate }}
-              </button>
-            </td>
-            <td>
-              <button *ngIf="opponent.webcomId !== onlineService.webcomId" class="btn px-0"
-                [ngSwitch]="opponent.lastResult">
-                <img *ngSwitchCase="GamePoint.WON" class="icon24" src="assets/icons/trophy-solid-warning.png">
-                <img *ngSwitchCase="GamePoint.DRAW" class="icon24" src="assets/icons/trophy-solid-secondary.png">
-                <img *ngSwitchCase="GamePoint.LOST" class="icon24" src="assets/icons/trophy-solid-danger.png">
-                <img *ngSwitchDefault class="team-not-won icon24" src="assets/icons/trophy-solid-secondary.png">
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            @for (opponent of filteredOpponents; track opponent.webcomId) {
+              <tr (click)="play(opponent.webcomId)"
+              [class.bg-secondary]="opponent.webcomId === onlineService.webcomId">
+              <td>
+                <button class="btn text-start px-0">
+                  {{opponent.ranking}}
+                </button>
+              </td>
+              @if(opponent.userDisplay) {
+                <td class="p-0">
+                  <button class="btn text-start px-0">
+                    <img class="rounded border border-dark" height="40px"
+                      src="{{opponent.userDisplay.pictureUrl | anonPicturePipe}}">
+                  </button>
+                </td>
+              }
+              <td>
+                <button class="btn text-start text-break px-0">
+                  {{opponent.userDisplay?.displayName}}
+                </button>
+              </td>
+              <td>
+                <button class="btn text-start px-0">
+                  {{opponent.points}}{{"ONLINE.OPP_POINTS" | translate }}
+                </button>
+              </td>
+              <td>
+                @if(opponent.webcomId !== onlineService.webcomId) {
+                  <button class="btn px-0">
+                    @switch (opponent.lastResult) {
+                      @case (GamePoint.WON) {<img class="icon24" src="assets/icons/trophy-solid-warning.png">}
+                      @case (GamePoint.DRAW) {<img class="icon24" src="assets/icons/trophy-solid-secondary.png">}
+                      @case (GamePoint.LOST) {<img class="icon24" src="assets/icons/trophy-solid-danger.png">}
+                      @default {<img class="team-not-won icon24" src="assets/icons/trophy-solid-secondary.png">}
+                    }
+                  </button>
+                }
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+  }
 </div>
 
 <ng-template #accountInfoContent let-modal>
@@ -126,8 +139,8 @@
   <div class="modal-body">
 
     <div class="w-100 d-flex justify-content-between align-items-center">
-      <p *ngIf="onlineService.userDisplay.pictureUrl === null" [innerHTML]="'ONLINE.DISCONNECT_GUEST' | translate"></p>
-      <p *ngIf="onlineService.userDisplay.pictureUrl !== null" [innerHTML]="'ONLINE.DISCONNECT_OTHER' | translate"></p>
+      @if(onlineService.userDisplay.pictureUrl === null) {<p [innerHTML]="'ONLINE.DISCONNECT_GUEST' | translate"></p>}
+      @else {<p [innerHTML]="'ONLINE.DISCONNECT_OTHER' | translate"></p>}
       <button type="button" class="btn btn-primary mx-1" (click)="modal.close();onlineService.disconnect()">
         {{"ONLINE.DISCONNECT_ACCOUNT" | translate }}
       </button>
@@ -177,15 +190,17 @@
   <div class="modal-body">
     <p>
       <span>{{"ONLINE.REPLAY.HEADER" | translate }}</span>
-      <ng-container [ngSwitch]="lastResult">
-        <span *ngSwitchCase="GamePoint.LOST">{{"ONLINE.REPLAY.LOST" | translate }}</span>
-        <span *ngSwitchCase="GamePoint.DRAW">{{"ONLINE.REPLAY.DRAW" | translate }}</span>
-        <span *ngSwitchCase="GamePoint.WON">{{"ONLINE.REPLAY.WON" | translate }}</span>
-      </ng-container>
+      @switch (lastResult) {
+        @case (GamePoint.LOST) {<span>{{"ONLINE.REPLAY.LOST" | translate }}</span>}
+        @case (GamePoint.DRAW) {<span>{{"ONLINE.REPLAY.DRAW" | translate }}</span>}
+        @case (GamePoint.WON) {<span>{{"ONLINE.REPLAY.WON" | translate }}</span>}
+      }
     </p>
-    <p [ngSwitch]="lastResult">
-      <span *ngSwitchCase="GamePoint.WON">{{"ONLINE.REPLAY.RISK" | translate }}</span>
-      <span *ngSwitchDefault>{{"ONLINE.REPLAY.IMPROVE" | translate }}</span>
+    <p>
+      @switch (lastResult) {
+        @case (GamePoint.WON) {<span>{{"ONLINE.REPLAY.RISK" | translate }}</span>}
+        @default {<span>{{"ONLINE.REPLAY.IMPROVE" | translate }}</span>}
+      }
     </p>
   </div>
   <div class="modal-footer">

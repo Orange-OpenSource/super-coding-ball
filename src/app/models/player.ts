@@ -65,6 +65,7 @@ export class Player extends Sprite {
   isAtkRole: boolean;
   isRightSide: boolean;
   isSprinting: boolean;
+  pushedTimer = 0;
   private _energy = 100;
   get energy(): number {
     return this._energy;
@@ -80,6 +81,14 @@ export class Player extends Sprite {
   }
 
   set state(value: PlayerState) {
+    // When a player is pushed, a 20 cycles timer is set to determine the animation length
+    if (value === PlayerState.Pushed) {
+      this.pushedTimer = 20;
+      // If the player is pushed again, the timer is reset, but not the currentFrame (animation goes on)
+      if (this._state === PlayerState.Pushed) {
+        return
+      }
+    }
     this._state = value;
     this.currentFrame = 0;
   }
@@ -99,17 +108,15 @@ export class Player extends Sprite {
   }
 
   get canBePushed(): boolean {
-    return this.state !== PlayerState.Pushed
-    && this.state !== PlayerState.Shooting
+    return this.state !== PlayerState.Shooting
     && this.state !== PlayerState.PassingToCaller
     && this.state !== PlayerState.Calling
   }
 
   get willPlayWhenActionFinished(): boolean {
-    return this.state === PlayerState.Pushed
-    || this.state === PlayerState.Falling 
-    || this.state === PlayerState.Shooting 
-    || this.state === PlayerState.PassingToCaller 
+    return this.state === PlayerState.Falling
+    || this.state === PlayerState.Shooting
+    || this.state === PlayerState.PassingToCaller
     || this.state === PlayerState.Calling;
   }
 
@@ -144,7 +151,7 @@ export class Player extends Sprite {
         return greetingAnim;
       case PlayerState.Shooting:
       case PlayerState.PassingToCaller:
-            switch (Sprite.getDirection(this.angle)) {
+        switch (Sprite.getDirection(this.angle)) {
           case Dir.Up:
             return shootingUpAnim;
           case Dir.Left:
@@ -178,7 +185,6 @@ export class Player extends Sprite {
           case Dir.Right:
             return pushedRightAnim;
         }
-        break;
       case PlayerState.Celebrating:
         return celebratingAnim;
       case PlayerState.CoCelebrating:
@@ -216,6 +222,15 @@ export class Player extends Sprite {
     if (this.state === PlayerState.Greeting && this.currentFrame === 0) {
       this.state = PlayerState.Waiting;
     }
+
+    // When pushed timer is over, player plays again
+    if (this.state === PlayerState.Pushed) {
+      this.pushedTimer--;
+      if (this.pushedTimer === 0) {
+        this.state = PlayerState.Playing;
+      }
+    }
+
     if (this.willPlayWhenActionFinished && this.currentFrame === 0) {
       // When falling is done, recover full energy
       if (this.state === PlayerState.Falling) {

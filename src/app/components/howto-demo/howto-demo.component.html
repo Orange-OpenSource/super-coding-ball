@@ -16,17 +16,19 @@
 <div class="modal-header">
   <ul class="pagination pagination-sm justify-content-center m-0 w-100">
     <li class="page-item">
-      <a class="page-link" (click)="currentStep = currentStep - 1">
-        <span><<</span>
-      </a>
+      <button class="page-link" (click)="currentStep = currentStep - 1">
+        <span>&laquo;</span>
+      </button>
     </li>
-    <li *ngFor="let step of steps; let index = index" class="page-item" [class.active]="currentStep === index">
-      <a class="page-link" (click)="currentStep = index">{{index + 1}}</a>
-    </li>
+    @for (step of steps; track step.blockId; let  index = $index) {
+      <li class="page-item" [class.active]="currentStep === index">
+        <button class="page-link" (click)="currentStep = index">{{index + 1}}</button>
+      </li>
+    }
     <li class="page-item">
-      <a class="page-link" (click)="currentStep = currentStep + 1">
-        <span>>></span>
-      </a>
+      <button class="page-link" (click)="currentStep = currentStep + 1">
+        <span>&raquo;</span>
+      </button>
     </li>
   </ul>
 </div>

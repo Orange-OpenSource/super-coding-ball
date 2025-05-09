@@ -34,10 +34,7 @@ export abstract class DebugIcon extends Blockly.icons.Icon {
             Blockly.utils.Svg.IMAGE,
             {
                 'href': this.imageAsset,
-                'x': '0',
-                'y': '0',
-                'height': '32',
-                'width': '32'
+                'class': 'debug-icon pixelated',
             },
             this.svgRoot
         );
@@ -56,24 +53,24 @@ export interface IDebugIcon {
 
 export class Girl1Icon extends DebugIcon {
     override iconType = 'Girl1Icon';
-    override imageAsset = 'assets/howto/girl1.png';
+    override imageAsset = 'assets/sprites/girl1.png';
     override weight = 1;
 }
 
 export class Guy1Icon extends DebugIcon {
     override iconType = 'Guy1Icon';
-    override imageAsset = 'assets/howto/guy1.png';
+    override imageAsset = 'assets/sprites/guy1.png';
     override weight = 2;
 }
 
 export class Girl2Icon extends DebugIcon {
     override iconType = 'Girl2Icon';
-    override imageAsset = 'assets/howto/girl2.png';
+    override imageAsset = 'assets/sprites/girl2.png';
     override weight = 3;
 }
 
 export class Guy2Icon extends DebugIcon {
     override iconType = 'Guy2Icon';
-    override imageAsset = 'assets/howto/guy2.png';
+    override imageAsset = 'assets/sprites/guy2.png';
     override weight = 4;
 }

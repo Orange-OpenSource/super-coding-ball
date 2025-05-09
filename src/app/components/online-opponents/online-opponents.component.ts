@@ -9,15 +9,18 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, signal, ViewChild, WritableSignal} from '@angular/core';
 import {AllGames, ConnectionStatus, Opponent} from '../../models/webcom-models';
 import {OnlineService} from '../../services/online.service';
-import {TranslateService} from '@ngx-translate/core';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {Subscription} from 'rxjs';
 import {CodeService} from '../../services/code.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {LocalStorageService} from '../../services/local-storage.service';
+import {DancingMonstersComponent} from '../dancing-monsters/dancing-monsters.component';
+import {AnonPicturePipe} from '../../services/anon-picture.pipe';
+import {FormsModule} from '@angular/forms';
 
 export enum GamePoint {
   LOST = 0,
@@ -27,6 +30,7 @@ export enum GamePoint {
 
 @Component({
   selector: 'app-online-opponents',
+  imports: [FormsModule, RouterLink, TranslatePipe, DancingMonstersComponent, AnonPicturePipe],
   templateUrl: './online-opponents.component.html'
 })
 

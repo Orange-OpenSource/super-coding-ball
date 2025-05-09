@@ -10,16 +10,18 @@
  */
 
 import {Component} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {SupportedLanguagesServices} from '../../services/supported-languages-service';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-about',
+  imports: [RouterLink, TranslatePipe],
   templateUrl: './about.component.html'
 })
 export class AboutComponent {
   constructor(supportedLanguagesServices: SupportedLanguagesServices, public translate: TranslateService) {
-    if (supportedLanguagesServices.getCurrentLang().default) {
+    if (supportedLanguagesServices.getCurrentLangInfo().default) {
       this.contact = "Contact (or help with a new translation!):"
     } else {
       this.translate.get('ABOUT.CONTACT').subscribe(wording => this.contact = wording)

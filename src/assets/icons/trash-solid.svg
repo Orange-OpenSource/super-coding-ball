@@ -1,1 +1,41 @@
-<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" class="svg-inline--fa fa-trash fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="trash-solid.svg"
+   width="512"
+   height="512"
+   inkscape:export-filename="trash-solid.png"
+   inkscape:export-xdpi="18"
+   inkscape:export-ydpi="18"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.05078125"
+     inkscape:cx="216.61538"
+     inkscape:cy="256"
+     inkscape:window-width="1440"
+     inkscape:window-height="751"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+  <path
+     d="M 167.2,17.7 160,32 H 64 C 46.3,32 32,46.3 32,64 32,81.7 46.3,96 64,96 h 384 c 17.7,0 32,-14.3 32,-32 0,-17.7 -14.3,-32 -32,-32 H 352 L 344.8,17.7 C 339.4,6.8 328.3,0 316.2,0 H 195.8 C 183.7,0 172.6,6.8 167.2,17.7 Z M 448,128 H 64 l 21.2,339 c 1.6,25.3 22.6,45 47.9,45 h 245.8 c 25.3,0 46.3,-19.7 47.9,-45 z"
+     id="path1" />
+</svg>
