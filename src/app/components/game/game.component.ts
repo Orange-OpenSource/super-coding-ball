@@ -108,6 +108,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.acceleratedGame ? 60 : 15;
   }
 
+  gameClock = 0;
   gameTime = 0;
   gameTimeDisplayed = '00';
   ownScore = 0;
@@ -290,6 +291,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private tickClock(): void {
+    this.gameClock++;
+
     if (!this.gameHalted) {
       this.gameTime = Math.round((this.gameTime + 0.05) * 100) / 100;
       this.gameTimeDisplayed = String(Math.round(this.gameTime)).padStart(2, '0');
@@ -555,7 +558,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     for (const sprite of sprites.sort((a, b) => a.offsetCoord.y - b.offsetCoord.y)) {
-      sprite.animate();
+      sprite.animate(this.gameClock);
       const currentFrame = Math.floor(sprite.currentFrame);
       this.fieldContext.drawImage(
         sprite.image,

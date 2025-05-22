@@ -24,6 +24,7 @@ export interface SpriteCoord {
 export interface SpriteAnim {
   frames: { row: number, col: number }[];
   speed: number;
+  syncOnClock?: boolean;
 }
 
 export function buildFrames(next: Dir, rowBeg: number, colBeg: number, length: number): { row: number, col: number }[] {
@@ -50,7 +51,7 @@ export function buildFrames(next: Dir, rowBeg: number, colBeg: number, length: n
   return frames;
 }
 
-export class Sprite {
+export abstract class Sprite {
   assetName;
   currentFrame = 0;
   image;
@@ -58,10 +59,6 @@ export class Sprite {
   height;
   widthBaseOffset;
   heightBaseOffset;
-  upAnim;
-  downAnim;
-  leftAnim;
-  rightAnim;
   private _coord!: SpriteCoord;
   public get coord(): SpriteCoord {
     return this._coord;
@@ -89,16 +86,12 @@ export class Sprite {
     this._still = value;
   }
 
-  constructor(
+  protected constructor(
     assetName: string | null,
     width: number,
     height: number,
     widthBaseOffset: number,
-    heightBaseOffset: number,
-    upAnim: SpriteAnim,
-    leftAnim: SpriteAnim,
-    downAnim: SpriteAnim,
-    rightAnim: SpriteAnim
+    heightBaseOffset: number
   ) {
     this.assetName = assetName;
     this.image = new Image();
@@ -109,24 +102,9 @@ export class Sprite {
     this.height = height;
     this.widthBaseOffset = widthBaseOffset;
     this.heightBaseOffset = heightBaseOffset;
-    this.upAnim = upAnim;
-    this.leftAnim = leftAnim;
-    this.downAnim = downAnim;
-    this.rightAnim = rightAnim;
   }
 
-  get animData(): SpriteAnim {
-    switch (Sprite.getDirection(this.angle)) {
-      case Dir.Up:
-        return this.upAnim;
-      case Dir.Left:
-        return this.leftAnim;
-      case Dir.Down:
-        return this.downAnim;
-      case Dir.Right:
-        return this.rightAnim;
-    }
-  }
+  abstract get animData(): SpriteAnim;
 
   get offsetCoord(): SpriteCoord {
     return this.coord;
@@ -146,14 +124,13 @@ export class Sprite {
     }
   }
 
-  get shouldAnimate(): boolean {
-    return !this.still;
-  }
+  abstract get shouldAnimate(): boolean;
 
-  animate(): void {
+  animate(clock: number): void {
     if (this.shouldAnimate) {
-      this.currentFrame = this.currentFrame + this.animData.speed;
+      this.currentFrame = this.animData.syncOnClock ? (clock * this.animData.speed) : (this.currentFrame + this.animData.speed);
     }
+
     // Keep two decimal digits to avoid js rounding errors
     this.currentFrame = Math.round(this.currentFrame * 100) / 100;
     this.currentFrame = this.currentFrame % this.animData.frames.length;
