@@ -39,7 +39,7 @@ const sprintingLeftAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 39, 0, 8),
 const sprintingDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 40, 0, 8), speed: 1};
 const sprintingRightAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 41, 0, 8), speed: 1};
 // tslint:disable-next-line:max-line-length
-const greetingAnim: SpriteAnim = {frames: [{row: 2, col: 0}, {row: 2, col: 3}, {row: 2, col: 4}, {row: 2, col: 5}, {row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}, {row: 2, col: 4}, {row: 2, col: 3}], speed: 0.2};
+const greetingAnim: SpriteAnim = {frames: [{row: 2, col: 6}, {row: 2, col: 4}, {row: 2, col: 5}, {row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}, {row: 2, col: 4}, {row: 2, col: 6}], speed: 0.2};
 const shootingUpAnim: SpriteAnim = {frames: [{row: 38, col: 3}, {row: 38, col: 5}, {row: 38, col: 7}, {row: 38, col: 7}], speed: 0.5};
 const shootingLeftAnim: SpriteAnim = {frames: [{row: 39, col: 5}, {row: 39, col: 6}, {row: 39, col: 7}, {row: 39, col: 7}], speed: 0.5};
 const shootingDownAnim: SpriteAnim = {frames: [{row: 40, col: 4}, {row: 40, col: 2}, {row: 40, col: 0}, {row: 40, col: 0}], speed: 0.5};
@@ -52,13 +52,10 @@ const pushedUpAnim: SpriteAnim = {frames: [{row: 0, col: 5}, {row: 0, col: 4}, {
 const pushedLeftAnim: SpriteAnim = {frames: [{row: 1, col: 5}, {row: 1, col: 4}, {row: 1, col: 6}, {row: 1, col: 4}], speed: 0.2};
 const pushedDownAnim: SpriteAnim = {frames: [{row: 2, col: 5}, {row: 2, col: 4}, {row: 2, col: 6}, {row: 2, col: 4}], speed: 0.2};
 const pushedRightAnim: SpriteAnim = {frames: [{row: 3, col: 5}, {row: 3, col: 4}, {row: 3, col: 6}, {row: 3, col: 4}], speed: 0.2};
-const fallingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 20, 0, 6), speed: 0.05};
-const celebratingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 18, 2, 9) ,speed: 0.4};
-const coCelebratingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 14, 0, 6), speed: 0.4};
-// tslint:disable-next-line:max-line-length
-const cryingAnim: SpriteAnim = {frames: [{row: 20, col: 3}, {row: 20, col: 4}], speed: 0.05};
-// tslint:disable-next-line:max-line-length
-const waitingAnim: SpriteAnim = {frames: [{row: 2, col: 0}, {row: 2, col: 1}, {row: 2, col: 3}, {row: 2, col: 2}, {row: 2, col: 2}, {row: 2, col: 3}, {row: 2, col: 1}], speed: 0.1, syncOnClock: true};
+const fallingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 20, 1, 5), speed: 0.05};
+const celebratingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 41, 2, 4).concat(buildFrames(Dir.Right, 29, 1, 4)).concat({row: 37, col: 2}).concat(Array(100).fill({row: 33, col: 1})), speed: 0.5};
+const coCelebratingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 14, 2, 4).concat(buildFrames(Dir.Left, 14, 5, 4)), speed: 1};
+const cryingAnim: SpriteAnim = {frames: [{row: 20, col: 2}, {row: 20, col: 3}, {row: 20, col: 4}, {row: 20, col: 3}], speed: 0.4};
 
 export class Player extends Sprite {
   ownTeam: boolean;
@@ -96,7 +93,8 @@ export class Player extends Sprite {
   get canExecuteCode(): boolean {
     return this.state === PlayerState.Entering
     || this.state === PlayerState.Playing
-    || this.state === PlayerState.Pushed;
+    || this.state === PlayerState.Pushed
+    || this.state === PlayerState.Celebrating;
   }
 
   get canHaveCollisions(): boolean {
@@ -188,7 +186,7 @@ export class Player extends Sprite {
       case PlayerState.Crying:
         return cryingAnim;
       case PlayerState.Waiting:
-        return waitingAnim;
+        return restingDownAnim;
       default:
         switch (Sprite.getDirection(this.angle)) {
           case Dir.Up:
