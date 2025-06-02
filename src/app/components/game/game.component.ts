@@ -123,9 +123,9 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     new Player('girl2', true, false, true),
     new Player('guy2', true, false, false),
     new Player('orc', false, true, true),
-    new Player('skel', false, true, false),
-    new Player('zomb', false, false, true),
-    new Player('rept', false, false, false)
+    new Player('wolf', false, true, false),
+    new Player('zombie', false, false, true),
+    new Player('lizard', false, false, false)
   ];
   private ball = new Ball();
   private enteringCode = '';

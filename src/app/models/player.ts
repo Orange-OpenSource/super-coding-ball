@@ -127,7 +127,7 @@ export class Player extends Sprite {
     isRightSide: boolean
   ) {
     super(
-      'new-anims',
+      assetName,
       64,
       64,
       32,

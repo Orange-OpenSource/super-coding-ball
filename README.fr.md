@@ -51,14 +51,14 @@ Une fois le fichier [blocks.json](./src/assets/blocks/blocks.json) généré, il
 
 Tous les sprites des joueurs viennent "l'Open Game Art Liberated Pixel Cup" et ont été générés par [cet outil](https://github.com/LiberatedPixelCup/Universal-LPC-Spritesheet-Character-Generator) :
 
-* Guy 1
-* Guy 2
-* Girl 1
-* Girl 2
-* Orc
-* Reptile
-* Skeleton
-* Zombie
+* **Guy 1** (body=Body_color_amber head=Human_male_amber shoes=Basic_Shoes_brown legs=Pants_red hair=Messy1_blonde clothes=Sleeveless_2_navy sex=male)
+* **Guy 2** (body=Body_color_black head=Human_male_black shoes=Basic_Shoes_charcoal legs=Pants_red hair=Cornrows_green eye_color=Eye_Color_brown clothes=Sleeveless_2_Buttoned_blue sex=male)
+* **Girl 1** (body=Body_color_brown head=Human_female_brown shoes=Basic_Shoes_brown legs=Pants_red hair=Ponytail2_black eye_color=Eye_Color_brown clothes=Sleeveless_2_blue sash=Obi_blue sex=female)
+* **Girl 2** (body=Body_color_light head=Human_female_light shoes=Basic_Shoes_brown legs=Pants_red hair=Long_tied_purple eye_color=Eye_Color_purple clothes=TShirt_Scoop_lavender sash=Obi_lavender sex=female)
+* **Orc** (body=Body_color_green head=Orc_male_green legs=Long_Pants_black)
+* **Lizard** (body=Body_color_bright_green head=Lizard_male_bright_green wings=Lizard_Wings_bright_green tail=Lizard_tail_bright_green legs=Long_Pants_black)
+* **Wolf** (body=Body_color_pale_green head=Wolf_male_pale_green tail=Wolf_Tail_raven legs=Long_Pants_black)
+* **Zombie** (body=Body_color_zombie_green head=Zombie_zombie_green overalls=Overalls_black)
 
 ## Traductions (pour le moment français, anglais, espagnol, russe, hébreu, allemand et arabe)
 
