@@ -16,16 +16,16 @@ License Creative Commons Attribution-ShareAlike 3.0: https://creativecommons.org
 Icons by Font Awesome Free
 License Creative Commons Attribution 4.0 International: https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt
 
-Angular - version 19.1.0 - https://github.com/angular/angular
+Angular - version 19.2.14 - https://github.com/angular/angular
 Copyright (c) 2010-2025 Google LLC.
 The MIT License - https://angular.io/license
 
-Blockly - version 11.2.0 - https://github.com/google/blockly
-Copyright (c) 2012-2024 Google, Inc.
+Blockly - version 12.1.0 - https://github.com/google/blockly
+Copyright (c) 2012-2025 Google, Inc.
 Apache License 2.0 - https://github.com/google/blockly/blob/master/LICENSE
 
-Bootstrap - version 5.3.3 - https://github.com/twbs/bootstrap
-Copyright (c) 2011–2024 - the Bootstrap Authors and Twitter, Inc.
+Bootstrap - version 5.3.6 - https://github.com/twbs/bootstrap
+Copyright (c) 2011–2025 - the Bootstrap Authors and Twitter, Inc.
 The MIT License - https://github.com/twbs/bootstrap/blob/main/LICENSE
 
 NG Bootstrap - version 18.0.0 - https://github.com/ng-bootstrap/ng-bootstrap
@@ -33,21 +33,21 @@ Copyright (c) 2015-2025 - Angular ng-bootstrap team
 The MIT License - https://github.com/ng-bootstrap/ng-bootstrap/blob/master/LICENSE
 
 ngx-translate - version 16.0.4 - https://github.com/ngx-translate/core
-Copyright (c) 2018 Olivier Combe
+Copyright (c) 2018-2025 Olivier Combe
 The MIT License - https://github.com/ngx-translate/core/blob/master/LICENSE
 
-Firebase Javascript SDK - version 11.2.0 - https://github.com/firebase/firebase-js-sdk
+Firebase Javascript SDK - version 11.8.1 - https://github.com/firebase/firebase-js-sdk
 Copyright (c) Google, Inc.
 Apache License Version 2.0 - https://github.com/firebase/firebase-js-sdk/blob/master/LICENSE
 
-RxJS - version 7.8.1 - https://github.com/ReactiveX/rxjs
-Copyright (c) 2015-2023 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors
+RxJS - version 7.8.2 - https://github.com/ReactiveX/rxjs
+Copyright (c) 2015-2025 Google, Inc., Netflix, Inc., Microsoft Corp. and contributors
 Apache License Version 2.0 - https://github.com/ReactiveX/rxjs/blob/master/LICENSE.txt
 
 tslib - version 2.8.1 - https://github.com/microsoft/tslib
 Copyright (c) Microsoft Corporation.
 BSD Zero Clause License - https://github.com/microsoft/tslib/blob/main/LICENSE.txt
 
-zone.js - version 0.15.0 - https://github.com/angular/zone.js
+zone.js - version 0.15.1 - https://github.com/angular/zone.js
 Copyright (c) 2016-2025 Google, Inc.
 The MIT License - https://github.com/angular/zone.js/blob/master/LICENSE
