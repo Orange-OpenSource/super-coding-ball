@@ -184,11 +184,14 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
     this.lastResult = this.opponents.find(opponent => opponent.webcomId === opponentId)?.lastResult;
     if (this.lastResult !== undefined) {
       this.modalService.open(this.replayGameContent)
-        .result.then((replayValidated: boolean) => {
-          if (replayValidated) {
-            this.router.navigate([`/code/online/${opponentId}`]);
-          }
-        }, () => { });
+        .result.then(async (replayValidated: boolean) => {
+        if (replayValidated) {
+          // For some reason, adding these 500ms prevents a glitch for Blockly's vertical scrollbar
+          // There should be some race condition between the disappearing Bootstrap modal and Blockly
+          await new Promise(resolve => setTimeout(resolve, 500));
+          this.router.navigate([`/code/online/${opponentId}`]);
+        }
+      }, () => { });
     } else {
       this.router.navigate([`/code/online/${opponentId}`]);
     }
