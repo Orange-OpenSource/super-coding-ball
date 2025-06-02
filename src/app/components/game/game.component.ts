@@ -108,6 +108,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.acceleratedGame ? 60 : 15;
   }
 
+  gameClock = 0;
   gameTime = 0;
   gameTimeDisplayed = '00';
   ownScore = 0;
@@ -115,18 +116,20 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   private field!: HTMLImageElement;
   private fieldContext!: CanvasRenderingContext2D;
   private ownerMark!: HTMLImageElement;
+  private scorerMark!: HTMLImageElement;
   private players = [
     new Player('girl1', true, true, true),
     new Player('guy1', true, true, false),
     new Player('girl2', true, false, true),
     new Player('guy2', true, false, false),
     new Player('orc', false, true, true),
-    new Player('skel', false, true, false),
-    new Player('zomb', false, false, true),
-    new Player('rept', false, false, false)
+    new Player('wolf', false, true, false),
+    new Player('zombie', false, false, true),
+    new Player('lizard', false, false, false)
   ];
   private ball = new Ball();
   private enteringCode = '';
+  private celebratingCode = '';
   private ownCode = '';
   private oppCode = '';
 
@@ -177,6 +180,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.oppCode = await this.codeService.loadOppCode(this.isOnline, this.opponentId);
     this.ownerMark = new Image();
     this.ownerMark.src = 'assets/icons/owner-mark.png';
+    this.scorerMark = new Image();
+    this.scorerMark.src = 'assets/icons/scorer-mark.png';
     this.positionPlayersAndBallBeforeEntry();
     this.fieldContext = (document.getElementById('fieldCanvas') as HTMLCanvasElement).getContext('2d') as CanvasRenderingContext2D;
     this.field = new Image();
@@ -290,6 +295,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private tickClock(): void {
+    this.gameClock++;
+
     if (!this.gameHalted) {
       this.gameTime = Math.round((this.gameTime + 0.05) * 100) / 100;
       this.gameTimeDisplayed = String(Math.round(this.gameTime)).padStart(2, '0');
@@ -364,6 +371,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
         player.lastBlockId = '';
       }
       player.still = true;
+      player.isSprinting = false;
       if (player.canExecuteCode) {
         // Before anything, if a teammate has called for the ball long enough...
         if (caller && this.ball.owner?.ownTeam == caller.ownTeam) {
@@ -390,6 +398,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     let code: string;
     if (player.state === PlayerState.Entering) {
       code = this.enteringCode;
+    } else if (player.state === PlayerState.Celebrating) {
+      code = this.celebratingCode;
     } else if (player.ownTeam) {
       code = this.ownCode;
     } else {
@@ -485,8 +495,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private checkIfBallHasBeenCaught(): void {
     const playersNearBall = this.players
-      // A falling player can't catch the ball
-      .filter(it => it.state !== PlayerState.Falling)
+      // A falling or celebrating player can't catch the ball
+      .filter(it => it.state !== PlayerState.Falling && it.state !== PlayerState.Celebrating)
       // Only players close to the ball can catch it
       .filter(it => this.computeDistance(this.ball.coord, it.coord) < ballCatchingDistance)
       // If rolling, ball should be rolling towards player +/- 90°
@@ -521,9 +531,11 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
       this.oppScore++;
     }
     const scorer = this.ball.owner ?? this.ball.formerOwner;
+    this.ball.owner = null;
     for (const player of this.players) {
       if (player.ownTeam === forOwnTeam) {
         if (player === scorer) {
+          this.celebratingCode = `game.move(player, {x: ${player.coord.x + 100}, y: ${player.coord.y}}, true);`;
           player.state = PlayerState.Celebrating;
         } else {
           player.state = PlayerState.CoCelebrating;
@@ -539,7 +551,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private drawSprites(): void {
     this.fieldContext.drawImage(this.field, 0, 0, 456, 554, 0, 0, this.fieldContext.canvas.width, this.fieldContext.canvas.height);
-    this.drawBallOwnerMark();
+    this.drawMark();
 
     // Draw sprites from top to bottom (including the ball)
     const sprites: Sprite[] = [];
@@ -554,7 +566,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     for (const sprite of sprites.sort((a, b) => a.offsetCoord.y - b.offsetCoord.y)) {
-      sprite.animate();
+      sprite.animate(this.gameClock);
       const currentFrame = Math.floor(sprite.currentFrame);
       this.fieldContext.drawImage(
         sprite.image,
@@ -568,15 +580,28 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
         this.drawEnergyBar(sprite);
       }
     }
+
+    this.drawSpotlight();
   }
 
-  private drawBallOwnerMark(): void {
-    if (this.ball.owner) {
-      this.fieldContext.drawImage(
-        this.ownerMark,
-        Math.round(this.ball.owner.offsetCoord.x) - this.ownerMark.width / 2,
-        Math.round(this.ball.owner.offsetCoord.y) - this.ownerMark.height / 2);
+  private drawMark(): void {
+    let player: Player;
+    let mark: HTMLImageElement;
+    const scorer = this.players.find(player => player.state === PlayerState.Celebrating);
+    if (scorer) {
+      player = scorer;
+      mark = this.scorerMark;
+    } else if (this.ball.owner) {
+      player = this.ball.owner;
+      mark = this.ownerMark;
+    } else {
+      return;
     }
+
+    this.fieldContext.drawImage(
+      mark,
+      Math.round(player.offsetCoord.x) - mark.width / 2,
+      Math.round(player.offsetCoord.y) - mark.height / 2);
   }
 
   private drawEnergyBar(player: Player): void {
@@ -592,6 +617,27 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.fieldContext.fillRect(x0 + 1, y0 + 1, energyBarWidth - 2, energyBarHeight - 2);
     this.fieldContext.fillStyle = gradient;
     this.fieldContext.fillRect(x0 + 1, y0 + 1, (energyBarWidth - 2) * player.energy / 100, energyBarHeight - 2);
+  }
+
+  private drawSpotlight(): void {
+    const scorer = this.players.find(player => player.state === PlayerState.Celebrating);
+    if(!scorer) {
+      return;
+    }
+
+    const spotlightSourceOffset = 200;
+    const distanceBetweenSpotlightSourceAndScorer = this.getDistance({x: canvasWidth/2, y: -spotlightSourceOffset}, {x: scorer.offsetCoord.x, y: scorer.offsetCoord.y - 12});
+    const distanceBetweenSpotlightSourceAndField = distanceBetweenSpotlightSourceAndScorer * spotlightSourceOffset / (spotlightSourceOffset + scorer.offsetCoord.y - 12);
+    this.fieldContext.beginPath();
+    this.fieldContext.moveTo(canvasWidth/2, -spotlightSourceOffset);
+    this.fieldContext.lineTo(scorer.offsetCoord.x - 28, scorer.offsetCoord.y - 12);
+    this.fieldContext.lineTo(scorer.offsetCoord.x + 28, scorer.offsetCoord.y - 12);
+    this.fieldContext.closePath();
+    const gradient = this.fieldContext.createRadialGradient(canvasWidth/2, -spotlightSourceOffset, distanceBetweenSpotlightSourceAndField, canvasWidth/2, -spotlightSourceOffset, distanceBetweenSpotlightSourceAndScorer);
+    gradient.addColorStop(0, '#f8ff00C0');
+    gradient.addColorStop(1, '#f8ff0020');
+    this.fieldContext.fillStyle = gradient;
+    this.fieldContext.fill();
   }
 
   private move(player: Player, target: SpriteCoord | Player, isSprinting: boolean): void {
@@ -620,8 +666,9 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     player.coord.y += velocity * Math.sin(correctedAngle);
     player.angle = correctedAngle;
     player.still = false;
-    if (isSprinting && player.state !== PlayerState.Entering) {
+    if (isSprinting && player.state !== PlayerState.Entering && player.state !== PlayerState.Celebrating) {
       player.energy = player.energy - 2 * Math.random();
+      player.isSprinting = true;
     }
     if (player.energy === 0) {
       player.state = PlayerState.Falling;

@@ -96,12 +96,25 @@ export class Ball extends Sprite {
       20,
       20,
       10,
-      16,
-      rollingUpAnim,
-      rollingLeftAnim,
-      rollingDownAnim,
-      rollingRightAnim
+      16
     );
+  }
+
+  override get animData(): SpriteAnim {
+    switch (Sprite.getDirection(this.angle)) {
+      case Dir.Up:
+        return rollingUpAnim;
+      case Dir.Left:
+        return rollingLeftAnim;
+      case Dir.Down:
+        return rollingDownAnim;
+      case Dir.Right:
+        return rollingRightAnim;
+    }
+  }
+
+  override get shouldAnimate(): boolean {
+    return !this.still;
   }
 
   override get offsetCoord(): SpriteCoord {

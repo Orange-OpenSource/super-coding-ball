@@ -26,16 +26,24 @@ export enum PlayerState {
   Waiting
 }
 
+const restingUpAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 22, 0, 2), speed: .2, syncOnClock: true};
+const restingLeftAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 23, 0, 2), speed: .2, syncOnClock: true};
+const restingDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 24, 0, 2), speed: .2, syncOnClock: true};
+const restingRightAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 25, 0, 2), speed: .2, syncOnClock: true};
 const runningUpAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 8, 1, 8), speed: 1};
-const runningLeftAnim: SpriteAnim = {frames: [{row: 9, col: 8}].concat(buildFrames(Dir.Right, 9, 1, 7)), speed: 1};
+const runningLeftAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 9, 1, 8), speed: 1};
 const runningDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 10, 1, 8), speed: 1};
-const runningRightAnim: SpriteAnim = {frames: [{row: 11, col: 8}].concat(buildFrames(Dir.Right, 11, 1, 7)), speed: 1};
+const runningRightAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 11, 1, 8), speed: 1};
+const sprintingUpAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 38, 0, 8), speed: 1};
+const sprintingLeftAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 39, 0, 8), speed: 1};
+const sprintingDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 40, 0, 8), speed: 1};
+const sprintingRightAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 41, 0, 8), speed: 1};
 // tslint:disable-next-line:max-line-length
-const greetingAnim: SpriteAnim = {frames: [{row: 2, col: 0}, {row: 2, col: 3}, {row: 2, col: 4}, {row: 2, col: 5}, {row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}, {row: 2, col: 4}, {row: 2, col: 3}], speed: 0.2};
-const shootingUpAnim: SpriteAnim = {frames: [{row: 8, col: 3}, {row: 8, col: 4}, {row: 8, col: 4}, {row: 8, col: 4}], speed: 0.5};
-const shootingLeftAnim: SpriteAnim = {frames: [{row: 9, col: 3}, {row: 9, col: 4}, {row: 9, col: 4}, {row: 9, col: 4}], speed: 0.5};
-const shootingDownAnim: SpriteAnim = {frames: [{row: 10, col: 3}, {row: 10, col: 4}, {row: 10, col: 4}, {row: 10, col: 4}], speed: 0.5};
-const shootingRightAnim: SpriteAnim = {frames: [{row: 11, col: 3}, {row: 11, col: 4}, {row: 11, col: 4}, {row: 11, col: 4}], speed: 0.5};
+const greetingAnim: SpriteAnim = {frames: [{row: 2, col: 6}, {row: 2, col: 4}, {row: 2, col: 5}, {row: 3, col: 5}, {row: 0, col: 5}, {row: 1, col: 5}, {row: 2, col: 5}, {row: 2, col: 4}, {row: 2, col: 6}], speed: 0.2};
+const shootingUpAnim: SpriteAnim = {frames: [{row: 38, col: 3}, {row: 38, col: 5}, {row: 38, col: 7}, {row: 38, col: 7}], speed: 0.5};
+const shootingLeftAnim: SpriteAnim = {frames: [{row: 39, col: 5}, {row: 39, col: 6}, {row: 39, col: 7}, {row: 39, col: 7}], speed: 0.5};
+const shootingDownAnim: SpriteAnim = {frames: [{row: 40, col: 4}, {row: 40, col: 2}, {row: 40, col: 0}, {row: 40, col: 0}], speed: 0.5};
+const shootingRightAnim: SpriteAnim = {frames: [{row: 41, col: 1}, {row: 41, col: 2}, {row: 41, col: 3}, {row: 41, col: 3}], speed: 0.5};
 const callingUpAnim: SpriteAnim = {frames: [{row: 12, col: 4}, {row: 12, col: 5}, {row: 12, col: 4}, {row: 12, col: 5}, {row: 12, col: 4}], speed: 0.2};
 const callingLeftAnim: SpriteAnim = {frames: [{row: 13, col: 4}, {row: 13, col: 5}, {row: 13, col: 4}, {row: 13, col: 5}, {row: 13, col: 4}], speed: 0.2};
 const callingDownAnim: SpriteAnim = {frames: [{row: 14, col: 4}, {row: 14, col: 5}, {row: 14, col: 4}, {row: 14, col: 5}, {row: 14, col: 4}], speed: 0.2};
@@ -44,23 +52,17 @@ const pushedUpAnim: SpriteAnim = {frames: [{row: 0, col: 5}, {row: 0, col: 4}, {
 const pushedLeftAnim: SpriteAnim = {frames: [{row: 1, col: 5}, {row: 1, col: 4}, {row: 1, col: 6}, {row: 1, col: 4}], speed: 0.2};
 const pushedDownAnim: SpriteAnim = {frames: [{row: 2, col: 5}, {row: 2, col: 4}, {row: 2, col: 6}, {row: 2, col: 4}], speed: 0.2};
 const pushedRightAnim: SpriteAnim = {frames: [{row: 3, col: 5}, {row: 3, col: 4}, {row: 3, col: 6}, {row: 3, col: 4}], speed: 0.2};
-const fallingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 20, 0, 6), speed: 0.05};
-const celebratingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 18, 2, 9)
-    .concat(buildFrames(Dir.Right, 19, 2, 9))
-    .concat(buildFrames(Dir.Right, 16, 2, 9))
-    .concat(buildFrames(Dir.Right, 17, 2, 9)),
-  speed: 0.4};
-const coCelebratingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 14, 0, 6), speed: 0.4};
-// tslint:disable-next-line:max-line-length
-const cryingAnim: SpriteAnim = {frames: [{row: 20, col: 3}, {row: 20, col: 4}], speed: 0.05};
-// tslint:disable-next-line:max-line-length
-const waitingAnim: SpriteAnim = {frames: [{row: 2, col: 0}, {row: 2, col: 1}, {row: 2, col: 3}, {row: 2, col: 2}, {row: 2, col: 2}, {row: 2, col: 3}, {row: 2, col: 1}], speed: 0.1};
+const fallingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 20, 1, 5), speed: 0.05};
+const celebratingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 41, 2, 4).concat(buildFrames(Dir.Right, 29, 1, 4)).concat({row: 37, col: 2}).concat(Array(100).fill({row: 33, col: 1})), speed: 0.5};
+const coCelebratingAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 14, 2, 4).concat(buildFrames(Dir.Left, 14, 5, 4)), speed: 1};
+const cryingAnim: SpriteAnim = {frames: [{row: 20, col: 2}, {row: 20, col: 3}, {row: 20, col: 4}, {row: 20, col: 3}], speed: 0.4};
 
 export class Player extends Sprite {
   ownTeam: boolean;
   isAtkRole: boolean;
   isRightSide: boolean;
-  pushedTimer = 0;
+  isSprinting: boolean;
+  private _pushedTimer = 0;
   private _energy = 100;
   get energy(): number {
     return this._energy;
@@ -78,7 +80,7 @@ export class Player extends Sprite {
   set state(value: PlayerState) {
     // When a player is pushed, a 20 cycles timer is set to determine the animation length
     if (value === PlayerState.Pushed) {
-      this.pushedTimer = 20;
+      this._pushedTimer = 20;
       // If the player is pushed again, the timer is reset, but not the currentFrame (animation goes on)
       if (this._state === PlayerState.Pushed) {
         return
@@ -91,7 +93,8 @@ export class Player extends Sprite {
   get canExecuteCode(): boolean {
     return this.state === PlayerState.Entering
     || this.state === PlayerState.Playing
-    || this.state === PlayerState.Pushed;
+    || this.state === PlayerState.Pushed
+    || this.state === PlayerState.Celebrating;
   }
 
   get canHaveCollisions(): boolean {
@@ -128,15 +131,12 @@ export class Player extends Sprite {
       64,
       64,
       32,
-      58,
-      runningUpAnim,
-      runningLeftAnim,
-      runningDownAnim,
-      runningRightAnim
+      58
     );
     this.ownTeam = ownTeam;
     this.isAtkRole = isAtkRole;
     this.isRightSide = isRightSide;
+    this.isSprinting = false;
   }
 
   override get animData(): SpriteAnim {
@@ -186,23 +186,27 @@ export class Player extends Sprite {
       case PlayerState.Crying:
         return cryingAnim;
       case PlayerState.Waiting:
-        return waitingAnim;
+        return restingDownAnim;
       default:
-        return super.animData;
+        switch (Sprite.getDirection(this.angle)) {
+          case Dir.Up:
+            return this.still ? restingUpAnim : (this.isSprinting ? sprintingUpAnim : runningUpAnim);
+          case Dir.Left:
+            return this.still ? restingLeftAnim : (this.isSprinting ? sprintingLeftAnim : runningLeftAnim);
+          case Dir.Down:
+            return this.still ? restingDownAnim : (this.isSprinting ? sprintingDownAnim : runningDownAnim);
+          case Dir.Right:
+            return this.still ? restingRightAnim : (this.isSprinting ? sprintingRightAnim : runningRightAnim);
+        }
     }
   }
 
   override get shouldAnimate(): boolean {
-    switch (this.state) {
-      case PlayerState.Playing:
-        return !this.still;
-      default:
-        return true;
-    }
+    return true;
   }
 
-  override animate(): void {
-    super.animate();
+  override animate(clock: number): void {
+    super.animate(clock);
     // When greeting is done, go to waiting
     if (this.state === PlayerState.Greeting && this.currentFrame === 0) {
       this.state = PlayerState.Waiting;
@@ -210,8 +214,8 @@ export class Player extends Sprite {
 
     // When pushed timer is over, player plays again
     if (this.state === PlayerState.Pushed) {
-      this.pushedTimer--;
-      if (this.pushedTimer === 0) {
+      this._pushedTimer--;
+      if (this._pushedTimer === 0) {
         this.state = PlayerState.Playing;
       }
     }
@@ -222,10 +226,6 @@ export class Player extends Sprite {
         this.energy = 100;
       }
       this.state = PlayerState.Playing;
-    }
-    // If playing and still, reset frame so that the player looks still
-    if (this.state === PlayerState.Playing && this.still) {
-      this.currentFrame = 0;
     }
   }
 }
