@@ -97,7 +97,7 @@ export class OnlineService implements OnDestroy {
     if (auth.provider === 'facebook') {
       console.log('Facebook authentication succeeded', auth);
       this.webcomDisplayName = auth.displayName;
-      this.userDisplay.pictureUrl = `https://graph.facebook.com/v10.0/${auth.providerProfile.id}/picture`;
+      this.userDisplay.pictureUrl = `https://graph.facebook.com/${auth.providerProfile.id}/picture`;
     } else if (auth?.provider === 'google') {
       console.log('Google authentication succeeded', auth);
       this.webcomDisplayName = auth.displayName;
