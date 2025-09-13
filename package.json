@@ -27,7 +27,7 @@
     "firebase": "^11.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "webcom": "^3.6.1",
+    "webcom": "^3.9.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
