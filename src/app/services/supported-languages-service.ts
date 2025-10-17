@@ -19,6 +19,7 @@ import CustomDe from '../../assets/i18n/de.json';
 import CustomRu from '../../assets/i18n/ru.json';
 import CustomHe from '../../assets/i18n/he.json';
 import CustomAr from '../../assets/i18n/ar.json';
+import CustomNl from '../../assets/i18n/nl.json';
 
 const defaultLangInfo = {isoId:'en', rtl: false};
 export const supportedLangInfo = Array.from([
@@ -29,6 +30,7 @@ export const supportedLangInfo = Array.from([
   {isoId:'ru', rtl: false},
   {isoId:'he', rtl: true},
   {isoId:'ar', rtl: true},
+  {isoId:'nl', rtl: false},
 ])
 
 @Injectable({
@@ -75,6 +77,10 @@ export class SupportedLanguagesServices {
       case 'ar': {
         const blocklyDefaultLocale = await import('blockly/msg/ar');
         return {blocklyDefaultLocale, blocklyCustomLocale: CustomAr.BLOCKS};
+      }
+      case 'nl': {
+        const blocklyDefaultLocale = await import('blockly/msg/nl');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomNl.BLOCKS};
       }
       default: {
         const blocklyDefaultLocale = await import('blockly/msg/en');

@@ -1,0 +1,184 @@
+{
+  "BLOCKS": {
+    "EVENTS": "Gebeurtenissen",
+    "CONDITIONS": "Voorwaarden",
+    "ACTIONS": "Acties",
+    "POSITIONS": "Posities",
+    "VALUES": "Waarden",
+    "ADVANCED": "Geavanceerd",
+    "MY_ACTIONS": "Mijn acties",
+    "WHEN_HAVE_BALL": "Wanneer ik de bal heb %1 %2",
+    "WHEN_TEAMMATE_HAS_BALL": "Wanneer een teamgenoot de bal heeft %1 %2",
+    "WHEN_OPPONENT_HAS_BALL": "Wanneer een tegenstander de bal heeft %1 %2",
+    "WHEN_NOONE_HAS_BALL": "Wanneer niemand de bal heeft %1 %2",
+    "CUSTOM_IF": "als %1 dan %2 anders %3",
+    "I_AM_CLOSEST_TO": "ik ben het dichtst bij %1",
+    "ROLE_AND_SIDE": "%1 is %2 aan de %3 kant",
+    "ATTACKER": "aanvaller",
+    "DEFENDER": "verdediger",
+    "ALL": "allen",
+    "RIGHT": "rechts",
+    "LEFT": "links",
+    "PLACE_COL_LINE": "%1 is in kolom %2 en rij %3",
+    "ENERGY_OF": "energie van %1",
+    "DISTANCE_BETWEEN": "afstand tussen %1 en %2",
+    "SHOOT_TO": "schop naar %1",
+    "GO_TO": "ren naar %1",
+    "SPRINT_TO": "sprint naar %1",
+    "CALL_FOR_BALL": "vraag om de bal",
+    "PLAYER": "%1 %2 rol %3 kant %4 %5 %6 %7",
+    "TEAMMATE": "teamgenoot",
+    "OPPONENT": "tegenstander",
+    "NEAR": "dicht bij",
+    "FAR": "ver van",
+    "MYSELF": "mijzelf",
+    "BALL": "bal",
+    "OPPONENTS_GOAL": "doel van de tegenstander",
+    "OUR_GOAL": "ons doel",
+    "MY_TARGET_POSITION": "mijn doelpositie",
+    "MIDDLE_BETWEEN": "midden tussen %1 en %2",
+    "ELAPSED_TIME": "verstreken tijd",
+    "LEADING_TEAM": "%1 staat voor",
+    "LEADING_TEAM_OWN": "ons team",
+    "LEADING_TEAM_OPP": "het andere team",
+    "LEADING_TEAM_NONE": "niemand",
+    "PROCEDURES_DEFNORETURN_TITLE": "Definieer",
+    "PROCEDURES_DEFNORETURN_PROCEDURE": "nieuwe actie",
+    "UNNAMED_KEY": "nieuwe actie",
+    "LOGIC_OPERATION_TOOLTIP_AND": "",
+    "LOGIC_OPERATION_TOOLTIP_OR": "",
+    "LOGIC_NEGATE_TOOLTIP": "",
+    "MATH_ARITHMETIC_TOOLTIP_ADD": "",
+    "MATH_ARITHMETIC_TOOLTIP_MINUS": "",
+    "MATH_ARITHMETIC_TOOLTIP_MULTIPLY": "",
+    "MATH_ARITHMETIC_TOOLTIP_DIVIDE": "",
+    "MATH_ARITHMETIC_TOOLTIP_POWER": "",
+    "PROCEDURES_DEFNORETURN_TOOLTIP": "",
+    "PROCEDURES_CALLNORETURN_TOOLTIP": ""
+  },
+  "GLOBAL": {
+    "OK": "Ok",
+    "CANCEL": "Annuleer",
+    "ERROR": "Fout",
+    "WARNING": "Waarschuwing",
+    "SORRY": "Sorry..."
+  },
+  "UPDATE": {
+    "MESSAGE": "Er is een nieuwe versie beschikbaar!<br><br>Wil je die nu laden?"
+  },
+  "HOME": {
+    "MOTTO": "Ontdek programmeren met voetbal!",
+    "BUTTON_PLAY_OFFLINE": "Speel tegen de computer",
+    "BUTTON_PLAY_ONLINE": "Speel online!",
+    "BUTTON_HOW_TO": "Hoe spelen we?",
+    "BUTTON_ABOUT": "Meer ontdekken",
+    "CONNECTION_WARNING": "Je moet verbonden zijn met internet om online te spelen!",
+    "STRONG_ENOUGH_WARNING": "Je moet eerst minstens 3 computervakken verslaan voordat je online mag spelen!"
+  },
+  "HOW_TO": {
+    "TITLE": "Hoe spelen we?",
+    "GOAL": "SuperCodingBall is een voetbalspel waarin alle spelers dom zijn en het aan jou is om ze te vertellen wat ze moeten doen!",
+    "RULES": "De regels van het spel zijn heel eenvoudig: <ul> <li> De bal mag het veld niet verlaten </li><li> Er is geen buitenspel </li> <li> De energie van een speler begint bij 100 en neemt af wanneer hij sprint of wordt geduwd</li><li>Een speler zonder energie valt en verliest de bal! </li> </ul>",
+    "BLOCK": "Om je strategie te definiëren vertel je je spelers <strong>te allen tijde</strong> welke actie ze moeten ondernemen.<br>Bijvoorbeeld: als je wilt dat je spelers naar het doel schieten zodra ze de bal hebben, kies je: <br>",
+    "PARAMETER": "Je kunt de parameters van sommige blokken aanpassen.<br>Bijvoorbeeld, door het roze blok hierboven te veranderen, kun je je spelers vertellen om een pass te geven naar hun dichtstbijzijnde teamgenoot zodra ze de bal hebben: <br>",
+    "CONDITION": "Ten slotte kun je ook voorwaarden toevoegen om je strategieën te verbeteren!<br>Bijvoorbeeld kun je één van de twee acties hierboven kiezen, afhankelijk van de afstand tot het doel van de tegenstander: <br>",
+    "DISCOVER": "Het is aan jou om nu te spelen en de rest te ontdekken!",
+    "DEMO": "Je kunt ook een complete strategie analyseren door hier te klikken"
+  },
+  "HOW_TO_DEMO": {
+    "TITLE": "Strategievoorbeeld",
+    "OPP_HAS_BALL": "Wanneer een tegenstander de bal heeft,\nrennen alle spelers naar de bal\nom die te veroveren",
+    "OWN_HAS_BALL": "Wanneer een teamgenoot de bal heeft,\ndenken de andere spelers naar hun posities terug\n(voor aanvallers vooraan,\nachter voor verdedigers)",
+    "NOONE_HAS_BALL": "Wanneer niemand de bal heeft,\nzal alleen de dichtstbijzijnde speler hem nemen.\nDe anderen blijven op hun posities",
+    "CONDITION_NEAR": "Hiervoor gebruiken we deze voorwaarde",
+    "BALL_MINE": "Als een van onze spelers de bal heeft,\nwe willen weten of hij dicht bij een tegenstander staat...",
+    "CONDITION_COMPARISON": "Hiervoor gebruiken we een voorwaarde om te vergelijken...",
+    "PARAM_DISTANCE": "Zijn afstand tot de dichtstbijzijnde tegenstander...",
+    "PARAM_VALUE": "En de waarde 50",
+    "TEAMMATE": "In geval van gevaar passen we naar de teamgenoot\ndichtst bij het doel",
+    "RUN_TOWARDS_GOAL": "Anders rennen we naar het doel van de tegenstander"
+  },
+  "ABOUT": {
+    "TITLE": "Meer ontdekken",
+    "IDEA": "Het idee van SuperCodingBall is je wat programmeerconcepten (instructies, parameters, gebeurtenissen en voorwaarden) te tonen zonder dat je in paniek raakt :)",
+    "SCRATCH": "Als je het leuk vond en meer wilt ontdekken in programmeren, ga dan snel naar <a href=\"https://scratch.mit.edu\">Scratch</a>.<br>Het is een geweldig platform waarmee je je eigen verhalen/spellen kunt maken met blokken code!",
+    "BLOCKLY": "In SuperCodingBall kun je blokken manipuleren zoals in Scratch dankzij <a href=\"https://developers.google.com/blockly\">Blockly</a>!",
+    "OPENSOURCE": "SuperCodingBall is een open source project, vind de <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">broncode op GitHub</a>.",
+    "LEGAL": "Lees de <a href='/legal'>juridische kennisgeving</a>, de <a href='/terms'>algemene gebruiksvoorwaarden</a> en de <a href='/privacy'>privacyverklaring</a>.",
+    "CONTACT": "Contact:"
+  },
+  "LEGAL": {
+    "TITLE": "Juridische kennisgeving",
+    "OPENSOURCE_TITLE": "Software van derden"
+  },
+  "PRIVACY": {
+    "TITLE": "Privacyverklaring",
+    "DISABLE_TRACKING": "Anon Tracken uitschakelen"
+  },
+  "TERMS": {
+    "TITLE": "Algemene gebruiksvoorwaarden van de SuperCodingBall‑dienst"
+  },
+  "OFFLINE": {
+    "TITLE": "Speel tegen de computer",
+    "STRATEGY": "Strategie van de tegenstander",
+    "STRATEGIES": {
+      "DO-NOTHING": "Ze doen niets!",
+      "1PLAYER-ONLY": "Slechts één speler beweegt",
+      "ALL-DEFENDERS": "Alle spelers in verdediging",
+      "DEFENDERS-PASS-TO-ATTACKERS": "Verdedigers onderscheppen en sturen naar aanvallers",
+      "ONLY-PASSES": "Ze passen en schieten alleen",
+      "3ATTACKERS": "3 aanvallers",
+      "COLUMN": "Alle spelers in centrale kolom",
+      "SPRINTERS": "Ze sprinten om de bal te krijgen"
+    }
+  },
+  "ONLINE": {
+    "TITLE": "Speel online",
+    "CONNECT_GUEST": "Verbind als gast",
+    "GUEST_WARNING": "Als je verbinding maakt als gast, kun je spelen zoals de anderen, maar je zult je profielfoto niet hebben.<br><br>Je kunt je account niet op een ander apparaat vinden, en als je uitlogt, gaat je ranking verloren!",
+    "CONNECT_WITH_FACEBOOK": "Verbind met Facebook",
+    "CONNECT_WITH_GOOGLE": "Verbind met Google",
+    "PERSONAL_RANK": "Je huidige ranking:",
+    "RANKING": "Ranglijst van de laatste 15 dagen",
+    "OPP_POINTS": "pt",
+    "RANKING_POPUP": {
+      "TITLE": "Informatie over de ranglijst",
+      "CONTENT": "De ranglijst toont de spelers die in de laatste 15 dagen verbonden zijn geweest.<br><br>Elke dag kun je tegen elke tegenstander spelen en scoren:<br>{{won}} 2 punten voor een overwinning,<br>{{draw}} 1 punt voor een gelijkspel,<br>{{lost}} 0 punten voor een verlies.<br><br>(je kunt wedstrijden opnieuw spelen om je score te verbeteren).<br><br>Als je een lopende wedstrijd opgeeft, wordt deze als verlies beschouwd!"
+    },
+    "REPLAY": {
+      "HEADER": "Je hebt die wedstrijd vandaag al gespeeld ",
+      "LOST": "(je hebt verloren).",
+      "DRAW": "(gelijkspel).",
+      "WON": "(je hebt gewonnen).",
+      "IMPROVE": "Wil je je score verbeteren?",
+      "RISK": "Neem je het risico om opnieuw te spelen?"
+    },
+    "DISCONNECT_GUEST": "Als je uitlogt, verlies je je gastaccount!",
+    "DISCONNECT_OTHER": "Log uit als je een ander account wilt gebruiken",
+    "NICKNAME_LIMIT": "Maximaal 20 tekens",
+    "CHANGE_NICKNAME": "Wijzig mijn bijnaam",
+    "DISCONNECT_ACCOUNT": "Uitloggen",
+    "SYNC_TEXT": "Je blokken worden automatisch geëxporteerd elke keer dat je een online spel start.",
+    "DOWNLOAD_TEXT": "Als je je blokken wilt importeren (bijvoorbeeld als je je strategie op een ander apparaat hebt aangepast), klik hier:",
+    "DELETE_ACCOUNT": "Verwijder mijn account permanent",
+    "DELETE_MODAL": "Weet je zeker dat je je account wilt verwijderen??"
+  },
+  "BLOCKLY": {
+    "FIELD_POPUP": {
+      "TITLE": "Overzicht van het veld met doelpositie van elke speler"
+    },
+    "DELETE_WARNING": "Wil je echt al je blokken verwijderen?!",
+    "SELF_DEFINED_ACTION": "Je kunt <strong>{{value}}</strong> niet in zijn eigen definitie plaatsen!"
+  },
+  "GAME": {
+    "MIN": "min",
+    "STOP_MODAL": "Wil je dit spel stoppen?",
+    "KICK_OFF": "Laten we beginnen!",
+    "CLICK_ANYWHERE": "(klik ergens)",
+    "HALF_TIME": "Rust",
+    "GOAL": "Doelpunt!",
+    "YOU_WON": "Je hebt gewonnen!!!",
+    "DRAW": "Gelijkspel!",
+    "YOU_LOST": "Je hebt verloren :("
+  }
+}
