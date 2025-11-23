@@ -85,7 +85,6 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() gameLaunched = true;
   @Output() lastBlockIds = new EventEmitter<string[]>();
 
-  PeriodType = PeriodType;
   DisplayType = DisplayType;
   isOnline: boolean;
   opponentId = '';
@@ -105,7 +104,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   get maxFramesPerSecond(): number {
-    return this.acceleratedGame ? 60 : 15;
+    return this.acceleratedGame && (this.periodType === PeriodType.FirstPeriod || this.periodType === PeriodType.SecondPeriod) ? 60 : 15;
   }
 
   gameClock = 0;
