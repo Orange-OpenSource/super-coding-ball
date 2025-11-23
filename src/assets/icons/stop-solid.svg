@@ -3,11 +3,13 @@
    viewBox="0 0 512 512"
    version="1.1"
    id="svg1"
-   sodipodi:docname="stop-circle-regular.svg"
-   inkscape:export-filename="stop-circle-regular.png"
+   sodipodi:docname="stop-solid.svg"
+   width="512"
+   height="512"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
+   inkscape:export-filename="stop-solid.png"
    inkscape:export-xdpi="18"
    inkscape:export-ydpi="18"
-   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,17 +25,18 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="0.05078125"
-     inkscape:cx="256"
-     inkscape:cy="256"
+     inkscape:zoom="0.48180123"
+     inkscape:cx="41.510895"
+     inkscape:cy="309.25617"
      inkscape:window-width="1440"
-     inkscape:window-height="751"
+     inkscape:window-height="747"
      inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-y="31"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg1" />
-  <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+  <!--!Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
   <path
-     d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm192-96l128 0c17.7 0 32 14.3 32 32l0 128c0 17.7-14.3 32-32 32l-128 0c-17.7 0-32-14.3-32-32l0-128c0-17.7 14.3-32 32-32z"
-     id="path1" />
+     d="M 118.85714,64 H 393.14286 C 423.4,64 448,88.6 448,118.85714 V 393.14286 C 448,423.4 423.4,448 393.14286,448 H 118.85714 C 88.6,448 64,423.4 64,393.14286 V 118.85714 C 64,88.6 88.6,64 118.85714,64 Z"
+     id="path1"
+     style="stroke-width:0.857143" />
 </svg>
