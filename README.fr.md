@@ -39,7 +39,7 @@ Dans tous les cas, SuperCodingBall va stocker le pseudo (modifiable), les blocs 
 
 À tout moment, les joueurs peuvent supprimer leur compte.
 
-## Blockly
+# Blockly
 
 SuperCodingBall utilise l'excellente bibliothèque [Blockly](https://developers.google.com/blockly) de Google pour gérer les interactions avec les blocs.
 
@@ -47,7 +47,7 @@ Pour générer les blocs personalisés, on peut utiliser les [Blockly Developer 
 
 Une fois le fichier [blocks.json](./src/assets/blocks/blocks.json) généré, il faut le modifier pour ajouter les styles, extensions et traductions.
 
-## Création des sprites
+# Création des sprites
 
 Tous les sprites des joueurs viennent "l'Open Game Art Liberated Pixel Cup" et ont été générés par [cet outil](https://github.com/LiberatedPixelCup/Universal-LPC-Spritesheet-Character-Generator) :
 
@@ -60,11 +60,11 @@ Tous les sprites des joueurs viennent "l'Open Game Art Liberated Pixel Cup" et o
 * [Wolf](https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=Body_color_pale_green&head=Wolf_male_pale_green&legs=Long_Pants_black&tail=Wolf_Tail_raven)
 * [Zombie](https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=Body_color_zombie_green&head=Zombie_zombie_green&legs=Long_Pants_black&overalls=Overalls_black)
 
-## Traductions (pour le moment français, anglais, espagnol, russe, hébreu, allemand, arabe et néerlandais)
+# Traductions (pour le moment français, anglais, espagnol, russe, hébreu, allemand, arabe et néerlandais)
 
 Toutes les traductions sont dans le [dossier i18n](./src/assets/i18n).
 
 N'hésitez pas à contribuer si vous voulez ajouter une autre langue !
 
-## Genèse
+# Genèse
 SuperCodingBall a été créé pour un concours interne, mais le site est gratuit, open source et sans publicité.
