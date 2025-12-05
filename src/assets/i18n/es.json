@@ -179,6 +179,11 @@
     "GOAL": "Gol!",
     "YOU_WON": "Has ganado!!!",
     "DRAW": "Empate!",
-    "YOU_LOST": "Has perdido\u00A0:("
+    "YOU_LOST": "Has perdido\u00A0:(",
+    "PAUSED": "Pausado",
+    "RESUME": "Reanudar"
+ },
+ "settings": {
+    "language": "Español"
   }
 }

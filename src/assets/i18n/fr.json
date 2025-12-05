@@ -179,6 +179,12 @@
     "GOAL": "But\u00A0!",
     "YOU_WON": "C'est gagné\u00A0!!!",
     "DRAW": "Match nul\u00A0!",
-    "YOU_LOST": "C'est perdu\u00A0:("
-  }
+    "YOU_LOST": "C'est perdu\u00A0:(",
+    "PAUSED": "Match en pause",
+    "RESUME": "Reprendre le match"
+  },
+  "settings": {
+    "language": "Français"
+} 
+
 }

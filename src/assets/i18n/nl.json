@@ -179,6 +179,11 @@
     "GOAL": "Doelpunt!",
     "YOU_WON": "Je hebt gewonnen!!!",
     "DRAW": "Gelijkspel!",
-    "YOU_LOST": "Je hebt verloren :("
+    "YOU_LOST": "Je hebt verloren :(",
+    "PAUSED": "Gepauzeerd",
+    "RESUME": "Doorgaan"
+  },
+  "settings": {
+    "language": "Nederlands"
   }
 }

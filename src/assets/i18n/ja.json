@@ -179,6 +179,11 @@
     "GOAL": "ゴール！",
     "YOU_WON": "勝ちましたよ！！！",
     "DRAW": "描く！",
-    "YOU_LOST": "負けましたね :("
+    "YOU_LOST": "負けましたね :(",
+    "PAUSED": "一時停止",
+    "RESUME": "再開"
+},
+  "settings": {
+    "language": "日本語"
   }
 }

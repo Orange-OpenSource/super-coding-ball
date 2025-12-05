@@ -20,41 +20,111 @@
       <img src="assets/icons/chevron-left-solid.png" class="oriented-icon icon24" />
     </button>
   }
+
+  <!-- LEFT: Pause button in NextToCode mode -->
   @if(displayType === DisplayType.NextToCode) {
-    <button [disabled]="!gameLaunched" class="btn btn-lg d-flex"
-      type="button" (click)="gamePaused = !gamePaused">
+    <button
+      [disabled]="!gameLaunched"
+      class="btn btn-lg d-flex"
+      type="button"
+      (click)="gamePaused ? closePauseMenu() : openPauseMenu()"
+    >
       @switch (gamePaused) {
-        @case (true) {<img src="assets/icons/play.png" width="24" height="24" class="oriented-icon" style="height: 24px" />}
-        @case (false) {<img src="assets/icons/pause.png" width="24" height="24" class="oriented-icon" style="height: 24px" />}
+        @case (true) {
+          <img src="assets/icons/play.png" width="24" height="24" class="oriented-icon" style="height: 24px" />
+        }
+        @case (false) {
+          <img src="assets/icons/pause.png" width="24" height="24" class="oriented-icon" style="height: 24px" />
+        }
       }
     </button>
   }
+
   <div class="align-middle d-flex flex-grow-1">
     <div class="m-1 h6 bg-secondary rounded flex-grow-1 d-flex justify-content-between align-items-center">
       <div>
         <img class="pixelated oriented-icon" src="assets/icons/own.png" height="32" width="32">
         <span class="align-middle">{{ownScore}}</span>
       </div>
-      <span class="align-middle">{{gameTimeDisplayed}} {{'GAME.MIN' | translate }}</span>
+      <span class="align-middle">
+        {{gameTimeDisplayed}} {{'GAME.MIN' | translate }}
+      </span>
       <div>
         <span class="align-middle">{{oppScore}}</span>
         <img class="pixelated oriented-icon" src="assets/icons/opp.png" height="32" width="32">
       </div>
     </div>
   </div>
+
+  <!-- RIGHT: Pause button in Standalone mode -->
+  @if(displayType === DisplayType.Standalone) {
+    <button
+      class="btn btn-lg d-flex"
+      type="button"
+      [disabled]="!gameLaunched"
+      (click)="gamePaused ? closePauseMenu() : openPauseMenu()"
+    >
+      @switch (gamePaused) {
+        @case (true) {
+          <img src="assets/icons/play.png" width="24" height="24" class="oriented-icon" style="height: 24px" />
+        }
+        @case (false) {
+          <img src="assets/icons/pause.png" width="24" height="24" class="oriented-icon" style="height: 24px" />
+        }
+      }
+    </button>
+  }
+
+  <!-- Accelerated game button (unchanged) -->
   <button class="btn btn-lg d-flex" type="button" [disabled]="!gameLaunched || gamePaused"
     onclick="this.blur()" (click)="acceleratedGame = !acceleratedGame">
     @switch (acceleratedGame) {
-      @case (true) {<img src="assets/icons/forward-solid.png" width="24" height="24" class="oriented-icon" style="height: 24px" />}
-      @case (false) {<img src="assets/icons/forward-solid-empty.png" width="24" height="24" class="oriented-icon" style="height: 24px" />}
+      @case (true) {
+        <img src="assets/icons/forward-solid.png" width="24" height="24" class="oriented-icon" style="height: 24px" />
+      }
+      @case (false) {
+        <img src="assets/icons/forward-solid-empty.png" width="24" height="24" class="oriented-icon" style="height: 24px" />
+      }
     }
   </button>
-
 </nav>
+
 <div class="text-center">
   <canvas id="fieldCanvas" class="pixelated" [class.fullscreen]="displayType === DisplayType.Standalone" width="456"
     height="554" style="max-width: 400px;">
   </canvas>
+</div>
+
+<div class="pause-overlay" *ngIf="showPauseMenu">
+  <div class="pause-dialog">
+    <h6 class="mb-3">
+      {{ 'GAME.PAUSED' | translate }}
+    </h6>
+
+    <div class="mb-3">
+      <label for="lang-select" class="form-label">
+        {{ 'settings.language' | translate }}
+      </label>
+      <select
+        id="lang-select"
+        class="form-select"
+        [ngModel]="currentLang"
+        (ngModelChange)="onLanguageChange($event)"
+      >
+        <option *ngFor="let opt of languageOptions" [value]="opt.code">
+          {{ opt.label }}
+        </option>
+      </select>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="closePauseMenu()"
+    >
+      {{ 'GAME.RESUME' | translate }}
+    </button>
+  </div>
 </div>
 
 <ng-template #kickOffBeforeFirstPeriodContent let-modal>

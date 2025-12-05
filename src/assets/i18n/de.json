@@ -179,6 +179,11 @@
     "GOAL": "Tor!",
     "YOU_WON": "Du hast gewonnen!",
     "DRAW": "Unentschieden!",
-    "YOU_LOST": "Du hast verloren\u00A0:("
+    "YOU_LOST": "Du hast verloren\u00A0:(",
+    "PAUSED": "Spiel pausiert",
+    "RESUME": "Spiel fortsetzen"
+  },
+  "settings": {
+    "language": "Deutsch"
   }
 }

@@ -171,14 +171,20 @@
     "SELF_DEFINED_ACTION": "You can't put <strong>{{value}}</strong> in its own definition!"
   },
   "GAME": {
-    "MIN": "min",
-    "STOP_MODAL": "Do you want to stop this game?",
-    "KICK_OFF": "Let's go!",
-    "CLICK_ANYWHERE": "(click anywhere)",
-    "HALF_TIME": "Half-time",
-    "GOAL": "Goal!",
-    "YOU_WON": "You won!!!",
-    "DRAW": "Draw!",
-    "YOU_LOST": "You lost\u00A0:("
-  }
+  "MIN": "min",
+  "STOP_MODAL": "Do you want to stop this game?",
+  "KICK_OFF": "Let's go!",
+  "CLICK_ANYWHERE": "(click anywhere)",
+  "HALF_TIME": "Half-time",
+  "GOAL": "Goal!",
+  "YOU_WON": "You won!!!",
+  "DRAW": "Draw!",
+  "YOU_LOST": "You lost\u00A0:(",
+  "PAUSED": "Game paused",
+  "RESUME": "Resume"
+ },
+"settings": {
+  "language": "English"
+}
+
 }

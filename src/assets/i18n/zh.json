@@ -179,6 +179,11 @@
     "GOAL": "进球！",
     "YOU_WON": "你赢了！！！",
     "DRAW": "平局！",
-    "YOU_LOST": "你输了 :("
+    "YOU_LOST": "你输了 \u00A0:(",
+    "PAUSED": "暂停游戏",
+    "RESUME": "继续游戏"
+  },
+   "settings": {
+  "language": "简体中文"
   }
 }

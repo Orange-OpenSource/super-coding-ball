@@ -179,6 +179,11 @@
     "GOAL": "목표!",
     "YOU_WON": "당신이 이겼어요!!!",
     "DRAW": "그리다!",
-    "YOU_LOST": "당신은 졌어요 :("
+    "YOU_LOST": "당신은 졌어요 :(",
+    "PAUSED": "일시 중지",
+    "RESUME": "계속하다"
+  },
+  "settings": {
+    "language": "한국어"
   }
 }
