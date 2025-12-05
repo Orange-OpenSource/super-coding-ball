@@ -21,6 +21,10 @@ import {OnlineService} from '../../services/online.service';
 import {GamePoint} from '../online-opponents/online-opponents.component';
 import {TranslatePipe} from '@ngx-translate/core';
 import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {LanguageService} from '../../services/language.service';
+import {LANGUAGE_OPTIONS} from '../../models/language';
+
 
 interface FieldDivision {
   start: number;
@@ -72,10 +76,11 @@ const sprintingVelocityFactor = 2;
 
 @Component({
   selector: 'app-game',
-  imports: [CommonModule, TranslatePipe],
+  imports: [CommonModule, TranslatePipe, FormsModule],
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
+
 
 export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('kickOffBeforeFirstPeriodContent') private kickOffBeforeFirstPeriodContent: any;
@@ -93,7 +98,12 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   gameStopped = false;
   gamePaused = false;
   periodType = PeriodType.BeforeFirstPeriod;
-  displayType = DisplayType.Hidden
+  displayType = DisplayType.Hidden;
+
+  showPauseMenu = false;
+  languageOptions = LANGUAGE_OPTIONS;
+  currentLang = 'en';
+
 
   get acceleratedGame(): boolean {
     return this.localStorageService.getAcceleratedGameStatus();
@@ -138,7 +148,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     private localStorageService: LocalStorageService,
     private router: Router,
     private route: ActivatedRoute,
-    public modalService: NgbModal
+    public modalService: NgbModal,
+    private languageService: LanguageService
   ) {
     this.computeGridPositions();
     this.isOnline = this.router.url.includes('/online/');
@@ -154,6 +165,23 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.displayType = DisplayType.NextToCode
     }
+    this.currentLang = this.languageService.getCurrentLang();
+  }
+    
+  openPauseMenu(): void {
+  this.gamePaused = true;
+  this.showPauseMenu = true;
+  }
+
+  closePauseMenu(): void {
+  this.gamePaused = false;
+  this.showPauseMenu = false;
+  }
+
+  onLanguageChange(code: string): void {
+  this.currentLang = code;
+  this.languageService.setLang(code);
+
   }
 
   computeGridPositions(): void {
