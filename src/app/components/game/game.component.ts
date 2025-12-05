@@ -169,20 +169,22 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
     
   openPauseMenu(): void {
+  console.log('[GameComponent] openPauseMenu called');
   this.gamePaused = true;
   this.showPauseMenu = true;
   }
 
   closePauseMenu(): void {
+  console.log('[GameComponent] closePauseMenu called');
   this.gamePaused = false;
   this.showPauseMenu = false;
   }
 
   onLanguageChange(code: string): void {
+  console.log('[GameComponent] onLanguageChange', code);
   this.currentLang = code;
   this.languageService.setLang(code);
-
-  }
+  } 
 
   computeGridPositions(): void {
     for (let col = 0; col < columnsCount; col++) {
