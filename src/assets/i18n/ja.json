@@ -1,0 +1,184 @@
+{
+  "BLOCKS": {
+    "EVENTS": "イベント",
+    "CONDITIONS": "条件",
+    "ACTIONS": "アクション",
+    "POSITIONS": "ポジション",
+    "VALUES": "価値観",
+    "ADVANCED": "高度な",
+    "MY_ACTIONS": "私の行動",
+    "WHEN_HAVE_BALL": "ボールを持っているとき %1 %2",
+    "WHEN_TEAMMATE_HAS_BALL": "チームメイトがボールを持っているとき %1 %2",
+    "WHEN_OPPONENT_HAS_BALL": "相手がボールを持っているとき %1 %2",
+    "WHEN_NOONE_HAS_BALL": "誰もボールを持っていないとき %1 %2",
+    "CUSTOM_IF": "%1の場合%2、そうでない場合は%3",
+    "I_AM_CLOSEST_TO": "私は%1に最も近い",
+    "ROLE_AND_SIDE": "%1 は %3 側では %2 です",
+    "ATTACKER": "アタッカー",
+    "DEFENDER": "ディフェンダー",
+    "ALL": "全て",
+    "RIGHT": "右",
+    "LEFT": "左",
+    "PLACE_COL_LINE": "%1 は列 %2、行 %3 にあります",
+    "ENERGY_OF": "%1のエネルギー",
+    "DISTANCE_BETWEEN": "%1と%2間の距離",
+    "SHOOT_TO": "%1に向かって蹴る",
+    "GO_TO": "%1まで走る",
+    "SPRINT_TO": "%1まで全力疾走",
+    "CALL_FOR_BALL": "ボールを要求する",
+    "PLAYER": "%1 %2 役割 %3 側 %4 %5 %6 %7",
+    "TEAMMATE": "チームメイト",
+    "OPPONENT": "対戦相手",
+    "NEAR": "近く",
+    "FAR": "遠く離れて",
+    "MYSELF": "自分自身",
+    "BALL": "ボール",
+    "OPPONENTS_GOAL": "相手のゴール",
+    "OUR_GOAL": "私たちの目標",
+    "MY_TARGET_POSITION": "私の目標位置",
+    "MIDDLE_BETWEEN": "%1と%2の中間",
+    "ELAPSED_TIME": "経過時間",
+    "LEADING_TEAM": "%1がリードしています",
+    "LEADING_TEAM_OWN": "私たちのチーム",
+    "LEADING_TEAM_OPP": "相手チーム",
+    "LEADING_TEAM_NONE": "誰でもない",
+    "PROCEDURES_DEFNORETURN_TITLE": "定義する",
+    "PROCEDURES_DEFNORETURN_PROCEDURE": "新しいアクション",
+    "UNNAMED_KEY": "新しいアクション",
+    "LOGIC_OPERATION_TOOLTIP_AND": "",
+    "LOGIC_OPERATION_TOOLTIP_OR": "",
+    "LOGIC_NEGATE_TOOLTIP": "",
+    "MATH_ARITHMETIC_TOOLTIP_ADD": "",
+  	"MATH_ARITHMETIC_TOOLTIP_MINUS": "",
+  	"MATH_ARITHMETIC_TOOLTIP_MULTIPLY": "",
+	  "MATH_ARITHMETIC_TOOLTIP_DIVIDE": "",
+  	"MATH_ARITHMETIC_TOOLTIP_POWER": "",	
+    "PROCEDURES_DEFNORETURN_TOOLTIP": "",
+    "PROCEDURES_CALLNORETURN_TOOLTIP": ""
+  },
+  "GLOBAL": {
+    "OK": "わかりました",
+    "CANCEL": "キャンセル",
+    "ERROR": "エラー",
+    "WARNING": "警告",
+    "SORRY": "ごめん..."
+  },
+  "UPDATE": {
+    "MESSAGE": "新しいバージョンが利用可能になりました!<br><br>今すぐ読み込みますか?"
+  },
+  "HOME": {
+    "MOTTO": "サッカーでコーディングを学ぼう！",
+    "BUTTON_PLAY_OFFLINE": "コンピュータと対戦",
+    "BUTTON_PLAY_ONLINE": "オンラインでプレイしましょう！",
+    "BUTTON_HOW_TO": "どうやって遊ぶの？",
+    "BUTTON_ABOUT": "詳細はこちら",
+    "CONNECTION_WARNING": "オンラインでプレイするにはインターネットに接続する必要があります。",
+    "STRONG_ENOUGH_WARNING": "オンラインでプレイする前に、まず少なくとも 3 つのコンピュータ チームに勝つ必要があります。"
+  },
+  "HOW_TO": {
+    "TITLE": "どうやって遊ぶの？",
+    "GOAL": "SuperCodingBall は、プレイヤー全員がバカで、彼らに何をすべきかを指示するのはあなた次第のフットボール ゲームです。",
+    "RULES": "ゲームのルールは非常に簡単です:<ul> <li> ボールはフィールド外に出ることはできない </li><li> オフサイドはない </li> <li> プレイヤーのエネルギーは100から始まり、ダッシュしたり押されたりすると減少します。</li><li>エネルギーを失った選手は倒れてボールを失います!</li> </ul>",
+    "BLOCK": "戦略を定義するには、プレイヤーに<strong>常に</strong>どのようなアクションを取るべきかを伝えます。<br>たとえば、選手がボールを持ったらすぐにゴールに向かってシュートするようにしたい場合は、次のいずれかを選択する必要があります。<br>",
+    "PARAMETER": "一部のブロックのパラメータを変更できます。<br>たとえば、上記のピンクのブロックを変更すると、プレーヤーにボールを持ったらすぐに最も近いチームメイトにパスするように指示できます。<br>",
+    "CONDITION": "最後に、戦略を改善するための条件を追加することもできます。<br>たとえば、対戦相手のゴールまでの距離に応じて、上記の 2 つのアクションのいずれかを選択できます。<br>",
+    "DISCOVER": "今すぐプレイして、残りの部分を発見するのはあなた次第です!",
+    "DEMO": "こちらをクリックすると完全な戦略を分析することもできます"
+  },
+  "HOW_TO_DEMO": {
+    "TITLE": "戦略例",
+    "OPP_HAS_BALL": "相手がボールを持っているときは、すべての選手がボールを奪いに走ります。",
+    "OWN_HAS_BALL": "チームメイトがボールを持っているときは、他のプレーヤーは自分のポジションに戻ります（攻撃者は前、ディフェンダーは後）",
+    "NOONE_HAS_BALL": "誰もボールを持っていないときは、最も近いプレーヤーだけがボールを獲得します。他の人は自分の位置に留まる",
+    "CONDITION_NEAR": "そのために、この条件を使用します",
+    "BALL_MINE": "チームの選手がボールを持っているとき、その選手が相手チームの近くにいるかどうかを知りたいのです...",
+    "CONDITION_COMPARISON": "そのために、比較する条件を使用します...",
+    "PARAM_DISTANCE": "一番近い相手との距離は…",
+    "PARAM_VALUE": "そして値50",
+    "TEAMMATE": "危険な場合には、ゴールに最も近いチームメイトにパスを出します",
+    "RUN_TOWARDS_GOAL": "そうでなければ、私たちは相手のゴールに向かって走ります"
+  },
+  "ABOUT": {
+    "TITLE": "詳細はこちら",
+    "IDEA": "SuperCodingBall の目的は、コーディングの概念 (命令、パラメータ、イベント、条件) を、あまり興奮せずに理解できるようにすることです :)",
+    "SCRATCH": "気に入って、プログラミングについてもっと知りたいと思ったら、すぐに<a href=\"https://scratch.mit.edu\">Scratch</a>に進んでください。<br>コードブロックを使って独自のストーリーやゲームを作成できる素晴らしい Web サイトです。",
+    "BLOCKLY": "SuperCodingBall では、 <a href=\"https://developers.google.com/blockly\">Blockly</a>のおかげで Scratch のようにブロックを操作できます。",
+    "OPENSOURCE": "SuperCodingBall はオープンソース プロジェクトです。<a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">ソース コードは GitHub で</a>見つかります。",
+    "LEGAL": "<a href='/legal'>法的通知</a>、<a href='/terms'>一般使用条件</a>、<a href='/privacy'>プライバシー通知</a>をお読みください。",
+    "CONTACT": "接触："
+  },
+  "LEGAL": {
+    "TITLE": "法的通知",
+    "OPENSOURCE_TITLE": "サードパーティソフトウェア"
+  },
+  "PRIVACY": {
+    "TITLE": "プライバシーに関するお知らせ",
+    "DISABLE_TRACKING": "匿名トラッキングを無効にする"
+  },
+  "TERMS": {
+    "TITLE": "SuperCodingBallサービスの一般利用規約"
+  },
+  "OFFLINE": {
+    "TITLE": "コンピュータと対戦",
+    "STRATEGY": "相手の戦略",
+    "STRATEGIES": {
+      "DO-NOTHING": "彼らは何もしない！",
+      "1PLAYER-ONLY": "1人のプレイヤーだけが動く",
+      "ALL-DEFENDERS": "守備側の全選手",
+      "DEFENDERS-PASS-TO-ATTACKERS": "防御側がインターセプトして攻撃側に送信する",
+      "ONLY-PASSES": "彼らはパスとシュートだけ",
+      "3ATTACKERS": "攻撃者3人",
+      "COLUMN": "中央列のプレイヤー全員",
+      "SPRINTERS": "彼らはボールを奪いに走ります"
+    }
+  },
+  "ONLINE": {
+    "TITLE": "オンラインでプレイ",
+    "CONNECT_GUEST": "ゲストとして接続する",
+    "GUEST_WARNING": "ゲストとして接続すると、他のユーザーと同じようにプレイできますが、プロフィール写真は表示されません。<br><br>別のデバイスでアカウントを見つけることはできません。また、ログアウトするとランキングが失われます。",
+    "CONNECT_WITH_FACEBOOK": "Facebookでつながる",
+    "CONNECT_WITH_GOOGLE": "Googleとつながる",
+    "PERSONAL_RANK": "現在のランキング:",
+    "RANKING": "過去15日間のランキング",
+    "OPP_POINTS": "ポイント",
+    "RANKING_POPUP": {
+      "TITLE": "ランキングに関する情報",
+      "CONTENT": "ランキングには、過去 15 日間に接続したプレイヤーが表示されます。<br><br>毎日、あらゆる対戦相手と対戦してスコアを獲得できます。<br>{{won}} 勝利で2ポイント獲得、<br>{{draw}} 引き分けの場合は1ポイント、<br>{{lost}} 負けた場合は0ポイント。<br><br>(ゲームを再プレイしてスコアを向上させることができます)。<br><br>進行中のゲームを放棄した場合、そのゲームは負けとみなされます。"
+    },
+    "REPLAY": {
+      "HEADER": "あなたは今日すでにそのゲームをプレイしました ",
+      "LOST": "（負けました）。",
+      "DRAW": "（描く）。",
+      "WON": "（勝ちました）。",
+      "IMPROVE": "スコアを上げようとしていますか?",
+      "RISK": "もう一度プレーするリスクを負いますか?"
+    },
+    "DISCONNECT_GUEST": "ログアウトするとゲストアカウントが失われます。",
+    "DISCONNECT_OTHER": "別のアカウントを使用する場合はログアウトしてください",
+    "NICKNAME_LIMIT": "最大20文字",
+    "CHANGE_NICKNAME": "ニックネームを変更する",
+    "DISCONNECT_ACCOUNT": "ログアウト",
+    "SYNC_TEXT": "オンライン ゲームを開始するたびに、ブロックは自動的にエクスポートされます。",
+    "DOWNLOAD_TEXT": "ブロックをインポートする場合（たとえば、別のデバイスで戦略を変更した場合など）は、ここをクリックしてください。",
+    "DELETE_ACCOUNT": "アカウントを完全に削除する",
+    "DELETE_MODAL": "アカウントを削除してもよろしいですか?"
+  },
+  "BLOCKLY": {
+    "FIELD_POPUP": {
+      "TITLE": "各選手の目標ポジションを含むフィールド概要"
+    },
+    "DELETE_WARNING": "本当にすべてのブロックを削除しますか？",
+    "SELF_DEFINED_ACTION": "<strong>{{value}}</strong>をそれ自身の定義に入れることはできません。"
+  },
+  "GAME": {
+    "MIN": "分",
+    "STOP_MODAL": "このゲームを止めますか?",
+    "KICK_OFF": "さあ行こう！",
+    "CLICK_ANYWHERE": "（どこでもクリック）",
+    "HALF_TIME": "ハーフタイム",
+    "GOAL": "ゴール！",
+    "YOU_WON": "勝ちましたよ！！！",
+    "DRAW": "描く！",
+    "YOU_LOST": "負けましたね :("
+  }
+}

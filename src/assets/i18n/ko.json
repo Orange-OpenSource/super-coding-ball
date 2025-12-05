@@ -1,0 +1,184 @@
+{
+  "BLOCKS": {
+    "EVENTS": "이벤트",
+    "CONDITIONS": "정황",
+    "ACTIONS": "행위",
+    "POSITIONS": "위치",
+    "VALUES": "가치",
+    "ADVANCED": "고급",
+    "MY_ACTIONS": "내 행동",
+    "WHEN_HAVE_BALL": "내가 공을 가지고 있을 때 %1 %2",
+    "WHEN_TEAMMATE_HAS_BALL": "팀원이 공을 가지고 있을 때 %1 %2",
+    "WHEN_OPPONENT_HAS_BALL": "상대방이 공을 가지고 있을 때 %1 %2",
+    "WHEN_NOONE_HAS_BALL": "아무도 공을 가지고 있지 않을 때 %1 %2",
+    "CUSTOM_IF": "%1이면 %2이고 그렇지 않으면 %3",
+    "I_AM_CLOSEST_TO": "나는 %1에 가장 가깝습니다",
+    "ROLE_AND_SIDE": "%1은 %3 쪽에 있는 %2입니다.",
+    "ATTACKER": "공격수",
+    "DEFENDER": "수비수",
+    "ALL": "모두",
+    "RIGHT": "오른쪽",
+    "LEFT": "왼쪽",
+    "PLACE_COL_LINE": "%1은 %2열과 %3줄에 있습니다.",
+    "ENERGY_OF": "%1의 에너지",
+    "DISTANCE_BETWEEN": "%1과 %2 사이의 거리",
+    "SHOOT_TO": "%1을 향해 발차기",
+    "GO_TO": "%1까지 달리기",
+    "SPRINT_TO": "%1까지 전력질주하기",
+    "CALL_FOR_BALL": "공을 요구하다",
+    "PLAYER": "%1 %2 역할 %3 편 %4 %5 %6 %7",
+    "TEAMMATE": "팀원",
+    "OPPONENT": "상대",
+    "NEAR": "가까운",
+    "FAR": "이기는 커녕",
+    "MYSELF": "나",
+    "BALL": "공",
+    "OPPONENTS_GOAL": "상대편 골",
+    "OUR_GOAL": "우리의 목표",
+    "MY_TARGET_POSITION": "내 목표 위치",
+    "MIDDLE_BETWEEN": "%1과 %2 사이 중간",
+    "ELAPSED_TIME": "경과 시간",
+    "LEADING_TEAM": "%1이 선두입니다",
+    "LEADING_TEAM_OWN": "우리팀",
+    "LEADING_TEAM_OPP": "상대팀",
+    "LEADING_TEAM_NONE": "아무도",
+    "PROCEDURES_DEFNORETURN_TITLE": "정의하다",
+    "PROCEDURES_DEFNORETURN_PROCEDURE": "새로운 행동",
+    "UNNAMED_KEY": "새로운 행동",
+    "LOGIC_OPERATION_TOOLTIP_AND": "",
+    "LOGIC_OPERATION_TOOLTIP_OR": "",
+    "LOGIC_NEGATE_TOOLTIP": "",
+    "MATH_ARITHMETIC_TOOLTIP_ADD": "",
+  	"MATH_ARITHMETIC_TOOLTIP_MINUS": "",
+  	"MATH_ARITHMETIC_TOOLTIP_MULTIPLY": "",
+	  "MATH_ARITHMETIC_TOOLTIP_DIVIDE": "",
+  	"MATH_ARITHMETIC_TOOLTIP_POWER": "",	
+    "PROCEDURES_DEFNORETURN_TOOLTIP": "",
+    "PROCEDURES_CALLNORETURN_TOOLTIP": ""
+  },
+  "GLOBAL": {
+    "OK": "좋아요",
+    "CANCEL": "취소",
+    "ERROR": "오류",
+    "WARNING": "경고",
+    "SORRY": "죄송합니다..."
+  },
+  "UPDATE": {
+    "MESSAGE": "새로운 버전이 출시되었습니다!<br><br>지금 로드하시겠습니까?"
+  },
+  "HOME": {
+    "MOTTO": "축구와 함께 코딩을 배워보세요!",
+    "BUTTON_PLAY_OFFLINE": "컴퓨터와 대결하세요.",
+    "BUTTON_PLAY_ONLINE": "온라인으로 플레이하세요!",
+    "BUTTON_HOW_TO": "어떻게 플레이하나요?",
+    "BUTTON_ABOUT": "자세히 알아보세요.",
+    "CONNECTION_WARNING": "온라인으로 플레이하려면 인터넷에 연결되어 있어야 합니다!",
+    "STRONG_ENOUGH_WARNING": "온라인 게임을 하려면 먼저 최소 3개의 컴퓨터 팀을 이겨야 합니다!"
+  },
+  "HOW_TO": {
+    "TITLE": "어떻게 플레이하나요?",
+    "GOAL": "SuperCodingBall은 모든 플레이어는 경기할 줄 모르며, 플레이어는 그들에게 무엇을 할지 말해야 합니다!",
+    "RULES": "게임의 규칙은 매우 간단합니다. <ul> <li> 공은 필드 밖으로 나갈 수 없습니다. </li><li> 오프사이드가 없습니다. </li> <li> 플레이어의 에너지는 100에서 시작하며 달리거나 밀릴 때 감소합니다.</li><li>에너지가 없는 선수는 넘어져서 공을 잃습니다! </li> </ul>",
+    "BLOCK": "전략을 정의하려면 플레이어에게 <strong>항상</strong> 어떤 행동을 취해야 하는지 알려야 합니다.<br>예를 들어, 선수들이 공을 잡자마자 골대를 향해 슛을 하도록 하려면 다음을 선택해야 합니다. <br>",
+    "PARAMETER": "일부 블록의 매개변수를 변경할 수 있습니다.<br>예를 들어, 위의 분홍색 블록을 변경하면 선수들에게 공을 잡자마자 가장 가까운 팀원에게 패스하라고 지시할 수 있습니다. <br>",
+    "CONDITION": "마지막으로, 전략을 개선하기 위해 조건을 추가할 수도 있습니다!<br>예를 들어, 상대 골대까지의 거리에 따라 위의 두 가지 동작 중 하나를 선택할 수 있습니다. <br>",
+    "DISCOVER": "이제 플레이하여 나머지 내용을 알아보세요!",
+    "DEMO": "여기를 클릭하면 전체 전략을 분석할 수도 있습니다."
+  },
+  "HOW_TO_DEMO": {
+    "TITLE": "전략 예시",
+    "OPP_HAS_BALL": "상대방이 공을 가지고 있을 때 모든 선수는 공을 얻기 위해 달려갑니다.",
+    "OWN_HAS_BALL": "팀 동료가 공을 가지고 있을 때 다른 선수들은 각자의 위치(공격자는 앞, 수비수는 뒤)로 돌아갑니다.",
+    "NOONE_HAS_BALL": "아무도 공을 가지고 있지 않을 때는 가장 가까운 선수만이 공을 갖게 됩니다. 나머지 사람들은 자기 자리에 머물러 있다",
+    "CONDITION_NEAR": "이를 위해 우리는 이 조건을 사용합니다.",
+    "BALL_MINE": "우리 선수 중 한 명이 공을 가지고 있을 때, 우리는 그가 상대방과 가까운지 알고 싶습니다...",
+    "CONDITION_COMPARISON": "이를 위해 우리는 비교 조건을 사용합니다...",
+    "PARAM_DISTANCE": "가장 가까운 상대와의 거리는...",
+    "PARAM_VALUE": "그리고 값은 50",
+    "TEAMMATE": "위험할 경우, 우리는 골에 가장 가까운 팀 동료에게 패스를 합니다.",
+    "RUN_TOWARDS_GOAL": "그렇지 않으면 우리는 반대 목표를 향해 달려갑니다."
+  },
+  "ABOUT": {
+    "TITLE": "자세히 알아보세요",
+    "IDEA": "SuperCodingBall의 아이디어는 여러분이 흥분하지 않고도 몇 가지 코딩 개념(지침, 매개변수, 이벤트 및 조건)을 볼 수 있도록 하는 것입니다 :)",
+    "SCRATCH": "만약 당신이 스크래치를 좋아하고 프로그래밍에 대해 더 많은 것을 알고 싶다면, 바로 <a href=\"https://scratch.mit.edu\">스크래치</a> 로 가보세요.<br>코드 블록을 이용해 나만의 스토리/게임을 만들 수 있는 놀라운 웹사이트입니다!",
+    "BLOCKLY": "SuperCodingBall에서는 <a href=\"https://developers.google.com/blockly\">Blockly</a> 덕분에 Scratch처럼 블록을 조작할 수 있습니다!",
+    "OPENSOURCE": "SuperCodingBall은 오픈 소스 프로젝트입니다. <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">GitHub에서 소스 코드를</a> 찾아보세요.",
+    "LEGAL": "<a href='/legal'>법적 고지사항</a>, <a href='/terms'>일반 이용 약관</a> 및 <a href='/privacy'>개인정보 보호 고지사항을</a> 읽어보세요.",
+    "CONTACT": "연락하다:"
+  },
+  "LEGAL": {
+    "TITLE": "법적 고지",
+    "OPENSOURCE_TITLE": "타사 소프트웨어"
+  },
+  "PRIVACY": {
+    "TITLE": "개인정보 보호 고지",
+    "DISABLE_TRACKING": "익명 추적 비활성화"
+  },
+  "TERMS": {
+    "TITLE": "SuperCodingBall 서비스 이용 일반 조건"
+  },
+  "OFFLINE": {
+    "TITLE": "컴퓨터와 대결하다",
+    "STRATEGY": "상대방의 전략",
+    "STRATEGIES": {
+      "DO-NOTHING": "그들은 아무것도 하지 않습니다!",
+      "1PLAYER-ONLY": "한 명의 플레이어만 이동합니다",
+      "ALL-DEFENDERS": "수비에 참여하는 모든 선수",
+      "DEFENDERS-PASS-TO-ATTACKERS": "수비수가 가로채서 공격자에게 전송",
+      "ONLY-PASSES": "그들은 패스와 슛만 합니다",
+      "3ATTACKERS": "공격자 3명",
+      "COLUMN": "중앙 컬럼의 모든 플레이어",
+      "SPRINTERS": "그들은 공을 얻기 위해 달려간다"
+    }
+  },
+  "ONLINE": {
+    "TITLE": "온라인으로 플레이하세요",
+    "CONNECT_GUEST": "게스트로 연결",
+    "GUEST_WARNING": "게스트로 접속하면 다른 사람들처럼 플레이할 수 있지만, 프로필 사진은 표시되지 않습니다.<br><br>다른 기기에서는 귀하의 계정을 찾을 수 없으며, 로그아웃하면 순위가 사라집니다!",
+    "CONNECT_WITH_FACEBOOK": "페이스북으로 연결하기",
+    "CONNECT_WITH_GOOGLE": "Google에 연결",
+    "PERSONAL_RANK": "현재 순위:",
+    "RANKING": "지난 15일 순위",
+    "OPP_POINTS": "포인트",
+    "RANKING_POPUP": {
+      "TITLE": "랭킹에 대한 정보",
+      "CONTENT": "순위는 지난 15일 동안 연결된 플레이어를 보여줍니다.<br><br>매일 모든 상대와 경기를 하고 점수를 획득할 수 있습니다.<br>승리 시 {{won}} 2점 획득<br>{{무승부}} 무승부 시 1점,<br>{{lost}} 패배 시 0점.<br><br>(점수를 향상시키기 위해 게임을 다시 플레이할 수 있습니다).<br><br>진행 중인 게임을 포기하면 게임이 패배로 간주됩니다!"
+    },
+    "REPLAY": {
+      "HEADER": "당신은 오늘 이미 그 게임을 플레이했습니다 ",
+      "LOST": "(당신은 졌어요).",
+      "DRAW": "(그리다).",
+      "WON": "(당신이 이겼어요).",
+      "IMPROVE": "점수를 향상시키려고 노력하시나요?",
+      "RISK": "다시 플레이할 위험을 감수하시나요?"
+    },
+    "DISCONNECT_GUEST": "로그아웃하면 게스트 계정을 잃게 됩니다!",
+    "DISCONNECT_OTHER": "다른 계정을 사용하려면 로그아웃하세요",
+    "NICKNAME_LIMIT": "최대 20자",
+    "CHANGE_NICKNAME": "별명을 바꿔주세요",
+    "DISCONNECT_ACCOUNT": "로그아웃",
+    "SYNC_TEXT": "온라인 게임을 시작할 때마다 블록이 자동으로 내보내집니다.",
+    "DOWNLOAD_TEXT": "블록을 가져오려면(예: 다른 기기에서 전략을 수정한 경우) 여기를 클릭하세요.",
+    "DELETE_ACCOUNT": "내 계정을 영구적으로 삭제합니다",
+    "DELETE_MODAL": "정말로 계정을 삭제하시겠습니까?"
+  },
+  "BLOCKLY": {
+    "FIELD_POPUP": {
+      "TITLE": "각 선수의 목표 위치를 포함한 필드 개요"
+    },
+    "DELETE_WARNING": "정말로 모든 블록을 삭제하고 싶으신가요?",
+    "SELF_DEFINED_ACTION": "<strong>{{value}}를</strong> 자체 정의에 넣을 수 없습니다!"
+  },
+  "GAME": {
+    "MIN": "분",
+    "STOP_MODAL": "이 게임을 중단하시겠습니까?",
+    "KICK_OFF": "갑시다!",
+    "CLICK_ANYWHERE": "(아무 곳이나 클릭하세요)",
+    "HALF_TIME": "하프타임",
+    "GOAL": "목표!",
+    "YOU_WON": "당신이 이겼어요!!!",
+    "DRAW": "그리다!",
+    "YOU_LOST": "당신은 졌어요 :("
+  }
+}
