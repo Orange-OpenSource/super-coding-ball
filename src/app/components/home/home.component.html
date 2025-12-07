@@ -8,6 +8,21 @@
 * the text of which is available at https://spdx.org/licenses/BSD-3-Clause.html
 * or see the "LICENSE.txt" file for more details.
 -->
+<div class="language-selector">
+  <label for="lang-select">Language:</label>
+  <select
+    id="lang-select"
+    [value]="currentLang"
+    (change)="changeLanguage($event.target.value)"
+  >
+    <option
+      *ngFor="let lang of languages"
+      [value]="lang.isoId"
+    >
+      {{ lang.isoId.toUpperCase() }}
+    </option>
+  </select>
+</div>
 
 <div class="px-4 py-5 text-center" style="background-color: #ccffcc;">
   <img class="d-block mx-auto mb-4 oriented-icon" src="assets/app-icons/icon-512x512.png" alt="" style="width: 192px">

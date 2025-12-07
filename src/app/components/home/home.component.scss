@@ -1,0 +1,11 @@
+.language-selector {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  label {
+    font-weight: 600;
+  }
+}
