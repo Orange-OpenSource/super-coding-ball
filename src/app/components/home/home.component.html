@@ -11,18 +11,16 @@
 <div class="language-selector">
   <label for="lang-select">Language:</label>
   <select
-  id="lang-select"
-  #langSelect
-  [value]="currentLang"
-  (change)="changeLanguage(langSelect.value)"
->
-  <option
-    *ngFor="let lang of languages"
-    [value]="lang.isoId"
+    id="lang-select"
+    #langSelect
+    [value]="currentLang"
+    (change)="changeLanguage(langSelect.value)"
   >
-    {{ lang.isoId.toUpperCase() }}
-  </option>
-</select>
+    <option *ngFor="let lang of languages" [value]="lang.isoId">
+      {{ lang.isoId.toUpperCase() }}
+    </option>
+  </select>
+</div>
 
     <option
       *ngFor="let lang of languages"
