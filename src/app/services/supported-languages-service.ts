@@ -20,6 +20,9 @@ import CustomRu from '../../assets/i18n/ru.json';
 import CustomHe from '../../assets/i18n/he.json';
 import CustomAr from '../../assets/i18n/ar.json';
 import CustomNl from '../../assets/i18n/nl.json';
+import CustomJa from '../../assets/i18n/ja.json';
+import CustomKo from '../../assets/i18n/ko.json';
+import CustomZh from '../../assets/i18n/zh.json';
 
 const defaultLangInfo = {isoId:'en', rtl: false};
 export const supportedLangInfo = Array.from([
@@ -31,6 +34,9 @@ export const supportedLangInfo = Array.from([
   {isoId:'he', rtl: true},
   {isoId:'ar', rtl: true},
   {isoId:'nl', rtl: false},
+  {isoId: 'ja', rtl: false},
+  {isoId: 'ko', rtl: false},
+  {isoId: 'zh', rtl: false},
 ])
 
 @Injectable({
@@ -81,6 +87,19 @@ export class SupportedLanguagesServices {
       case 'nl': {
         const blocklyDefaultLocale = await import('blockly/msg/nl');
         return {blocklyDefaultLocale, blocklyCustomLocale: CustomNl.BLOCKS};
+      }
+      case 'ja': {
+        const blocklyDefaultLocale = await import('blockly/msg/ja');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomJa.BLOCKS};
+      }
+      case 'ko': {
+        const blocklyDefaultLocale = await import('blockly/msg/ko');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomKo.BLOCKS};
+      }
+      case 'zh': {
+        // Most people want Simplified Chinese here – Blockly uses zh-hans
+        const blocklyDefaultLocale = await import('blockly/msg/zh-hans');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomZh.BLOCKS};
       }
       default: {
         const blocklyDefaultLocale = await import('blockly/msg/en');

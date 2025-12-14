@@ -100,7 +100,7 @@
   },
   "ABOUT": {
     "TITLE": "مزيد من المعلومات",
-    "IDEA": "فكرة SuperCodingBall هي أن نعرض لك بعض مفاهيم البرمجة (الأوامر، المعلمات، الأحداث، الشروط) دون تعقيد :)",
+    "IDEA": "فكرة SuperCodingBall هي أن نعرض لك بعض مفاهيم البرمجة (الأوامر، المعلمات، الأحداث، الشروط) دون تعقيد \uD83D\uDE05",
     "SCRATCH": "إذا أعجبك هذا وترغب في اكتشاف المزيد عن البرمجة، قم بزيارة <a href=\"https://scratch.mit.edu\">Scratch</a>.<br>هو موقع مذهل يتيح لك إنشاء قصصك الخاصة/ألعابك باستخدام كتل البرمجة!",
     "BLOCKLY": "في SuperCodingBall، يمكنك التعامل مع الكتل مثلما في Scratch باستخدام <a href=\"https://developers.google.com/blockly\">Blockly</a>!",
     "OPENSOURCE": "SuperCodingBall هو مشروع مفتوح المصدر، يمكنك الاطلاع على <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">الكود المصدري على GitHub</a>.",
@@ -179,6 +179,6 @@
     "GOAL": "هدف!",
     "YOU_WON": "لقد فزت!!!",
     "DRAW": "تعادل!",
-    "YOU_LOST": "لقد خسرت :("
+    "YOU_LOST": "لقد خسرت \uD83D\uDE2C"
   }
 }

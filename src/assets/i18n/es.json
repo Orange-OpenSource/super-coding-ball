@@ -52,7 +52,7 @@
   	"MATH_ARITHMETIC_TOOLTIP_MINUS": "",
   	"MATH_ARITHMETIC_TOOLTIP_MULTIPLY": "",
 	  "MATH_ARITHMETIC_TOOLTIP_DIVIDE": "",
-  	"MATH_ARITHMETIC_TOOLTIP_POWER": "",	
+  	"MATH_ARITHMETIC_TOOLTIP_POWER": "",
     "PROCEDURES_DEFNORETURN_TOOLTIP": "",
     "PROCEDURES_CALLNORETURN_TOOLTIP": ""
   },
@@ -100,7 +100,7 @@
   },
   "ABOUT": {
     "TITLE": "Acerca de...",
-    "IDEA": "La idea de SuperCodingBall es mostrarte varios conceptos de programación (instrucciones, parámetros, eventos, condiciones) sin complicaciones:)",
+    "IDEA": "La idea de SuperCodingBall es mostrarte varios conceptos de programación (instrucciones, parámetros, eventos, condiciones) sin complicaciones \uD83D\uDE05",
     "SCRATCH": "Si te ha gustado y quieres aprender más sobre progamación, visita rápido <a href=\"https://scratch.mit.edu\">Scratch</a>.<br>Es un sitio increíble que te permite crear tus propias historias y juegos con bloques de código!",
     "BLOCKLY": "En SuperCodingBall, puedes manipular bloques como en Scratch gracias a  <a href=\"https://developers.google.com/blockly\">Blockly</a>!",
     "OPENSOURCE": "SuperCodingBall es un proyecto Open Source, visita el <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">código fuente en GitHub</a>.",
@@ -179,6 +179,6 @@
     "GOAL": "Gol!",
     "YOU_WON": "Has ganado!!!",
     "DRAW": "Empate!",
-    "YOU_LOST": "Has perdido\u00A0:("
+    "YOU_LOST": "Has perdido\u00A0\uD83D\uDE2C"
   }
 }

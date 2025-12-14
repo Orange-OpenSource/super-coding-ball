@@ -1,0 +1,184 @@
+{
+  "BLOCKS": {
+    "EVENTS": "事件",
+    "CONDITIONS": "条件",
+    "ACTIONS": "行动",
+    "POSITIONS": "位置",
+    "VALUES": "数值",
+    "ADVANCED": "高级",
+    "MY_ACTIONS": "我的行动",
+    "WHEN_HAVE_BALL": "当我持球时 %1 %2",
+    "WHEN_TEAMMATE_HAS_BALL": "当队友持球时 %1 %2",
+    "WHEN_OPPONENT_HAS_BALL": "当对手控球时 %1 %2",
+    "WHEN_NOONE_HAS_BALL": "当无人持球时 %1 %2",
+    "CUSTOM_IF": "如果 %1 则 %2 否则 %3",
+    "I_AM_CLOSEST_TO": "我最接近 %1。",
+    "ROLE_AND_SIDE": "%1 在 %3 一侧是 %2",
+    "ATTACKER": "进攻队员",
+    "DEFENDER": "防守队员",
+    "ALL": "全部",
+    "RIGHT": "右边",
+    "LEFT": "左边",
+    "PLACE_COL_LINE": "%1 位于第 %2 列和第 %3 行",
+    "ENERGY_OF": "体力为 %1",
+    "DISTANCE_BETWEEN": "%1 和 %2 之间的距离",
+    "SHOOT_TO": "向%1方向踢球",
+    "GO_TO": "跑至 %1",
+    "SPRINT_TO": "冲刺到 %1",
+    "CALL_FOR_BALL": "要球",
+    "PLAYER": "%1 %2 角色 %3 侧面 %4 %5 %6 %7",
+    "TEAMMATE": "队友",
+    "OPPONENT": "对手",
+    "NEAR": "靠近",
+    "FAR": "远离",
+    "MYSELF": "我",
+    "BALL": "足球",
+    "OPPONENTS_GOAL": "对方球门",
+    "OUR_GOAL": "我方球门",
+    "MY_TARGET_POSITION": "我的目标位置",
+    "MIDDLE_BETWEEN": "介于 %1 和 %2 之间的中间值",
+    "ELAPSED_TIME": "经过的时间",
+    "LEADING_TEAM": "%1领先",
+    "LEADING_TEAM_OWN": "我方球队",
+    "LEADING_TEAM_OPP": "对方球队",
+    "LEADING_TEAM_NONE": "无人",
+    "PROCEDURES_DEFNORETURN_TITLE": "定义",
+    "PROCEDURES_DEFNORETURN_PROCEDURE": "新行动",
+    "UNNAMED_KEY": "新行动",
+    "LOGIC_OPERATION_TOOLTIP_AND": "",
+    "LOGIC_OPERATION_TOOLTIP_OR": "",
+    "LOGIC_NEGATE_TOOLTIP": "",
+    "MATH_ARITHMETIC_TOOLTIP_ADD": "",
+    "MATH_ARITHMETIC_TOOLTIP_MINUS": "",
+    "MATH_ARITHMETIC_TOOLTIP_MULTIPLY": "",
+    "MATH_ARITHMETIC_TOOLTIP_DIVIDE": "",
+    "MATH_ARITHMETIC_TOOLTIP_POWER": "",
+    "PROCEDURES_DEFNORETURN_TOOLTIP": "",
+    "PROCEDURES_CALLNORETURN_TOOLTIP": ""
+  },
+  "GLOBAL": {
+    "OK": "好的",
+    "CANCEL": "取消",
+    "ERROR": "错误",
+    "WARNING": "警告",
+    "SORRY": "对不起..."
+  },
+  "UPDATE": {
+    "MESSAGE": "新版本已发布！<br><br>您现在要加载吗？"
+  },
+  "HOME": {
+    "MOTTO": "用足球探索编程！",
+    "BUTTON_PLAY_OFFLINE": "对战电脑",
+    "BUTTON_PLAY_ONLINE": "在线玩！",
+    "BUTTON_HOW_TO": "我们怎么玩？",
+    "BUTTON_ABOUT": "了解更多",
+    "CONNECTION_WARNING": "您必须连接到互联网才能进行在线游戏！",
+    "STRONG_ENOUGH_WARNING": "你必须先击败至少 3 支电脑队伍才能进行在线比赛！"
+  },
+  "HOW_TO": {
+    "TITLE": "我们怎么玩？",
+    "GOAL": "SuperCodingBall是一款足球游戏，所有球员都很笨，你需要告诉他们该怎么做！",
+    "RULES": "游戏规则非常简单：<ul> <li> 球不能出界。 </li><li> 没有越位。 </li> <li> 玩家初始体力值为100，冲刺或被推搡时体力值会下降。</li><li>一名体力不支的球员摔倒了，丢掉了球！</li> </ul>",
+    "BLOCK": "为了制定你的策略，你<strong>需要时刻</strong>告诉你的队员们应该采取什么行动。<br>例如，如果你希望球员拿到球后立即射门，你需要选择：<br>",
+    "PARAMETER": "您可以更改某些方块的参数值。<br>例如，通过更改上面的粉色方块，您可以告诉球员拿到球后立即将球传给离他们最近的队友：<br>",
+    "CONDITION": "最后，您还可以添加条件来改进您的策略！<br>例如，您可以根据与对方球门的距离，选择上述两种操作之一：<br>",
+    "DISCOVER": "现在就等你来玩，去探索吧！",
+    "DEMO": "您还可以点击此处分析完整的策略。"
+  },
+  "HOW_TO_DEMO": {
+    "TITLE": "策略示例",
+    "OPP_HAS_BALL": "当对方球员控球时，所有球员跑向球去抢球。",
+    "OWN_HAS_BALL": "当队友控球时，其他球员回到各自的位置（进攻球员回到前场，防守球员回到后场）。",
+    "NOONE_HAS_BALL": "当无人持球时，只有离球最近的球员才能拿到球。其他人则留守在它们的位置。",
+    "CONDITION_NEAR": "为此，我们使用以下条件",
+    "BALL_MINE": "当我方球员控球时，我们想知道他是否靠近对方球员……",
+    "CONDITION_COMPARISON": "为此，我们使用条件进行比较……",
+    "PARAM_DISTANCE": "他与最近的对手之间的距离……",
+    "PARAM_VALUE": "数值为 50",
+    "TEAMMATE": "遇到危险时，我们会把球传给离球门最近的队友。",
+    "RUN_TOWARDS_GOAL": "否则我们就跑向对方球门。"
+  },
+  "ABOUT": {
+    "TITLE": "了解更多",
+    "IDEA": "SuperCodingBall 的理念是向你介绍一些编程概念（指令、参数、事件和条件），而不会让你感到紧张 \uD83D\uDE05",
+    "SCRATCH": "如果你喜欢它，并且想探索更多编程知识，那就赶紧去<a href=\"https://scratch.mit.edu\">Scratch</a>看看吧。<br>这是一个非常棒的网站，它允许你用代码块创建自己的故事/游戏！",
+    "BLOCKLY": "在 SuperCodingBall 中，借助<a href=\"https://developers.google.com/blockly\">Blockly</a> ，您可以像在 Scratch 中一样操作积木！",
+    "OPENSOURCE": "SuperCodingBall 是一个开源项目，<a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">源代码可在 GitHub 上</a>找到。",
+    "LEGAL": "请阅读<a href='/legal'>法律声明</a>、<a href='/terms'>一般使用条款</a>和<a href='/privacy'>隐私声明</a>。",
+    "CONTACT": "联系："
+  },
+  "LEGAL": {
+    "TITLE": "法律声明",
+    "OPENSOURCE_TITLE": "第三方软件"
+  },
+  "PRIVACY": {
+    "TITLE": "隐私声明",
+    "DISABLE_TRACKING": "禁用匿名跟踪"
+  },
+  "TERMS": {
+    "TITLE": "SuperCodingBall 服务的一般使用条款"
+  },
+  "OFFLINE": {
+    "TITLE": "对战电脑",
+    "STRATEGY": "对手的策略",
+    "STRATEGIES": {
+      "DO-NOTHING": "他们什么也不做！",
+      "1PLAYER-ONLY": "只有一名玩家移动",
+      "ALL-DEFENDERS": "所有防守队员",
+      "DEFENDERS-PASS-TO-ATTACKERS": "防御者拦截并发送给攻击者",
+      "ONLY-PASSES": "他们只会传球和射门。",
+      "3ATTACKERS": "3名进攻球员",
+      "COLUMN": "中间列的所有球员",
+      "SPRINTERS": "他们冲刺去抢球"
+    }
+  },
+  "ONLINE": {
+    "TITLE": "在线玩",
+    "CONNECT_GUEST": "以访客身份登录",
+    "GUEST_WARNING": "如果您以访客身份登录，您将可以正常游玩，但您将不会显示您的个人资料图片。<br><br>您将无法在其他设备上找到您的帐户，如果您退出登录，您的排名将会丢失！",
+    "CONNECT_WITH_FACEBOOK": "通过 Facebook 登录",
+    "CONNECT_WITH_GOOGLE": "与 Google 登录",
+    "PERSONAL_RANK": "您目前的排名：",
+    "RANKING": "过去15天的排名",
+    "OPP_POINTS": "点数",
+    "RANKING_POPUP": {
+      "TITLE": "排名信息",
+      "CONTENT": "该排名显示的是过去 15 天内在线的玩家。<br><br>每天，你都可以和所有对手对战并得分：<br>{{won}} 赢一场得2分，<br>{{draw}} 平局得1分。<br>{{lost}} 失败得0分。<br><br>（你可以重玩游戏来提高分数）。<br><br>如果放弃正在进行的游戏，则视为游戏失败！"
+    },
+    "REPLAY": {
+      "HEADER": "你今天已经玩过那个游戏了。 ",
+      "LOST": "（你输了）。",
+      "DRAW": "（平局）。",
+      "WON": "（你赢了）。",
+      "IMPROVE": "你想提高分数吗？",
+      "RISK": "你愿意冒着风险再次比赛吗？"
+    },
+    "DISCONNECT_GUEST": "如果您退出登录，您的访客帐户将会丢失！",
+    "DISCONNECT_OTHER": "如果您想使用其他帐户，请先注销。",
+    "NICKNAME_LIMIT": "最多 20 个字符",
+    "CHANGE_NICKNAME": "更改我的昵称",
+    "DISCONNECT_ACCOUNT": "退出登录",
+    "SYNC_TEXT": "每次启动在线游戏时，您的方块都会自动导出。",
+    "DOWNLOAD_TEXT": "如果您想导入您的方块（例如，如果您在其他设备上修改了您的策略），请点击此处：",
+    "DELETE_ACCOUNT": "永久注销我的账户",
+    "DELETE_MODAL": "您确定要注销您的帐户吗？"
+  },
+  "BLOCKLY": {
+    "FIELD_POPUP": {
+      "TITLE": "场上位置概览，包括每位球员的目标位置"
+    },
+    "DELETE_WARNING": "你真的要删除所有方块吗？！",
+    "SELF_DEFINED_ACTION": "你不能在定义中使用<strong>{{value}}</strong> ！"
+  },
+  "GAME": {
+    "MIN": "分钟",
+    "STOP_MODAL": "你想停止这场游戏吗？",
+    "KICK_OFF": "我们走吧！",
+    "CLICK_ANYWHERE": "（点击任意位置）",
+    "HALF_TIME": "中场休息",
+    "GOAL": "进球！",
+    "YOU_WON": "你赢了！！！",
+    "DRAW": "平局！",
+    "YOU_LOST": "你输了 \uD83D\uDE2C"
+  }
+}

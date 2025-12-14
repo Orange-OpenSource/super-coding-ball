@@ -52,7 +52,7 @@
   	"MATH_ARITHMETIC_TOOLTIP_MINUS": "",
   	"MATH_ARITHMETIC_TOOLTIP_MULTIPLY": "",
 	  "MATH_ARITHMETIC_TOOLTIP_DIVIDE": "",
-  	"MATH_ARITHMETIC_TOOLTIP_POWER": "",	
+  	"MATH_ARITHMETIC_TOOLTIP_POWER": "",
     "PROCEDURES_DEFNORETURN_TOOLTIP": "",
     "PROCEDURES_CALLNORETURN_TOOLTIP": ""
   },
@@ -91,7 +91,7 @@
     "OWN_HAS_BALL": "Quand un coéquipier a le ballon,\nles autres joueurs reviennent à leur poste\n(avant pour les attaquants,\narrière pour les défenseurs)",
     "NOONE_HAS_BALL": "Quand personne n'a le ballon,\nseul le joueur le plus près va le chercher.\nLes autres restent à leur poste",
     "CONDITION_NEAR": "Pour ça, on utilise cette condition",
-    "BALL_MINE": "Quand un de nos joueurs a le ballon,\non veut savoir s'il est proche d' un adversaire...",
+    "BALL_MINE": "Quand un de nos joueurs a le ballon,\non veut savoir s'il est proche d'un adversaire...",
     "CONDITION_COMPARISON": "Pour ça on utilise une condition pour comparer...",
     "PARAM_DISTANCE": "Sa distance avec l'adversaire le plus proche...",
     "PARAM_VALUE": "Et la valeur 50",
@@ -100,7 +100,7 @@
   },
   "ABOUT": {
     "TITLE": "En savoir\u00A0+",
-    "IDEA": "L'idée de SuperCodingBall est de te montrer quelques concepts de code (instructions, paramètres, évènements, conditions) sans te prendre la tête\u00A0:)",
+    "IDEA": "L'idée de SuperCodingBall est de te montrer quelques concepts de code (instructions, paramètres, évènements, conditions) sans te prendre la tête\u00A0\uD83D\uDE05",
     "SCRATCH": "Si tu as aimé ça et que tu veux découvrir plus de choses en programmation, va vite découvrir <a href=\"https://scratch.mit.edu\">Scratch</a>.<br>C'est un site incroyable qui te permet de créer tes propres histoires/jeux avec des blocs de code\u00A0!",
     "BLOCKLY": "Dans SuperCodingBall, tu peux manipuler les blocs comme dans Scratch grâce à <a href=\"https://developers.google.com/blockly\">Blockly</a>\u00A0!",
     "OPENSOURCE": "SuperCodingBall est un projet Open Source, voir le <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">code source sur GitHub</a>.",
@@ -179,6 +179,6 @@
     "GOAL": "But\u00A0!",
     "YOU_WON": "C'est gagné\u00A0!!!",
     "DRAW": "Match nul\u00A0!",
-    "YOU_LOST": "C'est perdu\u00A0:("
+    "YOU_LOST": "C'est perdu\u00A0\uD83D\uDE2C"
   }
 }

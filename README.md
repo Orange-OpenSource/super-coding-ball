@@ -59,7 +59,7 @@ All player sprites come from the "Open Game Art Liberated Pixel Cup" and were ge
 * [Wolf](https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=Body_color_pale_green&head=Wolf_male_pale_green&legs=Long_Pants_black&tail=Wolf_Tail_raven)
 * [Zombie](https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#?body=Body_color_zombie_green&head=Zombie_zombie_green&legs=Long_Pants_black&overalls=Overalls_black)
 
-# Translations (for now English, French, Spanish, Russian, Hebrew, German, Arabic and Dutch)
+# Translations (for now English, French, Spanish, Russian, Hebrew, German, Arabic, Dutch, Japanese, Korean and Chinese)
 
 All translations are in the [i18n folder](./src/assets/i18n).
 

@@ -52,10 +52,10 @@
      "MATH_ARITHMETIC_TOOLTIP_MINUS": "",
      "MATH_ARITHMETIC_TOOLTIP_MULTIPLY": "",
      "MATH_ARITHMETIC_TOOLTIP_DIVIDE": "",
-     "MATH_ARITHMETIC_TOOLTIP_POWER": "",	
+     "MATH_ARITHMETIC_TOOLTIP_POWER": "",
      "PROCEDURES_DEFNORETURN_TOOLTIP": "",
      "PROCEDURES_CALLNORETURN_TOOLTIP": ""
-   }, 
+   },
    "GLOBAL": {
      "OK": "בסדר",
      "CANCEL": "ביטול",
@@ -100,7 +100,7 @@
    },
    "ABOUT": {
      "TITLE": "למידע נוסף",
-     "IDEA": "הרעיון של SuperCodingBall הוא להראות לך כמה מושגי קידוד (הוראות, פרמטרים, אירועים ותנאים) מבלי להתעסק\u00A0:)",
+     "IDEA": "הרעיון של SuperCodingBall הוא להראות לך כמה מושגי קידוד (הוראות, פרמטרים, אירועים ותנאים) מבלי להתעסק \u00A0\uD83D\uDE05",
      "SCRATCH": "אם אהבתם וברצונכם לגלות דברים נוספים בתכנות, עבור במהירות אל <a href=\"https://scratch.mit.edu\">Scratch</a>.<br>זהו אתר מדהים המאפשר לך ליצור סיפורים/משחקים משלך עם בלוקים של קוד!",
      "BLOCKLY": "ב-SuperCodingBall, אתה יכול לתפעל בלוקים כמו ב-Scratch הודות ל<a href=\"https://developers.google.com/blockly\">Blockly</a>!",
      "OPENSOURCE": "SuperCodingBall הוא פרויקט קוד פתוח, מצא <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">קוד המקור ב-GitHub</a>.",
@@ -179,6 +179,6 @@
      "GOAL": "גול!",
      "YOU_WON": "ניצחת!!!",
      "DRAW": "תיקו!",
-     "YOU_LOST": "הפסדת \u00A0:("
+     "YOU_LOST": "הפסדת \u00A0\uD83D\uDE2C"
    }
 }
