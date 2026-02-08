@@ -41,7 +41,7 @@ Dans tous les cas, SuperCodingBall va stocker le pseudo (modifiable), les blocs 
 
 # Blockly
 
-SuperCodingBall utilise l'excellente bibliothèque [Blockly](https://developers.google.com/blockly) de Google pour gérer les interactions avec les blocs.
+SuperCodingBall utilise l'excellente bibliothèque [Blockly](https://www.blockly.com) pour gérer les interactions avec les blocs.
 
 Pour générer les blocs personalisés, on peut utiliser les [Blockly Developer Tools](https://blockly-demo.appspot.com/static/demos/blockfactory/index.html), la source des blocs étant stockée [ici](./src/assets/blocks/library.xml).
 

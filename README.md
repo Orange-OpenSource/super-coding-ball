@@ -41,7 +41,7 @@ At any time, players can delete their account.
 
 # Blockly
 
-SuperCodingBall uses Google's excellent [Blockly](https://developers.google.com/blockly) library to manage interactions with blocks.
+SuperCodingBall uses the excellent [Blockly](https://www.blockly.com) library to manage interactions with blocks.
 
 To generate the personalized blocks, you can use the [Blockly Developer Tools](https://blockly-demo.appspot.com/static/demos/blockfactory/index.html), the source of the blocks being stored [here](./src/assets/blocks/library.xml).
 
