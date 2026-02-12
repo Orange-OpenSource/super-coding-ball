@@ -67,3 +67,7 @@ Feel free to contribute if you want to add another language!
 
 # Genesis
 SuperCodingBall has been created during an internal competition, but it is fully free, open source and without any ads.
+
+## Self-hosting guide
+
+For a Debian-focused self-hosting walkthrough (frontend + self-hosted highscore API), see [INSTALL-DEBIAN-HIGHSCORE.md](./INSTALL-DEBIAN-HIGHSCORE.md).
