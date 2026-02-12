@@ -71,6 +71,71 @@ TLS aktivieren:
 sudo certbot --nginx -d ball.example.org
 ```
 
+
+## 3b) Alternative: bestehender Apache-Server (ohne Nginx)
+
+Wenn bei dir bereits Apache läuft, kannst du SuperCodingBall auch direkt dort ausliefern.
+
+Apache-Module aktivieren:
+
+```bash
+sudo apt update
+sudo apt install -y apache2 certbot python3-certbot-apache
+sudo a2enmod rewrite headers proxy proxy_http ssl
+sudo systemctl reload apache2
+```
+
+Build nach `/var/www/supercodingball` kopieren (falls noch nicht geschehen):
+
+```bash
+sudo mkdir -p /var/www/supercodingball
+sudo cp -r dist/* /var/www/supercodingball/
+```
+
+VirtualHost anlegen, z. B. `/etc/apache2/sites-available/supercodingball.conf`:
+
+```apache
+<VirtualHost *:80>
+    ServerName ball.example.org
+    DocumentRoot /var/www/supercodingball
+
+    <Directory /var/www/supercodingball>
+        Options FollowSymLinks
+        AllowOverride None
+        Require all granted
+
+        # Angular SPA Fallback
+        RewriteEngine On
+        RewriteCond %{REQUEST_FILENAME} -f [OR]
+        RewriteCond %{REQUEST_FILENAME} -d
+        RewriteRule ^ - [L]
+        RewriteRule ^ /index.html [L]
+    </Directory>
+
+    # Reverse-Proxy für eigene Highscore-API
+    ProxyPreserveHost On
+    ProxyPass /datasync/v2/super-coding-ball/data/ http://127.0.0.1:8080/
+    ProxyPassReverse /datasync/v2/super-coding-ball/data/ http://127.0.0.1:8080/
+
+    ErrorLog ${APACHE_LOG_DIR}/supercodingball-error.log
+    CustomLog ${APACHE_LOG_DIR}/supercodingball-access.log combined
+</VirtualHost>
+```
+
+Site aktivieren und prüfen:
+
+```bash
+sudo a2ensite supercodingball
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+```
+
+TLS mit Let's Encrypt:
+
+```bash
+sudo certbot --apache -d ball.example.org
+```
+
 ## 4) Eigene Highscore-API bereitstellen
 
 Die App erwartet diese Struktur:
@@ -115,6 +180,7 @@ Danach neu bauen und deployen:
 ```bash
 npm run build
 sudo cp -r dist/* /var/www/supercodingball/
+# Wenn du Apache nutzt: sudo systemctl reload apache2
 sudo systemctl reload nginx
 ```
 
@@ -138,7 +204,7 @@ curl -i https://ball.example.org/datasync/v2/super-coding-ball/data/games
 - tägliche Backups (z. B. SQLite/PostgreSQL Dumps)
 - Fail2ban + UFW
 - Monitoring (Uptime Kuma / Prometheus)
-- Logrotation (`/var/log/nginx/*.log`)
+- Logrotation (`/var/log/nginx/*.log` oder `/var/log/apache2/*.log`)
 
 ---
 
