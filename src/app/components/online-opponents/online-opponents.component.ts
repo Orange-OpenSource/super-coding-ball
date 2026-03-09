@@ -181,7 +181,9 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
     if (opponentId === this.onlineService.webcomId) {
       return;
     }
-    this.lastResult = this.opponents.find(opponent => opponent.webcomId === opponentId)?.lastResult;
+    const selectedOpponent = this.opponents.find(opponent => opponent.webcomId === opponentId);
+    this.lastResult = selectedOpponent?.lastResult;
+    const opponentRanking = selectedOpponent?.ranking;
     if (this.lastResult !== undefined) {
       this.modalService.open(this.replayGameContent)
         .result.then(async (replayValidated: boolean) => {
@@ -189,11 +191,11 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
           // For some reason, adding these 500ms prevents a glitch for Blockly's vertical scrollbar
           // There should be some race condition between the disappearing Bootstrap modal and Blockly
           await new Promise(resolve => setTimeout(resolve, 500));
-          this.router.navigate([`/code/online/${opponentId}`]);
+          this.router.navigate([`/code/online/${opponentId}`], {queryParams: {rank: opponentRanking}});
         }
       }, () => { });
     } else {
-      this.router.navigate([`/code/online/${opponentId}`]);
+      this.router.navigate([`/code/online/${opponentId}`], {queryParams: {rank: opponentRanking}});
     }
   }
 
