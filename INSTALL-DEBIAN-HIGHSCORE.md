@@ -27,6 +27,54 @@ sudo apt install -y git nodejs npm mariadb-server php php-mysql certbot
 
 Wenn mehrere PHP-Versionen installiert sind, nutze für FPM/Apache explizit PHP 7.3 (z. B. `php7.3-fpm`).
 
+
+## Schnellstart: So startest du es auf deinem Debian-Server
+
+Wenn Apache, PHP 7.3 und MariaDB schon laufen, kannst du mit diesen Schritten direkt starten:
+
+```bash
+# 1) Repo + Frontend bauen
+git clone https://github.com/Orange-OpenSource/super-coding-ball.git
+cd super-coding-ball
+npm ci
+npm run build
+sudo mkdir -p /var/www/supercodingball
+sudo cp -r dist/* /var/www/supercodingball/
+
+# 2) API-Ordner anlegen
+sudo mkdir -p /var/www/supercodingball-api
+sudo chown -R www-data:www-data /var/www/supercodingball-api
+
+# 3) DB anlegen
+sudo mysql -u root -e "CREATE DATABASE IF NOT EXISTS supercodingball CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+sudo mysql -u root -e "CREATE USER IF NOT EXISTS 'scb'@'127.0.0.1' IDENTIFIED BY 'CHANGE_ME_STRONG_PASSWORD';"
+sudo mysql -u root -e "GRANT ALL PRIVILEGES ON supercodingball.* TO 'scb'@'127.0.0.1'; FLUSH PRIVILEGES;"
+
+# 4) Tabellen anlegen (SQL aus Abschnitt 3 ausführen)
+
+# 5) API-Dateien aus Abschnitt 4 erstellen:
+#    /var/www/supercodingball-api/config.php
+#    /var/www/supercodingball-api/index.php
+
+# 6) Apache Route aktivieren (Alias aus Abschnitt 5)
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+
+# 7) Frontend auf deine API-URL umstellen (online.service.ts), neu bauen und kopieren
+npm run build
+sudo cp -r dist/* /var/www/supercodingball/
+```
+
+Danach sollte die API erreichbar sein unter:
+
+- `https://DEINE-DOMAIN/datasync/v2/super-coding-ball/data/...`
+
+Schnelltest:
+
+```bash
+curl -i -H 'Authorization: Bearer test-user'   https://DEINE-DOMAIN/datasync/v2/super-coding-ball/data/games/0
+```
+
 ## 2) Frontend bauen und ausliefern
 
 ```bash
