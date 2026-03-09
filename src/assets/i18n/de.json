@@ -139,11 +139,11 @@
     "CONNECT_WITH_FACEBOOK": "Mit Facebook verbinden",
     "CONNECT_WITH_GOOGLE": "Mit Google verbinden",
     "PERSONAL_RANK": "Dein aktuelles Ranking:",
-    "RANKING": "Ranking der letzten 15 Tage",
+    "RANKING": "Ranking der letzten 800 Tage",
     "OPP_POINTS": "pkt",
     "RANKING_POPUP": {
       "TITLE": "Informationen zum Ranking",
-      "CONTENT": "Das Ranking zeigt die in den letzten 15 Tagen verbundenen Spieler*innen an.<br><br>Jeden Tag kannst du gegen jede Gegner*in spielen und folgende Punkte erzielen:<br>{{won}} 2 Punkte für einen Sieg,<br>{{draw}} 1 Punkt für ein Unentschieden,<br>{{lost}} 0 Punkte für eine Niederlage.<br><br>(Du kannst Spiele wiederholen, um deine Punktzahl zu verbessern)<br><br>Wenn du ein Spiel aufgibst wird es als verloren gewertet!"
+      "CONTENT": "Das Ranking zeigt die in den letzten 800 Tagen verbundenen Spieler*innen an.<br><br>Jeden Tag kannst du gegen jede Gegner*in spielen und folgende Punkte erzielen:<br>{{won}} 2 Punkte für einen Sieg,<br>{{draw}} 1 Punkt für ein Unentschieden,<br>{{lost}} 0 Punkte für eine Niederlage.<br><br>(Du kannst Spiele wiederholen, um deine Punktzahl zu verbessern)<br><br>Wenn du ein Spiel aufgibst wird es als verloren gewertet!"
     },
     "REPLAY": {
       "HEADER": "Du hast dieses Spiel heute bereits gespielt ",

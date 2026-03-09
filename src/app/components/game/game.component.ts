@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {AfterViewInit, Component, EventEmitter, Input, isDevMode, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Player, PlayerState} from '../../models/player';
 import {Ball} from '../../models/ball';
 import {Sprite, SpriteCoord} from '../../models/sprite';
@@ -21,6 +21,7 @@ import {OnlineService} from '../../services/online.service';
 import {GamePoint} from '../online-opponents/online-opponents.component';
 import {TranslatePipe} from '@ngx-translate/core';
 import {CommonModule} from '@angular/common';
+import {isDeveloperModeEnabled} from '../../app-runtime-config';
 
 interface FieldDivision {
   start: number;
@@ -60,7 +61,6 @@ const oppGoal: SpriteCoord = {x: widthMargin + fieldWidth / 2, y: heightMargin};
 const goalDetectionMargin = 5;
 const opponentsCollisionDist = 40;
 const opponentsAvoidDist = opponentsCollisionDist * 1.5;
-const maxRankingToSendWonGameToHighscore = 15;
 const teammatesCollisionDist = 20;
 const ballCatchingDistance = 20;
 const moveThreshold = 15;
@@ -89,7 +89,6 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   DisplayType = DisplayType;
   isOnline: boolean;
   opponentId = '';
-  opponentRanking?: number;
   ownTeamWillStart = true;
   gameHalted = true;
   gameStopped = false;
@@ -145,7 +144,6 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.computeGridPositions();
     this.isOnline = this.router.url.includes('/online/');
     this.opponentId = this.route.snapshot.paramMap.get('id') ?? '';
-    this.opponentRanking = +(this.route.snapshot.queryParamMap.get('rank') ?? '0') || undefined;
   }
 
   ngOnInit(): void {
@@ -205,7 +203,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   public loadOwnCode(): void {
     this.ownTeamWillStart = true;
     this.ownCode = this.codeService.loadOwnCode();
-    if (isDevMode()) {
+    if (isDeveloperModeEnabled()) {
       console.log(this.ownCode);
     }
     this.openKickOffPopup();
@@ -238,6 +236,9 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.positionPlayersAndBallBeforeKickOff();
     this.gameHalted = false;
     if (this.periodType === PeriodType.BeforeFirstPeriod) {
+      if (this.isOnline) {
+        this.onlineService.setGameResult(this.opponentId, GamePoint.LOST);
+      }
       this.periodType = PeriodType.FirstPeriod;
     } else if (this.periodType === PeriodType.HalfTime) {
       this.periodType = PeriodType.SecondPeriod;
@@ -320,7 +321,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       if (this.isOnline) {
         const score = this.ownScore > this.oppScore ? GamePoint.WON : (this.ownScore === this.oppScore ? GamePoint.DRAW : GamePoint.LOST);
-        if (score === GamePoint.WON && this.shouldSendWonGameToHighscore()) {
+        // LOST score has already been sent at game launch
+        if (score > GamePoint.LOST) {
           this.onlineService.setGameResult(this.opponentId, score);
         }
       } else if (this.ownScore > this.oppScore) {
@@ -330,11 +332,6 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
         () => this.backToOpponentsList(),
         () => this.backToOpponentsList());
     }
-  }
-
-
-  private shouldSendWonGameToHighscore(): boolean {
-    return !!this.opponentRanking && this.opponentRanking <= maxRankingToSendWonGameToHighscore;
   }
 
   public stopGame(): void {

@@ -12,7 +12,6 @@
 import {
   ApplicationConfig,
   provideZoneChangeDetection,
-  isDevMode,
   provideAppInitializer, inject
 } from '@angular/core';
 import {provideRouter} from '@angular/router';
@@ -23,13 +22,14 @@ import {provideTranslateService, TranslateLoader} from '@ngx-translate/core';
 import {HttpClient, provideHttpClient} from '@angular/common/http';
 import {CustomTranslateLoader} from "./services/custom-translate-loader";
 import {CodeService} from "./services/code.service";
+import {isDeveloperModeEnabled} from './app-runtime-config';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({eventCoalescing: true}),
     provideRouter(routes),
     provideServiceWorker('ngsw-worker.js', {
-      enabled: !isDevMode(),
+      enabled: !isDeveloperModeEnabled(),
       registrationStrategy: 'registerWhenStable:30000'
     }),
     provideHttpClient(),

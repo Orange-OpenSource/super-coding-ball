@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, isDevMode, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 
 import * as Blockly from 'blockly';
 import {Events, WorkspaceSvg} from 'blockly';
@@ -26,6 +26,7 @@ import {TouchDevicesService} from '../../services/touch-devices.service';
 import {firstValueFrom} from 'rxjs';
 import {Girl1Icon, Girl2Icon, Guy1Icon, Guy2Icon, IDebugIcon} from './debug-icons';
 import {CommonModule} from '@angular/common';
+import {isDeveloperModeEnabled} from '../../app-runtime-config';
 const actionBlockTypes = ['shoot', 'move', 'sprint', 'call_for_ball'];
 
 @Component({
@@ -67,7 +68,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
     public modalService: NgbModal,
     public touchDevicesService: TouchDevicesService
   ) {
-    this.debug = isDevMode();
+    this.debug = isDeveloperModeEnabled();
     this.isOnline = this.router.url.includes('/online/');
     this.opponentId = this.route.snapshot.paramMap.get('id') ?? '';
   }

@@ -139,11 +139,11 @@
     "CONNECT_WITH_FACEBOOK": "Conexión con Facebook",
     "CONNECT_WITH_GOOGLE": "Conexión con Google",
     "PERSONAL_RANK": "Tu clasificación actual:",
-    "RANKING": "Clasificación de los últimos 15 días",
+    "RANKING": "Clasificación de los últimos 800 días",
     "OPP_POINTS": " puntos",
     "RANKING_POPUP": {
       "TITLE": "Información de la clasificación",
-      "CONTENT": "La clasificación muestra los jugadores conectados desde los últimos 15 días.<br><br>Todos los días, puedes jugar contra cada contrincante y marcar:<br>{{won}} 2 puntos por victoria,<br>{{draw}} 1 punto por empate,<br>{{lost}} 0 puntos por una derrota.<br><br>(puedes repetir el partido para mejorar tu puntuación)<br><br>Si abandonas un partido en curso, será considerado como derrota!"
+      "CONTENT": "La clasificación muestra los jugadores conectados desde los últimos 800 días.<br><br>Todos los días, puedes jugar contra cada contrincante y marcar:<br>{{won}} 2 puntos por victoria,<br>{{draw}} 1 punto por empate,<br>{{lost}} 0 puntos por una derrota.<br><br>(puedes repetir el partido para mejorar tu puntuación)<br><br>Si abandonas un partido en curso, será considerado como derrota!"
     },
     "REPLAY": {
       "HEADER": "Ya has jugado este partido hoy ",

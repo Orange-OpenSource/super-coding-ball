@@ -11,8 +11,8 @@
       "$day": {
         // the timestamp used is the beginning of local day at midnight, so it can be +/- 24h to EPOCH time
         ".validate": "now <= parseInt($day) + 1000 * 60 * 60 * 24  && now >= parseInt($day) - 1000 * 60 * 60 * 24 && (parseInt($day) % (1000 * 60 * 60 * 24)) === 0",
-        // anyone can delete games older than 15 days
-        ".write": "auth !== null && parseInt($day) < now - 1000 * 60 * 60 * 24 * 15",
+        // anyone can delete games older than 800 days
+        ".write": "auth !== null && parseInt($day) < now - 1000 * 60 * 60 * 24 * 800",
         "$uid": {
           ".write": "auth !== null && auth.uid === $uid",
           "userDisplay": {

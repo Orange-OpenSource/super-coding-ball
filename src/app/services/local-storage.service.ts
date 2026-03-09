@@ -9,7 +9,8 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Injectable, isDevMode} from '@angular/core';
+import {Injectable} from '@angular/core';
+import {isDeveloperModeEnabled} from '../app-runtime-config';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +49,7 @@ export class LocalStorageService {
   }
 
   saveBlocks(savedBlocks: string): void {
-    if (isDevMode()) {
+    if (isDeveloperModeEnabled()) {
       console.log(JSON.stringify(JSON.parse(savedBlocks), null, " "));
     }
     localStorage.setItem('savedBlocks', savedBlocks);

@@ -14,6 +14,7 @@ import Webcom from 'webcom/webcom-auth-sldbLite.js';
 import {AllGames, ConnectionStatus, OneDayGames, User, UserDisplay} from '../models/webcom-models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {firstValueFrom} from 'rxjs';
+import {appRuntimeConfig} from '../app-runtime-config';
 
 @Injectable({
   providedIn: 'root'
@@ -139,7 +140,7 @@ export class OnlineService implements OnDestroy {
 
   public removeAccount(): void {
     firstValueFrom(this.http.delete(`${this.webcomUsersUrl}/${this.webcomId}`, this.authHeadersOption))
-    for (let pastDayCount = 0; pastDayCount < 15; pastDayCount++) {
+    for (let pastDayCount = 0; pastDayCount < appRuntimeConfig.rankingHistoryDays; pastDayCount++) {
       const pastDayTimestamp = OnlineService.getUtcTimestamp(Date.now() - pastDayCount * 1000 * 60 * 60 * 24);
       firstValueFrom(this.http.delete(`${this.webcomGamesUrl}/${pastDayTimestamp}/${this.webcomId}`, this.authHeadersOption));
     }
@@ -183,7 +184,7 @@ export class OnlineService implements OnDestroy {
     const allGames = await this.loadAllGamesOrRefreshTodayGames();
     const allTimeStamps = Object.keys(allGames);
     for (const timestamp of allTimeStamps) {
-      if (+timestamp < Date.now() - 15 * 1000 * 60 * 60 * 24) {
+      if (+timestamp < Date.now() - appRuntimeConfig.rankingHistoryDays * 1000 * 60 * 60 * 24) {
         this.deleteDay(timestamp);
         delete allGames[timestamp];
       }
