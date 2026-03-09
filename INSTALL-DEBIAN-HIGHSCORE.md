@@ -15,7 +15,7 @@ Diese Anleitung deckt vollständig ab:
 - Debian 12
 - Domain, z. B. `ball.example.org`
 - Laufender Apache **oder** Nginx
-- PHP 8.1+ (mit `pdo_mysql`)
+- PHP 7.3+ (mit `pdo_mysql`)
 - MariaDB 10.6+
 
 Pakete (falls etwas fehlt):
@@ -24,6 +24,8 @@ Pakete (falls etwas fehlt):
 sudo apt update
 sudo apt install -y git nodejs npm mariadb-server php php-mysql certbot
 ```
+
+Wenn mehrere PHP-Versionen installiert sind, nutze für FPM/Apache explizit PHP 7.3 (z. B. `php7.3-fpm`).
 
 ## 2) Frontend bauen und ausliefern
 
@@ -134,7 +136,7 @@ function bearerUid(): string {
 function pathParts(): array {
   $p = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '';
   $base = '/datasync/v2/super-coding-ball/data';
-  if (!str_starts_with($p, $base)) { http_response_code(404); echo '{}'; exit; }
+  if (strncmp($p, $base, strlen($base)) !== 0) { http_response_code(404); echo '{}'; exit; }
   $r = trim(substr($p, strlen($base)), '/');
   return $r === '' ? [] : explode('/', $r);
 }
@@ -262,9 +264,11 @@ location /datasync/v2/super-coding-ball/data {
 
 location ~ \.php$ {
     include snippets/fastcgi-php.conf;
-    fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+    fastcgi_pass unix:/run/php/php7.3-fpm.sock;
 }
 ```
+
+> Falls dein Socket anders heißt, den Pfad entsprechend anpassen (z. B. `php7.4-fpm.sock`).
 
 ## 6) Frontend auf eigene URL umstellen
 
