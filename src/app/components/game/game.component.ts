@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {AfterViewInit, Component, EventEmitter, Input, isDevMode, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Player, PlayerState} from '../../models/player';
 import {Ball} from '../../models/ball';
 import {Sprite, SpriteCoord} from '../../models/sprite';
@@ -19,6 +19,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {OnlineService} from '../../services/online.service';
 import {GamePoint} from '../online-opponents/online-opponents.component';
+import {isRuntimeDevMode} from '../../app-runtime-config';
 import {TranslatePipe} from '@ngx-translate/core';
 import {CommonModule} from '@angular/common';
 
@@ -202,7 +203,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   public loadOwnCode(): void {
     this.ownTeamWillStart = true;
     this.ownCode = this.codeService.loadOwnCode();
-    if (isDevMode()) {
+    if (isRuntimeDevMode()) {
       console.log(this.ownCode);
     }
     this.openKickOffPopup();

@@ -29,7 +29,7 @@
         {{onlineService.userDisplay.displayName}}
         <span class="ps-1"></span>
         <img class="rounded bg-white" height="40px"
-          src="{{onlineService.userDisplay.pictureUrl | anonPicturePipe}}">
+             src="{{onlineService.userDisplay.pictureUrl | anonPicturePipe}}">
       </button>
     }
   </div>
@@ -40,19 +40,19 @@
     <div class="d-flex flex-column align-items-center">
       <div class="col-sm-7 col-md-5 col-lg-3">
         <button class="btn btn-lg my-2 p-0 text-start bg-secondary w-100" type="button"
-          (click)="modalService.open(guestInfoContent)">
+                (click)="modalService.open(guestInfoContent)">
           <img src="assets/icons/user-solid.png" class="p-2 icon48">
           <span class="p-2 text-white h6">{{'ONLINE.CONNECT_GUEST' | translate }}</span>
         </button>
         <!-- See: https://developers.facebook.com/docs/facebook-login/userexperience -->
         <button style="background-color: #0866FF" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
-          (click)="loading=true;onlineService.connectWithFacebook()">
+                (click)="loading=true;onlineService.connectWithFacebook()">
           <img src="assets/icons/login_facebook.png" class="icon48">
           <span class="p-2 text-white h6">{{'ONLINE.CONNECT_WITH_FACEBOOK' | translate }}</span>
         </button>
         <!-- See: https://developers.google.com/identity/branding-guidelines -->
         <button style="background-color: #F2F2F2" class="btn btn-lg my-2 p-0 text-start w-100" type="button"
-          (click)="loading=true;onlineService.connectWithGoogle()">
+                (click)="loading=true;onlineService.connectWithGoogle()">
           <img src="assets/icons/login_google.png" class="icon48">
           <span style="color: #1F1F1F" class="p-2 h6">{{'ONLINE.CONNECT_WITH_GOOGLE' | translate }}</span>
         </button>
@@ -62,70 +62,100 @@
   @else if (onlineService.connectionStatus === ConnectionStatus.Connected) {
     <div>
       <app-dancing-monsters />
-      <div class="col-sm-10 col-md-8 col-lg-6 border border-dark" style="margin: auto">
-        <table class="table table-sm table-hover text-start">
-          <thead class="table-dark">
+
+      <div class="team-lead-wrapper mb-2 mx-auto col-sm-10 col-md-10 col-lg-10">
+        <div class="team-lead-bar">
+          <div class="team-lead-vip" [style.width.%]="teamLeadPercent"></div>
+          <div class="team-lead-fun" [style.width.%]="100 - teamLeadPercent"></div>
+          <div class="team-lead-center"></div>
+        </div>
+        <div class="team-lead-label mt-1">
+          VIP {{vipTeamPoints}} - {{funTeamPoints}} FUN
+        </div>
+      </div>
+
+      <div class="row g-3 justify-content-center">
+        <div class="col-sm-10 col-md-6 col-lg-5 border border-dark bg-white">
+          <table class="table table-sm table-hover text-start mb-0">
+            <thead class="table-dark">
             <tr>
               <th class="text-center" scope="col" colspan="5">
                 {{"ONLINE.RANKING" | translate }}
                 <button class="btn btn-sm pt-0" type="button" onclick="this.blur()"
-                  (click)="modalService.open(rankingInfoContent)">
+                        (click)="modalService.open(rankingInfoContent)">
                   <img src="assets/icons/info-circle-solid-white.png" style="height: 20px; width: 20px"/>
                 </button>
               </th>
             </tr>
-          </thead>
-          <tbody>
-            <td colspan="5">
-              <div class="input-group">
-                <input type="text" class="form-control bg-transparent rounded" placeholder="..." [(ngModel)]="searchTerm">
-                <div class="m-1">
-                  <img src="assets/icons/search-solid.png" style="width: 18px">
+            </thead>
+            <tbody>
+            <tr>
+              <td colspan="5">
+                <div class="input-group">
+                  <input type="text" class="form-control bg-transparent rounded" placeholder="..." [(ngModel)]="searchTerm">
+                  <div class="m-1">
+                    <img src="assets/icons/search-solid.png" style="width: 18px">
+                  </div>
                 </div>
-              </div>
-            </td>
-            @for (opponent of filteredOpponents; track opponent.webcomId) {
-              <tr (click)="play(opponent.webcomId)"
-              [class.bg-secondary]="opponent.webcomId === onlineService.webcomId">
-              <td>
-                <button class="btn text-start px-0">
-                  {{opponent.ranking}}
-                </button>
-              </td>
-              @if(opponent.userDisplay) {
-                <td class="p-0">
-                  <button class="btn text-start px-0">
-                    <img class="rounded border border-dark" height="40px"
-                      src="{{opponent.userDisplay.pictureUrl | anonPicturePipe}}">
-                  </button>
-                </td>
-              }
-              <td>
-                <button class="btn text-start text-break px-0">
-                  {{opponent.userDisplay?.displayName}}
-                </button>
-              </td>
-              <td>
-                <button class="btn text-start px-0">
-                  {{opponent.points}}{{"ONLINE.OPP_POINTS" | translate }}
-                </button>
-              </td>
-              <td>
-                @if(opponent.webcomId !== onlineService.webcomId) {
-                  <button class="btn px-0">
-                    @switch (opponent.lastResult) {
-                      @case (GamePoint.WON) {<img class="icon24" src="assets/icons/trophy-solid-warning.png">}
-                      @case (GamePoint.DRAW) {<img class="icon24" src="assets/icons/trophy-solid-secondary.png">}
-                      @case (GamePoint.LOST) {<img class="icon24" src="assets/icons/trophy-solid-danger.png">}
-                      @default {<img class="team-not-won icon24" src="assets/icons/trophy-solid-secondary.png">}
-                    }
-                  </button>
-                }
               </td>
             </tr>
+            @for (opponent of filteredOpponents; track opponent.webcomId) {
+              <tr (click)="play(opponent.webcomId)"
+                  [class.bg-secondary]="opponent.webcomId === onlineService.webcomId"
+                  [class.team-vip]="getTeamClass(opponent) === 'team-vip'"
+                  [class.team-fun]="getTeamClass(opponent) === 'team-fun'">
+                <td><button class="btn text-start px-0">{{opponent.ranking}}</button></td>
+                @if(opponent.userDisplay) {
+                  <td class="p-0">
+                    <button class="btn text-start px-0">
+                      <img class="rounded border border-dark" height="40px" src="{{opponent.userDisplay.pictureUrl | anonPicturePipe}}">
+                    </button>
+                  </td>
+                }
+                <td><button class="btn text-start text-break px-0">{{opponent.userDisplay?.displayName}}</button></td>
+                <td><button class="btn text-start px-0">{{opponent.points}}{{"ONLINE.OPP_POINTS" | translate }}</button></td>
+                <td>
+                  @if(opponent.webcomId !== onlineService.webcomId) {
+                    <button class="btn px-0">
+                      @switch (opponent.lastResult) {
+                        @case (GamePoint.WON) {<img class="icon24" src="assets/icons/trophy-solid-warning.png">}
+                        @case (GamePoint.DRAW) {<img class="icon24" src="assets/icons/trophy-solid-secondary.png">}
+                        @case (GamePoint.LOST) {<img class="icon24" src="assets/icons/trophy-solid-danger.png">}
+                        @default {<img class="team-not-won icon24" src="assets/icons/trophy-solid-secondary.png">}
+                      }
+                    </button>
+                  }
+                </td>
+              </tr>
             }
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-sm-10 col-md-6 col-lg-5 border border-dark bg-white">
+          <table class="table table-sm table-hover text-start mb-0">
+            <thead class="table-dark">
+            <tr>
+              <th class="text-center" scope="col" colspan="4">Team-Rangliste VIP vs FUN</th>
+            </tr>
+            </thead>
+            <tbody>
+            @for (opponent of teamOpponents; track opponent.webcomId) {
+              <tr [class.bg-secondary]="opponent.webcomId === onlineService.webcomId"
+                  [class.team-vip]="getTeamClass(opponent) === 'team-vip'"
+                  [class.team-fun]="getTeamClass(opponent) === 'team-fun'">
+                <td>{{opponent.ranking}}</td>
+                <td>{{opponent.userDisplay?.displayName}}</td>
+                <td>{{opponent.points}}{{"ONLINE.OPP_POINTS" | translate }}</td>
+                <td>
+                  @if(getTeamClass(opponent) === 'team-vip') {VIP}
+                  @if(getTeamClass(opponent) === 'team-fun') {FUN}
+                </td>
+              </tr>
+            }
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   }
@@ -149,12 +179,12 @@
     <div class="w-100 d-flex justify-content-between align-items-center">
       <form class="form-floating">
         <input #currentNickname id="nickname" class="form-control" type="text" maxlength="20"
-          value="{{onlineService.userDisplay.displayName}}">
+               value="{{onlineService.userDisplay.displayName}}">
         <label for="nickname">{{'ONLINE.NICKNAME_LIMIT' | translate}}</label>
       </form>
       <button type="button" class="btn btn-warning mx-1"
-        (click)="modal.close();updateUserDisplayName(currentNickname.value)"
-        [innerHTML]="'ONLINE.CHANGE_NICKNAME' | translate">
+              (click)="modal.close();updateUserDisplayName(currentNickname.value)"
+              [innerHTML]="'ONLINE.CHANGE_NICKNAME' | translate">
       </button>
     </div>
     <hr>
@@ -168,7 +198,7 @@
     <hr>
     <div class="w-100 text-center">
       <button type="button" class="btn btn-danger" (click)="modal.close();removeAccount()"
-        [innerHTML]="'ONLINE.DELETE_ACCOUNT' | translate">
+              [innerHTML]="'ONLINE.DELETE_ACCOUNT' | translate">
       </button>
     </div>
   </div>
@@ -226,7 +256,7 @@
       {{"GLOBAL.CANCEL" | translate }}
     </button>
     <button type="button" class="btn btn-danger"
-      (click)="modal.close();loading=true;onlineService.connectAnonymously()">
+            (click)="modal.close();loading=true;onlineService.connectAnonymously()">
       {{"GLOBAL.OK" | translate }}
     </button>
   </div>

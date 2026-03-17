@@ -1,0 +1,35 @@
+.team-vip {
+  background-color: gold !important;
+}
+
+.team-fun {
+  background-color: greenyellow !important;
+}
+
+.team-lead-bar {
+  position: relative;
+  display: flex;
+  height: 20px;
+  border: 1px solid #333;
+}
+
+.team-lead-vip {
+  background-color: gold;
+}
+
+.team-lead-fun {
+  background-color: greenyellow;
+}
+
+.team-lead-center {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  left: 50%;
+  width: 2px;
+  background: #333;
+}
+
+.team-lead-label {
+  font-weight: 600;
+}

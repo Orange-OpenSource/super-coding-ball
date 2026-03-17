@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, isDevMode, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {initializeApp} from 'firebase/app';
 import {getAnalytics} from 'firebase/analytics';
 import {SwUpdate, VersionReadyEvent} from '@angular/service-worker';
@@ -19,6 +19,7 @@ import {LocalStorageService} from './services/local-storage.service';
 import {filter} from 'rxjs/operators';
 import {SupportedLanguagesServices} from './services/supported-languages-service';
 import {RouterOutlet} from '@angular/router';
+import {isRuntimeDevMode} from './app-runtime-config';
 
 @Component({
   selector: 'app-root',
@@ -49,7 +50,7 @@ export class AppComponent implements OnInit, OnDestroy {
       measurementId: 'G-N0RFS9M9XJ'
     };
     const app = initializeApp(firebaseConfig);
-    if (!isDevMode() && !localStorageService.getTrackingDisabledStatus()) {
+    if (!isRuntimeDevMode() && !localStorageService.getTrackingDisabledStatus()) {
       getAnalytics(app);
     }
   }
