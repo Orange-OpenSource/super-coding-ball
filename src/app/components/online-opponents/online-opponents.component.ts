@@ -103,8 +103,13 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
     const allGames = await this.onlineService.loadGamesAndRemoveOldOnes();
     this.loading = false;
     this.computeOpponentsScore(allGames);
-    // Opponents without userDisplay are opponents who have been challenged, but who didn't connect in the 15 days
-    this.opponents = this.opponents.filter(opponent => !!opponent.userDisplay);
+    const today = OnlineService.getUtcTimestamp(Date.now());
+    // We hide opponents:
+    this.opponents = this.opponents
+      // without userDisplay (who have been challenged but who didn't connect in the 15 days)
+      .filter(opponent => !!opponent.userDisplay)
+      // with 0 points from the past days
+      .filter(opponent => opponent.points || opponent.lastSeen === today);
     this.computeRankings();
     this.filteredOpponents = this.opponents;
   }
