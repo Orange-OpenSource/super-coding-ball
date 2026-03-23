@@ -63,6 +63,10 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
       this.normalized(opp.userDisplay?.displayName ?? '').includes(this.normalized(term)));
   }
 
+  get totalScore(): number {
+    return this.filteredOpponents.reduce((sum, curr) => sum + curr.points, 0);
+  }
+
   private normalized(text: string): string {
     return text.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
   }

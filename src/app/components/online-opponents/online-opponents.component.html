@@ -76,16 +76,22 @@
             </tr>
           </thead>
           <tbody>
-            <td colspan="5">
-              <div class="input-group">
+            <tr class="align-middle">
+              <td [attr.colspan]="searchTerm !== '' ? 3 : 4">
                 <input type="text" class="form-control bg-transparent rounded" placeholder="..." [(ngModel)]="searchTerm">
-                <div class="m-1">
-                  <img src="assets/icons/search-solid.png" style="width: 18px">
-                </div>
-              </div>
-            </td>
+              </td>
+              @if(searchTerm !== '') {
+                <td>
+                  [{{ totalScore }}{{"ONLINE.OPP_POINTS" | translate }}]
+                </td>
+              }
+              <td class="text-center">
+                <img src="assets/icons/search-solid.png" style="width: 18px">
+              </td>
+            </tr>
             @for (opponent of filteredOpponents; track opponent.webcomId) {
               <tr (click)="play(opponent.webcomId)"
+              class="align-middle"
               [class.bg-secondary]="opponent.webcomId === onlineService.webcomId">
               <td>
                 <button class="btn text-start px-0">
@@ -110,7 +116,7 @@
                   {{opponent.points}}{{"ONLINE.OPP_POINTS" | translate }}
                 </button>
               </td>
-              <td>
+              <td class="text-center">
                 @if(opponent.webcomId !== onlineService.webcomId) {
                   <button class="btn px-0">
                     @switch (opponent.lastResult) {
