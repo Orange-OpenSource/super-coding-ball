@@ -102,7 +102,7 @@
     "TITLE": "詳細はこちら",
     "IDEA": "SuperCodingBall の目的は、コーディングの概念 (命令、パラメータ、イベント、条件) を、あまり興奮せずに理解できるようにすることです \uD83D\uDE05",
     "SCRATCH": "気に入って、プログラミングについてもっと知りたいと思ったら、すぐに<a href=\"https://scratch.mit.edu\">Scratch</a>に進んでください。<br>コードブロックを使って独自のストーリーやゲームを作成できる素晴らしい Web サイトです。",
-    "BLOCKLY": "SuperCodingBall では、 <a href=\"https://developers.google.com/blockly\">Blockly</a>のおかげで Scratch のようにブロックを操作できます。",
+    "BLOCKLY": "SuperCodingBall では、 <a href=\"https://www.blockly.com\">Blockly</a>のおかげで Scratch のようにブロックを操作できます。",
     "OPENSOURCE": "SuperCodingBall はオープンソース プロジェクトです。<a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">ソース コードは GitHub で</a>見つかります。",
     "LEGAL": "<a href='/legal'>法的通知</a>、<a href='/terms'>一般使用条件</a>、<a href='/privacy'>プライバシー通知</a>をお読みください。",
     "CONTACT": "接触："

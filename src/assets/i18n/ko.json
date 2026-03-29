@@ -102,7 +102,7 @@
     "TITLE": "자세히 알아보세요",
     "IDEA": "SuperCodingBall의 아이디어는 여러분이 흥분하지 않고도 몇 가지 코딩 개념(지침, 매개변수, 이벤트 및 조건)을 볼 수 있도록 하는 것입니다 \uD83D\uDE05",
     "SCRATCH": "만약 당신이 스크래치를 좋아하고 프로그래밍에 대해 더 많은 것을 알고 싶다면, 바로 <a href=\"https://scratch.mit.edu\">스크래치</a> 로 가보세요.<br>코드 블록을 이용해 나만의 스토리/게임을 만들 수 있는 놀라운 웹사이트입니다!",
-    "BLOCKLY": "SuperCodingBall에서는 <a href=\"https://developers.google.com/blockly\">Blockly</a> 덕분에 Scratch처럼 블록을 조작할 수 있습니다!",
+    "BLOCKLY": "SuperCodingBall에서는 <a href=\"https://www.blockly.com\">Blockly</a> 덕분에 Scratch처럼 블록을 조작할 수 있습니다!",
     "OPENSOURCE": "SuperCodingBall은 오픈 소스 프로젝트입니다. <a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">GitHub에서 소스 코드를</a> 찾아보세요.",
     "LEGAL": "<a href='/legal'>법적 고지사항</a>, <a href='/terms'>일반 이용 약관</a> 및 <a href='/privacy'>개인정보 보호 고지사항을</a> 읽어보세요.",
     "CONTACT": "연락하다:"

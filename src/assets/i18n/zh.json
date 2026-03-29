@@ -102,7 +102,7 @@
     "TITLE": "了解更多",
     "IDEA": "SuperCodingBall 的理念是向你介绍一些编程概念（指令、参数、事件和条件），而不会让你感到紧张 \uD83D\uDE05",
     "SCRATCH": "如果你喜欢它，并且想探索更多编程知识，那就赶紧去<a href=\"https://scratch.mit.edu\">Scratch</a>看看吧。<br>这是一个非常棒的网站，它允许你用代码块创建自己的故事/游戏！",
-    "BLOCKLY": "在 SuperCodingBall 中，借助<a href=\"https://developers.google.com/blockly\">Blockly</a> ，您可以像在 Scratch 中一样操作积木！",
+    "BLOCKLY": "在 SuperCodingBall 中，借助<a href=\"https://www.blockly.com\">Blockly</a> ，您可以像在 Scratch 中一样操作积木！",
     "OPENSOURCE": "SuperCodingBall 是一个开源项目，<a href=\"https://github.com/Orange-OpenSource/super-coding-ball\">源代码可在 GitHub 上</a>找到。",
     "LEGAL": "请阅读<a href='/legal'>法律声明</a>、<a href='/terms'>一般使用条款</a>和<a href='/privacy'>隐私声明</a>。",
     "CONTACT": "联系："
