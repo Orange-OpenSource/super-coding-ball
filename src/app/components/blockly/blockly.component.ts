@@ -133,7 +133,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         wheel: true,
         pinch: true,
         maxScale: 1,
-        minScale: 0.2
+        minScale: 0.1
       }
     });
     this.setCategoryTooltips();
@@ -155,7 +155,7 @@ export class BlocklyComponent implements OnInit, OnDestroy {
         wheel: true,
         pinch: true,
         maxScale: 1,
-        minScale: 0.2
+        minScale: 0.1
       }
     });
   }

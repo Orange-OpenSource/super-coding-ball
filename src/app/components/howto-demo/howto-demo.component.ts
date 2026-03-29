@@ -136,7 +136,7 @@ export class HowtoDemoComponent implements OnInit, OnDestroy {
           wheel: true,
           pinch: true,
           maxScale: 1,
-          minScale: 0.2
+          minScale: 0.1
         }
       });
   }
