@@ -178,9 +178,9 @@ export class CodeService {
       });
     });
 
-    const currentLang = await this.supportedLanguagesService.getCurrentLangFiles();
-    Blockly.setLocale(currentLang.blocklyDefaultLocale as unknown as { [key: string]: string });
-    Blockly.setLocale(currentLang.blocklyCustomLocale as { [key: string]: string });
+    const currentLangTranslations = await this.supportedLanguagesService.getCurrentLangTranslations();
+    Blockly.setLocale(currentLangTranslations.blocklyDefaultLocale as unknown as { [key: string]: string });
+    Blockly.setLocale(currentLangTranslations.blocklyCustomLocale as { [key: string]: string });
 
     Blockly.registry.register(
       Blockly.registry.Type.TOOLBOX_ITEM,

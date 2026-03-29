@@ -6,24 +6,23 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "analyze-bundle": "ng build --configuration=analyze-bundle && source-map-explorer dist/**/*.js --no-border-checks"
-
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^19.1.0",
-    "@angular/common": "^19.1.0",
-    "@angular/compiler": "^19.1.0",
-    "@angular/core": "^19.1.0",
-    "@angular/forms": "^19.1.0",
-    "@angular/platform-browser": "^19.1.0",
-    "@angular/platform-browser-dynamic": "^19.1.0",
-    "@angular/router": "^19.1.0",
-    "@angular/service-worker": "^19.1.0",
-    "@blockly/field-slider": "^8.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^18.0.0",
-    "@ngx-translate/core": "^16.0.4",
-    "blockly": "^12.1.0",
-    "bootstrap": "^5.3.3",
+    "@angular/animations": "^20.3.18",
+    "@angular/common": "^20.3.18",
+    "@angular/compiler": "^20.3.18",
+    "@angular/core": "^20.3.18",
+    "@angular/forms": "^20.3.18",
+    "@angular/platform-browser": "^20.3.18",
+    "@angular/platform-browser-dynamic": "^20.3.18",
+    "@angular/router": "^20.3.18",
+    "@angular/service-worker": "^20.3.18",
+    "@blockly/field-slider": "^8.0.8",
+    "@ng-bootstrap/ng-bootstrap": "^19.0.0",
+    "@ngx-translate/core": "^17.0.0",
+    "blockly": "^12.5.1",
+    "bootstrap": "^5.3.6",
     "firebase": "^11.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -31,12 +30,12 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.1.4",
-    "@angular/cli": "^19.1.4",
-    "@angular/compiler-cli": "^19.1.0",
-    "@angular/localize": "^19.1.0",
+    "@angular/build": "^20.3.22",
+    "@angular/cli": "^20.3.22",
+    "@angular/compiler-cli": "^20.3.18",
+    "@angular/localize": "^20.3.18",
     "@types/bootstrap": "^5.2.10",
     "source-map-explorer": "^2.5.3",
-    "typescript": "~5.7.2"
+    "typescript": "~5.9.3"
   }
 }

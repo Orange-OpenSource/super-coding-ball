@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/super-coding-ball",
+    "public": "dist/super-coding-ball/browser",
     "ignore": [
       "firebase.json",
       "**/.*",

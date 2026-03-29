@@ -19,8 +19,8 @@ import {provideRouter} from '@angular/router';
 
 import {routes} from './app.routes';
 import {provideServiceWorker} from '@angular/service-worker';
-import {provideTranslateService, TranslateLoader} from '@ngx-translate/core';
-import {HttpClient, provideHttpClient} from '@angular/common/http';
+import {provideTranslateService, provideTranslateLoader} from '@ngx-translate/core';
+import {provideHttpClient} from '@angular/common/http';
 import {CustomTranslateLoader} from "./services/custom-translate-loader";
 import {CodeService} from "./services/code.service";
 
@@ -35,12 +35,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAppInitializer(() => inject(CodeService).init()),
     provideTranslateService({
-      defaultLanguage: 'en',
-      loader: {
-        provide: TranslateLoader,
-        useClass: CustomTranslateLoader,
-        deps: [HttpClient]
-      }
+      fallbackLang: 'en',
+      loader: provideTranslateLoader(CustomTranslateLoader),
     })
   ]
 };

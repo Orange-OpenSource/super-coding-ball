@@ -12,18 +12,6 @@
 import {TranslateService} from '@ngx-translate/core';
 import {Injectable} from '@angular/core';
 
-import CustomEn from '../../assets/i18n/en.json';
-import CustomFr from '../../assets/i18n/fr.json';
-import CustomEs from '../../assets/i18n/es.json';
-import CustomDe from '../../assets/i18n/de.json';
-import CustomRu from '../../assets/i18n/ru.json';
-import CustomHe from '../../assets/i18n/he.json';
-import CustomAr from '../../assets/i18n/ar.json';
-import CustomNl from '../../assets/i18n/nl.json';
-import CustomJa from '../../assets/i18n/ja.json';
-import CustomKo from '../../assets/i18n/ko.json';
-import CustomZh from '../../assets/i18n/zh.json';
-
 const defaultLangInfo = {isoId:'en', rtl: false};
 export const supportedLangInfo = Array.from([
   defaultLangInfo,
@@ -47,7 +35,7 @@ export class SupportedLanguagesServices {
   constructor(public translate: TranslateService) {
     translate.addLangs(supportedLangInfo.map(lang => lang.isoId));
     // Default lang used for legal pages
-    translate.setDefaultLang(defaultLangInfo.isoId);
+    translate.setFallbackLang(defaultLangInfo.isoId);
     translate.use(this.getCurrentLangInfo().isoId);
   }
 
@@ -56,54 +44,70 @@ export class SupportedLanguagesServices {
     return supportedLang ? {...supportedLang, default: false} : {...defaultLangInfo, default: true};
   }
 
-  public async getCurrentLangFiles() {
-    const currentLangInfo = this.getCurrentLangInfo();
-    // webpack doesn't support import(`blockly/msg/${currentLangInfo.isoId}`); so the switch is necessary
-    switch (currentLangInfo.isoId) {
+  public getCurrentLangTranslations() {
+    return SupportedLanguagesServices.getLangTranslations(this.getCurrentLangInfo().isoId);
+  }
+
+  static async getLangTranslations(lang: string): Promise<{blocklyDefaultLocale: {}, blocklyCustomLocale: {}, uxLocale: {}}> {
+    // webpack doesn't support import(`blockly/msg/${lang}`); so the switch is necessary
+    switch (lang) {
       case 'fr': {
         const blocklyDefaultLocale = await import('blockly/msg/fr');
-        return {blocklyDefaultLocale, blocklyCustomLocale: CustomFr.BLOCKS};
+        const CustomFr = await import ('../../assets/i18n/fr.json');
+        const LegalFr = await import('../../assets/legal-i18n/fr.json');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomFr.BLOCKS, uxLocale: {...CustomFr, ...LegalFr}};
       }
       case 'es': {
         const blocklyDefaultLocale = await import('blockly/msg/es');
-        return {blocklyDefaultLocale, blocklyCustomLocale: CustomEs.BLOCKS};
+        const CustomEs = await import ('../../assets/i18n/es.json');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomEs.BLOCKS, uxLocale: CustomEs};
       }
       case 'de': {
         const blocklyDefaultLocale = await import('blockly/msg/de');
-        return {blocklyDefaultLocale, blocklyCustomLocale: CustomDe.BLOCKS};
+        const CustomDe = await import ('../../assets/i18n/de.json');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomDe.BLOCKS, uxLocale: CustomDe};
       }
       case 'ru': {
         const blocklyDefaultLocale = await import('blockly/msg/ru');
-        return {blocklyDefaultLocale, blocklyCustomLocale: CustomRu.BLOCKS};
+        const CustomRu = await import ('../../assets/i18n/ru.json');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomRu.BLOCKS, uxLocale: CustomRu};
       }
       case 'he': {
         const blocklyDefaultLocale = await import('blockly/msg/he');
-        return {blocklyDefaultLocale, blocklyCustomLocale: CustomHe.BLOCKS};
+        const CustomHe = await import ('../../assets/i18n/he.json');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomHe.BLOCKS, uxLocale: CustomHe};
       }
       case 'ar': {
         const blocklyDefaultLocale = await import('blockly/msg/ar');
-        return {blocklyDefaultLocale, blocklyCustomLocale: CustomAr.BLOCKS};
+        const CustomAr = await import ('../../assets/i18n/ar.json');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomAr.BLOCKS, uxLocale: CustomAr};
       }
       case 'nl': {
         const blocklyDefaultLocale = await import('blockly/msg/nl');
-        return {blocklyDefaultLocale, blocklyCustomLocale: CustomNl.BLOCKS};
+        const CustomNl = await import ('../../assets/i18n/nl.json');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomNl.BLOCKS, uxLocale: CustomNl};
       }
       case 'ja': {
         const blocklyDefaultLocale = await import('blockly/msg/ja');
-        return {blocklyDefaultLocale, blocklyCustomLocale: CustomJa.BLOCKS};
+        const CustomJa = await import ('../../assets/i18n/ja.json');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomJa.BLOCKS, uxLocale: CustomJa};
       }
       case 'ko': {
         const blocklyDefaultLocale = await import('blockly/msg/ko');
-        return {blocklyDefaultLocale, blocklyCustomLocale: CustomKo.BLOCKS};
+        const CustomKo = await import ('../../assets/i18n/ko.json');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomKo.BLOCKS, uxLocale: CustomKo};
       }
       case 'zh': {
         // Most people want Simplified Chinese here – Blockly uses zh-hans
         const blocklyDefaultLocale = await import('blockly/msg/zh-hans');
-        return {blocklyDefaultLocale, blocklyCustomLocale: CustomZh.BLOCKS};
+        const CustomZh = await import ('../../assets/i18n/zh.json');
+        return {blocklyDefaultLocale, blocklyCustomLocale: CustomZh.BLOCKS, uxLocale: CustomZh};
       }
       default: {
         const blocklyDefaultLocale = await import('blockly/msg/en');
-        return {blocklyDefaultLocale, blocklyCustomLocale: CustomEn.BLOCKS};
+        const CustomEn = await import ('../../assets/i18n/en.json');
+        const LegalEn  = await import('../../assets/legal-i18n/en.json');
+        return {blocklyDefaultLocale, blocklyCustomLocale:  CustomEn.BLOCKS, uxLocale: {...CustomEn, ...LegalEn}};
       }
     }
   }
