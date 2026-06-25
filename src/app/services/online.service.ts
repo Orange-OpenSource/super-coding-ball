@@ -10,10 +10,10 @@
  */
 
 import {Injectable, OnDestroy, EventEmitter} from '@angular/core';
-import Webcom from 'webcom/webcom-auth-sldbLite.js';
+import Webcom from 'webcom/webcom-auth-sldb.js';
 import {AllGames, ConnectionStatus, OneDayGames, User, UserDisplay} from '../models/webcom-models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {firstValueFrom} from 'rxjs';
+import {firstValueFrom, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,7 @@ import {firstValueFrom} from 'rxjs';
 export class OnlineService implements OnDestroy {
   webcomApp = Webcom.App('super-coding-ball');
   webcomAuth = this.webcomApp.authentication;
+  webcomData = this.webcomApp.serverlessDb;
   connectionStatusChanged = new EventEmitter<ConnectionStatus>();
   private _connectionStatus = ConnectionStatus.Unknown;
 
@@ -205,6 +206,24 @@ export class OnlineService implements OnDestroy {
       allGames[today] = todayGames;
       return allGames
     }
+  }
+
+  syncTodayGames(): Observable<AllGames> {
+    const today = OnlineService.getUtcTimestamp(Date.now());
+    const todayNode = this.webcomData.rootNode.relativeNode(`games/${today}`);
+    return new Observable<AllGames>((subscriber) => {
+      let mySubscription: any;
+      todayNode.subscribe(Webcom.ServerlessDb.Event.ValueChange, Webcom.ServerlessDb.Callback((snapshot: any) => {
+        let allGames = this.allGames ?? {};
+        allGames[today] = snapshot.val();
+        subscriber.next(allGames);
+      }))
+        .then((subscription: any) => mySubscription = subscription)
+
+      return () => {
+        mySubscription.cancel();
+      };
+    })
   }
 
   async deleteDay(dayTimestamp: string): Promise<void> {

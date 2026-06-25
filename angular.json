@@ -65,7 +65,7 @@
             "allowedCommonJsDependencies": [
               "blockly",
               "@blockly/field-slider",
-              "webcom/webcom-auth-sldbLite.js"
+              "webcom/webcom-auth-sldb.js"
             ],
             "browser": "src/main.ts"
           },

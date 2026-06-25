@@ -9,7 +9,7 @@
  * or see the "LICENSE.txt" file for more details.
  */
 
-import {Component, OnDestroy, OnInit, signal, ViewChild, WritableSignal} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AllGames, ConnectionStatus, Opponent} from '../../models/webcom-models';
 import {OnlineService} from '../../services/online.service';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
@@ -31,7 +31,8 @@ export enum GamePoint {
 @Component({
   selector: 'app-online-opponents',
   imports: [FormsModule, RouterLink, TranslatePipe, DancingMonstersComponent, AnonPicturePipe],
-  templateUrl: './online-opponents.component.html'
+  templateUrl: './online-opponents.component.html',
+  styleUrl: './online-opponents.component.scss'
 })
 
 export class OnlineOpponentsComponent implements OnInit, OnDestroy {
@@ -40,9 +41,9 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
   GamePoint = GamePoint;
   public ConnectionStatus = ConnectionStatus;
   private connectionStatusSubscription?: Subscription;
+  private syncTodayGamesSubscription?: Subscription;
   opponents: Opponent[] = [];
   lastResult?: number;
-  filteredOpponents: Opponent[] = [];
   personalRanking = 0;
   loading = false;
   modalParams = {
@@ -51,16 +52,27 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
     lost: '<img src="assets/icons/trophy-solid-danger.png" class="icon24"/>',
   };
 
-  private _searchTerm = '';
+  private _syncLeaderBoard = false;
 
-  get searchTerm(): string {
-    return this._searchTerm;
+  get syncLeaderBoard(): boolean {
+    return this._syncLeaderBoard;
   }
 
-  set searchTerm(term: string) {
-    this._searchTerm = term;
-    this.filteredOpponents = this.opponents.filter(opp => !term ||
-      this.normalized(opp.userDisplay?.displayName ?? '').includes(this.normalized(term)));
+  set syncLeaderBoard(sync: boolean) {
+    this._syncLeaderBoard = sync;
+    if (sync && (this.syncTodayGamesSubscription?.closed ?? true)) {
+      this.syncTodayGamesSubscription = this.onlineService.syncTodayGames()
+        .subscribe(allGames => this.computeLeaderBoard(allGames))
+    } else if (!sync && this.syncTodayGamesSubscription && !this.syncTodayGamesSubscription.closed) {
+      this.syncTodayGamesSubscription.unsubscribe()
+    }
+  }
+
+  protected searchTerm = '';
+
+  get filteredOpponents(): Opponent[] {
+    return this.opponents.filter(opp => !this.searchTerm ||
+      this.normalized(opp.userDisplay?.displayName ?? '').includes(this.normalized(this.searchTerm)));
   }
 
   get totalScore(): number {
@@ -97,6 +109,7 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.connectionStatusSubscription?.unsubscribe();
+    this.syncTodayGamesSubscription?.unsubscribe();
     this.modalService.dismissAll();
   }
 
@@ -106,6 +119,10 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
     await this.onlineService.setUserDisplayInDailyGames();
     const allGames = await this.onlineService.loadGamesAndRemoveOldOnes();
     this.loading = false;
+    this.computeLeaderBoard(allGames)
+  }
+
+  computeLeaderBoard(allGames: AllGames) {
     this.computeOpponentsScore(allGames);
     const today = OnlineService.getUtcTimestamp(Date.now());
     // We hide opponents:
@@ -115,7 +132,6 @@ export class OnlineOpponentsComponent implements OnInit, OnDestroy {
       // with 0 points from the past days
       .filter(opponent => opponent.points || opponent.lastSeen === today);
     this.computeRankings();
-    this.filteredOpponents = this.opponents;
   }
 
   private computeOpponentsScore(allGames: AllGames): void {

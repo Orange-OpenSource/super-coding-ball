@@ -1,0 +1,12 @@
+.rotate {
+  animation: rotate 1s infinite ease-in-out;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

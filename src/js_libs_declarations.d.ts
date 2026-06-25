@@ -1,1 +1,1 @@
-declare module 'webcom/webcom-auth-sldbLite.js';
+declare module 'webcom/webcom-auth-sldb.js';

@@ -182,7 +182,12 @@
 
 <ng-template #rankingInfoContent let-modal>
   <div class="modal-header">
-    <h6 class="modal-title">{{"ONLINE.RANKING_POPUP.TITLE" | translate }}</h6>
+    <h6 class="modal-title">
+      <button class="btn btn-sm pt-0" type="button" onclick="this.blur()" (click)="syncLeaderBoard = !syncLeaderBoard">
+        <img [class.rotate]="syncLeaderBoard" src="assets/icons/arrows-rotate-solid-full.png" style="height: 16px; width: 16px"/>
+      </button>
+      {{"ONLINE.RANKING_POPUP.TITLE" | translate }}
+    </h6>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
   <div class="modal-body" [innerHTML]="'ONLINE.RANKING_POPUP.CONTENT' | translate:modalParams"></div>
