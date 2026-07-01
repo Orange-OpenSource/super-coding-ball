@@ -29,6 +29,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/manifest.webmanifest",
+              "src/assets/blockly-media/sprites.svg",
               {
                 "glob": "**/*",
                 "input": "src/assets/",
