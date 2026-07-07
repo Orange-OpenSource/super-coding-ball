@@ -20,7 +20,7 @@ import {LocalStorageService} from '../../services/local-storage.service';
 import {OnlineService} from '../../services/online.service';
 import {GamePoint} from '../online-opponents/online-opponents.component';
 import {TranslatePipe} from '@ngx-translate/core';
-import {CommonModule} from '@angular/common';
+
 
 interface FieldDivision {
   start: number;
@@ -72,7 +72,7 @@ const sprintingVelocityFactor = 2;
 
 @Component({
   selector: 'app-game',
-  imports: [CommonModule, TranslatePipe],
+  imports: [TranslatePipe],
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
