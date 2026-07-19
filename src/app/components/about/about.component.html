@@ -26,11 +26,11 @@
   </div>
   <div class="card mt-4">
     <div class="card-body">
-      <div [innerHTML]="'ABOUT.SCRATCH' | translate"></div>
-      <div class="w-100 text-center">
+      <div class="d-flex align-items-center">
         <a href="https://scratch.mit.edu">
-          <img src="assets/about/Scratchlogo.png" class="mt-1" style="height: 60px">
+          <img class="mx-1" src="assets/about/Scratchlogo.png" style="width: 60px">
         </a>
+        <span class="flex-grow-1" [innerHTML]="'ABOUT.SCRATCH' | translate"></span>
       </div>
     </div>
   </div>
