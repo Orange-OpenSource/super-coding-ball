@@ -21,7 +21,6 @@ import {firstValueFrom, Observable} from 'rxjs';
 export class OnlineService implements OnDestroy {
   webcomApp = Webcom.App('super-coding-ball');
   webcomAuth = this.webcomApp.authentication;
-  webcomData = this.webcomApp.serverlessDb;
   connectionStatusChanged = new EventEmitter<ConnectionStatus>();
   private _connectionStatus = ConnectionStatus.Unknown;
 
@@ -209,8 +208,9 @@ export class OnlineService implements OnDestroy {
   }
 
   syncTodayGames(): Observable<AllGames> {
+    const webcomData = this.webcomApp.serverlessDb;
     const today = OnlineService.getUtcTimestamp(Date.now());
-    const todayNode = this.webcomData.rootNode.relativeNode(`games/${today}`);
+    const todayNode = webcomData.rootNode.relativeNode(`games/${today}`);
     return new Observable<AllGames>((subscriber) => {
       let mySubscription: any;
       todayNode.subscribe(Webcom.ServerlessDb.Event.ValueChange, Webcom.ServerlessDb.Callback((snapshot: any) => {
