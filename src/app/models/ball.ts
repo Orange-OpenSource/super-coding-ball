@@ -10,12 +10,13 @@
  */
 
 import {buildFrames, Dir, Sprite, SpriteAnim, SpriteCoord} from './sprite';
-import {Player} from './player';
+import {Player, PlayerState} from './player';
 
 const rollingUpAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 1, 0, 10), speed: 1};
 const rollingLeftAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 3, 0, 4), speed: 1};
 const rollingDownAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 0, 0, 10), speed: 1};
 const rollingRightAnim: SpriteAnim = {frames: buildFrames(Dir.Right, 2, 0, 4), speed: 1};
+const pushedByPlayerOffset = [0, 0, 0, 3, 4, 3, 2, 1];
 
 export class Ball extends Sprite {
   velocity = 0;
@@ -121,15 +122,22 @@ export class Ball extends Sprite {
     if (this.owner === null) {
       return {x: this.coord.x, y: this.coord.y + this.height / 3};
     } else {
+      let pushedOffset = 0;
+      if (this.owner.state === PlayerState.Playing && !this.owner.still) {
+        pushedOffset = pushedByPlayerOffset[Math.floor(this.owner.currentFrame)];
+        if (this.owner.isSprinting) {
+          pushedOffset *= 1.5;
+        }
+      }
       switch (Sprite.getDirection(this.angle)) {
         case Dir.Up:
-          return {x: this.coord.x + this.width / 3, y: this.coord.y - this.height / 8};
+          return {x: this.coord.x + this.width / 3, y: this.coord.y - pushedOffset - this.height / 8};
         case Dir.Down:
-          return {x: this.coord.x - this.width / 3, y: this.coord.y + this.height / 8};
+          return {x: this.coord.x - this.width / 4, y: this.coord.y + pushedOffset + this.height / 3};
         case Dir.Left:
-          return {x: this.coord.x - this.width / 3, y: this.coord.y + this.height / 8};
+          return {x: this.coord.x - pushedOffset - this.width / 2, y: this.coord.y + this.height / 8};
         case Dir.Right:
-          return {x: this.coord.x + this.width / 3, y: this.coord.y + this.height / 8};
+          return {x: this.coord.x + pushedOffset + this.width / 2, y: this.coord.y + this.height / 8};
       }
     }
   }
